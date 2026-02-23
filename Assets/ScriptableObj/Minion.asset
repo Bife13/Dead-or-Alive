@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
+  m_Name: Minion
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
+  monsterID: 4_1
+  displayName: Minion
+  baseIncome: 0
+  effectType: 0
+  effectValue: 0
+  summonDefinition: {fileID: 0}
+  isTemporary: 1
+  canCopy: 0
+  monsterPrefab: {fileID: 4931615534373023835, guid: ea13f3f742dce684d8735534a1ac1661, type: 3}
