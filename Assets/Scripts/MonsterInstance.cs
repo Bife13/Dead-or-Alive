@@ -7,6 +7,7 @@ public class MonsterInstance
 	public Vector2Int Position { get; }
 
 	public int currentIncome;
+	public int nightsRemaining;
 	public bool isAlive = true;
 	public bool isTemporary;
 	public MonsterView view;
@@ -17,5 +18,14 @@ public class MonsterInstance
 		Position = _position;
 		currentIncome = _definition.baseIncome;
 		isTemporary = _definition.isTemporary;
+		nightsRemaining = _definition.stayDuration;
+	}
+
+	public void DecreaseStay()
+	{
+		nightsRemaining--;
+		
+		if(view != null)
+			view.UpdateNightsRemaining();
 	}
 }

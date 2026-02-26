@@ -17,6 +17,12 @@ public class GameManager : MonoBehaviour
 	private GridManager gridManager;
 
 	[SerializeField]
+	private NightSummaryUI summaryUI;
+
+	[SerializeField]
+	private GameObject startButton;
+
+	[SerializeField]
 	private TMP_Text nightText;
 
 	[SerializeField]
@@ -69,23 +75,32 @@ public class GameManager : MonoBehaviour
 		if (!runActive)
 			return;
 
+		startButton.SetActive(false);
+
 		deathsThisNight = 0;
 		multiplier = 1f;
 
+		NightReport report = new NightReport();
+
 		ResetIncome();
 
-		ApplyAdjacencyBuffs();
-		ApplySummons();
-		ApplyKillEffects();
+		ApplyAdjacencyBuffs(report);
+		ApplySummons(report);
+		ApplyKillEffects(report);
 		CleanupDead();
-		ApplyMultipliers();
-		int income = CalculateIncome();
+		ApplyMultipliers(report);
+		int income = CalculateIncome(report);
 		money += income;
 		CleanupTemporary();
+		DecreaseStayAndCheckout(report);
 
-		Debug.Log("Night ended. Earned: " + income + " | Total Money: " + money);
-
+		summaryUI.ShowSummary(report, currentNight);
 		currentNight++;
+		Debug.Log("Night ended. Earned: " + income + " | Total Money: " + money);
+	}
+
+	public void NextDay()
+	{
 		UpdateText();
 
 		dailyArrivals.Clear();
@@ -94,6 +109,8 @@ public class GameManager : MonoBehaviour
 			EndWeek();
 		else
 			GenerateDailyArrivals();
+
+		startButton.SetActive(true);
 	}
 
 	private void GenerateDailyArrivals()
@@ -164,7 +181,33 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void ApplyAdjacencyBuffs()
+	private void DecreaseStayAndCheckout(NightReport report)
+	{
+		for (int x = 0; x < gridManager.Width; x++)
+		{
+			for (int y = 0; y < gridManager.Height; y++)
+			{
+				Room room = gridManager.Rooms[x, y];
+
+				if (room.Occupant == null)
+					continue;
+
+				room.Occupant.DecreaseStay();
+
+				if (room.Occupant.nightsRemaining <= 0)
+				{
+					report.checkouts.Add(room.Occupant.Definition.displayName);
+
+					if (room.Occupant.view != null)
+						Destroy(room.Occupant.view.gameObject);
+
+					room.ClearOccupant();
+				}
+			}
+		}
+	}
+
+	private void ApplyAdjacencyBuffs(NightReport report)
 	{
 		for (int x = 0; x < gridManager.Width; x++)
 		{
@@ -187,13 +230,14 @@ public class GameManager : MonoBehaviour
 					if (adjRoom.Occupant != null)
 					{
 						adjRoom.Occupant.currentIncome += monster.Definition.effectValue;
+						report.events.Add($"{monster.Definition.displayName} buffed adjacent monsters.");
 					}
 				}
 			}
 		}
 	}
 
-	private void ApplySummons()
+	private void ApplySummons(NightReport report)
 	{
 		List<(Room room, MonsterDefinition definition)> summons = new();
 
@@ -219,8 +263,13 @@ public class GameManager : MonoBehaviour
 					    !summons.Contains((adjRoom, monster.Definition.summonDefinition)))
 					{
 						summons.Add((adjRoom, monster.Definition.summonDefinition));
+						monster.currentIncome += monster.Definition.effectValue;
 					}
 				}
+
+				report.summonBonus += summons.Count;
+				report.events.Add(
+					$"{monster.Definition.displayName} summoned {summons.Count} {monster.Definition.summonDefinition.displayName}.");
 			}
 		}
 
@@ -230,7 +279,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	private void ApplyKillEffects()
+	private void ApplyKillEffects(NightReport report)
 	{
 		for (int x = 0; x < gridManager.Width; x++)
 		{
@@ -260,12 +309,16 @@ public class GameManager : MonoBehaviour
 					}
 				}
 
-				monster.currentIncome += kills * monster.Definition.effectValue;
+				int totalKillIncome = kills * monster.Definition.effectValue;
+
+				monster.currentIncome += totalKillIncome;
+				report.killBonus += totalKillIncome;
+				report.events.Add($"{monster.Definition.displayName} killed {kills} monsters (+{totalKillIncome}).");
 			}
 		}
 	}
 
-	public void ApplyMultipliers()
+	public void ApplyMultipliers(NightReport report)
 	{
 		for (int x = 0; x < gridManager.Width; x++)
 		{
@@ -278,21 +331,27 @@ public class GameManager : MonoBehaviour
 
 				var monster = room.Occupant;
 
-				switch (monster.Definition.effectType)
+				if (monster.Definition.effectType is EffectType.ConditionalMultNoDeaths or EffectType.FlatMultAlways)
 				{
-					case EffectType.ConditionalMultNoDeaths:
-						if (deathsThisNight == 0)
+					switch (monster.Definition.effectType)
+					{
+						case EffectType.ConditionalMultNoDeaths:
+							if (deathsThisNight == 0)
+								multiplier += monster.Definition.effectValue;
+							break;
+						case EffectType.FlatMultAlways:
 							multiplier += monster.Definition.effectValue;
-						break;
-					case EffectType.FlatMultAlways:
-						multiplier += monster.Definition.effectValue;
-						break;
+							break;
+					}
+
+					report.multiplier = multiplier;
+					report.events.Add($"{monster.Definition.displayName} increased multiplier to x{report.multiplier}");
 				}
 			}
 		}
 	}
 
-	private int CalculateIncome()
+	private int CalculateIncome(NightReport report)
 	{
 		int income = 0;
 
@@ -307,7 +366,9 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
+		report.baseIncome = income;
 		income = Mathf.RoundToInt(income * multiplier);
+		report.finalIncome = income;
 
 		return income;
 	}

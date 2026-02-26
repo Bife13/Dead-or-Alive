@@ -15,6 +15,7 @@ MonoBehaviour:
   monsterID: 1
   displayName: Slime
   baseIncome: 1
+  stayDuration: 3
   effectType: 0
   effectValue: 0
   summonDefinition: {fileID: 0}

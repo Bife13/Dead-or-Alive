@@ -15,6 +15,7 @@ MonoBehaviour:
   monsterID: 3
   displayName: Butcher
   baseIncome: 0
+  stayDuration: 2
   effectType: 3
   effectValue: 2
   summonDefinition: {fileID: 0}

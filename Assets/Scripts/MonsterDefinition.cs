@@ -7,6 +7,7 @@ public class MonsterDefinition : ScriptableObject
     public string displayName;
 
     public int baseIncome;
+    public int stayDuration;
 
     public EffectType effectType;
     public int effectValue;

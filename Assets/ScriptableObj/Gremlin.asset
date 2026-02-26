@@ -15,6 +15,7 @@ MonoBehaviour:
   monsterID: 2
   displayName: Gremlin
   baseIncome: 0
+  stayDuration: 2
   effectType: 1
   effectValue: 1
   summonDefinition: {fileID: 0}

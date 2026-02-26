@@ -15,6 +15,7 @@ MonoBehaviour:
   monsterID: 5
   displayName: Inspector
   baseIncome: 0
+  stayDuration: 2
   effectType: 5
   effectValue: 1
   summonDefinition: {fileID: 0}

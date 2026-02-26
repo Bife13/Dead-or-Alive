@@ -15,6 +15,7 @@ MonoBehaviour:
   monsterID: 4_1
   displayName: Minion
   baseIncome: 0
+  stayDuration: 1
   effectType: 0
   effectValue: 0
   summonDefinition: {fileID: 0}
