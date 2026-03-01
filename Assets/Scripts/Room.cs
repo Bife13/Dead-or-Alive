@@ -20,6 +20,7 @@ public class Room
 	public void SetOccupant(MonsterInstance newOccupant)
 	{
 		occupant = newOccupant;
+		occupant.currentRoom = this;
 	}
 
 	public void ClearOccupant()

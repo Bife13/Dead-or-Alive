@@ -12,6 +12,7 @@ public class GridManager : MonoBehaviour
 
 	[SerializeField]
 	private int width = 0;
+
 	public int Width => width;
 
 	[SerializeField]
@@ -46,7 +47,7 @@ public class GridManager : MonoBehaviour
 					Quaternion.identity,
 					transform
 				);
-				
+
 				RoomView view = roomGO.GetComponent<RoomView>();
 				view.Initialize(rooms[x, y]);
 
@@ -82,5 +83,16 @@ public class GridManager : MonoBehaviour
 	{
 		return position.x >= 0 && position.x < width &&
 		       position.y >= 0 && position.y < height;
+	}
+
+	public IEnumerable<Room> GetAllRooms()
+	{
+		for (int x = 0; x < Width; x++)
+		{
+			for (int y = 0; y < Height; y++)
+			{
+				yield return Rooms[x, y];
+			}
+		}
 	}
 }

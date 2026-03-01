@@ -7,6 +7,13 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
+public enum GamePhase
+{
+	PlanningPhase,
+	ResolutionPhase,
+	ScorePhase
+}
+
 public class GameManager : MonoBehaviour
 {
 	private static GameManager _instance;
@@ -40,6 +47,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private List<MonsterDefinition> curatedPool;
 
+	public int extendStayCost;
+
 	public int arrivalsPerDay = 2;
 
 
@@ -55,6 +64,9 @@ public class GameManager : MonoBehaviour
 	private float multiplier;
 	private List<MonsterDefinition> dailyArrivals = new();
 
+	private GamePhase currentPhase;
+	public GamePhase CurrentPhase => currentPhase;
+
 	private void Awake()
 	{
 		if (_instance != null && _instance != this)
@@ -68,6 +80,7 @@ public class GameManager : MonoBehaviour
 		gridManager.Initialize();
 		GenerateDailyArrivals();
 		UpdateText();
+		currentPhase = GamePhase.PlanningPhase;
 	}
 
 	public void StartNight()
@@ -76,6 +89,15 @@ public class GameManager : MonoBehaviour
 			return;
 
 		startButton.SetActive(false);
+		currentPhase = GamePhase.ResolutionPhase;
+
+		foreach (Room room in gridManager.GetAllRooms())
+		{
+			if (room.Occupant != null)
+				room.Occupant.isResident = true;
+		}
+
+		PlacementManager.Instance.ClearSelection();
 
 		deathsThisNight = 0;
 		multiplier = 1f;
@@ -97,6 +119,7 @@ public class GameManager : MonoBehaviour
 		summaryUI.ShowSummary(report, currentNight);
 		currentNight++;
 		Debug.Log("Night ended. Earned: " + income + " | Total Money: " + money);
+		currentPhase = GamePhase.ScorePhase;
 	}
 
 	public void NextDay()
@@ -108,7 +131,10 @@ public class GameManager : MonoBehaviour
 		if (currentNight > totalNights)
 			EndWeek();
 		else
+		{
 			GenerateDailyArrivals();
+			currentPhase = GamePhase.PlanningPhase;
+		}
 
 		startButton.SetActive(true);
 	}
@@ -128,110 +154,86 @@ public class GameManager : MonoBehaviour
 
 	private void ResetIncome()
 	{
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
+			if (room.Occupant != null)
 			{
-				Room room = gridManager.Rooms[x, y];
-
-				if (room.Occupant != null)
-				{
-					room.Occupant.currentIncome =
-						room.Occupant.Definition.baseIncome;
-				}
+				room.Occupant.currentIncome =
+					room.Occupant.Definition.baseIncome;
 			}
 		}
 	}
 
 	public void CleanupDead()
 	{
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
+			if (room.Occupant != null && !room.Occupant.isAlive)
 			{
-				Room room = gridManager.Rooms[x, y];
+				if (room.Occupant.view != null)
+					Destroy(room.Occupant.view.gameObject);
 
-				if (room.Occupant != null && !room.Occupant.isAlive)
-				{
-					if (room.Occupant.view != null)
-						Destroy(room.Occupant.view.gameObject);
-
-					room.ClearOccupant();
-				}
+				room.ClearOccupant();
 			}
 		}
 	}
 
 	private void CleanupTemporary()
 	{
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
+			if (room.Occupant != null && room.Occupant.isTemporary)
 			{
-				Room room = gridManager.Rooms[x, y];
+				if (room.Occupant.view != null)
+					Destroy(room.Occupant.view.gameObject);
 
-				if (room.Occupant != null && room.Occupant.isTemporary)
-				{
-					if (room.Occupant.view != null)
-						Destroy(room.Occupant.view.gameObject);
-
-					room.ClearOccupant();
-				}
+				room.ClearOccupant();
 			}
 		}
 	}
 
 	private void DecreaseStayAndCheckout(NightReport report)
 	{
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
+			if (room.Occupant == null)
+				continue;
+
+			room.Occupant.DecreaseStay();
+
+			if (room.Occupant.nightsRemaining <= 0)
 			{
-				Room room = gridManager.Rooms[x, y];
+				report.checkouts.Add(room.Occupant.Definition.displayName);
 
-				if (room.Occupant == null)
-					continue;
+				if (room.Occupant.view != null)
+					Destroy(room.Occupant.view.gameObject);
 
-				room.Occupant.DecreaseStay();
-
-				if (room.Occupant.nightsRemaining <= 0)
-				{
-					report.checkouts.Add(room.Occupant.Definition.displayName);
-
-					if (room.Occupant.view != null)
-						Destroy(room.Occupant.view.gameObject);
-
-					room.ClearOccupant();
-				}
+				room.ClearOccupant();
 			}
 		}
 	}
 
 	private void ApplyAdjacencyBuffs(NightReport report)
 	{
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
+			if (room.Occupant == null)
+				continue;
+
+			var monster = room.Occupant;
+
+			if (monster.Definition.effectType != EffectType.BuffAdjacentFlat)
+				continue;
+
+			var adjacentRooms = gridManager.GetAdjacentRooms(monster.Position);
+
+			foreach (var adjRoom in adjacentRooms)
 			{
-				Room room = gridManager.Rooms[x, y];
-
-				if (room.Occupant == null)
-					continue;
-
-				var monster = room.Occupant;
-
-				if (monster.Definition.effectType != EffectType.BuffAdjacentFlat)
-					continue;
-
-				var adjacentRooms = gridManager.GetAdjacentRooms(monster.Position);
-
-				foreach (var adjRoom in adjacentRooms)
+				if (adjRoom.Occupant != null)
 				{
-					if (adjRoom.Occupant != null)
-					{
-						adjRoom.Occupant.currentIncome += monster.Definition.effectValue;
-						report.events.Add($"{monster.Definition.displayName} buffed adjacent monsters.");
-					}
+					adjRoom.Occupant.currentIncome += monster.Definition.effectValue;
+					report.events.Add(
+						$"{monster.Definition.displayName} buffed {adjRoom.Occupant.Definition.displayName}.");
 				}
 			}
 		}
@@ -241,36 +243,31 @@ public class GameManager : MonoBehaviour
 	{
 		List<(Room room, MonsterDefinition definition)> summons = new();
 
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
+			if (room.Occupant == null)
+				continue;
+
+			var monster = room.Occupant;
+
+			if (monster.Definition.effectType != EffectType.SummonAdjacent)
+				continue;
+
+			var adjacentRooms = gridManager.GetAdjacentRooms(monster.Position);
+
+			foreach (var adjRoom in adjacentRooms)
 			{
-				Room room = gridManager.Rooms[x, y];
-
-				if (room.Occupant == null)
-					continue;
-
-				var monster = room.Occupant;
-
-				if (monster.Definition.effectType != EffectType.SummonAdjacent)
-					continue;
-
-				var adjacentRooms = gridManager.GetAdjacentRooms(monster.Position);
-
-				foreach (var adjRoom in adjacentRooms)
+				if (adjRoom.Occupant == null &&
+				    !summons.Contains((adjRoom, monster.Definition.summonDefinition)))
 				{
-					if (adjRoom.Occupant == null &&
-					    !summons.Contains((adjRoom, monster.Definition.summonDefinition)))
-					{
-						summons.Add((adjRoom, monster.Definition.summonDefinition));
-						monster.currentIncome += monster.Definition.effectValue;
-					}
+					summons.Add((adjRoom, monster.Definition.summonDefinition));
+					monster.currentIncome += monster.Definition.effectValue;
 				}
-
-				report.summonBonus += summons.Count;
-				report.events.Add(
-					$"{monster.Definition.displayName} summoned {summons.Count} {monster.Definition.summonDefinition.displayName}.");
 			}
+
+			report.summonBonus += summons.Count;
+			report.events.Add(
+				$"{monster.Definition.displayName} summoned {summons.Count} {monster.Definition.summonDefinition.displayName}.");
 		}
 
 		foreach (var summon in summons)
@@ -281,72 +278,62 @@ public class GameManager : MonoBehaviour
 
 	private void ApplyKillEffects(NightReport report)
 	{
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
+			if (room.Occupant == null)
+				continue;
+
+			var monster = room.Occupant;
+
+			if (monster.Definition.effectType != EffectType.KillAdjacent)
+				continue;
+
+			var adjacentRooms = gridManager.GetAdjacentRooms(monster.Position);
+
+			int kills = 0;
+
+			foreach (var adjRoom in adjacentRooms)
 			{
-				Room room = gridManager.Rooms[x, y];
-
-				if (room.Occupant == null)
-					continue;
-
-				var monster = room.Occupant;
-
-				if (monster.Definition.effectType != EffectType.KillAdjacent)
-					continue;
-
-				var adjacentRooms = gridManager.GetAdjacentRooms(monster.Position);
-
-				int kills = 0;
-
-				foreach (var adjRoom in adjacentRooms)
+				if (adjRoom.Occupant != null && adjRoom.Occupant.isAlive)
 				{
-					if (adjRoom.Occupant != null && adjRoom.Occupant.isAlive)
-					{
-						adjRoom.Occupant.isAlive = false;
-						kills++;
-						deathsThisNight++;
-					}
+					adjRoom.Occupant.isAlive = false;
+					kills++;
+					deathsThisNight++;
 				}
-
-				int totalKillIncome = kills * monster.Definition.effectValue;
-
-				monster.currentIncome += totalKillIncome;
-				report.killBonus += totalKillIncome;
-				report.events.Add($"{monster.Definition.displayName} killed {kills} monsters (+{totalKillIncome}).");
 			}
+
+			int totalKillIncome = kills * monster.Definition.effectValue;
+
+			monster.currentIncome += totalKillIncome;
+			report.killBonus += totalKillIncome;
+			report.events.Add($"{monster.Definition.displayName} killed {kills} monsters (+{totalKillIncome}).");
 		}
 	}
 
 	public void ApplyMultipliers(NightReport report)
 	{
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
+			if (room.Occupant == null)
+				continue;
+
+			var monster = room.Occupant;
+
+			if (monster.Definition.effectType is EffectType.ConditionalMultNoDeaths or EffectType.FlatMultAlways)
 			{
-				Room room = gridManager.Rooms[x, y];
-
-				if (room.Occupant == null)
-					continue;
-
-				var monster = room.Occupant;
-
-				if (monster.Definition.effectType is EffectType.ConditionalMultNoDeaths or EffectType.FlatMultAlways)
+				switch (monster.Definition.effectType)
 				{
-					switch (monster.Definition.effectType)
-					{
-						case EffectType.ConditionalMultNoDeaths:
-							if (deathsThisNight == 0)
-								multiplier += monster.Definition.effectValue;
-							break;
-						case EffectType.FlatMultAlways:
+					case EffectType.ConditionalMultNoDeaths:
+						if (deathsThisNight == 0)
 							multiplier += monster.Definition.effectValue;
-							break;
-					}
-
-					report.multiplier = multiplier;
-					report.events.Add($"{monster.Definition.displayName} increased multiplier to x{report.multiplier}");
+						break;
+					case EffectType.FlatMultAlways:
+						multiplier += monster.Definition.effectValue;
+						break;
 				}
+
+				report.multiplier = multiplier;
+				report.events.Add($"{monster.Definition.displayName} increased multiplier to x{report.multiplier}");
 			}
 		}
 	}
@@ -355,15 +342,10 @@ public class GameManager : MonoBehaviour
 	{
 		int income = 0;
 
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
-			{
-				Room room = gridManager.Rooms[x, y];
-
-				if (room.Occupant != null)
-					income += room.Occupant.currentIncome;
-			}
+			if (room.Occupant != null)
+				income += room.Occupant.currentIncome;
 		}
 
 		report.baseIncome = income;
@@ -387,6 +369,26 @@ public class GameManager : MonoBehaviour
 		return dailyArrivals.Contains(PlacementManager.Instance.selectedMonster);
 	}
 
+	public void TryExtendStay()
+	{
+		var monster = PlacementManager.Instance.selectedInstance;
+
+		if (currentPhase != GamePhase.PlanningPhase ||
+		    monster == null ||
+		    !monster.isResident ||
+		    money < extendStayCost)
+		{
+			Debug.Log("Can't extend the stay of this monster");
+			return;
+		}
+
+		money -= extendStayCost;
+
+		monster.ExtendStay(1);
+
+		UpdateText();
+	}
+
 	public void PlaceSelectedMonster(Room room)
 	{
 		var selected = PlacementManager.Instance.selectedMonster;
@@ -400,6 +402,25 @@ public class GameManager : MonoBehaviour
 
 		PlacementManager.Instance.ClearSelection();
 		UpdateArrivalUI();
+	}
+
+	public void MoveSelectedMonsterTo(Room targetRoom)
+	{
+		var selected = PlacementManager.Instance.selectedInstance;
+
+		if (selected == null || selected.isResident)
+			return;
+
+		Room oldRoom = selected.currentRoom;
+
+		oldRoom.ClearOccupant();
+		targetRoom.SetOccupant(selected);
+
+		selected.currentRoom = targetRoom;
+
+		selected.view.transform.position = targetRoom.view.transform.position;
+		selected.view.transform.parent = targetRoom.view.transform;
+		// PlacementManager.Instance.selectedInstance = null;
 	}
 
 	public void SpawnMonsterInRoom(Room room, MonsterDefinition definition)
@@ -426,6 +447,7 @@ public class GameManager : MonoBehaviour
 		money = 0;
 		currentNight = 1;
 		runActive = true;
+		currentPhase = GamePhase.PlanningPhase;
 
 		UpdateText();
 		ClearBoard();
@@ -434,17 +456,12 @@ public class GameManager : MonoBehaviour
 
 	private void ClearBoard()
 	{
-		for (int x = 0; x < gridManager.Width; x++)
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			for (int y = 0; y < gridManager.Height; y++)
+			if (room.Occupant != null)
 			{
-				Room room = gridManager.Rooms[x, y];
-
-				if (room.Occupant != null)
-				{
-					Destroy(room.Occupant.view.gameObject);
-					room.ClearOccupant();
-				}
+				Destroy(room.Occupant.view.gameObject);
+				room.ClearOccupant();
 			}
 		}
 	}

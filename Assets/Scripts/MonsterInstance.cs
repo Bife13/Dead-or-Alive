@@ -11,6 +11,8 @@ public class MonsterInstance
 	public bool isAlive = true;
 	public bool isTemporary;
 	public MonsterView view;
+	public bool isResident;
+	public Room currentRoom;
 
 	public MonsterInstance(MonsterDefinition _definition, Vector2Int _position)
 	{
@@ -19,13 +21,22 @@ public class MonsterInstance
 		currentIncome = _definition.baseIncome;
 		isTemporary = _definition.isTemporary;
 		nightsRemaining = _definition.stayDuration;
+		isResident = false;
 	}
 
 	public void DecreaseStay()
 	{
 		nightsRemaining--;
-		
-		if(view != null)
+
+		if (view != null)
+			view.UpdateNightsRemaining();
+	}
+
+	public void ExtendStay(int amount)
+	{
+		nightsRemaining++;
+
+		if (view != null)
 			view.UpdateNightsRemaining();
 	}
 }

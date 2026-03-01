@@ -17,9 +17,14 @@ public class NightSummaryUI : MonoBehaviour
 
 		summary += $"Night {night} Results\n\n";
 		summary += $"Base Income: {report.baseIncome}\n";
-		summary += $"Kill Bonus: +{report.killBonus}\n";
-		summary += $"Multiplier: x{report.multiplier}\n\n";
-		summary += $"Final Income: {report.finalIncome}\n";
+		if (report.killBonus > 0)
+		{
+			summary += $"Kill Bonus: +{report.killBonus}\n";
+		}
+
+		summary += $"x Multiplier: x{report.multiplier}\n";
+		summary += "<color=#AAAAAA>────────────────</color>\n";
+		summary += $"<size=115%><b>Final Income: {report.finalIncome}</b></size>\n";
 
 		// Checkouts
 		if (report.checkouts.Count > 0)
@@ -32,7 +37,7 @@ public class NightSummaryUI : MonoBehaviour
 		if (report.events.Count > 0)
 		{
 			summary += "\n\nEvents:\n";
-			summary += string.Join("\n", report.events);
+			summary += "- " + string.Join("\n", report.events);
 		}
 
 		summaryText.text = summary;
