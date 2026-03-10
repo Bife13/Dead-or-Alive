@@ -1,0 +1,159 @@
+Label {
+    color: #E0D0A8;
+}
+
+.crew-card {
+    width: 320px;
+    align-self: flex-start;
+    background-color: #1A1510;
+    border-color: #000000;
+    border-width: 2px;
+    border-left-width: 5px;
+    border-left-color: #4A7870;
+    border-top-color: #4A7870;
+    flex-direction: column;
+}
+
+
+.card-art {
+    height: 180px;
+    background-color: #0E0B08;
+    border-bottom-width: 2px;
+    border-bottom-color: #000000;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: #6A9890;
+    -unity-font-style: normal;
+    margin-bottom: 4px;
+}
+
+.card-name {
+    font-size: 52px;
+    color: #E0D0A8;
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: #000000;
+}
+
+.card-rule {
+    height: 1px;
+    background-color: #2A2418;
+    margin-bottom: 12px;
+}
+
+.card-mechanic {
+    font-size: 11px;
+    color: #E09828;
+    margin-bottom: 8px;
+    white-space: normal;
+}
+
+.card-flavour {
+    font-size: 11px;
+    color: #B0A080;
+    -unity-font-style: italic;
+    white-space: normal;
+    margin-bottom: 14px;
+}
+
+.card-body {
+    padding: 14px 16px 16px 16px;
+    flex-shrink: 0;
+}
+
+.card-stats {
+    flex-direction: row;
+    border-top-width: 1px;
+    border-top-color: #2A2418;
+    padding-top: 10px;
+    flex-shrink: 0;
+    height: 50px;
+}
+
+.stat {
+    flex: 1;
+    align-items: center;
+    border-right-width: 1px;
+    border-right-color: #2A2418;
+    padding: 0 4px;
+    height: 50px;
+    justify-content: center;
+}
+
+.stat-label {
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #605848;
+}
+
+.stat-value {
+    font-size: 20px;
+    color: #E09828;
+}
+
+.stat-value.stat-value--cold {
+    color: #6A9890;
+}
+
+.stat-value.stat-value--dim {
+    color: #8A8060;
+}
+
+.card-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #0E0B08;
+    border-top-width: 2px;
+    border-top-color: #000000;
+}
+
+.pip {
+    width: 14px;
+    height: 4px;
+    background-color: #2A2418;
+    border-width: 1px;
+    border-color: #000000;
+    margin-right: 4px;
+}
+
+.pip--active {
+    background-color: #4A7870;
+}
+
+.pip--warn {
+    background-color: #9A2535;
+}
+
+.footer-label {
+    font-size: 8px;
+    letter-spacing: 3px;
+    color: #605848;
+}
+
+.footer-warning {
+    font-size: 8px;
+    color: #9A2535;
+    letter-spacing: 2px;
+}
+
+.card-name {
+    -unity-font-definition: url("../Fonts/BebasNeue-Regular.ttf");
+}
+
+.card-eyebrow, .stat-label, .footer-label, .footer-warning, .card-mechanic {
+    -unity-font-definition: url("../Fonts/ShareTechMono-Regular.ttf");
+}
+
+.card-flavour {
+    -unity-font-definition: url("../Fonts/SpecialElite-Regular.ttf");
+}
+
+.stat-value, .stat-value--cold, .stat-value--dim {
+    -unity-font-definition: url("../Fonts/BebasNeue-Regular.ttf");
+}

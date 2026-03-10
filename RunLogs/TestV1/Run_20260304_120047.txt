@@ -1,0 +1,189 @@
+=== RUN SUMMARY ===
+Seed: 435022307
+
+Final Money: 22
+
+Day  1
+Arrivals:
+- Butcher
+- Cultist
+
+Placements:
+- Placed Cultist at (0, 2)
+- Moved Cultist to (1, 1)
+- Placed Butcher at (0, 2)
+
+Extends:
+
+Night 1
+Events:
+- Cultist summoned 4 Minion.
+- Butcher killed 2 monsters (+4).
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 8
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][C][.]
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+
+Day  2
+Arrivals:
+- Butcher
+- Inspector
+
+Placements:
+- Placed Butcher at (2, 0)
+- Placed Inspector at (2, 2)
+
+Extends:
+
+Night 2
+Events:
+- Cultist summoned 4 Minion.
+- Butcher killed 2 monsters (+4).
+- Butcher killed 2 monsters (+4).
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 8
+Multiplier: x1
+Total Income: 12
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][I] | [B][M][I] | [B][.][I] | [.][.][I]
+[.][C][.] | [.][C][.] | [M][C][M] | [.][C][.] | [.][.][.]
+[.][.][.] | [.][.][B] | [.][M][B] | [.][.][B] | [.][.][B]
+
+Day  3
+Arrivals:
+- Butcher
+- Butcher
+
+Placements:
+- Placed Butcher at (0, 2)
+- Placed Butcher at (0, 0)
+
+Extends:
+
+Night 3
+Events:
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier to x1
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 0
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][I] | [B][.][I] | [B][.][I] | [B][.][I] | [B][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][B] | [B][.][B] | [B][.][B] | [B][.][B] | [B][.][.]
+
+Day  4
+Arrivals:
+- Butcher
+- Butcher
+
+Placements:
+- Placed Butcher at (2, 2)
+- Placed Butcher at (2, 0)
+
+Extends:
+
+Night 4
+Events:
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][B] | [B][.][B] | [B][.][B] | [.][.][B]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[B][.][.] | [B][.][B] | [B][.][B] | [B][.][B] | [.][.][B]
+
+Day  5
+Arrivals:
+- Butcher
+- Watcher
+
+Placements:
+- Placed Watcher at (2, 1)
+- Placed Butcher at (1, 0)
+
+Extends:
+
+Night 5
+Events:
+- Butcher killed 0 monsters (+0).
+- Butcher killed 1 monsters (+2).
+- Butcher killed 0 monsters (+0).
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 2
+Multiplier: x1
+Total Income: 2
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][B] | [.][.][B] | [.][.][B] | [.][.][B] | [.][.][.]
+[.][.][.] | [.][.][W] | [.][.][W] | [.][.][.] | [.][.][.]
+[.][.][B] | [.][B][B] | [.][B][B] | [.][B][B] | [.][B][.]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[.][B][.]

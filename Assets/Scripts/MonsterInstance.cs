@@ -3,9 +3,7 @@ using UnityEngine;
 public class MonsterInstance
 {
 	public MonsterDefinition Definition { get; }
-
-	public Vector2Int Position { get; }
-
+	
 	public int currentIncome;
 	public int nightsRemaining;
 	public bool isAlive = true;
@@ -14,16 +12,15 @@ public class MonsterInstance
 	public bool isResident;
 	public Room currentRoom;
 
-	public MonsterInstance(MonsterDefinition _definition, Vector2Int _position)
+	public MonsterInstance(MonsterDefinition _definition)
 	{
 		Definition = _definition;
-		Position = _position;
 		currentIncome = _definition.baseIncome;
 		isTemporary = _definition.isTemporary;
 		nightsRemaining = _definition.stayDuration;
 		isResident = false;
 	}
-
+	
 	public void DecreaseStay()
 	{
 		nightsRemaining--;

@@ -1,0 +1,222 @@
+=== RUN SUMMARY ===
+Seed: 1518429813
+
+Final Money: 29
+
+Peak: 15
+
+Solved Night: 5
+
+Engine Type: Cultist + Butcher
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Slime
+- Watcher
+
+-Placements:
+- Placed Watcher at (0, 0)
+- Placed Slime at (0, 1)
+
+-Extends:
+
+Night 1
+-Events:
+- Watcher has 1 adjacent monsters
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 3
+
+Current Money: 3
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+[.][.][.] | [W][.][.] | [W][.][.] | [W][.][.] | [W][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Slime
+- Butcher
+
+-Placements:
+- Placed Slime at (1, 0)
+- Placed Butcher at (2, 2)
+
+-Extends:
+
+Night 2
+-Events:
+- Butcher killed 0 monsters (+0).
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7
+
+Current Money: 10
+
+----------------------------
+
+Checkouts:
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][B] | [.][.][B] | [.][.][B] | [.][.][B]
+[S][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+[W][.][.] | [W][S][.] | [W][S][.] | [W][S][.] | [.][S][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Slime
+- Slime
+
+-Placements:
+- Placed Slime at (1, 2)
+- Placed Slime at (2, 1)
+
+-Extends:
+- Butcher extended to 2
+
+Night 3
+-Events:
+- Butcher killed 2 monsters (+4).
+
+----------------------------
+
+Base Income: 2
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 6
+
+Current Money: 11
+
+----------------------------
+
+Checkouts:
+- Slime
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][B] | [.][S][B] | [.][S][B] | [.][.][B] | [.][.][B]
+[S][.][.] | [S][.][S] | [S][.][S] | [S][.][.] | [.][.][.]
+[.][S][.] | [.][S][.] | [.][S][.] | [.][S][.] | [.][S][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Butcher
+- Watcher
+
+-Placements:
+- Placed Watcher at (2, 0)
+- Placed Butcher at (0, 2)
+
+-Extends:
+
+Night 4
+-Events:
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+- Watcher has 1 adjacent monsters
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 3
+
+Current Money: 14
+
+----------------------------
+
+Checkouts:
+- Slime
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][B] | [B][.][B] | [B][.][B] | [B][.][B] | [B][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][S][.] | [.][S][W] | [.][S][W] | [.][S][W] | [.][.][W]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Cultist
+- Watcher
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Watcher at (0, 0)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 4 Minion.
+- Butcher killed 2 monsters (+4).
+- Watcher has 1 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 8
+Bonus Income: 3
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 15
+
+Current Money: 29
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][C][.]
+[.][.][W] | [W][.][W] | [W][M][W] | [W][M][W] | [W][.][.]
+
+Final Board:
+[.][.][.]
+[.][C][.]
+[W][.][.]

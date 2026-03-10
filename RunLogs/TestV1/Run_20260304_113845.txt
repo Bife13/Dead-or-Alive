@@ -1,0 +1,188 @@
+=== RUN SUMMARY ===
+Seed: -451433794
+
+Final Money: 34
+
+Day  1
+Arrivals:
+- Slime
+- Butcher
+
+Placements:
+- Placed Butcher at (0, 2)
+- Placed Slime at (0, 1)
+
+Extends:
+
+Night 1
+Events:
+- Butcher killed 1 monsters (+2).
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 2
+Multiplier: x1
+Total Income: 2
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [S][.][.] | [S][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+Day  2
+Arrivals:
+- Butcher
+- Butcher
+
+Placements:
+- Placed Butcher at (2, 0)
+- Placed Butcher at (2, 2)
+
+Extends:
+
+Night 2
+Events:
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+----------------------------
+
+Checkouts:
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][B] | [B][.][B] | [B][.][B] | [.][.][B]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][B] | [.][.][B] | [.][.][B] | [.][.][B]
+
+Day  3
+Arrivals:
+- Lurker
+- Gremlin
+
+Placements:
+- Placed Gremlin at (2, 1)
+- Placed Lurker at (1, 1)
+
+Extends:
+
+Night 3
+Events:
+- Gremlin buffed Butcher.
+- Gremlin buffed Butcher.
+- Gremlin buffed Lurker.
+- Butcher killed 1 monsters (+2).
+- Butcher killed 0 monsters (+0).
+- Lurker has 4 empty adjacent rooms
+
+Base Income: 3
+Bonus Income: 6
+Kill Bonus: 2
+Multiplier: x1
+Total Income: 11
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][B] | [.][.][B] | [.][.][B] | [.][.][B] | [.][.][.]
+[.][.][.] | [.][L][G] | [.][L][G] | [.][L][.] | [.][L][.]
+[.][.][B] | [.][.][B] | [.][.][B] | [.][.][B] | [.][.][.]
+
+Day  4
+Arrivals:
+- Inspector
+- Butcher
+
+Placements:
+- Placed Butcher at (2, 0)
+- Placed Inspector at (0, 2)
+
+Extends:
+- Lurker extended to 2
+
+Night 4
+Events:
+- Butcher killed 0 monsters (+0).
+- Lurker has 4 empty adjacent rooms
+
+Base Income: 0
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 6
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [I][.][.] | [I][.][.] | [I][.][.] | [I][.][.]
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+[.][.][.] | [.][.][B] | [.][.][B] | [.][.][B] | [.][.][B]
+
+Day  5
+Arrivals:
+- Lurker
+- Butcher
+
+Placements:
+- Placed Lurker at (0, 0)
+- Placed Butcher at (2, 2)
+
+Extends:
+
+Night 5
+Events:
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier to x1
+- Lurker has 2 empty adjacent rooms
+- Lurker has 4 empty adjacent rooms
+
+Base Income: 0
+Bonus Income: 10
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 20
+
+----------------------------
+
+Checkouts:
+- Inspector
+- Lurker
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[I][.][.] | [I][.][B] | [I][.][B] | [I][.][B] | [.][.][B]
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][.][.]
+[.][.][B] | [L][.][B] | [L][.][B] | [L][.][B] | [L][.][.]
+
+Final Board:
+[.][.][B]
+[.][.][.]
+[L][.][.]

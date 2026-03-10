@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
-  monsterID: 1
+  monsterID: S
   displayName: Slime
+  weight: 10
   baseIncome: 1
   stayDuration: 3
   effectType: 0
   effectValue: 0
+  effectRequirement: 0
   summonDefinition: {fileID: 0}
   isTemporary: 0
   canCopy: 0

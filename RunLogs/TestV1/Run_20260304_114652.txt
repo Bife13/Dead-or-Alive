@@ -1,0 +1,190 @@
+=== RUN SUMMARY ===
+Seed: 1378232355
+
+Final Money: 94
+
+Day  1
+Arrivals:
+- Slime
+- Watcher
+
+Placements:
+- Placed Watcher at (2, 2)
+- Placed Slime at (1, 2)
+
+Extends:
+
+Night 1
+Events:
+- Watcher has 1 adjacent monsters
+
+Base Income: 3
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 3
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][S][W] | [.][S][W] | [.][S][W] | [.][S][W]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+Day  2
+Arrivals:
+- Watcher
+- Inspector
+
+Placements:
+- Placed Watcher at (2, 1)
+- Placed Inspector at (2, 0)
+
+Extends:
+
+Night 2
+Events:
+- Inspector increased multiplier to x1
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+Base Income: 5
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 22
+
+----------------------------
+
+Checkouts:
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][S][W] | [.][S][W] | [.][S][W] | [.][S][W] | [.][S][.]
+[.][.][.] | [.][.][W] | [.][.][W] | [.][.][W] | [.][.][W]
+[.][.][.] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+
+Day  3
+Arrivals:
+- Butcher
+- Lurker
+
+Placements:
+- Placed Lurker at (0, 1)
+
+Extends:
+- Inspector extended to 2
+- Watcher extended to 2
+
+Night 3
+Events:
+- Inspector increased multiplier to x1
+- Lurker has 3 empty adjacent rooms
+- Watcher has 1 adjacent monsters
+
+Base Income: 3
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 18
+
+----------------------------
+
+Checkouts:
+- Slime
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][S][.] | [.][S][.] | [.][S][.] | [.][S][.] | [.][.][.]
+[.][.][W] | [L][.][W] | [L][.][W] | [L][.][W] | [L][.][W]
+[.][.][I] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+
+Day  4
+Arrivals:
+- Lurker
+- Cultist
+
+Placements:
+- Placed Lurker at (1, 2)
+
+Extends:
+- Lurker extended to 2
+- Watcher extended to 2
+- Inspector extended to 2
+
+Night 4
+Events:
+- Inspector increased multiplier to x1
+- Lurker has 3 empty adjacent rooms
+- Lurker has 3 empty adjacent rooms
+- Watcher has 1 adjacent monsters
+
+Base Income: 2
+Bonus Income: 12
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 28
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+[L][.][W] | [L][.][W] | [L][.][W] | [L][.][W] | [L][.][W]
+[.][.][I] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+
+Day  5
+Arrivals:
+- Gremlin
+- Inspector
+
+Placements:
+- Placed Inspector at (2, 2)
+- Placed Gremlin at (1, 0)
+
+Extends:
+
+Night 5
+Events:
+- Gremlin buffed Inspector.
+- Inspector increased multiplier to x1
+- Inspector increased multiplier to x2
+- Lurker has 3 empty adjacent rooms
+- Lurker has 2 empty adjacent rooms
+- Watcher has 2 adjacent monsters
+
+Base Income: 3
+Bonus Income: 13
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 48
+
+----------------------------
+
+Checkouts:
+- Lurker
+- Lurker
+- Inspector
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][L][.] | [.][L][I] | [.][L][I] | [.][L][I] | [.][.][I]
+[L][.][W] | [L][.][W] | [L][.][W] | [L][.][W] | [.][.][.]
+[.][.][I] | [.][G][I] | [.][G][I] | [.][G][I] | [.][G][.]
+
+Final Board:
+[.][.][I]
+[.][.][.]
+[.][G][.]

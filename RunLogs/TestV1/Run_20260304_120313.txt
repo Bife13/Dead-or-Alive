@@ -1,0 +1,193 @@
+=== RUN SUMMARY ===
+Seed: 1798993356
+
+Final Money: 69
+
+Day  1
+Arrivals:
+- Cultist
+- Inspector
+
+Placements:
+- Placed Cultist at (1, 1)
+- Placed Inspector at (2, 0)
+
+Extends:
+
+Night 1
+Events:
+- Cultist summoned 4 Minion.
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 4
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[.][.][.] | [.][.][I] | [.][M][I] | [.][M][I] | [.][.][I]
+
+Day  2
+Arrivals:
+- Butcher
+- Slime
+
+Placements:
+- Placed Slime at (0, 2)
+- Placed Butcher at (0, 0)
+
+Extends:
+
+Night 2
+Events:
+- Cultist summoned 4 Minion.
+- Butcher killed 2 monsters (+4).
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 9
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [S][.][.] | [S][M][.] | [S][M][.] | [S][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][.][.]
+[.][.][I] | [B][.][I] | [B][M][I] | [B][.][I] | [B][.][.]
+
+Day  3
+Arrivals:
+- Gremlin
+- Cultist
+
+Placements:
+- Placed Cultist at (1, 1)
+- Placed Gremlin at (0, 1)
+- Moved Gremlin to (1, 2)
+
+Extends:
+
+Night 3
+Events:
+- Gremlin buffed Cultist.
+- Gremlin buffed Slime.
+- Cultist summoned 3 Minion.
+- Butcher killed 2 monsters (+4).
+
+Base Income: 6
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 10
+
+----------------------------
+
+Checkouts:
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][.][.] | [S][G][.] | [S][G][.] | [S][G][.] | [S][G][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][C][.]
+[B][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [.][.][.]
+
+Day  4
+Arrivals:
+- Inspector
+- Inspector
+
+Placements:
+- Placed Inspector at (0, 0)
+- Placed Inspector at (2, 0)
+
+Extends:
+- Cultist extended to 2
+
+Night 4
+Events:
+- Gremlin buffed Cultist.
+- Gremlin buffed Slime.
+- Cultist summoned 3 Minion.
+- Inspector increased multiplier to x1
+- Inspector increased multiplier to x2
+
+Base Income: 6
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 18
+
+----------------------------
+
+Checkouts:
+- Slime
+- Gremlin
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][G][.] | [S][G][.] | [S][G][.] | [S][G][.] | [.][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[.][.][.] | [I][.][I] | [I][M][I] | [I][M][I] | [I][.][I]
+
+Day  5
+Arrivals:
+- Watcher
+- Gremlin
+
+Placements:
+- Placed Watcher at (0, 2)
+- Placed Gremlin at (0, 1)
+
+Extends:
+
+Night 5
+Events:
+- Gremlin buffed Watcher.
+- Gremlin buffed Inspector.
+- Gremlin buffed Cultist.
+- Cultist summoned 3 Minion.
+- Inspector increased multiplier to x1
+- Inspector increased multiplier to x2
+- Watcher has 2 adjacent monsters
+
+Base Income: 8
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 33
+
+----------------------------
+
+Checkouts:
+- Inspector
+- Cultist
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [W][.][.] | [W][M][.] | [W][M][.] | [W][.][.]
+[.][C][.] | [G][C][.] | [G][C][M] | [G][C][M] | [G][.][.]
+[I][.][I] | [I][.][I] | [I][M][I] | [I][M][I] | [.][.][.]
+
+Final Board:
+[W][.][.]
+[G][.][.]
+[.][.][.]

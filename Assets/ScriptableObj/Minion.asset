@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
   m_Name: Minion
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
-  monsterID: 4_1
+  monsterID: M
   displayName: Minion
   baseIncome: 0
   stayDuration: 1
   effectType: 0
   effectValue: 0
+  effectRequirement: 0
   summonDefinition: {fileID: 0}
   isTemporary: 1
   canCopy: 0

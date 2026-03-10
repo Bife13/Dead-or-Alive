@@ -1,0 +1,240 @@
+=== RUN SUMMARY ===
+Seed: -848754927
+
+Final Money: 53
+
+Peak: 18
+
+Solved Night:3
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Inspector
+- Lurker
+
+-Placements:
+- Placed Lurker at (0, 1)
+- Placed Inspector at (1, 1)
+- Moved Inspector to (2, 1)
+- Moved Inspector to (2, 0)
+- Moved Inspector to (2, 1)
+- Moved Inspector to (2, 2)
+
+-Extends:
+
+Night 1
+-Events:
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 6
+
+Current Money: 6
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+[.][.][.] | [L][.][.] | [L][.][.] | [L][.][.] | [L][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Slime
+- Cultist
+
+-Placements:
+- Placed Cultist at (2, 0)
+- Placed Slime at (1, 2)
+
+-Extends:
+- Inspector extended to 2
+
+Night 2
+-Events:
+- Cultist summoned 2 Minion.
+- Inspector increased multiplier by 1
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 18
+
+Current Money: 19
+
+----------------------------
+
+Checkouts:
+- Lurker
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][I] | [.][S][I] | [.][S][I] | [.][S][I] | [.][S][I]
+[L][.][.] | [L][.][.] | [L][.][M] | [L][.][M] | [.][.][.]
+[.][.][.] | [.][.][C] | [.][M][C] | [.][M][C] | [.][.][C]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Gremlin
+- Gremlin
+
+-Placements:
+- Placed Gremlin at (2, 1)
+- Placed Gremlin at (1, 1)
+
+-Extends:
+
+Night 3
+-Events:
+- Gremlin buffed Slime.
+- Gremlin buffed Gremlin.
+- Gremlin buffed Inspector.
+- Gremlin buffed Cultist.
+- Gremlin buffed Gremlin.
+- Cultist summoned 1 Minion.
+- Inspector increased multiplier by 1
+
+----------------------------
+
+Base Income: 7
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 14
+
+Current Money: 33
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][S][I] | [.][S][I] | [.][S][I] | [.][S][I] | [.][S][.]
+[.][.][.] | [.][G][G] | [.][G][G] | [.][G][G] | [.][G][G]
+[.][.][C] | [.][.][C] | [.][M][C] | [.][M][C] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Gremlin
+- Cultist
+
+-Placements:
+- Placed Gremlin at (2, 2)
+- Placed Cultist at (0, 1)
+- Moved Cultist to (1, 0)
+
+-Extends:
+
+Night 4
+-Events:
+- Gremlin buffed Slime.
+- Gremlin buffed Cultist.
+- Gremlin buffed Gremlin.
+- Gremlin buffed Gremlin.
+- Gremlin buffed Gremlin.
+- Gremlin buffed Gremlin.
+- Gremlin buffed Slime.
+- Cultist summoned 2 Minion.
+
+----------------------------
+
+Base Income: 10
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 10
+
+Current Money: 43
+
+----------------------------
+
+Checkouts:
+- Gremlin
+- Slime
+- Gremlin
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][S][.] | [.][S][G] | [.][S][G] | [.][S][G] | [.][.][G]
+[.][G][G] | [.][G][G] | [.][G][G] | [.][G][G] | [.][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Gremlin
+- Inspector
+
+-Placements:
+- Placed Gremlin at (1, 1)
+- Placed Inspector at (2, 1)
+
+-Extends:
+
+Night 5
+-Events:
+- Gremlin buffed Cultist.
+- Gremlin buffed Inspector.
+- Gremlin buffed Inspector.
+- Cultist summoned 2 Minion.
+- Inspector increased multiplier by 1
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 10
+
+Current Money: 53
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Gremlin
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][G] | [.][.][G] | [.][.][G] | [.][.][G] | [.][.][.]
+[.][.][.] | [.][G][I] | [.][G][I] | [.][G][I] | [.][G][I]
+[.][C][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][.][.]
+
+Final Board:
+[.][.][.]
+[.][G][I]
+[.][.][.]

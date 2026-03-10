@@ -1,0 +1,239 @@
+=== RUN SUMMARY ===
+Seed: 1321464697
+
+Final Money: 49
+
+Peak: 15
+
+Solved Night:3
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Cultist
+- Cultist
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Moved Cultist to (1, 2)
+- Placed Cultist at (1, 0)
+- Moved Cultist to (0, 0)
+- Moved Cultist to (2, 1)
+- Moved Cultist to (1, 1)
+
+-Extends:
+
+Night 1
+-Events:
+- Cultist summoned 3 Minion.
+- Cultist summoned 2 Minion.
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 5
+
+Current Money: 5
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Cultist
+- Lurker
+
+-Placements:
+- Placed Lurker at (1, 0)
+- Placed Cultist at (0, 2)
+
+-Extends:
+
+Night 2
+-Events:
+- Cultist summoned 1 Minion.
+- Cultist summoned 1 Minion.
+- Cultist summoned 1 Minion.
+- Lurker has 2 empty adjacent rooms
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 4
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7
+
+Current Money: 12
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][C][.] | [C][C][.] | [C][C][M] | [C][C][M] | [C][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][.][.]
+[.][.][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Watcher
+- Lurker
+
+-Placements:
+- Placed Watcher at (1, 2)
+- Placed Lurker at (2, 1)
+
+-Extends:
+
+Night 3
+-Events:
+- Cultist summoned 1 Minion.
+- Lurker has 3 empty adjacent rooms
+- Watcher has 1 adjacent monsters
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 12
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 15
+
+Current Money: 27
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Lurker
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[C][.][.] | [C][W][.] | [C][W][.] | [C][W][.] | [.][W][.]
+[.][.][.] | [.][.][L] | [M][.][L] | [M][.][L] | [.][.][L]
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Cultist
+- Watcher
+
+-Placements:
+- Placed Watcher at (0, 2)
+- Moved Watcher to (1, 1)
+- Moved Watcher to (0, 2)
+- Moved Watcher to (0, 1)
+- Moved Watcher to (1, 1)
+- Placed Cultist at (0, 2)
+
+-Extends:
+
+Night 4
+-Events:
+- Cultist summoned 1 Minion.
+- Watcher has 3 adjacent monsters
+- Watcher has 2 adjacent monsters
+- Lurker has 2 empty adjacent rooms
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 7
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 12
+
+Current Money: 39
+
+----------------------------
+
+Checkouts:
+- Watcher
+- Lurker
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][W][.] | [C][W][.] | [C][W][.] | [C][W][.] | [C][.][.]
+[.][.][L] | [.][W][L] | [M][W][L] | [M][W][L] | [.][W][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Lurker
+- Lurker
+
+-Placements:
+- Placed Lurker at (0, 0)
+- Placed Lurker at (2, 2)
+- Moved Lurker to (2, 1)
+- Moved Lurker to (0, 1)
+- Moved Lurker to (0, 0)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 2 Minion.
+- Lurker has 1 empty adjacent rooms
+- Watcher has 3 adjacent monsters
+- Lurker has 2 empty adjacent rooms
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 10
+
+Current Money: 49
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[C][.][.] | [C][.][.] | [C][M][.] | [C][M][.] | [.][.][.]
+[.][W][.] | [.][W][L] | [M][W][L] | [M][W][L] | [.][.][L]
+[.][.][.] | [L][.][.] | [L][.][.] | [L][.][.] | [L][.][.]
+
+Final Board:
+[.][.][.]
+[.][.][L]
+[L][.][.]

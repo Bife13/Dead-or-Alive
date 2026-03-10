@@ -1,0 +1,231 @@
+=== RUN SUMMARY ===
+Seed: 301237249
+
+Final Money: 74
+
+Peak: 36
+
+Solved Night:3
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Cultist
+- Butcher
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Butcher at (0, 2)
+
+-Extends:
+
+Night 1
+-Events:
+- Cultist summoned 4 Minion.
+- Butcher killed 2 monsters (+4).
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 8
+
+Current Money: 8
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][C][.]
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Cultist
+- Inspector
+
+-Placements:
+- Placed Cultist at (1, 0)
+- Placed Inspector at (2, 0)
+
+-Extends:
+
+Night 2
+-Events:
+- Cultist summoned 1 Minion.
+- Cultist summoned 3 Minion.
+- Butcher killed 2 monsters (+4).
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 8
+
+Current Money: 16
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [.][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][.][.]
+[.][.][.] | [.][C][I] | [M][C][I] | [M][C][I] | [.][C][I]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Inspector
+- Inspector
+
+-Placements:
+- Placed Inspector at (1, 1)
+- Moved Inspector to (2, 1)
+- Placed Inspector at (2, 2)
+
+-Extends:
+
+Night 3
+-Events:
+- Cultist summoned 2 Minion.
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Inspector increased multiplier by 3
+
+----------------------------
+
+Base Income: 2
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x4
+Total Income: 8
+
+Current Money: 24
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+[.][.][.] | [.][.][I] | [.][M][I] | [.][M][I] | [.][.][I]
+[.][C][I] | [.][C][I] | [M][C][I] | [M][C][I] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Cultist
+- Watcher
+
+-Placements:
+- Placed Watcher at (2, 0)
+- Placed Cultist at (1, 1)
+
+-Extends:
+- Inspector extended to 2
+- Inspector extended to 2
+
+Night 4
+-Events:
+- Cultist summoned 3 Minion.
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 24
+
+Current Money: 38
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][I] | [.][.][I] | [.][M][I] | [.][M][I] | [.][.][I]
+[.][.][I] | [.][C][I] | [M][C][I] | [M][C][I] | [.][C][I]
+[.][.][.] | [.][.][W] | [.][M][W] | [.][M][W] | [.][.][W]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Inspector
+- Slime
+
+-Placements:
+- Placed Inspector at (0, 0)
+- Placed Slime at (0, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 3 Minion.
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Inspector increased multiplier by 3
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x4
+Total Income: 36
+
+Current Money: 74
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Watcher
+- Inspector
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][I] | [S][.][I] | [S][M][I] | [S][M][I] | [S][.][.]
+[.][C][I] | [.][C][I] | [M][C][I] | [M][C][I] | [.][.][.]
+[.][.][W] | [I][.][W] | [I][M][W] | [I][M][W] | [I][.][.]
+
+Final Board:
+[S][.][.]
+[.][.][.]
+[I][.][.]

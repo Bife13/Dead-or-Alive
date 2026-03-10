@@ -1,0 +1,233 @@
+=== RUN SUMMARY ===
+Seed: -816359109
+
+Final Money: 53
+
+Peak: 14
+
+Solved Night:2
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Slime
+- Lurker
+
+-Placements:
+- Placed Lurker at (0, 1)
+- Placed Slime at (2, 2)
+
+-Extends:
+
+Night 1
+-Events:
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7
+
+Current Money: 7
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][S] | [.][.][S] | [.][.][S] | [.][.][S]
+[.][.][.] | [L][.][.] | [L][.][.] | [L][.][.] | [L][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Butcher
+- Lurker
+
+-Placements:
+- Placed Lurker at (1, 0)
+- Placed Butcher at (2, 1)
+- Moved Butcher to (1, 2)
+
+-Extends:
+
+Night 2
+-Events:
+- Butcher killed 1 monsters (+2).
+- Lurker has 3 empty adjacent rooms
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 12
+Kill Bonus: 2
+Multiplier: x1
+Total Income: 14
+
+Current Money: 21
+
+----------------------------
+
+Checkouts:
+- Lurker
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][S] | [.][B][S] | [.][B][S] | [.][B][.] | [.][B][.]
+[L][.][.] | [L][.][.] | [L][.][.] | [L][.][.] | [.][.][.]
+[.][.][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Cultist
+- Gremlin
+
+-Placements:
+- Placed Cultist at (2, 1)
+- Moved Cultist to (2, 2)
+- Moved Cultist to (2, 1)
+- Moved Cultist to (0, 2)
+- Moved Cultist to (0, 1)
+- Placed Gremlin at (0, 2)
+- Moved Cultist to (2, 2)
+- Moved Cultist to (1, 1)
+- Moved Cultist to (2, 1)
+- Moved Gremlin to (2, 2)
+
+-Extends:
+
+Night 3
+-Events:
+- Gremlin buffed Cultist.
+- Gremlin buffed Butcher.
+- Cultist summoned 2 Minion.
+- Butcher killed 2 monsters (+4).
+- Lurker has 2 empty adjacent rooms
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 4
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 12
+
+Current Money: 33
+
+----------------------------
+
+Checkouts:
+- Lurker
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][B][.] | [.][B][G] | [.][B][G] | [.][B][.] | [.][.][.]
+[.][.][.] | [.][.][C] | [.][M][C] | [.][.][C] | [.][.][C]
+[.][L][.] | [.][L][.] | [.][L][M] | [.][L][M] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Butcher
+- Butcher
+
+-Placements:
+- Placed Butcher at (1, 0)
+- Placed Butcher at (1, 2)
+
+-Extends:
+
+Night 4
+-Events:
+- Cultist summoned 3 Minion.
+- Butcher killed 2 monsters (+4).
+- Butcher killed 1 monsters (+2).
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 0
+Kill Bonus: 6
+Multiplier: x1
+Total Income: 9
+
+Current Money: 42
+
+----------------------------
+
+Checkouts:
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][B][.] | [.][B][M] | [.][B][.] | [.][B][.]
+[.][.][C] | [.][.][C] | [.][M][C] | [.][.][C] | [.][.][.]
+[.][.][.] | [.][B][.] | [.][B][M] | [.][B][.] | [.][B][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Cultist
+- Inspector
+
+-Placements:
+- Placed Cultist at (0, 1)
+- Placed Inspector at (1, 1)
+- Moved Inspector to (2, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 3 Minion.
+- Butcher killed 2 monsters (+4).
+- Butcher killed 2 monsters (+4).
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 0
+Kill Bonus: 8
+Multiplier: x1
+Total Income: 11
+
+Current Money: 53
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][B][.] | [.][B][I] | [M][B][I] | [.][B][.] | [.][.][.]
+[.][.][.] | [C][.][.] | [C][M][.] | [C][.][.] | [C][.][.]
+[.][B][.] | [.][B][.] | [M][B][.] | [.][B][.] | [.][.][.]
+
+Final Board:
+[.][.][.]
+[C][.][.]
+[.][.][.]

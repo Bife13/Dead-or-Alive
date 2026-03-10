@@ -1,0 +1,235 @@
+=== RUN SUMMARY ===
+Seed: -483358756
+
+Final Money: 84
+
+Peak: 27
+
+Solved Night:2
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Slime
+- Lurker
+
+-Placements:
+- Placed Lurker at (0, 1)
+- Placed Slime at (2, 2)
+- Moved Slime to (2, 1)
+
+-Extends:
+
+Night 1
+-Events:
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7
+
+Current Money: 7
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [L][.][S] | [L][.][S] | [L][.][S] | [L][.][S]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Slime
+- Lurker
+
+-Placements:
+- Placed Lurker at (1, 0)
+- Placed Slime at (1, 2)
+
+-Extends:
+
+Night 2
+-Events:
+- Lurker has 3 empty adjacent rooms
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 2
+Bonus Income: 12
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 14
+
+Current Money: 21
+
+----------------------------
+
+Checkouts:
+- Lurker
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][S][.] | [.][S][.] | [.][S][.] | [.][S][.]
+[L][.][S] | [L][.][S] | [L][.][S] | [L][.][S] | [.][.][S]
+[.][.][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Gremlin
+- Inspector
+
+-Placements:
+- Placed Gremlin at (2, 2)
+- Placed Inspector at (0, 2)
+- Moved Gremlin to (1, 1)
+- Moved Gremlin to (2, 2)
+- Moved Gremlin to (1, 1)
+- Moved Inspector to (0, 1)
+
+-Extends:
+
+Night 3
+-Events:
+- Gremlin buffed Slime.
+- Gremlin buffed Lurker.
+- Gremlin buffed Inspector.
+- Gremlin buffed Slime.
+- Inspector increased multiplier by 1
+- Lurker has 2 empty adjacent rooms
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 4
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 20
+
+Current Money: 41
+
+----------------------------
+
+Checkouts:
+- Lurker
+- Slime
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][S][.] | [.][S][.] | [.][S][.] | [.][S][.] | [.][S][.]
+[.][.][S] | [I][G][S] | [I][G][S] | [I][G][S] | [I][G][.]
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Watcher
+- Inspector
+
+-Placements:
+- Placed Watcher at (0, 0)
+- Placed Inspector at (1, 0)
+
+-Extends:
+- Inspector extended to 2
+
+Night 4
+-Events:
+- Gremlin buffed Slime.
+- Gremlin buffed Inspector.
+- Gremlin buffed Inspector.
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 27
+
+Current Money: 63
+
+----------------------------
+
+Checkouts:
+- Gremlin
+- Slime
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][S][.] | [.][S][.] | [.][S][.] | [.][S][.] | [.][.][.]
+[I][G][.] | [I][G][.] | [I][G][.] | [I][G][.] | [I][.][.]
+[.][.][.] | [W][I][.] | [W][I][.] | [W][I][.] | [W][I][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Butcher
+- Gremlin
+
+-Placements:
+- Placed Gremlin at (1, 1)
+
+-Extends:
+
+Night 5
+-Events:
+- Gremlin buffed Inspector.
+- Gremlin buffed Inspector.
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 21
+
+Current Money: 84
+
+----------------------------
+
+Checkouts:
+- Watcher
+- Inspector
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[I][.][.] | [I][G][.] | [I][G][.] | [I][G][.] | [.][G][.]
+[W][I][.] | [W][I][.] | [W][I][.] | [W][I][.] | [.][.][.]
+
+Final Board:
+[.][.][.]
+[.][G][.]
+[.][.][.]

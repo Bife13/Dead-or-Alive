@@ -1,0 +1,231 @@
+=== RUN SUMMARY ===
+Seed: 1528301373
+
+Final Money: 40
+
+Peak: 13
+
+Peak Night: 5
+
+Solved Night: 4
+
+Engine Type: Cultist + Butcher
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Slime
+- Cultist
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Slime at (0, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- Cultist summoned 4 Minion.
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 5
+
+Current Money: 5
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[.][.][.] | [S][.][.] | [S][M][.] | [S][M][.] | [S][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Cultist
+- Cultist
+
+-Placements:
+- Placed Cultist at (0, 2)
+- Placed Cultist at (2, 2)
+- Moved Cultist to (2, 0)
+
+-Extends:
+
+Night 2
+-Events:
+- Cultist summoned 2 Minion.
+- Cultist summoned 2 Minion.
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 5
+
+Current Money: 10
+
+----------------------------
+
+Checkouts:
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [C][.][.] | [C][M][.] | [C][M][.] | [C][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][.][.]
+[S][.][.] | [S][.][C] | [S][M][C] | [S][M][C] | [S][.][C]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Gremlin
+- Cultist
+
+-Placements:
+- Placed Gremlin at (1, 0)
+- Placed Cultist at (1, 1)
+
+-Extends:
+
+Night 3
+-Events:
+- Gremlin buffed Cultist.
+- Gremlin buffed Slime.
+- Gremlin buffed Cultist.
+- Cultist summoned 2 Minion.
+- Cultist summoned 1 Minion.
+
+----------------------------
+
+Base Income: 7
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7
+
+Current Money: 17
+
+----------------------------
+
+Checkouts:
+- Slime
+- Cultist
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[C][.][.] | [C][.][.] | [C][M][.] | [C][M][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[S][.][C] | [S][G][C] | [S][G][C] | [S][G][C] | [.][G][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Butcher
+- Gremlin
+
+-Placements:
+- Placed Butcher at (0, 2)
+- Placed Gremlin at (0, 0)
+
+-Extends:
+
+Night 4
+-Events:
+- Gremlin buffed Gremlin.
+- Gremlin buffed Cultist.
+- Gremlin buffed Gremlin.
+- Cultist summoned 3 Minion.
+- Butcher killed 2 monsters (+4).
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 10
+
+Current Money: 27
+
+----------------------------
+
+Checkouts:
+- Gremlin
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [B][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][.][.]
+[.][G][.] | [G][G][.] | [G][G][.] | [G][G][.] | [G][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Watcher
+- Cultist
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Watcher at (2, 0)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 4 Minion.
+- Butcher killed 2 monsters (+4).
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 3
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 13
+
+Current Money: 40
+
+----------------------------
+
+Checkouts:
+- Gremlin
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][C][.]
+[G][.][.] | [G][.][W] | [G][M][W] | [G][M][W] | [.][.][W]
+
+Final Board:
+[.][.][.]
+[.][C][.]
+[.][.][W]

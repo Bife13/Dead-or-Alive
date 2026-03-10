@@ -1,0 +1,192 @@
+=== RUN SUMMARY ===
+Seed: 1797261985
+
+Final Money: 53
+
+Day  1
+Arrivals:
+- Lurker
+- Slime
+
+Placements:
+- Placed Lurker at (1, 1)
+- Moved Lurker to (2, 1)
+- Placed Slime at (0, 2)
+
+Extends:
+
+Night 1
+Events:
+- Lurker has 3 empty adjacent rooms
+
+Base Income: 1
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+[.][.][.] | [.][.][L] | [.][.][L] | [.][.][L] | [.][.][L]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+Day  2
+Arrivals:
+- Slime
+- Lurker
+
+Placements:
+- Placed Lurker at (1, 0)
+- Placed Slime at (0, 1)
+- Moved Slime to (1, 2)
+
+Extends:
+- Lurker extended to 2
+
+Night 2
+Events:
+- Lurker has 3 empty adjacent rooms
+- Lurker has 3 empty adjacent rooms
+
+Base Income: 2
+Bonus Income: 12
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 14
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][.][.] | [S][S][.] | [S][S][.] | [S][S][.] | [S][S][.]
+[.][.][L] | [.][.][L] | [.][.][L] | [.][.][L] | [.][.][L]
+[.][.][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+
+Day  3
+Arrivals:
+- Gremlin
+- Gremlin
+
+Placements:
+- Placed Gremlin at (0, 1)
+- Placed Gremlin at (2, 2)
+
+Extends:
+
+Night 3
+Events:
+- Gremlin buffed Slime.
+- Gremlin buffed Lurker.
+- Gremlin buffed Slime.
+- Lurker has 3 empty adjacent rooms
+- Lurker has 2 empty adjacent rooms
+
+Base Income: 5
+Bonus Income: 10
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 15
+
+----------------------------
+
+Checkouts:
+- Slime
+- Lurker
+- Lurker
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][S][.] | [S][S][G] | [S][S][G] | [S][S][G] | [.][S][G]
+[.][.][L] | [G][.][L] | [G][.][L] | [G][.][L] | [G][.][.]
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][.][.]
+
+Day  4
+Arrivals:
+- Cultist
+- Butcher
+
+Placements:
+- Placed Cultist at (1, 1)
+- Placed Butcher at (2, 0)
+
+Extends:
+
+Night 4
+Events:
+- Gremlin buffed Cultist.
+- Gremlin buffed Slime.
+- Cultist summoned 2 Minion.
+- Butcher killed 2 monsters (+4).
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 9
+
+----------------------------
+
+Checkouts:
+- Gremlin
+- Slime
+- Gremlin
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][S][G] | [.][S][G] | [.][S][G] | [.][S][G] | [.][.][.]
+[G][.][.] | [G][C][.] | [G][C][M] | [G][C][.] | [.][C][.]
+[.][.][.] | [.][.][B] | [.][M][B] | [.][.][B] | [.][.][B]
+
+Day  5
+Arrivals:
+- Butcher
+- Gremlin
+
+Placements:
+- Placed Butcher at (0, 2)
+- Placed Gremlin at (1, 0)
+
+Extends:
+
+Night 5
+Events:
+- Gremlin buffed Cultist.
+- Gremlin buffed Butcher.
+- Cultist summoned 3 Minion.
+- Butcher killed 2 monsters (+4).
+- Butcher killed 2 monsters (+4).
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 8
+Multiplier: x1
+Total Income: 13
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [B][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [.][C][.] | [.][.][.]
+[.][.][B] | [.][G][B] | [.][G][B] | [.][.][B] | [.][.][.]
+
+Final Board:
+[B][.][.]
+[.][.][.]
+[.][.][.]

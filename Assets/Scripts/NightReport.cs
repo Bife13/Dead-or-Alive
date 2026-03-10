@@ -3,9 +3,10 @@ using System.Collections.Generic;
 public class NightReport
 {
 	public int baseIncome;
+	public int bonusIncome;
 	public int killBonus;
 	public int summonBonus;
-	public float multiplier = 1f;
+	public int multiplier = 1;
 	public int finalIncome;
 
 	public List<string> events = new();

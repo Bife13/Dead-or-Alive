@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
   m_Name: Butcher
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
-  monsterID: 3
+  monsterID: B
   displayName: Butcher
+  weight: 6
   baseIncome: 0
   stayDuration: 2
   effectType: 3
   effectValue: 2
+  effectRequirement: 0
   summonDefinition: {fileID: 0}
   isTemporary: 0
   canCopy: 0

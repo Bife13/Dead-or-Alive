@@ -1,5 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using NUnit.Framework;
 using TMPro;
 using Unity.Mathematics;
@@ -20,6 +23,12 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager Instance => _instance;
 
+	private RunLog currentRunLog = new();
+	private WeekLog currentWeekLog = new();
+	private NightLog currentNightLog = new();
+	private int currentSeed;
+	private int seedValue = 0;
+
 	[SerializeField]
 	private GridManager gridManager;
 
@@ -28,6 +37,9 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField]
 	private GameObject startButton;
+
+	[SerializeField]
+	private TMP_Text weekText;
 
 	[SerializeField]
 	private TMP_Text nightText;
@@ -47,6 +59,12 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private List<MonsterDefinition> curatedPool;
 
+	public List<MonsterDefinition> monsterBag;
+	private int bagIndex;
+
+	[SerializeField]
+	private int monsterBagSize;
+
 	public int extendStayCost;
 
 	public int arrivalsPerDay = 2;
@@ -57,11 +75,13 @@ public class GameManager : MonoBehaviour
 	public int totalNights = 1;
 
 	public int currentWeek;
+	public int totalWeeks = 3;
 	public int weeklyTarget = 25;
+	public List<int> weeklyTargets;
 	public bool runActive = true;
 
 	private int deathsThisNight;
-	private float multiplier;
+	private int multiplier;
 	private List<MonsterDefinition> dailyArrivals = new();
 
 	private GamePhase currentPhase;
@@ -78,9 +98,8 @@ public class GameManager : MonoBehaviour
 	public void Start()
 	{
 		gridManager.Initialize();
-		GenerateDailyArrivals();
-		UpdateText();
-		currentPhase = GamePhase.PlanningPhase;
+		ResetRun();
+		currentNightLog.beforePlacement = CaptureBoardSnapshot();
 	}
 
 	public void StartNight()
@@ -100,33 +119,58 @@ public class GameManager : MonoBehaviour
 		PlacementManager.Instance.ClearSelection();
 
 		deathsThisNight = 0;
-		multiplier = 1f;
+		multiplier = 1;
 
 		NightReport report = new NightReport();
+		currentNightLog.afterPlacement = CaptureBoardSnapshot();
+		currentNightLog.engineType = DetectEngine(currentNightLog);
 
 		ResetIncome();
-
 		ApplyAdjacencyBuffs(report);
 		ApplySummons(report);
-		ApplyKillEffects(report);
+
+		currentNightLog.afterSummons = CaptureBoardSnapshot();
+		int killIncome = ApplyKillEffects(report);
+
 		CleanupDead();
+
+		currentNightLog.afterKills = CaptureBoardSnapshot();
+
 		ApplyMultipliers(report);
-		int income = CalculateIncome(report);
+		int income = CalculateIncome(report, killIncome);
 		money += income;
+
+		if ((money >= weeklyTarget - 5 || income >= weeklyTarget - 5) && currentWeekLog.solvedNight == 0)
+			currentWeekLog.solvedNight = currentNight;
+
 		CleanupTemporary();
 		DecreaseStayAndCheckout(report);
 
+		currentNightLog.endOfNight = CaptureBoardSnapshot();
+
 		summaryUI.ShowSummary(report, currentNight);
+		currentNightLog.currentMoney = money;
+
+		currentNightLog.checkouts.AddRange(report.checkouts);
+		currentNightLog.events.AddRange(report.events);
+		currentNightLog.baseIncome = report.baseIncome;
+		currentNightLog.bonusIncome = report.bonusIncome;
+		currentNightLog.killBonus = report.killBonus;
+		currentNightLog.multiplier = report.multiplier;
+		currentNightLog.totalIncome = report.finalIncome;
+		currentWeekLog.nights.Add(currentNightLog);
+
 		currentNight++;
-		Debug.Log("Night ended. Earned: " + income + " | Total Money: " + money);
 		currentPhase = GamePhase.ScorePhase;
+		currentNightLog = new NightLog();
+		currentNightLog.nightNumber = currentNight;
 	}
 
 	public void NextDay()
 	{
 		UpdateText();
-
 		dailyArrivals.Clear();
+		currentNightLog.beforePlacement = CaptureBoardSnapshot();
 
 		if (currentNight > totalNights)
 			EndWeek();
@@ -134,9 +178,8 @@ public class GameManager : MonoBehaviour
 		{
 			GenerateDailyArrivals();
 			currentPhase = GamePhase.PlanningPhase;
+			startButton.SetActive(true);
 		}
-
-		startButton.SetActive(true);
 	}
 
 	private void GenerateDailyArrivals()
@@ -145,11 +188,74 @@ public class GameManager : MonoBehaviour
 
 		for (int i = 0; i < arrivalsPerDay; i++)
 		{
-			int index = Random.Range(0, curatedPool.Count);
-			dailyArrivals.Add(curatedPool[index]);
+			MonsterDefinition monster = monsterBag[bagIndex];
+
+			dailyArrivals.Add(monster);
+			currentNightLog.arrivals.Add(monster.displayName);
+			bagIndex++;
+
+			foreach (MonsterLog log in currentWeekLog.monsterLogs)
+			{
+				if (log.definition == monster)
+					log.timesOffered++;
+			}
 		}
 
 		UpdateArrivalUI();
+	}
+
+	private void GenerateWeeklyBag()
+	{
+		monsterBag.Clear();
+		for (int i = 0; i < monsterBagSize; i++)
+		{
+			MonsterDefinition monster = GetRandomMonster(curatedPool);
+			monsterBag.Add(monster);
+		}
+
+		ShuffleMonsterBag();
+	}
+
+	public void ShuffleMonsterBag()
+	{
+		System.Random rng = new System.Random(currentSeed);
+		Shuffle(monsterBag, rng);
+		bagIndex = 0;
+		currentWeekLog.monsterBag = monsterBag;
+	}
+
+	void Shuffle<T>(List<T> list, System.Random rng)
+	{
+		for (int i = list.Count - 1; i > 0; i--)
+		{
+			int j = rng.Next(i + 1);
+
+			T temp = list[i];
+			list[i] = list[j];
+			list[j] = temp;
+		}
+	}
+
+	MonsterDefinition GetRandomMonster(List<MonsterDefinition> pool)
+	{
+		int totalWeight = 0;
+
+		foreach (MonsterDefinition definition in pool)
+			totalWeight += definition.weight;
+
+		int roll = Random.Range(0, totalWeight);
+
+		int cumulative = 0;
+
+		foreach (MonsterDefinition definition in pool)
+		{
+			cumulative += definition.weight;
+
+			if (roll < cumulative)
+				return definition;
+		}
+
+		return pool[0];
 	}
 
 	private void ResetIncome()
@@ -225,7 +331,7 @@ public class GameManager : MonoBehaviour
 			if (monster.Definition.effectType != EffectType.BuffAdjacentFlat)
 				continue;
 
-			var adjacentRooms = gridManager.GetAdjacentRooms(monster.Position);
+			var adjacentRooms = gridManager.GetAdjacentRooms(room);
 
 			foreach (var adjRoom in adjacentRooms)
 			{
@@ -241,10 +347,10 @@ public class GameManager : MonoBehaviour
 
 	private void ApplySummons(NightReport report)
 	{
-		List<(Room room, MonsterDefinition definition)> summons = new();
-
 		foreach (Room room in gridManager.GetAllRooms())
 		{
+			List<(Room room, MonsterDefinition definition)> summons = new();
+
 			if (room.Occupant == null)
 				continue;
 
@@ -253,7 +359,7 @@ public class GameManager : MonoBehaviour
 			if (monster.Definition.effectType != EffectType.SummonAdjacent)
 				continue;
 
-			var adjacentRooms = gridManager.GetAdjacentRooms(monster.Position);
+			var adjacentRooms = gridManager.GetAdjacentRooms(room);
 
 			foreach (var adjRoom in adjacentRooms)
 			{
@@ -265,19 +371,20 @@ public class GameManager : MonoBehaviour
 				}
 			}
 
+			if (summons.Count <= 0) continue;
 			report.summonBonus += summons.Count;
 			report.events.Add(
 				$"{monster.Definition.displayName} summoned {summons.Count} {monster.Definition.summonDefinition.displayName}.");
-		}
-
-		foreach (var summon in summons)
-		{
-			SpawnMonsterInRoom(summon.room, summon.definition);
+			foreach (var summon in summons)
+			{
+				SpawnMonsterInRoom(summon.room, summon.definition);
+			}
 		}
 	}
 
-	private void ApplyKillEffects(NightReport report)
+	private int ApplyKillEffects(NightReport report)
 	{
+		int totalKillIncome = 0;
 		foreach (Room room in gridManager.GetAllRooms())
 		{
 			if (room.Occupant == null)
@@ -288,13 +395,14 @@ public class GameManager : MonoBehaviour
 			if (monster.Definition.effectType != EffectType.KillAdjacent)
 				continue;
 
-			var adjacentRooms = gridManager.GetAdjacentRooms(monster.Position);
+			var adjacentRooms = gridManager.GetAdjacentRooms(room);
 
 			int kills = 0;
 
 			foreach (var adjRoom in adjacentRooms)
 			{
-				if (adjRoom.Occupant != null && adjRoom.Occupant.isAlive)
+				if (adjRoom.Occupant != null && adjRoom.Occupant.isAlive &&
+				    adjRoom.Occupant.Definition != monster.Definition)
 				{
 					adjRoom.Occupant.isAlive = false;
 					kills++;
@@ -302,16 +410,25 @@ public class GameManager : MonoBehaviour
 				}
 			}
 
-			int totalKillIncome = kills * monster.Definition.effectValue;
-
-			monster.currentIncome += totalKillIncome;
-			report.killBonus += totalKillIncome;
-			report.events.Add($"{monster.Definition.displayName} killed {kills} monsters (+{totalKillIncome}).");
+			int tempKillIncome = kills * monster.Definition.effectValue;
+			totalKillIncome += tempKillIncome;
+			//monster.currentIncome += totalKillIncome;
+			report.events.Add($"{monster.Definition.displayName} killed {kills} monsters (+{tempKillIncome}).");
 		}
+
+		report.killBonus = totalKillIncome;
+		return totalKillIncome;
 	}
 
 	public void ApplyMultipliers(NightReport report)
 	{
+		int aliveCount = 0;
+		foreach (Room room in gridManager.GetAllRooms())
+		{
+			if (room.Occupant != null && !room.Occupant.isTemporary)
+				aliveCount++;
+		}
+
 		foreach (Room room in gridManager.GetAllRooms())
 		{
 			if (room.Occupant == null)
@@ -324,44 +441,159 @@ public class GameManager : MonoBehaviour
 				switch (monster.Definition.effectType)
 				{
 					case EffectType.ConditionalMultNoDeaths:
-						if (deathsThisNight == 0)
+						if (deathsThisNight == 0 && aliveCount >= monster.Definition.effectRequirement)
+						{
 							multiplier += monster.Definition.effectValue;
+							report.events.Add(
+								$"{monster.Definition.displayName} increased multiplier by {report.multiplier}");
+						}
+
 						break;
 					case EffectType.FlatMultAlways:
 						multiplier += monster.Definition.effectValue;
+						report.events.Add(
+							$"{monster.Definition.displayName} increased multiplier by {report.multiplier}");
 						break;
 				}
 
 				report.multiplier = multiplier;
-				report.events.Add($"{monster.Definition.displayName} increased multiplier to x{report.multiplier}");
 			}
 		}
 	}
 
-	private int CalculateIncome(NightReport report)
+	private int CalculateIncome(NightReport report, int killIncome)
 	{
-		int income = 0;
+		int income = killIncome;
+		int baseIncome = 0;
 
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant != null)
-				income += room.Occupant.currentIncome;
+			if (room.Occupant == null)
+				continue;
+
+			int finalIncome = room.Occupant.currentIncome;
+			baseIncome += room.Occupant.currentIncome;
+
+			switch (room.Occupant.Definition.effectType)
+			{
+				case EffectType.EmptyAdjacent:
+					int tempIncome = CountEmptyAdjacent(room) * room.Occupant.Definition.effectValue;
+
+					if (tempIncome > room.Occupant.Definition.effectRequirement)
+						tempIncome = room.Occupant.Definition.effectRequirement;
+
+					finalIncome += tempIncome;
+
+					report.events.Add(
+						$"{room.Occupant.Definition.displayName} has {CountEmptyAdjacent(room)} empty adjacent rooms");
+					break;
+				case EffectType.ExactAdjacency:
+					if (CountFilledAdjacent(room) == room.Occupant.Definition.effectRequirement)
+						finalIncome += room.Occupant.Definition.effectValue;
+					report.events.Add(
+						$"{room.Occupant.Definition.displayName} has {CountFilledAdjacent(room)} adjacent monsters");
+					break;
+			}
+
+			income += finalIncome;
 		}
 
-		report.baseIncome = income;
+		report.baseIncome = baseIncome;
+		report.bonusIncome = income - baseIncome - killIncome;
 		income = Mathf.RoundToInt(income * multiplier);
 		report.finalIncome = income;
+		if (income > currentWeekLog.peak)
+		{
+			currentWeekLog.peak = income;
+			currentWeekLog.peakNight = currentNight;
+		}
 
 		return income;
+	}
+
+	public int CountEmptyAdjacent(Room room)
+	{
+		int total = 0;
+
+		List<Room> adjacentRooms = gridManager.GetAdjacentRooms(room);
+
+		foreach (Room adjRoom in adjacentRooms)
+		{
+			if (adjRoom.Occupant == null)
+				total++;
+		}
+
+		return total;
+	}
+
+	public int CountFilledAdjacent(Room room)
+	{
+		int total = 0;
+
+		List<Room> adjacentRooms = gridManager.GetAdjacentRooms(room);
+
+		foreach (Room adjRoom in adjacentRooms)
+		{
+			if (adjRoom.Occupant != null)
+				total++;
+		}
+
+		return total;
 	}
 
 	public void EndWeek()
 	{
 		runActive = false;
+
+		currentWeekLog.finalMoney = money;
+		currentRunLog.weeks.Add(currentWeekLog);
+
 		if (money >= weeklyTarget)
-			Debug.Log("YOU WIN! Money:" + money);
+		{
+			Debug.Log($"YOU COMPLETED WEEK {currentWeek} Money:" + money);
+			if (currentWeek < totalWeeks)
+				weeklyTarget = weeklyTargets[currentWeek];
+			else
+			{
+				EndRun();
+				return;
+			}
+
+
+			currentWeek++;
+			currentNight = 1;
+			runActive = true;
+
+			currentWeekLog = new WeekLog();
+
+			foreach (var monster in curatedPool)
+			{
+				currentWeekLog.monsterLogs.Add(new MonsterLog(monster));
+			}
+
+			UpdateText();
+			ClearBoard();
+
+			currentNightLog = new NightLog();
+			currentNightLog.nightNumber = currentNight;
+			currentPhase = GamePhase.PlanningPhase;
+			startButton.SetActive(true);
+			currentNightLog.beforePlacement = CaptureBoardSnapshot();
+
+			GenerateWeeklyBag();
+			GenerateDailyArrivals();
+
+			runActive = true;
+		}
 		else
-			Debug.Log("YOU LOSE! Money:" + money);
+			EndRun();
+	}
+
+	public void EndRun()
+	{
+		currentRunLog.finalMoney = money;
+		ExportRunToFile();
+		ResetRun();
 	}
 
 	public bool CanPlaceSelected()
@@ -383,8 +615,10 @@ public class GameManager : MonoBehaviour
 		}
 
 		money -= extendStayCost;
-
 		monster.ExtendStay(1);
+
+		currentNightLog.extends.Add(monster.Definition.displayName + " extended to " + monster.nightsRemaining);
+		currentWeekLog.monstersExtended.Add(monster.Definition.displayName);
 
 		UpdateText();
 	}
@@ -397,6 +631,13 @@ public class GameManager : MonoBehaviour
 			return;
 
 		SpawnMonsterInRoom(room, selected);
+		currentNightLog.placements.Add("Placed " + selected.displayName + " at " + room.Position);
+
+		foreach (MonsterLog log in currentWeekLog.monsterLogs)
+		{
+			if (log.definition == selected)
+				log.timesPlaced++;
+		}
 
 		dailyArrivals.Remove(selected);
 
@@ -420,12 +661,14 @@ public class GameManager : MonoBehaviour
 
 		selected.view.transform.position = targetRoom.view.transform.position;
 		selected.view.transform.parent = targetRoom.view.transform;
+		currentNightLog.placements.Add("Moved " + selected.Definition.displayName + " to " + targetRoom.Position);
+
 		// PlacementManager.Instance.selectedInstance = null;
 	}
 
 	public void SpawnMonsterInRoom(Room room, MonsterDefinition definition)
 	{
-		MonsterInstance instance = new MonsterInstance(definition, room.Position);
+		MonsterInstance instance = new MonsterInstance(definition);
 		room.SetOccupant(instance);
 
 		Vector3 spawnPos = room.view.transform.position;
@@ -444,13 +687,34 @@ public class GameManager : MonoBehaviour
 
 	public void ResetRun()
 	{
+		weeklyTarget = weeklyTargets[0];
 		money = 0;
 		currentNight = 1;
+		currentWeek = 1;
 		runActive = true;
-		currentPhase = GamePhase.PlanningPhase;
+
+		currentRunLog = new RunLog();
+		currentSeed = Random.Range(int.MinValue, int.MaxValue);
+		int finalSeed = seedValue != 0 ? seedValue : currentSeed;
+		currentRunLog.seed = finalSeed;
+		Random.InitState(finalSeed);
+
+		currentWeekLog = new WeekLog();
+		foreach (var monster in curatedPool)
+		{
+			currentWeekLog.monsterLogs.Add(new MonsterLog(monster));
+		}
 
 		UpdateText();
 		ClearBoard();
+
+		currentNightLog = new NightLog();
+		currentNightLog.nightNumber = currentNight;
+		currentPhase = GamePhase.PlanningPhase;
+		startButton.SetActive(true);
+		currentNightLog.beforePlacement = CaptureBoardSnapshot();
+
+		GenerateWeeklyBag();
 		GenerateDailyArrivals();
 	}
 
@@ -468,6 +732,7 @@ public class GameManager : MonoBehaviour
 
 	private void UpdateText()
 	{
+		weekText.text = "Week: " + currentWeek + " / " + totalWeeks;
 		nightText.text = "Night: " + currentNight + " / " + totalNights;
 		moneyText.text = "Money: " + money;
 		targetText.text = "Target: " + weeklyTarget;
@@ -491,4 +756,251 @@ public class GameManager : MonoBehaviour
 			view.Initialize(monster);
 		}
 	}
+
+	private string[,] CaptureBoardSnapshot()
+	{
+		int w = gridManager.Width;
+		int h = gridManager.Height;
+
+		string[,] snapshot = new string[w, h];
+
+		for (int x = 0; x < w; x++)
+		{
+			for (int y = 0; y < h; y++)
+			{
+				var room = gridManager.Rooms[x, y];
+				snapshot[x, y] = room.Occupant != null
+					? room.Occupant.Definition.monsterID
+					: ".";
+			}
+		}
+
+		return snapshot;
+	}
+
+	public void ExportRunToFile()
+	{
+#if UNITY_EDITOR
+		StringBuilder output = new StringBuilder();
+
+		output.AppendLine("=== RUN SUMMARY ===");
+		output.AppendLine("Seed: " + currentRunLog.seed);
+		output.AppendLine("");
+		output.AppendLine("Final Money: " + currentRunLog.finalMoney);
+		output.AppendLine("");
+
+		int weekCount = 1;
+		foreach (var week in currentRunLog.weeks)
+		{
+			output.AppendLine("Week: " + weekCount);
+			output.AppendLine("");
+			weekCount++;
+			output.AppendLine("Weekly Money: " + week.finalMoney);
+			output.AppendLine("");
+			output.AppendLine("Peak: " + week.peak);
+			output.AppendLine("");
+			output.AppendLine("Peak Night: " + week.peakNight);
+			output.AppendLine("");
+			output.AppendLine("Solved Night: " + week.solvedNight);
+			output.AppendLine("");
+
+			foreach (var night in week.nights)
+			{
+				output.AppendLine("");
+				output.AppendLine("----------------------------");
+				output.AppendLine("");
+
+				output.AppendLine("Day  " + night.nightNumber);
+
+				output.AppendLine("-Arrivals:");
+				foreach (var a in night.arrivals)
+					output.AppendLine("- " + a);
+				output.AppendLine();
+
+				output.AppendLine("-Placements:");
+				foreach (var p in night.placements)
+					output.AppendLine("- " + p);
+				output.AppendLine();
+
+				output.AppendLine("-Extends:");
+				foreach (var e in night.extends)
+					output.AppendLine("- " + e);
+				output.AppendLine();
+
+				output.AppendLine("Night " + night.nightNumber);
+
+				output.AppendLine("-Events:");
+				foreach (var ev in night.events)
+					output.AppendLine("- " + ev);
+				output.AppendLine("");
+
+				output.AppendLine("Engine Type: " + night.engineType);
+
+				output.AppendLine("");
+				output.AppendLine("----------------------------");
+				output.AppendLine("");
+
+				output.AppendLine("Base Income: " + night.baseIncome);
+				output.AppendLine("Bonus Income: " + night.bonusIncome);
+				output.AppendLine("Kill Bonus: " + night.killBonus);
+				output.AppendLine("Multiplier: x" + night.multiplier);
+				output.AppendLine("Total Income: " + night.totalIncome);
+
+				output.AppendLine("");
+				output.AppendLine("Current Money: " + night.currentMoney);
+
+				output.AppendLine("");
+				output.AppendLine("----------------------------");
+				output.AppendLine("");
+
+				output.AppendLine("Checkouts:");
+				foreach (var ev in night.checkouts)
+					output.AppendLine("- " + ev);
+				output.AppendLine();
+
+				output.AppendLine("Board States:");
+				output.AppendLine("Before     | AfterPlace | AfterSumm  | AfterKills | End");
+				output.AppendLine("----------------------------------------------------------------");
+
+				int width = gridManager.Width;
+				int height = gridManager.Height;
+
+				for (int y = height - 1; y >= 0; y--)
+				{
+					string row = "";
+
+					row += FormatRow(night.beforePlacement, y, width) + " | ";
+					row += FormatRow(night.afterPlacement, y, width) + " | ";
+					row += FormatRow(night.afterSummons, y, width) + " | ";
+					row += FormatRow(night.afterKills, y, width) + " | ";
+					row += FormatRow(night.endOfNight, y, width);
+
+					output.AppendLine(row);
+				}
+
+				output.AppendLine();
+			}
+
+			output.AppendLine("Final Board:");
+			for (int y = gridManager.Height - 1; y >= 0; y--)
+			{
+				string row = "";
+				row += FormatRow(CaptureBoardSnapshot(), y, gridManager.Width);
+				output.AppendLine(row);
+			}
+
+			output.AppendLine("");
+
+			output.AppendLine("Current Weights:");
+			foreach (MonsterDefinition definition in curatedPool)
+				output.AppendLine("- " + definition.displayName + ": " + definition.weight);
+			output.AppendLine("");
+
+			output.AppendLine("All Arrivals:");
+			for (int i = 0; i < bagIndex; i++)
+				output.AppendLine("- " + week.monsterBag[i].displayName);
+			// foreach (var a in currentRunLog.monsterBag)
+			// 	output.AppendLine("- " + a.displayName);
+			output.AppendLine("");
+
+			output.AppendLine("All Extensions:");
+			foreach (var a in week.monstersExtended)
+				output.AppendLine("- " + a);
+			output.AppendLine("");
+		}
+
+
+		string folderPath = Path.Combine(Application.dataPath, "../RunLogs");
+
+		if (!Directory.Exists(folderPath))
+		{
+			Directory.CreateDirectory(folderPath);
+		}
+
+		// Create filename with timestamp
+		string fileName = "Run_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
+		string fullPath = Path.Combine(folderPath, fileName);
+
+		File.WriteAllText(fullPath, output.ToString());
+
+
+		UnityEditor.EditorUtility.RevealInFinder(fullPath);
+
+		Debug.Log("Run exported to: " + fullPath);
+#endif
+	}
+
+	private string FormatRow(string[,] board, int y, int width)
+	{
+		StringBuilder row = new StringBuilder();
+
+		for (int x = 0; x < width; x++)
+		{
+			row.Append("[");
+			row.Append(board[x, y]);
+			row.Append("]");
+		}
+
+		return row.ToString();
+	}
+
+	string DetectEngine(NightLog currentNight)
+	{
+		var board = currentNight.afterPlacement;
+
+		Dictionary<string, int> counts = new();
+
+		for (int y = 0; y < 3; y++)
+		for (int x = 0; x < 3; x++)
+		{
+			string m = board[x, y];
+
+			if (m == "." || m == "M") continue;
+
+			if (!counts.ContainsKey(m))
+				counts[m] = 0;
+
+			counts[m]++;
+		}
+
+		bool hasInspector = counts.ContainsKey(MonsterIds.Inspector);
+		bool hasLurker = counts.ContainsKey(MonsterIds.Lurker);
+		bool hasCultist = counts.ContainsKey(MonsterIds.Cultist);
+		bool hasButcher = counts.ContainsKey(MonsterIds.Butcher);
+		bool hasWatcher = counts.ContainsKey(MonsterIds.Watcher);
+		bool hasGremlin = counts.ContainsKey(MonsterIds.Gremlin);
+
+		if (hasLurker && hasInspector)
+			return "Lurker + Inspector";
+
+		if (hasCultist && hasButcher)
+			return "Cultist + Butcher";
+
+		if (hasWatcher && hasInspector)
+			return "Watcher + Inspector";
+
+		if (hasGremlin && hasInspector)
+			return "Gremlin + Inspector";
+
+		if (hasLurker)
+			return "Lurker";
+
+		if (hasCultist)
+			return "Cultist";
+
+		if (hasInspector)
+			return "Inspector";
+
+		return "Mixed";
+	}
+}
+
+public static class MonsterIds
+{
+	public const string Inspector = "I";
+	public const string Lurker = "L";
+	public const string Cultist = "C";
+	public const string Butcher = "B";
+	public const string Gremlin = "G";
+	public const string Watcher = "W";
 }

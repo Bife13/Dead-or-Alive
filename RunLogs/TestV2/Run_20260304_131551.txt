@@ -1,0 +1,239 @@
+=== RUN SUMMARY ===
+Seed: 362487491
+
+Final Money: 85
+
+Peak: 42
+
+Solved Night:3
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Cultist
+- Slime
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Slime at (0, 2)
+
+-Extends:
+
+Night 1
+-Events:
+- Cultist summoned 4 Minion.
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 5
+
+Current Money: 5
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [S][.][.] | [S][M][.] | [S][M][.] | [S][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Inspector
+- Cultist
+
+-Placements:
+- Placed Inspector at (2, 0)
+- Placed Cultist at (0, 0)
+- Moved Cultist to (0, 1)
+
+-Extends:
+
+Night 2
+-Events:
+- Cultist summoned 1 Minion.
+- Cultist summoned 3 Minion.
+- Inspector increased multiplier by 1
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 10
+
+Current Money: 15
+
+----------------------------
+
+Checkouts:
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][.][.] | [S][.][.] | [S][M][.] | [S][M][.] | [S][.][.]
+[.][C][.] | [C][C][.] | [C][C][M] | [C][C][M] | [C][.][.]
+[.][.][.] | [.][.][I] | [M][M][I] | [M][M][I] | [.][.][I]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Lurker
+- Cultist
+
+-Placements:
+- Placed Lurker at (1, 2)
+- Placed Cultist at (0, 0)
+
+-Extends:
+- Inspector extended to 2
+
+Night 3
+-Events:
+- Cultist summoned 1 Minion.
+- Cultist summoned 1 Minion.
+- Inspector increased multiplier by 1
+- Lurker has 1 empty adjacent rooms
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 2
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 10
+
+Current Money: 20
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Slime
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][.][.] | [S][L][.] | [S][L][.] | [S][L][.] | [.][L][.]
+[C][.][.] | [C][.][.] | [C][M][.] | [C][M][.] | [.][.][.]
+[.][.][I] | [C][.][I] | [C][M][I] | [C][M][I] | [C][.][I]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Lurker
+- Inspector
+
+-Placements:
+- Placed Lurker at (0, 1)
+- Placed Inspector at (2, 1)
+
+-Extends:
+- Lurker extended to 2
+- Inspector extended to 2
+
+Night 4
+-Events:
+- Cultist summoned 1 Minion.
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Lurker has 2 empty adjacent rooms
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 10
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 33
+
+Current Money: 43
+
+----------------------------
+
+Checkouts:
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+[.][.][.] | [L][.][I] | [L][.][I] | [L][.][I] | [L][.][I]
+[C][.][I] | [C][.][I] | [C][M][I] | [C][M][I] | [.][.][I]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Gremlin
+- Gremlin
+
+-Placements:
+- Placed Gremlin at (1, 0)
+- Placed Gremlin at (1, 1)
+- Moved Gremlin to (2, 2)
+- Moved Gremlin to (1, 1)
+
+-Extends:
+
+Night 5
+-Events:
+- Gremlin buffed Gremlin.
+- Gremlin buffed Inspector.
+- Gremlin buffed Lurker.
+- Gremlin buffed Gremlin.
+- Gremlin buffed Lurker.
+- Gremlin buffed Inspector.
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Lurker has 2 empty adjacent rooms
+- Lurker has 2 empty adjacent rooms
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 8
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 42
+
+Current Money: 85
+
+----------------------------
+
+Checkouts:
+- Lurker
+- Lurker
+- Inspector
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][.][.]
+[L][.][I] | [L][G][I] | [L][G][I] | [L][G][I] | [.][G][.]
+[.][.][I] | [.][G][I] | [.][G][I] | [.][G][I] | [.][G][.]
+
+Final Board:
+[.][.][.]
+[.][G][.]
+[.][G][.]

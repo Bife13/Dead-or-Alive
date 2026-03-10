@@ -5,12 +5,14 @@ public class MonsterDefinition : ScriptableObject
 {
     public string monsterID;
     public string displayName;
+    public int weight;
 
     public int baseIncome;
     public int stayDuration;
 
     public EffectType effectType;
     public int effectValue;
+    public int effectRequirement;
 
     public MonsterDefinition summonDefinition;
 
@@ -29,4 +31,6 @@ public enum EffectType
     MoveTowards,
     ConditionalMultNoDeaths,
     FlatMultAlways,
+    EmptyAdjacent,
+    ExactAdjacency
 }

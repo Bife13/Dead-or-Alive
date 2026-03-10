@@ -1,0 +1,223 @@
+=== RUN SUMMARY ===
+Seed: -1081933390
+
+Final Money: 48
+
+Peak: 14
+
+Solved Night: 3
+
+Engine Type: Lurker
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Slime
+- Gremlin
+
+-Placements:
+- Placed Slime at (0, 0)
+- Placed Gremlin at (1, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- Gremlin buffed Slime.
+
+----------------------------
+
+Base Income: 2
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 2
+
+Current Money: 2
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [S][G][.] | [S][G][.] | [S][G][.] | [S][G][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Cultist
+- Lurker
+
+-Placements:
+- Placed Lurker at (1, 2)
+- Placed Cultist at (2, 0)
+
+-Extends:
+
+Night 2
+-Events:
+- Gremlin buffed Slime.
+- Gremlin buffed Cultist.
+- Cultist summoned 1 Minion.
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 10
+
+Current Money: 12
+
+----------------------------
+
+Checkouts:
+- Gremlin
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+[.][.][.] | [.][.][.] | [.][.][M] | [.][.][M] | [.][.][.]
+[S][G][.] | [S][G][C] | [S][G][C] | [S][G][C] | [S][.][C]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Slime
+- Watcher
+
+-Placements:
+- Placed Watcher at (1, 0)
+- Placed Slime at (0, 1)
+
+-Extends:
+
+Night 3
+-Events:
+- Cultist summoned 1 Minion.
+- Watcher has 2 adjacent monsters
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 9
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 14
+
+Current Money: 26
+
+----------------------------
+
+Checkouts:
+- Slime
+- Lurker
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][.][.]
+[.][.][.] | [S][.][.] | [S][.][M] | [S][.][M] | [S][.][.]
+[S][.][C] | [S][W][C] | [S][W][C] | [S][W][C] | [.][W][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Butcher
+- Lurker
+
+-Placements:
+- Placed Butcher at (0, 0)
+- Placed Lurker at (2, 1)
+
+-Extends:
+
+Night 4
+-Events:
+- Butcher killed 2 monsters (+4).
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 6
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 10
+
+Current Money: 36
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[S][.][.] | [S][.][L] | [S][.][L] | [.][.][L] | [.][.][L]
+[.][W][.] | [B][W][.] | [B][W][.] | [B][.][.] | [B][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Slime
+- Cultist
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Slime at (0, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 3 Minion.
+- Butcher killed 2 monsters (+4).
+- Lurker has 2 empty adjacent rooms
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 4
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 12
+
+Current Money: 48
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Lurker
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [S][.][.] | [S][M][.] | [S][M][.] | [S][.][.]
+[.][.][L] | [.][C][L] | [M][C][L] | [.][C][L] | [.][C][.]
+[B][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [.][.][.]
+
+Final Board:
+[S][.][.]
+[.][C][.]
+[.][.][.]

@@ -1,0 +1,236 @@
+=== RUN SUMMARY ===
+Seed: -1916491924
+
+Final Money: 39
+
+Peak: 17
+
+Peak Night: 4
+
+Solved Night: 3
+
+Engine Type: Cultist
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Butcher
+- Inspector
+
+-Placements:
+- Placed Butcher at (0, 2)
+- Placed Inspector at (2, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- Butcher killed 0 monsters (+0).
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+Current Money: 0
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Watcher
+- Cultist
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Watcher at (0, 0)
+
+-Extends:
+
+Night 2
+-Events:
+- Cultist summoned 4 Minion.
+- Butcher killed 2 monsters (+4).
+- Watcher has 1 adjacent monsters
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 10
+
+Current Money: 10
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][C][.]
+[.][.][I] | [W][.][I] | [W][M][I] | [W][M][I] | [W][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Gremlin
+- Watcher
+
+-Placements:
+- Placed Watcher at (2, 2)
+- Placed Gremlin at (1, 2)
+- Moved Gremlin to (2, 1)
+
+-Extends:
+- Cultist extended to 2
+
+Night 3
+-Events:
+- Gremlin buffed Watcher.
+- Gremlin buffed Cultist.
+- Cultist summoned 3 Minion.
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 9
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 15
+
+Current Money: 20
+
+----------------------------
+
+Checkouts:
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][W] | [.][M][W] | [.][M][W] | [.][.][W]
+[.][C][.] | [.][C][G] | [M][C][G] | [M][C][G] | [.][C][G]
+[W][.][.] | [W][.][.] | [W][M][.] | [W][M][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Slime
+- Watcher
+
+-Placements:
+- Placed Watcher at (0, 0)
+- Placed Slime at (2, 0)
+
+-Extends:
+- Cultist extended to 2
+- Watcher extended to 2
+
+Night 4
+-Events:
+- Gremlin buffed Watcher.
+- Gremlin buffed Slime.
+- Gremlin buffed Cultist.
+- Cultist summoned 3 Minion.
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 11
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 17
+
+Current Money: 27
+
+----------------------------
+
+Checkouts:
+- Gremlin
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][W] | [.][.][W] | [.][M][W] | [.][M][W] | [.][.][W]
+[.][C][G] | [.][C][G] | [M][C][G] | [M][C][G] | [.][C][.]
+[.][.][.] | [W][.][S] | [W][M][S] | [W][M][S] | [W][.][S]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Butcher
+- Slime
+
+-Placements:
+- Placed Butcher at (0, 2)
+- Moved Butcher to (0, 1)
+- Moved Butcher to (0, 2)
+- Moved Butcher to (0, 1)
+- Placed Slime at (0, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 3 Minion.
+- Butcher killed 3 monsters (+6).
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 3
+Kill Bonus: 6
+Multiplier: x1
+Total Income: 12
+
+Current Money: 39
+
+----------------------------
+
+Checkouts:
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][W] | [S][.][W] | [S][M][W] | [.][M][W] | [.][.][.]
+[.][C][.] | [B][C][.] | [B][C][M] | [B][.][M] | [B][.][.]
+[W][.][S] | [W][.][S] | [W][M][S] | [.][M][S] | [.][.][S]
+
+Final Board:
+[.][.][.]
+[B][.][.]
+[.][.][S]

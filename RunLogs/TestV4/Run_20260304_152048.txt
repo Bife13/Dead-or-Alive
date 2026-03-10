@@ -1,0 +1,229 @@
+=== RUN SUMMARY ===
+Seed: 164801288
+
+Final Money: 45
+
+Peak: 21
+
+Peak Night: 5
+
+Solved Night: 4
+
+Engine Type: Lurker + Inspector
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Slime
+- Butcher
+
+-Placements:
+- Placed Butcher at (0, 2)
+- Placed Slime at (0, 0)
+- Moved Slime to (2, 0)
+- Moved Slime to (2, 1)
+
+-Extends:
+
+Night 1
+-Events:
+- Butcher killed 0 monsters (+0).
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1
+
+Current Money: 1
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [.][.][S] | [.][.][S] | [.][.][S] | [.][.][S]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Butcher
+- Slime
+
+-Placements:
+- Placed Butcher at (0, 0)
+- Placed Slime at (0, 1)
+
+-Extends:
+
+Night 2
+-Events:
+- Butcher killed 1 monsters (+2).
+- Butcher killed 0 monsters (+0).
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 0
+Kill Bonus: 2
+Multiplier: x1
+Total Income: 3
+
+Current Money: 4
+
+----------------------------
+
+Checkouts:
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [.][.][.]
+[.][.][S] | [S][.][S] | [S][.][S] | [.][.][S] | [.][.][S]
+[.][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [B][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Butcher
+- Lurker
+
+-Placements:
+- Placed Lurker at (1, 2)
+- Placed Butcher at (1, 0)
+
+-Extends:
+
+Night 3
+-Events:
+- Butcher killed 0 monsters (+0).
+- Butcher killed 0 monsters (+0).
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7
+
+Current Money: 11
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Slime
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+[.][.][S] | [.][.][S] | [.][.][S] | [.][.][S] | [.][.][.]
+[B][.][.] | [B][B][.] | [B][B][.] | [B][B][.] | [.][B][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Inspector
+- Inspector
+
+-Placements:
+- Placed Inspector at (0, 1)
+- Placed Inspector at (2, 1)
+
+-Extends:
+- Lurker extended to 2
+
+Night 4
+-Events:
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 18
+
+Current Money: 24
+
+----------------------------
+
+Checkouts:
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+[.][.][.] | [I][.][I] | [I][.][I] | [I][.][I] | [I][.][I]
+[.][B][.] | [.][B][.] | [.][B][.] | [.][B][.] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Cultist
+- Butcher
+
+-Placements:
+- Placed Cultist at (0, 0)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 1 Minion.
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Lurker has 3 empty adjacent rooms
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 21
+
+Current Money: 45
+
+----------------------------
+
+Checkouts:
+- Inspector
+- Lurker
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][.][.]
+[I][.][I] | [I][.][I] | [I][.][I] | [I][.][I] | [.][.][.]
+[.][.][.] | [C][.][.] | [C][M][.] | [C][M][.] | [C][.][.]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[C][.][.]

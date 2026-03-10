@@ -1,0 +1,189 @@
+=== RUN SUMMARY ===
+Seed: 1172653466
+
+Final Money: 95
+
+Day  1
+Arrivals:
+- Cultist
+- Slime
+
+Placements:
+- Placed Cultist at (1, 1)
+- Placed Slime at (0, 0)
+
+Extends:
+
+Night 1
+Events:
+- Cultist summoned 4 Minion.
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 5
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[.][.][.] | [S][.][.] | [S][M][.] | [S][M][.] | [S][.][.]
+
+Day  2
+Arrivals:
+- Lurker
+- Lurker
+
+Placements:
+- Placed Lurker at (2, 1)
+- Placed Lurker at (0, 1)
+- Moved Lurker to (1, 2)
+
+Extends:
+
+Night 2
+Events:
+- Cultist summoned 2 Minion.
+- Lurker has 2 empty adjacent rooms
+- Lurker has 2 empty adjacent rooms
+
+Base Income: 3
+Bonus Income: 8
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 11
+
+----------------------------
+
+Checkouts:
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+[.][C][.] | [.][C][L] | [M][C][L] | [M][C][L] | [.][.][L]
+[S][.][.] | [S][.][.] | [S][M][.] | [S][M][.] | [S][.][.]
+
+Day  3
+Arrivals:
+- Inspector
+- Cultist
+
+Placements:
+- Placed Inspector at (1, 0)
+
+Extends:
+- Lurker extended to 2
+- Lurker extended to 2
+
+Night 3
+Events:
+- Inspector increased multiplier to x1
+- Lurker has 3 empty adjacent rooms
+- Lurker has 3 empty adjacent rooms
+
+Base Income: 1
+Bonus Income: 12
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 26
+
+----------------------------
+
+Checkouts:
+- Slime
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+[.][.][L] | [.][.][L] | [.][.][L] | [.][.][L] | [.][.][L]
+[S][.][.] | [S][I][.] | [S][I][.] | [S][I][.] | [.][I][.]
+
+Day  4
+Arrivals:
+- Cultist
+- Lurker
+
+Placements:
+- Placed Lurker at (0, 1)
+
+Extends:
+- Lurker extended to 2
+- Lurker extended to 2
+- Inspector extended to 2
+
+Night 4
+Events:
+- Inspector increased multiplier to x1
+- Lurker has 3 empty adjacent rooms
+- Lurker has 3 empty adjacent rooms
+- Lurker has 3 empty adjacent rooms
+
+Base Income: 0
+Bonus Income: 18
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 36
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][L][.]
+[.][.][L] | [L][.][L] | [L][.][L] | [L][.][L] | [L][.][L]
+[.][I][.] | [.][I][.] | [.][I][.] | [.][I][.] | [.][I][.]
+
+Day  5
+Arrivals:
+- Butcher
+- Watcher
+
+Placements:
+- Placed Watcher at (2, 0)
+
+Extends:
+
+Night 5
+Events:
+- Inspector increased multiplier to x1
+- Lurker has 3 empty adjacent rooms
+- Lurker has 3 empty adjacent rooms
+- Watcher has 2 adjacent monsters
+- Lurker has 2 empty adjacent rooms
+
+Base Income: 2
+Bonus Income: 19
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 42
+
+----------------------------
+
+Checkouts:
+- Lurker
+- Inspector
+- Lurker
+- Lurker
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][L][.] | [.][L][.] | [.][L][.] | [.][L][.] | [.][.][.]
+[L][.][L] | [L][.][L] | [L][.][L] | [L][.][L] | [.][.][.]
+[.][I][.] | [.][I][W] | [.][I][W] | [.][I][W] | [.][.][W]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[.][.][W]

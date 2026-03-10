@@ -1,0 +1,194 @@
+=== RUN SUMMARY ===
+Seed: 1301577750
+
+Final Money: 33
+
+Day  1
+Arrivals:
+- Butcher
+- Inspector
+
+Placements:
+- Placed Butcher at (0, 2)
+- Placed Inspector at (2, 0)
+
+Extends:
+
+Night 1
+Events:
+- Butcher killed 0 monsters (+0).
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+
+Day  2
+Arrivals:
+- Cultist
+- Lurker
+
+Placements:
+- Placed Lurker at (0, 0)
+- Moved Lurker to (2, 1)
+- Moved Lurker to (0, 0)
+- Moved Lurker to (2, 1)
+- Placed Cultist at (0, 0)
+- Moved Cultist to (1, 0)
+- Moved Lurker to (2, 2)
+
+Extends:
+
+Night 2
+Events:
+- Cultist summoned 2 Minion.
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier to x1
+- Lurker has 2 empty adjacent rooms
+
+Base Income: 2
+Bonus Income: 4
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 12
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][L] | [B][.][L] | [B][.][L] | [.][.][L]
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+[.][.][I] | [.][C][I] | [M][C][I] | [M][C][I] | [.][C][.]
+
+Day  3
+Arrivals:
+- Butcher
+- Watcher
+
+Placements:
+- Placed Butcher at (0, 1)
+- Placed Watcher at (2, 0)
+- Moved Watcher to (1, 2)
+- Moved Watcher to (2, 1)
+- Moved Watcher to (1, 2)
+
+Extends:
+
+Night 3
+Events:
+- Cultist summoned 3 Minion.
+- Butcher killed 2 monsters (+4).
+- Watcher has 1 adjacent monsters
+- Lurker has 1 empty adjacent rooms
+
+Base Income: 5
+Bonus Income: 2
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 11
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Lurker
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][L] | [.][W][L] | [.][W][L] | [.][W][L] | [.][W][.]
+[.][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [B][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][.][.]
+
+Day  4
+Arrivals:
+- Butcher
+- Gremlin
+
+Placements:
+- Placed Gremlin at (1, 1)
+- Placed Butcher at (2, 0)
+
+Extends:
+
+Night 4
+Events:
+- Gremlin buffed Watcher.
+- Gremlin buffed Butcher.
+- Butcher killed 1 monsters (+2).
+- Butcher killed 0 monsters (+0).
+- Watcher has 0 adjacent monsters
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 2
+Multiplier: x1
+Total Income: 6
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][W][.] | [.][W][.] | [.][W][.] | [.][W][.] | [.][.][.]
+[B][.][.] | [B][G][.] | [B][G][.] | [B][.][.] | [.][.][.]
+[.][.][.] | [.][.][B] | [.][.][B] | [.][.][B] | [.][.][B]
+
+Day  5
+Arrivals:
+- Slime
+- Inspector
+
+Placements:
+- Placed Slime at (1, 0)
+- Placed Inspector at (2, 1)
+
+Extends:
+
+Night 5
+Events:
+- Butcher killed 2 monsters (+4).
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 4
+
+----------------------------
+
+Checkouts:
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][I] | [.][.][I] | [.][.][.] | [.][.][.]
+[.][.][B] | [.][S][B] | [.][S][B] | [.][.][B] | [.][.][.]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[.][.][.]

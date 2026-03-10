@@ -1,0 +1,234 @@
+=== RUN SUMMARY ===
+Seed: -1828998251
+
+Final Money: 22
+
+Peak: 9
+
+Solved Night: 5
+
+Engine Type: Cultist
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Butcher
+- Inspector
+
+-Placements:
+- Placed Butcher at (0, 2)
+- Placed Inspector at (2, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- Butcher killed 0 monsters (+0).
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+Current Money: 0
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Cultist
+- Gremlin
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Moved Cultist to (0, 0)
+- Placed Gremlin at (1, 0)
+- Moved Cultist to (1, 1)
+- Moved Cultist to (0, 0)
+- Moved Cultist to (1, 1)
+- Moved Cultist to (0, 0)
+- Moved Cultist to (1, 1)
+- Moved Cultist to (0, 0)
+- Moved Cultist to (2, 1)
+
+-Extends:
+
+Night 2
+-Events:
+- Gremlin buffed Inspector.
+- Cultist summoned 2 Minion.
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier by 1
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 6
+
+Current Money: 6
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][.] | [B][.][M] | [B][.][M] | [.][.][.]
+[.][.][.] | [.][.][C] | [.][M][C] | [.][M][C] | [.][.][C]
+[.][.][I] | [.][G][I] | [.][G][I] | [.][G][I] | [.][G][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Butcher
+- Gremlin
+
+-Placements:
+- Placed Butcher at (1, 2)
+- Placed Gremlin at (1, 1)
+
+-Extends:
+
+Night 3
+-Events:
+- Gremlin buffed Gremlin.
+- Gremlin buffed Butcher.
+- Gremlin buffed Gremlin.
+- Gremlin buffed Cultist.
+- Cultist summoned 2 Minion.
+- Butcher killed 2 monsters (+4).
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 9
+
+Current Money: 15
+
+----------------------------
+
+Checkouts:
+- Gremlin
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][B][.] | [.][B][M] | [.][B][.] | [.][B][.]
+[.][.][C] | [.][G][C] | [.][G][C] | [.][.][C] | [.][.][.]
+[.][G][.] | [.][G][.] | [.][G][M] | [.][G][M] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Slime
+- Inspector
+
+-Placements:
+- Placed Slime at (0, 1)
+- Placed Inspector at (0, 0)
+- Moved Slime to (1, 1)
+
+-Extends:
+
+Night 4
+-Events:
+- Butcher killed 1 monsters (+2).
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 2
+Multiplier: x1
+Total Income: 2
+
+Current Money: 17
+
+----------------------------
+
+Checkouts:
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][B][.] | [.][B][.] | [.][B][.] | [.][B][.] | [.][.][.]
+[.][.][.] | [.][S][.] | [.][S][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [I][.][.] | [I][.][.] | [I][.][.] | [I][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Cultist
+- Cultist
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Cultist at (2, 2)
+- Moved Cultist to (1, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 3 Minion.
+- Cultist summoned 2 Minion.
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 5
+
+Current Money: 22
+
+----------------------------
+
+Checkouts:
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[I][.][.] | [I][.][.] | [I][M][.] | [I][M][.] | [.][.][.]
+
+Final Board:
+[.][C][.]
+[.][C][.]
+[.][.][.]

@@ -1,0 +1,225 @@
+=== RUN SUMMARY ===
+Seed: -796202837
+
+Final Money: 34
+
+Peak: 12
+
+Peak Night: 4
+
+Solved Night: 4
+
+Engine Type: Watcher + Inspector
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Slime
+- Inspector
+
+-Placements:
+- Placed Inspector at (0, 2)
+- Placed Slime at (0, 0)
+
+-Extends:
+
+Night 1
+-Events:
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1
+
+Current Money: 1
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [I][.][.] | [I][.][.] | [I][.][.] | [I][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Butcher
+- Cultist
+
+-Placements:
+- Placed Cultist at (0, 1)
+- Placed Butcher at (2, 0)
+- Moved Cultist to (1, 2)
+
+-Extends:
+
+Night 2
+-Events:
+- Cultist summoned 2 Minion.
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier by 1
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 6
+
+Current Money: 7
+
+----------------------------
+
+Checkouts:
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[I][.][.] | [I][C][.] | [I][C][M] | [I][C][M] | [.][C][.]
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+[S][.][.] | [S][.][B] | [S][.][B] | [S][.][B] | [S][.][B]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Watcher
+- Inspector
+
+-Placements:
+- Placed Watcher at (0, 1)
+- Placed Inspector at (1, 1)
+
+-Extends:
+
+Night 3
+-Events:
+- Cultist summoned 2 Minion.
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier by 1
+- Watcher has 3 adjacent monsters
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 10
+
+Current Money: 17
+
+----------------------------
+
+Checkouts:
+- Slime
+- Cultist
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][C][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][.][.]
+[.][.][.] | [W][I][.] | [W][I][.] | [W][I][.] | [W][I][.]
+[S][.][B] | [S][.][B] | [S][.][B] | [S][.][B] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Butcher
+- Slime
+
+-Placements:
+- Placed Slime at (0, 2)
+- Placed Butcher at (2, 0)
+
+-Extends:
+
+Night 4
+-Events:
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier by 1
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 3
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 12
+
+Current Money: 29
+
+----------------------------
+
+Checkouts:
+- Watcher
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+[W][I][.] | [W][I][.] | [W][I][.] | [W][I][.] | [.][.][.]
+[.][.][.] | [.][.][B] | [.][.][B] | [.][.][B] | [.][.][B]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Slime
+- Slime
+
+-Placements:
+- Placed Slime at (1, 0)
+- Placed Slime at (2, 1)
+
+-Extends:
+
+Night 5
+-Events:
+- Butcher killed 2 monsters (+4).
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 5
+
+Current Money: 34
+
+----------------------------
+
+Checkouts:
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+[.][.][.] | [.][.][S] | [.][.][S] | [.][.][.] | [.][.][.]
+[.][.][B] | [.][S][B] | [.][S][B] | [.][.][B] | [.][.][.]
+
+Final Board:
+[S][.][.]
+[.][.][.]
+[.][.][.]

@@ -1,0 +1,183 @@
+=== RUN SUMMARY ===
+Seed: -1303681124
+
+Final Money: 54
+
+Day  1
+Arrivals:
+- Lurker
+- Slime
+
+Placements:
+- Placed Lurker at (0, 1)
+- Placed Slime at (2, 2)
+- Moved Slime to (2, 1)
+- Moved Slime to (1, 2)
+
+Extends:
+
+Night 1
+Events:
+- Lurker has 3 empty adjacent rooms
+
+Base Income: 1
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][S][.] | [.][S][.] | [.][S][.] | [.][S][.]
+[.][.][.] | [L][.][.] | [L][.][.] | [L][.][.] | [L][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+Day  2
+Arrivals:
+- Cultist
+- Inspector
+
+Placements:
+- Placed Cultist at (2, 0)
+- Placed Inspector at (2, 2)
+
+Extends:
+- Lurker extended to 2
+
+Night 2
+Events:
+- Cultist summoned 2 Minion.
+- Inspector increased multiplier to x1
+- Lurker has 3 empty adjacent rooms
+
+Base Income: 3
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 18
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][S][.] | [.][S][I] | [.][S][I] | [.][S][I] | [.][S][I]
+[L][.][.] | [L][.][.] | [L][.][M] | [L][.][M] | [L][.][.]
+[.][.][.] | [.][.][C] | [.][M][C] | [.][M][C] | [.][.][C]
+
+Day  3
+Arrivals:
+- Slime
+- Cultist
+
+Placements:
+- Placed Slime at (2, 1)
+
+Extends:
+
+Night 3
+Events:
+- Cultist summoned 1 Minion.
+- Inspector increased multiplier to x1
+- Lurker has 3 empty adjacent rooms
+
+Base Income: 3
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 18
+
+----------------------------
+
+Checkouts:
+- Lurker
+- Slime
+- Cultist
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][S][I] | [.][S][I] | [.][S][I] | [.][S][I] | [.][.][.]
+[L][.][.] | [L][.][S] | [L][.][S] | [L][.][S] | [.][.][S]
+[.][.][C] | [.][.][C] | [.][M][C] | [.][M][C] | [.][.][.]
+
+Day  4
+Arrivals:
+- Cultist
+- Inspector
+
+Placements:
+- Placed Cultist at (1, 1)
+- Placed Inspector at (0, 2)
+
+Extends:
+
+Night 4
+Events:
+- Cultist summoned 3 Minion.
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 4
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [I][.][.] | [I][M][.] | [I][M][.] | [I][.][.]
+[.][.][S] | [.][C][S] | [M][C][S] | [M][C][S] | [.][C][S]
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+
+Day  5
+Arrivals:
+- Butcher
+- Inspector
+
+Placements:
+- Placed Inspector at (2, 0)
+
+Extends:
+
+Night 5
+Events:
+- Cultist summoned 3 Minion.
+- Inspector increased multiplier to x1
+- Inspector increased multiplier to x2
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 12
+
+----------------------------
+
+Checkouts:
+- Inspector
+- Cultist
+- Slime
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[I][.][.] | [I][.][.] | [I][M][.] | [I][M][.] | [.][.][.]
+[.][C][S] | [.][C][S] | [M][C][S] | [M][C][S] | [.][.][.]
+[.][.][.] | [.][.][I] | [.][M][I] | [.][M][I] | [.][.][I]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[.][.][I]

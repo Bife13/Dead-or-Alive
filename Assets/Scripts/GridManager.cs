@@ -56,16 +56,18 @@ public class GridManager : MonoBehaviour
 		}
 	}
 
-	public List<Room> GetAdjacentRooms(Vector2Int position)
+	public List<Room> GetAdjacentRooms(Room room)
 	{
 		List<Room> result = new();
 
+		Vector2Int position = room.Position;
+
 		Vector2Int[] directions =
 		{
-			new Vector2Int(1, 0),
-			new Vector2Int(-1, 0),
-			new Vector2Int(0, 1),
-			new Vector2Int(0, -1),
+			Vector2Int.up,
+			Vector2Int.down,
+			Vector2Int.left,
+			Vector2Int.right
 		};
 
 		foreach (var direction in directions)
@@ -79,7 +81,7 @@ public class GridManager : MonoBehaviour
 		return result;
 	}
 
-	public bool IsInside(Vector2Int position)
+	private bool IsInside(Vector2Int position)
 	{
 		return position.x >= 0 && position.x < width &&
 		       position.y >= 0 && position.y < height;

@@ -1,0 +1,240 @@
+=== RUN SUMMARY ===
+Seed: -1083771793
+
+Final Money: 83
+
+Peak: 28
+
+Peak Night: 4
+
+Solved Night: 3
+
+Engine Type: Watcher + Inspector
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Inspector
+- Butcher
+
+-Placements:
+- Placed Butcher at (0, 2)
+- Placed Inspector at (2, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- Butcher killed 0 monsters (+0).
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+Current Money: 0
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Watcher
+- Inspector
+
+-Placements:
+- Placed Watcher at (1, 0)
+- Placed Inspector at (0, 0)
+
+-Extends:
+
+Night 2
+-Events:
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 2
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 15
+
+Current Money: 15
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][I] | [I][W][I] | [I][W][I] | [I][W][I] | [I][W][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Watcher
+- Cultist
+
+-Placements:
+- Placed Watcher at (0, 1)
+- Placed Cultist at (1, 2)
+- Moved Cultist to (2, 1)
+- Moved Cultist to (2, 2)
+- Moved Watcher to (0, 2)
+- Moved Cultist to (1, 1)
+
+-Extends:
+- Inspector extended to 2
+
+Night 3
+-Events:
+- Cultist summoned 3 Minion.
+- Inspector increased multiplier by 1
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 7
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 26
+
+Current Money: 36
+
+----------------------------
+
+Checkouts:
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [W][.][.] | [W][M][.] | [W][M][.] | [W][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][C][.]
+[I][W][.] | [I][W][.] | [I][W][.] | [I][W][.] | [I][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Cultist
+- Watcher
+
+-Placements:
+- Placed Watcher at (2, 0)
+- Placed Cultist at (1, 2)
+
+-Extends:
+- Inspector extended to 2
+
+Night 4
+-Events:
+- Cultist summoned 3 Minion.
+- Cultist summoned 1 Minion.
+- Inspector increased multiplier by 1
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+----------------------------
+
+Base Income: 8
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 28
+
+Current Money: 59
+
+----------------------------
+
+Checkouts:
+- Watcher
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[W][.][.] | [W][C][.] | [W][C][M] | [W][C][M] | [.][C][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][.][.]
+[I][.][.] | [I][.][W] | [I][M][W] | [I][M][W] | [I][.][W]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Inspector
+- Lurker
+
+-Placements:
+- Placed Lurker at (1, 1)
+- Moved Lurker to (2, 1)
+- Placed Inspector at (1, 0)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 3 Minion.
+- Inspector increased multiplier by 1
+- Inspector increased multiplier by 2
+- Watcher has 2 adjacent monsters
+- Lurker has 0 empty adjacent rooms
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 24
+
+Current Money: 83
+
+----------------------------
+
+Checkouts:
+- Inspector
+- Cultist
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][C][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][.][.]
+[.][.][.] | [.][.][L] | [.][M][L] | [.][M][L] | [.][.][L]
+[I][.][W] | [I][I][W] | [I][I][W] | [I][I][W] | [.][I][.]
+
+Final Board:
+[.][.][.]
+[.][.][L]
+[.][I][.]

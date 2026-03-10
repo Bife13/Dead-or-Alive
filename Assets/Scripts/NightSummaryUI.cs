@@ -17,10 +17,17 @@ public class NightSummaryUI : MonoBehaviour
 
 		summary += $"Night {night} Results\n\n";
 		summary += $"Base Income: {report.baseIncome}\n";
+		
+		if (report.bonusIncome > 0)
+		{
+			summary += $"Bonus Income: +{report.bonusIncome}\n";
+		}
+
 		if (report.killBonus > 0)
 		{
 			summary += $"Kill Bonus: +{report.killBonus}\n";
 		}
+
 
 		summary += $"x Multiplier: x{report.multiplier}\n";
 		summary += "<color=#AAAAAA>────────────────</color>\n";

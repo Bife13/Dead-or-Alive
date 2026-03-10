@@ -1,0 +1,203 @@
+=== RUN SUMMARY ===
+Seed: -2048957562
+
+Final Money: 116
+
+Day  1
+Arrivals:
+- Butcher
+- Watcher
+
+Placements:
+- Placed Watcher at (2, 0)
+- Placed Butcher at (0, 2)
+
+Extends:
+
+Night 1
+Events:
+- Butcher killed 0 monsters (+0).
+- Watcher has 0 adjacent monsters
+
+Base Income: 2
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 2
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][W] | [.][.][W] | [.][.][W] | [.][.][W]
+
+Day  2
+Arrivals:
+- Slime
+- Inspector
+
+Placements:
+- Placed Inspector at (2, 1)
+- Placed Slime at (1, 0)
+
+Extends:
+
+Night 2
+Events:
+- Butcher killed 0 monsters (+0).
+- Inspector increased multiplier to x1
+- Watcher has 2 adjacent monsters
+
+Base Income: 3
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 12
+
+----------------------------
+
+Checkouts:
+- Butcher
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][.] | [B][.][.] | [B][.][.] | [.][.][.]
+[.][.][.] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+[.][.][W] | [.][S][W] | [.][S][W] | [.][S][W] | [.][S][.]
+
+Day  3
+Arrivals:
+- Gremlin
+- Watcher
+
+Placements:
+- Placed Watcher at (2, 0)
+- Placed Gremlin at (1, 1)
+
+Extends:
+- Inspector extended to 2
+
+Night 3
+Events:
+- Gremlin buffed Slime.
+- Gremlin buffed Inspector.
+- Inspector increased multiplier to x1
+- Watcher has 2 adjacent monsters
+
+Base Income: 5
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 16
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][I] | [.][G][I] | [.][G][I] | [.][G][I] | [.][G][I]
+[.][S][.] | [.][S][W] | [.][S][W] | [.][S][W] | [.][S][W]
+
+Day  4
+Arrivals:
+- Inspector
+- Inspector
+
+Placements:
+- Placed Inspector at (0, 0)
+- Placed Inspector at (0, 1)
+
+Extends:
+- Inspector extended to 2
+- Watcher extended to 2
+- Slime extended to 2
+- Gremlin extended to 2
+
+Night 4
+Events:
+- Gremlin buffed Slime.
+- Gremlin buffed Inspector.
+- Gremlin buffed Inspector.
+- Inspector increased multiplier to x1
+- Inspector increased multiplier to x2
+- Inspector increased multiplier to x3
+- Watcher has 2 adjacent monsters
+
+Base Income: 6
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x4
+Total Income: 36
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][G][I] | [I][G][I] | [I][G][I] | [I][G][I] | [I][G][I]
+[.][S][W] | [I][S][W] | [I][S][W] | [I][S][W] | [I][S][W]
+
+Day  5
+Arrivals:
+- Watcher
+- Inspector
+
+Placements:
+- Placed Watcher at (0, 2)
+- Placed Inspector at (1, 2)
+
+Extends:
+
+Night 5
+Events:
+- Gremlin buffed Inspector.
+- Gremlin buffed Slime.
+- Gremlin buffed Inspector.
+- Gremlin buffed Inspector.
+- Inspector increased multiplier to x1
+- Inspector increased multiplier to x2
+- Inspector increased multiplier to x3
+- Inspector increased multiplier to x4
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+Base Income: 9
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x5
+Total Income: 75
+
+----------------------------
+
+Checkouts:
+- Inspector
+- Inspector
+- Slime
+- Gremlin
+- Watcher
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [W][I][.] | [W][I][.] | [W][I][.] | [W][I][.]
+[I][G][I] | [I][G][I] | [I][G][I] | [I][G][I] | [.][.][.]
+[I][S][W] | [I][S][W] | [I][S][W] | [I][S][W] | [.][.][.]
+
+Final Board:
+[W][I][.]
+[.][.][.]
+[.][.][.]

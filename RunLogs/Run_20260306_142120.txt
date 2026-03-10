@@ -1,0 +1,800 @@
+=== RUN SUMMARY ===
+Seed: 1305348571
+
+Final Money: 170
+
+Week: 1
+
+Weekly Money: 50
+
+Peak: 13
+
+Peak Night: 4
+
+Solved Night: 3
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Lurker
+- Cultist
+
+-Placements:
+- Placed Lurker at (0, 1)
+- Placed Cultist at (2, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- Cultist summoned 2 Minion.
+- Lurker has 3 empty adjacent rooms
+
+Engine Type: Lurker
+
+----------------------------
+
+Base Income: 2
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 8
+
+Current Money: 8
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [L][.][.] | [L][.][M] | [L][.][M] | [L][.][.]
+[.][.][.] | [.][.][C] | [.][M][C] | [.][M][C] | [.][.][C]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Cultist
+- Gremlin
+
+-Placements:
+- Placed Cultist at (2, 2)
+- Placed Gremlin at (2, 1)
+
+-Extends:
+
+Night 2
+-Events:
+- Gremlin buffed Cultist.
+- Gremlin buffed Cultist.
+- Cultist summoned 1 Minion.
+- Cultist summoned 1 Minion.
+- Lurker has 3 empty adjacent rooms
+
+Engine Type: Lurker
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 10
+
+Current Money: 18
+
+----------------------------
+
+Checkouts:
+- Lurker
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][C] | [.][M][C] | [.][M][C] | [.][.][C]
+[L][.][.] | [L][.][G] | [L][.][G] | [L][.][G] | [.][.][G]
+[.][.][C] | [.][.][C] | [.][M][C] | [.][M][C] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Watcher
+- Gremlin
+
+-Placements:
+- Placed Watcher at (2, 0)
+- Placed Gremlin at (1, 0)
+- Moved Watcher to (1, 1)
+- Moved Gremlin to (1, 2)
+
+-Extends:
+
+Night 3
+-Events:
+- Gremlin buffed Watcher.
+- Gremlin buffed Cultist.
+- Gremlin buffed Cultist.
+- Gremlin buffed Watcher.
+- Watcher has 2 adjacent monsters
+
+Engine Type: Cultist
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 9
+
+Current Money: 27
+
+----------------------------
+
+Checkouts:
+- Gremlin
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][C] | [.][G][C] | [.][G][C] | [.][G][C] | [.][G][.]
+[.][.][G] | [.][W][G] | [.][W][G] | [.][W][G] | [.][W][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Watcher
+- Slime
+
+-Placements:
+- Placed Watcher at (0, 2)
+- Placed Slime at (0, 1)
+
+-Extends:
+
+Night 4
+-Events:
+- Gremlin buffed Watcher.
+- Gremlin buffed Watcher.
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 7
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 13
+
+Current Money: 40
+
+----------------------------
+
+Checkouts:
+- Watcher
+- Gremlin
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][G][.] | [W][G][.] | [W][G][.] | [W][G][.] | [W][.][.]
+[.][W][.] | [S][W][.] | [S][W][.] | [S][W][.] | [S][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Cultist
+- Slime
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Slime at (2, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 3 Minion.
+- Watcher has 2 adjacent monsters
+
+Engine Type: Cultist
+
+----------------------------
+
+Base Income: 7
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 10
+
+Current Money: 50
+
+----------------------------
+
+Checkouts:
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[W][.][.] | [W][.][S] | [W][M][S] | [W][M][S] | [.][.][S]
+[S][.][.] | [S][C][.] | [S][C][M] | [S][C][M] | [S][C][.]
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+
+Final Board:
+[.][S][.]
+[.][.][S]
+[.][S][W]
+
+Current Weights:
+- Slime: 10
+- Gremlin: 10
+- Cultist: 8
+- Inspector: 6
+- Butcher: 6
+- Lurker: 5
+- Watcher: 7
+
+All Arrivals:
+- Slime
+- Inspector
+- Gremlin
+- Gremlin
+- Watcher
+- Watcher
+- Slime
+- Slime
+- Slime
+- Watcher
+
+All Extensions:
+
+Week: 2
+
+Weekly Money: 108
+
+Peak: 18
+
+Peak Night: 5
+
+Solved Night: 2
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Watcher
+- Watcher
+
+-Placements:
+- Placed Watcher at (0, 2)
+- Placed Watcher at (0, 1)
+
+-Extends:
+
+Night 1
+-Events:
+- Watcher has 1 adjacent monsters
+- Watcher has 1 adjacent monsters
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 4
+
+Current Money: 54
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [W][.][.] | [W][.][.] | [W][.][.] | [W][.][.]
+[.][.][.] | [W][.][.] | [W][.][.] | [W][.][.] | [W][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Cultist
+- Slime
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Slime at (2, 0)
+
+-Extends:
+
+Night 2
+-Events:
+- Cultist summoned 3 Minion.
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+Engine Type: Cultist
+
+----------------------------
+
+Base Income: 8
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 14
+
+Current Money: 68
+
+----------------------------
+
+Checkouts:
+- Watcher
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[W][.][.] | [W][.][.] | [W][M][.] | [W][M][.] | [.][.][.]
+[W][.][.] | [W][C][.] | [W][C][M] | [W][C][M] | [.][C][.]
+[.][.][.] | [.][.][S] | [.][M][S] | [.][M][S] | [.][.][S]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Cultist
+- Watcher
+
+-Placements:
+- Placed Cultist at (0, 1)
+- Placed Watcher at (0, 2)
+
+-Extends:
+
+Night 3
+-Events:
+- Cultist summoned 1 Minion.
+- Cultist summoned 3 Minion.
+- Watcher has 2 adjacent monsters
+
+Engine Type: Cultist
+
+----------------------------
+
+Base Income: 7
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 10
+
+Current Money: 78
+
+----------------------------
+
+Checkouts:
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [W][.][.] | [W][M][.] | [W][M][.] | [W][.][.]
+[.][C][.] | [C][C][.] | [C][C][M] | [C][C][M] | [C][.][.]
+[.][.][S] | [.][.][S] | [M][M][S] | [M][M][S] | [.][.][S]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Watcher
+- Inspector
+
+-Placements:
+- Placed Watcher at (0, 0)
+- Placed Inspector at (2, 1)
+
+-Extends:
+
+Night 4
+-Events:
+- Cultist summoned 1 Minion.
+- Inspector increased multiplier by 1
+- Watcher has 1 adjacent monsters
+- Watcher has 1 adjacent monsters
+
+Engine Type: Watcher + Inspector
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 12
+
+Current Money: 90
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Watcher
+- Slime
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[W][.][.] | [W][.][.] | [W][.][.] | [W][.][.] | [.][.][.]
+[C][.][.] | [C][.][I] | [C][M][I] | [C][M][I] | [.][.][I]
+[.][.][S] | [W][.][S] | [W][.][S] | [W][.][S] | [W][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Cultist
+- Slime
+
+-Placements:
+- Placed Cultist at (1, 1)
+- Placed Slime at (2, 0)
+
+-Extends:
+
+Night 5
+-Events:
+- Cultist summoned 3 Minion.
+- Inspector increased multiplier by 1
+- Watcher has 2 adjacent monsters
+
+Engine Type: Watcher + Inspector
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 18
+
+Current Money: 108
+
+----------------------------
+
+Checkouts:
+- Watcher
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+[.][.][I] | [.][C][I] | [M][C][I] | [M][C][I] | [.][C][.]
+[W][.][.] | [W][.][S] | [W][M][S] | [W][M][S] | [.][.][S]
+
+Final Board:
+[.][S][.]
+[.][.][S]
+[.][S][W]
+
+Current Weights:
+- Slime: 10
+- Gremlin: 10
+- Cultist: 8
+- Inspector: 6
+- Butcher: 6
+- Lurker: 5
+- Watcher: 7
+
+All Arrivals:
+- Slime
+- Inspector
+- Gremlin
+- Gremlin
+- Watcher
+- Watcher
+- Slime
+- Slime
+- Slime
+- Watcher
+
+All Extensions:
+
+Week: 3
+
+Weekly Money: 170
+
+Peak: 28
+
+Peak Night: 3
+
+Solved Night: 3
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Slime
+- Inspector
+
+-Placements:
+- Placed Slime at (0, 2)
+- Placed Inspector at (1, 2)
+- Moved Inspector to (2, 2)
+
+-Extends:
+
+Night 1
+-Events:
+
+Engine Type: Inspector
+
+----------------------------
+
+Base Income: 1
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1
+
+Current Money: 109
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [S][.][I] | [S][.][I] | [S][.][I] | [S][.][I]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Gremlin
+- Gremlin
+
+-Placements:
+- Placed Gremlin at (1, 2)
+- Placed Gremlin at (2, 1)
+
+-Extends:
+- Inspector extended to 2
+
+Night 2
+-Events:
+- Gremlin buffed Slime.
+- Gremlin buffed Inspector.
+- Gremlin buffed Inspector.
+- Inspector increased multiplier by 1
+
+Engine Type: Gremlin + Inspector
+
+----------------------------
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 8
+
+Current Money: 112
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][.][I] | [S][G][I] | [S][G][I] | [S][G][I] | [S][G][I]
+[.][.][.] | [.][.][G] | [.][.][G] | [.][.][G] | [.][.][G]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Watcher
+- Watcher
+
+-Placements:
+- Placed Watcher at (1, 1)
+- Placed Watcher at (2, 0)
+
+-Extends:
+- Inspector extended to 2
+
+Night 3
+-Events:
+- Gremlin buffed Watcher.
+- Gremlin buffed Slime.
+- Gremlin buffed Inspector.
+- Gremlin buffed Inspector.
+- Gremlin buffed Watcher.
+- Gremlin buffed Watcher.
+- Inspector increased multiplier by 1
+- Watcher has 2 adjacent monsters
+- Watcher has 1 adjacent monsters
+
+Engine Type: Watcher + Inspector
+
+----------------------------
+
+Base Income: 11
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 28
+
+Current Money: 135
+
+----------------------------
+
+Checkouts:
+- Slime
+- Gremlin
+- Gremlin
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][G][I] | [S][G][I] | [S][G][I] | [S][G][I] | [.][.][I]
+[.][.][G] | [.][W][G] | [.][W][G] | [.][W][G] | [.][W][.]
+[.][.][.] | [.][.][W] | [.][.][W] | [.][.][W] | [.][.][W]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Slime
+- Slime
+
+-Placements:
+- Placed Slime at (1, 0)
+- Placed Slime at (2, 1)
+
+-Extends:
+- Inspector extended to 2
+
+Night 4
+-Events:
+- Inspector increased multiplier by 1
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+Engine Type: Watcher + Inspector
+
+----------------------------
+
+Base Income: 6
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 24
+
+Current Money: 154
+
+----------------------------
+
+Checkouts:
+- Watcher
+- Watcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][I] | [.][.][I] | [.][.][I] | [.][.][I] | [.][.][I]
+[.][W][.] | [.][W][S] | [.][W][S] | [.][W][S] | [.][.][S]
+[.][.][W] | [.][S][W] | [.][S][W] | [.][S][W] | [.][S][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Slime
+- Watcher
+
+-Placements:
+- Placed Watcher at (2, 0)
+- Placed Slime at (1, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- Inspector increased multiplier by 1
+- Watcher has 2 adjacent monsters
+
+Engine Type: Watcher + Inspector
+
+----------------------------
+
+Base Income: 5
+Bonus Income: 3
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 16
+
+Current Money: 170
+
+----------------------------
+
+Checkouts:
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][I] | [.][S][I] | [.][S][I] | [.][S][I] | [.][S][.]
+[.][.][S] | [.][.][S] | [.][.][S] | [.][.][S] | [.][.][S]
+[.][S][.] | [.][S][W] | [.][S][W] | [.][S][W] | [.][S][W]
+
+Final Board:
+[.][S][.]
+[.][.][S]
+[.][S][W]
+
+Current Weights:
+- Slime: 10
+- Gremlin: 10
+- Cultist: 8
+- Inspector: 6
+- Butcher: 6
+- Lurker: 5
+- Watcher: 7
+
+All Arrivals:
+- Slime
+- Inspector
+- Gremlin
+- Gremlin
+- Watcher
+- Watcher
+- Slime
+- Slime
+- Slime
+- Watcher
+
+All Extensions:
+- Inspector
+- Inspector
+- Inspector
+

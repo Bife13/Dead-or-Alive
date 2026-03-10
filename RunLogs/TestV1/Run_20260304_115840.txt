@@ -1,0 +1,192 @@
+=== RUN SUMMARY ===
+Seed: 1497728784
+
+Final Money: 57
+
+Day  1
+Arrivals:
+- Cultist
+- Butcher
+
+Placements:
+- Placed Cultist at (1, 1)
+- Placed Butcher at (0, 2)
+
+Extends:
+
+Night 1
+Events:
+- Cultist summoned 4 Minion.
+- Butcher killed 2 monsters (+4).
+
+Base Income: 4
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 8
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [B][.][.]
+[.][.][.] | [.][C][.] | [M][C][M] | [.][C][M] | [.][C][.]
+[.][.][.] | [.][.][.] | [.][M][.] | [.][M][.] | [.][.][.]
+
+Day  2
+Arrivals:
+- Butcher
+- Cultist
+
+Placements:
+- Placed Butcher at (2, 0)
+- Placed Cultist at (0, 1)
+
+Extends:
+- Cultist extended to 2
+
+Night 2
+Events:
+- Cultist summoned 1 Minion.
+- Cultist summoned 3 Minion.
+- Butcher killed 2 monsters (+4).
+- Butcher killed 2 monsters (+4).
+
+Base Income: 3
+Bonus Income: 0
+Kill Bonus: 8
+Multiplier: x1
+Total Income: 11
+
+----------------------------
+
+Checkouts:
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[B][.][.] | [B][.][.] | [B][M][.] | [B][.][.] | [.][.][.]
+[.][C][.] | [C][C][.] | [C][C][M] | [.][C][.] | [.][C][.]
+[.][.][.] | [.][.][B] | [M][M][B] | [M][.][B] | [.][.][B]
+
+Day  3
+Arrivals:
+- Slime
+- Cultist
+
+Placements:
+- Placed Slime at (0, 2)
+- Placed Cultist at (0, 0)
+
+Extends:
+- Butcher extended to 2
+
+Night 3
+Events:
+- Cultist summoned 2 Minion.
+- Cultist summoned 2 Minion.
+- Butcher killed 2 monsters (+4).
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 9
+
+----------------------------
+
+Checkouts:
+- Cultist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [S][.][.] | [S][M][.] | [S][M][.] | [S][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [M][C][.] | [.][.][.]
+[.][.][B] | [C][.][B] | [C][M][B] | [C][.][B] | [C][.][B]
+
+Day  4
+Arrivals:
+- Inspector
+- Cultist
+
+Placements:
+- Placed Cultist at (1, 1)
+- Moved Cultist to (0, 1)
+- Moved Cultist to (1, 1)
+- Placed Inspector at (2, 1)
+- Moved Inspector to (2, 2)
+
+Extends:
+
+Night 4
+Events:
+- Cultist summoned 2 Minion.
+- Cultist summoned 2 Minion.
+- Butcher killed 2 monsters (+4).
+
+Base Income: 5
+Bonus Income: 0
+Kill Bonus: 4
+Multiplier: x1
+Total Income: 9
+
+----------------------------
+
+Checkouts:
+- Cultist
+- Butcher
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][.][.] | [S][.][I] | [S][M][I] | [S][M][I] | [S][.][I]
+[.][.][.] | [.][C][.] | [M][C][M] | [M][C][.] | [.][C][.]
+[C][.][B] | [C][.][B] | [C][M][B] | [C][.][B] | [.][.][.]
+
+Day  5
+Arrivals:
+- Watcher
+- Watcher
+
+Placements:
+- Placed Watcher at (0, 0)
+- Placed Watcher at (2, 0)
+
+Extends:
+
+Night 5
+Events:
+- Cultist summoned 4 Minion.
+- Inspector increased multiplier to x1
+- Watcher has 2 adjacent monsters
+- Watcher has 2 adjacent monsters
+
+Base Income: 9
+Bonus Income: 6
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 30
+
+----------------------------
+
+Checkouts:
+- Slime
+- Cultist
+- Inspector
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[S][.][I] | [S][.][I] | [S][M][I] | [S][M][I] | [.][.][.]
+[.][C][.] | [.][C][.] | [M][C][M] | [M][C][M] | [.][.][.]
+[.][.][.] | [W][.][W] | [W][M][W] | [W][M][W] | [W][.][W]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[W][.][W]
