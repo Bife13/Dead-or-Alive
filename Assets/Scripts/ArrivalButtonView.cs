@@ -7,11 +7,11 @@ public class ArrivalButtonView : MonoBehaviour
 	public Button button;
 	public TMP_Text label;
 
-	private MonsterDefinition monster;
+	private CrewDefinition _crew;
 
-	public void Initialize(MonsterDefinition definition)
+	public void Initialize(CrewDefinition definition)
 	{
-		monster = definition;
+		_crew = definition;
 		label.text = definition.displayName;
 
 		button.onClick.RemoveAllListeners();
@@ -20,6 +20,6 @@ public class ArrivalButtonView : MonoBehaviour
 
 	private void OnClicked()
 	{
-		PlacementManager.Instance.SelectMonster(monster);
+		PlacementManager.Instance.SelectCrew(_crew);
 	}
 }

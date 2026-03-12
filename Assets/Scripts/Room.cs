@@ -5,11 +5,11 @@ public class Room
 	private Vector2Int position;
 	private bool IsPremium;
 
-	private MonsterInstance occupant;
+	private CrewInstance occupant;
 
 	public bool IsEmpty => occupant == null;
 	public Vector2Int Position => position;
-	public MonsterInstance Occupant => occupant;
+	public CrewInstance Occupant => occupant;
 	public RoomView view;
 
 	public Room(Vector2Int pos)
@@ -17,7 +17,7 @@ public class Room
 		position = pos;
 	}
 
-	public void SetOccupant(MonsterInstance newOccupant)
+	public void SetOccupant(CrewInstance newOccupant)
 	{
 		occupant = newOccupant;
 		occupant.currentRoom = this;

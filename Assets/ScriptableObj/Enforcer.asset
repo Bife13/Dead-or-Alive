@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
+  m_Name: Enforcer
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
+  crewID: 
+  displayName: Enforcer
+  weight: 6
+  baseIncome: 0
+  contractDuration: 2
+  effectType: 3
+  effectValue: 2
+  effectRequirement: 0
+  creationDefinition: {fileID: 0}
+  isTemporary: 0
+  canCopy: 0
+  crewPrefab: {fileID: 8354186858573336133, guid: 0ba5033e0e1598b4c92ba44a3065a908, type: 3}
+  contractType: High-Risk Contract
+  codename: Elimination
+  abilityText: "Eliminates all adjacent crew member.<color=#6A1520> +\xA52,000 per
+    kill.</color>"
+  statLabel1: BAse
+  statValue1: "\xA50"
+  statLabel2: Per Kill
+  statValue2: "+\xA52,000"
+  statLabel3: 
+  statValue3: 
+  statLabel4: 
+  statValue4: 
+  crewColor: {r: 0.5019608, g: 0.1254902, b: 0.1882353, a: 1}

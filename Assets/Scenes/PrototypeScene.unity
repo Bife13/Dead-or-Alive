@@ -987,7 +987,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GridManager
   height: 3
   width: 3
-  roomPrefab: {fileID: 7028692884323346851, guid: aa4601150123f8e45a1e033a60fc052d, type: 3}
+  roomPrefab: {fileID: 1740828041178743898, guid: f5fdbb52dd10b8f48842868a9cb66bbc, type: 3}
   roomSpacing: 3.2
 --- !u!4 &581971204
 Transform:
@@ -1990,8 +1990,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e9f8963740e3e514a9929a0bcd664a41, type: 2}
   - {fileID: 11400000, guid: 921be5a6ce0b7ea4c88503c2976802ae, type: 2}
   - {fileID: 11400000, guid: ca6212125f73df049b3f459d1d21e933, type: 2}
-  monsterBag: []
-  monsterBagSize: 12
+  crewBag: []
+  crewBagSize: 12
   extendStayCost: 5
   arrivalsPerDay: 2
   money: 0
@@ -2146,8 +2146,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08de44b1b7a81b24fa813f5e69760d6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementManager
-  selectedMonster: {fileID: 0}
-  selectedMonsterText: {fileID: 1706171}
+  selectedCrew: {fileID: 0}
+  selectedCrewText: {fileID: 0}
 --- !u!4 &1656610609
 Transform:
   m_ObjectHideFlags: 0

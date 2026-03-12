@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6373684901153256590}
   - component: {fileID: 6940394474883505553}
   m_Layer: 0
-  m_Name: MonsterView
+  m_Name: CrewView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

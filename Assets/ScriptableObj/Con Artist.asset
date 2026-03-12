@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
+  m_Name: Con Artist
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
+  crewID: 
+  displayName: Con Artist
+  weight: 8
+  baseIncome: 0
+  contractDuration: 2
+  effectType: 2
+  effectValue: 1
+  effectRequirement: 0
+  creationDefinition: {fileID: 11400000, guid: 81bdd5bc6f0106344b37869f378aaa96, type: 2}
+  isTemporary: 0
+  canCopy: 0
+  crewPrefab: {fileID: 5543612769066221451, guid: fcedf77299256bf469f0f563aefe8c0a, type: 3}
+  contractType: Specialist contract
+  codename: Deception ops
+  abilityText: "Spawns a decoy in each empty adjacent zone. <color=#6A1520>+\xA51,000
+    per decoy.</color>"
+  statLabel1: base
+  statValue1: "\xA50"
+  statLabel2: decoy source
+  statValue2: Empty Adj
+  statLabel3: Per Decoy
+  statValue3: "\xA51,000"
+  statLabel4: 
+  statValue4: 
+  crewColor: {r: 0.3137255, g: 0.47058824, b: 0.40784314, a: 1}

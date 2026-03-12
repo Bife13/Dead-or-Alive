@@ -57,13 +57,13 @@ public class GameManager : MonoBehaviour
 	private GameObject arrivalButtonPrefab;
 
 	[SerializeField]
-	private List<MonsterDefinition> curatedPool;
+	private List<CrewDefinition> curatedPool;
 
-	public List<MonsterDefinition> monsterBag;
+	public List<CrewDefinition> crewBag;
 	private int bagIndex;
 
 	[SerializeField]
-	private int monsterBagSize;
+	private int crewBagSize;
 
 	public int extendStayCost;
 
@@ -82,7 +82,7 @@ public class GameManager : MonoBehaviour
 
 	private int deathsThisNight;
 	private int multiplier;
-	private List<MonsterDefinition> dailyArrivals = new();
+	private List<CrewDefinition> dailyArrivals = new();
 
 	private GamePhase currentPhase;
 	public GamePhase CurrentPhase => currentPhase;
@@ -127,9 +127,9 @@ public class GameManager : MonoBehaviour
 
 		ResetIncome();
 		ApplyAdjacencyBuffs(report);
-		ApplySummons(report);
+		ApplyCreations(report);
 
-		currentNightLog.afterSummons = CaptureBoardSnapshot();
+		currentNightLog.afterCreations = CaptureBoardSnapshot();
 		int killIncome = ApplyKillEffects(report);
 
 		CleanupDead();
@@ -188,15 +188,15 @@ public class GameManager : MonoBehaviour
 
 		for (int i = 0; i < arrivalsPerDay; i++)
 		{
-			MonsterDefinition monster = monsterBag[bagIndex];
+			CrewDefinition crew = crewBag[bagIndex];
 
-			dailyArrivals.Add(monster);
-			currentNightLog.arrivals.Add(monster.displayName);
+			dailyArrivals.Add(crew);
+			currentNightLog.arrivals.Add(crew.displayName);
 			bagIndex++;
 
-			foreach (MonsterLog log in currentWeekLog.monsterLogs)
+			foreach (crewLog log in currentWeekLog.crewLogs)
 			{
-				if (log.definition == monster)
+				if (log.definition == crew)
 					log.timesOffered++;
 			}
 		}
@@ -206,22 +206,22 @@ public class GameManager : MonoBehaviour
 
 	private void GenerateWeeklyBag()
 	{
-		monsterBag.Clear();
-		for (int i = 0; i < monsterBagSize; i++)
+		crewBag.Clear();
+		for (int i = 0; i < crewBagSize; i++)
 		{
-			MonsterDefinition monster = GetRandomMonster(curatedPool);
-			monsterBag.Add(monster);
+			CrewDefinition crew = GetRandomcrew(curatedPool);
+			crewBag.Add(crew);
 		}
 
-		ShuffleMonsterBag();
+		ShufflecrewBag();
 	}
 
-	public void ShuffleMonsterBag()
+	public void ShufflecrewBag()
 	{
 		System.Random rng = new System.Random(currentSeed);
-		Shuffle(monsterBag, rng);
+		Shuffle(crewBag, rng);
 		bagIndex = 0;
-		currentWeekLog.monsterBag = monsterBag;
+		currentWeekLog.crewBag = crewBag;
 	}
 
 	void Shuffle<T>(List<T> list, System.Random rng)
@@ -236,18 +236,18 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	MonsterDefinition GetRandomMonster(List<MonsterDefinition> pool)
+	CrewDefinition GetRandomcrew(List<CrewDefinition> pool)
 	{
 		int totalWeight = 0;
 
-		foreach (MonsterDefinition definition in pool)
+		foreach (CrewDefinition definition in pool)
 			totalWeight += definition.weight;
 
 		int roll = Random.Range(0, totalWeight);
 
 		int cumulative = 0;
 
-		foreach (MonsterDefinition definition in pool)
+		foreach (CrewDefinition definition in pool)
 		{
 			cumulative += definition.weight;
 
@@ -307,7 +307,7 @@ public class GameManager : MonoBehaviour
 
 			room.Occupant.DecreaseStay();
 
-			if (room.Occupant.nightsRemaining <= 0)
+			if (room.Occupant.contractDurationRemaining <= 0)
 			{
 				report.checkouts.Add(room.Occupant.Definition.displayName);
 
@@ -326,9 +326,9 @@ public class GameManager : MonoBehaviour
 			if (room.Occupant == null)
 				continue;
 
-			var monster = room.Occupant;
+			var crew = room.Occupant;
 
-			if (monster.Definition.effectType != EffectType.BuffAdjacentFlat)
+			if (crew.Definition.effectType != EffectType.BuffAdjacentFlat)
 				continue;
 
 			var adjacentRooms = gridManager.GetAdjacentRooms(room);
@@ -337,26 +337,26 @@ public class GameManager : MonoBehaviour
 			{
 				if (adjRoom.Occupant != null)
 				{
-					adjRoom.Occupant.currentIncome += monster.Definition.effectValue;
+					adjRoom.Occupant.currentIncome += crew.Definition.effectValue;
 					report.events.Add(
-						$"{monster.Definition.displayName} buffed {adjRoom.Occupant.Definition.displayName}.");
+						$"{crew.Definition.displayName} buffed {adjRoom.Occupant.Definition.displayName}.");
 				}
 			}
 		}
 	}
 
-	private void ApplySummons(NightReport report)
+	private void ApplyCreations(NightReport report)
 	{
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			List<(Room room, MonsterDefinition definition)> summons = new();
+			List<(Room room, CrewDefinition definition)> summons = new();
 
 			if (room.Occupant == null)
 				continue;
 
-			var monster = room.Occupant;
+			var crew = room.Occupant;
 
-			if (monster.Definition.effectType != EffectType.SummonAdjacent)
+			if (crew.Definition.effectType != EffectType.CreateAdjacent)
 				continue;
 
 			var adjacentRooms = gridManager.GetAdjacentRooms(room);
@@ -364,20 +364,20 @@ public class GameManager : MonoBehaviour
 			foreach (var adjRoom in adjacentRooms)
 			{
 				if (adjRoom.Occupant == null &&
-				    !summons.Contains((adjRoom, monster.Definition.summonDefinition)))
+				    !summons.Contains((adjRoom, crew.Definition.creationDefinition)))
 				{
-					summons.Add((adjRoom, monster.Definition.summonDefinition));
-					monster.currentIncome += monster.Definition.effectValue;
+					summons.Add((adjRoom, crew.Definition.creationDefinition));
+					crew.currentIncome += crew.Definition.effectValue;
 				}
 			}
 
 			if (summons.Count <= 0) continue;
 			report.summonBonus += summons.Count;
 			report.events.Add(
-				$"{monster.Definition.displayName} summoned {summons.Count} {monster.Definition.summonDefinition.displayName}.");
+				$"{crew.Definition.displayName} summoned {summons.Count} {crew.Definition.creationDefinition.displayName}.");
 			foreach (var summon in summons)
 			{
-				SpawnMonsterInRoom(summon.room, summon.definition);
+				SpawnCrewInRoom(summon.room, summon.definition);
 			}
 		}
 	}
@@ -390,9 +390,9 @@ public class GameManager : MonoBehaviour
 			if (room.Occupant == null)
 				continue;
 
-			var monster = room.Occupant;
+			var crew = room.Occupant;
 
-			if (monster.Definition.effectType != EffectType.KillAdjacent)
+			if (crew.Definition.effectType != EffectType.KillAdjacent)
 				continue;
 
 			var adjacentRooms = gridManager.GetAdjacentRooms(room);
@@ -402,7 +402,7 @@ public class GameManager : MonoBehaviour
 			foreach (var adjRoom in adjacentRooms)
 			{
 				if (adjRoom.Occupant != null && adjRoom.Occupant.isAlive &&
-				    adjRoom.Occupant.Definition != monster.Definition)
+				    adjRoom.Occupant.Definition != crew.Definition)
 				{
 					adjRoom.Occupant.isAlive = false;
 					kills++;
@@ -410,10 +410,10 @@ public class GameManager : MonoBehaviour
 				}
 			}
 
-			int tempKillIncome = kills * monster.Definition.effectValue;
+			int tempKillIncome = kills * crew.Definition.effectValue;
 			totalKillIncome += tempKillIncome;
-			//monster.currentIncome += totalKillIncome;
-			report.events.Add($"{monster.Definition.displayName} killed {kills} monsters (+{tempKillIncome}).");
+			//crew.currentIncome += totalKillIncome;
+			report.events.Add($"{crew.Definition.displayName} killed {kills} crews (+{tempKillIncome}).");
 		}
 
 		report.killBonus = totalKillIncome;
@@ -434,25 +434,25 @@ public class GameManager : MonoBehaviour
 			if (room.Occupant == null)
 				continue;
 
-			var monster = room.Occupant;
+			var crew = room.Occupant;
 
-			if (monster.Definition.effectType is EffectType.ConditionalMultNoDeaths or EffectType.FlatMultAlways)
+			if (crew.Definition.effectType is EffectType.ConditionalMultNoDeaths or EffectType.FlatMultAlways)
 			{
-				switch (monster.Definition.effectType)
+				switch (crew.Definition.effectType)
 				{
 					case EffectType.ConditionalMultNoDeaths:
-						if (deathsThisNight == 0 && aliveCount >= monster.Definition.effectRequirement)
+						if (deathsThisNight == 0 && aliveCount >= crew.Definition.effectRequirement)
 						{
-							multiplier += monster.Definition.effectValue;
+							multiplier += crew.Definition.effectValue;
 							report.events.Add(
-								$"{monster.Definition.displayName} increased multiplier by {report.multiplier}");
+								$"{crew.Definition.displayName} increased multiplier by {report.multiplier}");
 						}
 
 						break;
 					case EffectType.FlatMultAlways:
-						multiplier += monster.Definition.effectValue;
+						multiplier += crew.Definition.effectValue;
 						report.events.Add(
-							$"{monster.Definition.displayName} increased multiplier by {report.multiplier}");
+							$"{crew.Definition.displayName} increased multiplier by {report.multiplier}");
 						break;
 				}
 
@@ -491,7 +491,7 @@ public class GameManager : MonoBehaviour
 					if (CountFilledAdjacent(room) == room.Occupant.Definition.effectRequirement)
 						finalIncome += room.Occupant.Definition.effectValue;
 					report.events.Add(
-						$"{room.Occupant.Definition.displayName} has {CountFilledAdjacent(room)} adjacent monsters");
+						$"{room.Occupant.Definition.displayName} has {CountFilledAdjacent(room)} adjacent crews");
 					break;
 			}
 
@@ -566,9 +566,9 @@ public class GameManager : MonoBehaviour
 
 			currentWeekLog = new WeekLog();
 
-			foreach (var monster in curatedPool)
+			foreach (var crew in curatedPool)
 			{
-				currentWeekLog.monsterLogs.Add(new MonsterLog(monster));
+				currentWeekLog.crewLogs.Add(new crewLog(crew));
 			}
 
 			UpdateText();
@@ -598,42 +598,42 @@ public class GameManager : MonoBehaviour
 
 	public bool CanPlaceSelected()
 	{
-		return dailyArrivals.Contains(PlacementManager.Instance.selectedMonster);
+		return dailyArrivals.Contains(PlacementManager.Instance.selectedCrew);
 	}
 
 	public void TryExtendStay()
 	{
-		var monster = PlacementManager.Instance.selectedInstance;
+		var crew = PlacementManager.Instance.selectedInstance;
 
 		if (currentPhase != GamePhase.PlanningPhase ||
-		    monster == null ||
-		    !monster.isResident ||
+		    crew == null ||
+		    !crew.isResident ||
 		    money < extendStayCost)
 		{
-			Debug.Log("Can't extend the stay of this monster");
+			Debug.Log("Can't extend the stay of this crew");
 			return;
 		}
 
 		money -= extendStayCost;
-		monster.ExtendStay(1);
+		crew.ExtendStay(1);
 
-		currentNightLog.extends.Add(monster.Definition.displayName + " extended to " + monster.nightsRemaining);
-		currentWeekLog.monstersExtended.Add(monster.Definition.displayName);
+		currentNightLog.extends.Add(crew.Definition.displayName + " extended to " + crew.contractDurationRemaining);
+		currentWeekLog.crewsExtended.Add(crew.Definition.displayName);
 
 		UpdateText();
 	}
 
-	public void PlaceSelectedMonster(Room room)
+	public void PlaceSelectedCrew(Room room)
 	{
-		var selected = PlacementManager.Instance.selectedMonster;
+		var selected = PlacementManager.Instance.selectedCrew;
 
 		if (!dailyArrivals.Contains(selected))
 			return;
 
-		SpawnMonsterInRoom(room, selected);
+		SpawnCrewInRoom(room, selected);
 		currentNightLog.placements.Add("Placed " + selected.displayName + " at " + room.Position);
 
-		foreach (MonsterLog log in currentWeekLog.monsterLogs)
+		foreach (crewLog log in currentWeekLog.crewLogs)
 		{
 			if (log.definition == selected)
 				log.timesPlaced++;
@@ -645,7 +645,7 @@ public class GameManager : MonoBehaviour
 		UpdateArrivalUI();
 	}
 
-	public void MoveSelectedMonsterTo(Room targetRoom)
+	public void MoveSelectedCrewTo(Room targetRoom)
 	{
 		var selected = PlacementManager.Instance.selectedInstance;
 
@@ -666,21 +666,21 @@ public class GameManager : MonoBehaviour
 		// PlacementManager.Instance.selectedInstance = null;
 	}
 
-	public void SpawnMonsterInRoom(Room room, MonsterDefinition definition)
+	public void SpawnCrewInRoom(Room room, CrewDefinition definition)
 	{
-		MonsterInstance instance = new MonsterInstance(definition);
+		CrewInstance instance = new CrewInstance(definition);
 		room.SetOccupant(instance);
 
 		Vector3 spawnPos = room.view.transform.position;
 
-		GameObject monsterGO = Instantiate(
-			definition.monsterPrefab,
+		GameObject crewGO = Instantiate(
+			definition.crewPrefab,
 			spawnPos,
 			Quaternion.identity,
 			room.view.transform
 		);
 
-		MonsterView view = monsterGO.GetComponent<MonsterView>();
+		CrewView view = crewGO.GetComponent<CrewView>();
 		view.Initialize(instance);
 		instance.view = view;
 	}
@@ -700,9 +700,9 @@ public class GameManager : MonoBehaviour
 		Random.InitState(finalSeed);
 
 		currentWeekLog = new WeekLog();
-		foreach (var monster in curatedPool)
+		foreach (var crew in curatedPool)
 		{
-			currentWeekLog.monsterLogs.Add(new MonsterLog(monster));
+			currentWeekLog.crewLogs.Add(new crewLog(crew));
 		}
 
 		UpdateText();
@@ -745,7 +745,7 @@ public class GameManager : MonoBehaviour
 			Destroy(child.gameObject);
 		}
 
-		foreach (var monster in dailyArrivals)
+		foreach (var crew in dailyArrivals)
 		{
 			GameObject buttonGO = Instantiate(
 				arrivalButtonPrefab,
@@ -753,7 +753,7 @@ public class GameManager : MonoBehaviour
 			);
 
 			var view = buttonGO.GetComponent<ArrivalButtonView>();
-			view.Initialize(monster);
+			view.Initialize(crew);
 		}
 	}
 
@@ -770,7 +770,7 @@ public class GameManager : MonoBehaviour
 			{
 				var room = gridManager.Rooms[x, y];
 				snapshot[x, y] = room.Occupant != null
-					? room.Occupant.Definition.monsterID
+					? room.Occupant.Definition.crewID
 					: ".";
 			}
 		}
@@ -871,7 +871,7 @@ public class GameManager : MonoBehaviour
 
 					row += FormatRow(night.beforePlacement, y, width) + " | ";
 					row += FormatRow(night.afterPlacement, y, width) + " | ";
-					row += FormatRow(night.afterSummons, y, width) + " | ";
+					row += FormatRow(night.afterCreations, y, width) + " | ";
 					row += FormatRow(night.afterKills, y, width) + " | ";
 					row += FormatRow(night.endOfNight, y, width);
 
@@ -892,19 +892,19 @@ public class GameManager : MonoBehaviour
 			output.AppendLine("");
 
 			output.AppendLine("Current Weights:");
-			foreach (MonsterDefinition definition in curatedPool)
+			foreach (CrewDefinition definition in curatedPool)
 				output.AppendLine("- " + definition.displayName + ": " + definition.weight);
 			output.AppendLine("");
 
 			output.AppendLine("All Arrivals:");
 			for (int i = 0; i < bagIndex; i++)
-				output.AppendLine("- " + week.monsterBag[i].displayName);
-			// foreach (var a in currentRunLog.monsterBag)
+				output.AppendLine("- " + week.crewBag[i].displayName);
+			// foreach (var a in currentRunLog.crewBag)
 			// 	output.AppendLine("- " + a.displayName);
 			output.AppendLine("");
 
 			output.AppendLine("All Extensions:");
-			foreach (var a in week.monstersExtended)
+			foreach (var a in week.crewsExtended)
 				output.AppendLine("- " + a);
 			output.AppendLine("");
 		}
@@ -963,12 +963,12 @@ public class GameManager : MonoBehaviour
 			counts[m]++;
 		}
 
-		bool hasInspector = counts.ContainsKey(MonsterIds.Inspector);
-		bool hasLurker = counts.ContainsKey(MonsterIds.Lurker);
-		bool hasCultist = counts.ContainsKey(MonsterIds.Cultist);
-		bool hasButcher = counts.ContainsKey(MonsterIds.Butcher);
-		bool hasWatcher = counts.ContainsKey(MonsterIds.Watcher);
-		bool hasGremlin = counts.ContainsKey(MonsterIds.Gremlin);
+		bool hasInspector = counts.ContainsKey(crewIds.Inspector);
+		bool hasLurker = counts.ContainsKey(crewIds.Lurker);
+		bool hasCultist = counts.ContainsKey(crewIds.Cultist);
+		bool hasButcher = counts.ContainsKey(crewIds.Butcher);
+		bool hasWatcher = counts.ContainsKey(crewIds.Watcher);
+		bool hasGremlin = counts.ContainsKey(crewIds.Gremlin);
 
 		if (hasLurker && hasInspector)
 			return "Lurker + Inspector";
@@ -995,7 +995,7 @@ public class GameManager : MonoBehaviour
 	}
 }
 
-public static class MonsterIds
+public static class crewIds
 {
 	public const string Inspector = "I";
 	public const string Lurker = "L";

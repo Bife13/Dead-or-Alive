@@ -10,14 +10,14 @@ public class RunLog
 public class WeekLog
 {
 	public List<NightLog> nights = new();
-	public List<MonsterLog> monsterLogs = new();
+	public List<crewLog> crewLogs = new();
 	public int finalMoney;
 	public int peak;
 	public int peakNight;
 	public int solvedNight;
 
-	public List<MonsterDefinition> monsterBag = new();
-	public List<string> monstersExtended = new();
+	public List<CrewDefinition> crewBag = new();
+	public List<string> crewsExtended = new();
 }
 
 public class NightLog
@@ -39,19 +39,19 @@ public class NightLog
 
 	public string[,] beforePlacement;
 	public string[,] afterPlacement;
-	public string[,] afterSummons;
+	public string[,] afterCreations;
 	public string[,] afterKills;
 	public string[,] endOfNight;
 }
 
-public class MonsterLog
+public class crewLog
 {
-	public MonsterDefinition definition;
+	public CrewDefinition definition;
 	public int timesOffered;
 	public int timesPlaced;
 	public int averageIncomeGenerated;
 
-	public MonsterLog(MonsterDefinition _definition)
+	public crewLog(CrewDefinition _definition)
 	{
 		definition = _definition;
 	}

@@ -10,17 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
-  m_Name: Cultist
+  m_Name: Drone
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
-  monsterID: C
-  displayName: Cultist
-  weight: 8
+  crewID: 
+  displayName: Drone
+  weight: 0
   baseIncome: 0
-  stayDuration: 2
-  effectType: 2
-  effectValue: 1
+  contractDuration: 1
+  effectType: 0
+  effectValue: 0
   effectRequirement: 0
-  summonDefinition: {fileID: 11400000, guid: 81bdd5bc6f0106344b37869f378aaa96, type: 2}
-  isTemporary: 0
+  creationDefinition: {fileID: 0}
+  isTemporary: 1
   canCopy: 0
-  monsterPrefab: {fileID: 5543612769066221451, guid: fcedf77299256bf469f0f563aefe8c0a, type: 3}
+  crewPrefab: {fileID: 4931615534373023835, guid: ea13f3f742dce684d8735534a1ac1661, type: 3}
+  contractType: 
+  codename: 
+  abilityText: 
+  statLabel1: 
+  statValue1: 
+  statLabel2: 
+  statValue2: 
+  statLabel3: 
+  statValue3: 
+  statLabel4: 
+  statValue4: 
+  crewColor: {r: 0, g: 0, b: 0, a: 0}

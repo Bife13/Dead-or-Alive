@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
+  m_Name: Handler
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
+  crewID: 
+  displayName: Gremlin
+  weight: 10
+  baseIncome: 0
+  contractDuration: 2
+  effectType: 1
+  effectValue: 1
+  effectRequirement: 0
+  creationDefinition: {fileID: 0}
+  isTemporary: 0
+  canCopy: 0
+  crewPrefab: {fileID: 3101073410001559852, guid: 15004bdc32028844688f6edf3cf9f33b, type: 3}
+  contractType: Support Contract
+  codename: Field Coordination
+  abilityText: "<color=#6A1520>+\xA51,000/night.</color> to each adjacent crew member
+    per night."
+  statLabel1: base
+  statValue1: "\xA50"
+  statLabel2: range
+  statValue2: All Adj
+  statLabel3: ea adj
+  statValue3: "\xA51,000"
+  statLabel4: 
+  statValue4: 
+  crewColor: {r: 0.627451, g: 0.3764706, b: 0.1882353, a: 1}

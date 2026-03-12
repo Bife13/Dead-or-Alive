@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlacementManager : MonoBehaviour
 {
@@ -8,13 +9,13 @@ public class PlacementManager : MonoBehaviour
 	public static PlacementManager Instance => _instance;
 
 	// Arrival Monster
-	public MonsterDefinition selectedMonster;
+	public CrewDefinition selectedCrew;
 
 	// Placed Monster
-	public MonsterInstance selectedInstance;
+	public CrewInstance selectedInstance;
 
 	[SerializeField]
-	private TMP_Text selectedMonsterText;
+	private TMP_Text selectedCrewText;
 
 	private void Awake()
 	{
@@ -24,25 +25,25 @@ public class PlacementManager : MonoBehaviour
 			_instance = this;
 	}
 
-	public void SelectMonster(MonsterDefinition definition)
+	public void SelectCrew(CrewDefinition definition)
 	{
 		ClearSelection();
-		selectedMonster = definition;
-		selectedMonsterText.text = selectedMonster.displayName;
+		selectedCrew = definition;
+		selectedCrewText.text = selectedCrew.displayName;
 		Debug.Log("Selected: " + definition.displayName);
 	}
 
-	public void SelectInstance(MonsterInstance instance)
+	public void SelectInstance(CrewInstance instance)
 	{
 		ClearSelection();
 		selectedInstance = instance;
-		selectedMonsterText.text = selectedInstance.Definition.displayName;
+		selectedCrewText.text = selectedInstance.Definition.displayName;
 	}
 
 	public void ClearSelection()
 	{
-		selectedMonster = null;
+		selectedCrew = null;
 		selectedInstance = null;
-		selectedMonsterText.text = "";
+		selectedCrewText.text = "";
 	}
 }

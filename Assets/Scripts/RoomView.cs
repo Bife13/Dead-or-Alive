@@ -2,12 +2,11 @@ using System;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class RoomView : MonoBehaviour, IPointerClickHandler
 {
 	private Room room;
-	public MonsterDefinition testMonsterDefinition;
-	public GameObject monsterPrefab;
 
 	public void Initialize(Room roomData)
 	{
@@ -29,14 +28,14 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 		// If clicking empty room and we have a selected instance ALREADY IN HOTEL
 		if (room.Occupant == null && PlacementManager.Instance.selectedInstance != null)
 		{
-			GameManager.Instance.MoveSelectedMonsterTo(room);
+			GameManager.Instance.MoveSelectedCrewTo(room);
 			return;
 		}
 
 		// If clicking empty room and we have selected definition FROM ARRIVAL
-		if (room.Occupant == null && PlacementManager.Instance.selectedMonster != null)
+		if (room.Occupant == null && PlacementManager.Instance.selectedCrew != null)
 		{
-			GameManager.Instance.PlaceSelectedMonster(room);
+			GameManager.Instance.PlaceSelectedCrew(room);
 			return;
 		}
 
