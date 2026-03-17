@@ -13,27 +13,26 @@ MonoBehaviour:
   m_Name: Handler
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
   crewID: 
-  displayName: Gremlin
+  displayName: Handler
   weight: 10
   baseIncome: 0
   contractDuration: 2
   effectType: 1
-  effectValue: 1
+  effectValue: 1000
   effectRequirement: 0
   creationDefinition: {fileID: 0}
   isTemporary: 0
   canCopy: 0
   crewPrefab: {fileID: 3101073410001559852, guid: 15004bdc32028844688f6edf3cf9f33b, type: 3}
   contractType: Support Contract
-  codename: Field Coordination
-  abilityText: "<color=#6A1520>+\xA51,000/night.</color> to each adjacent crew member
-    per night."
+  codename: Support
+  incomeText: "+\xA51,000 to adj crew"
+  descriptionText: Buffs each adjacent crew member. No base income. Stacks with all
+    bonuses.
   statLabel1: base
   statValue1: "\xA50"
-  statLabel2: range
-  statValue2: All Adj
-  statLabel3: ea adj
-  statValue3: "\xA51,000"
-  statLabel4: 
-  statValue4: 
-  crewColor: {r: 0.627451, g: 0.3764706, b: 0.1882353, a: 1}
+  statLabel2: Buff
+  statValue2: "\xA51k"
+  statLabel3: range
+  statValue3: ADJ
+  crewColor: {r: 0.28835887, g: 0.72143817, b: 0.754717, a: 1}

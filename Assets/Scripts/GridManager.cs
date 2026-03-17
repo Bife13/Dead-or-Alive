@@ -16,44 +16,48 @@ public class GridManager : MonoBehaviour
 	public int Width => width;
 
 	[SerializeField]
-	private GameObject roomPrefab;
+	private List<GameObject> roomObjects;
 
 	private Room[,] rooms;
 	public Room[,] Rooms => rooms;
 
-	[SerializeField]
-	private float roomSpacing = 3.2f;
 
 	public void Initialize()
 	{
 		rooms = new Room[width, height];
 
-		float xOffset = (width - 1) * roomSpacing / 2f;
-		float yOffset = (height - 1) * roomSpacing / 2f;
+		int x = 0;
+		int y = 0;
 
-		for (int x = 0; x < width; x++)
+		foreach (GameObject room in roomObjects)
 		{
-			for (int y = 0; y < height; y++)
-			{
-				Vector2Int position = new Vector2Int(x, y);
-				rooms[x, y] = new Room(position);
+			Vector2Int position = new Vector2Int(x, y);
+			rooms[x, y] = new Room(position);
 
-				float worldX = x * roomSpacing - xOffset;
-				float worldY = y * roomSpacing - yOffset;
+			RoomView view = room.GetComponent<RoomView>();
+			view.Initialize(rooms[x, y]);
 
-				GameObject roomGO = Instantiate(
-					roomPrefab,
-					new Vector3(worldX, worldY, 0),
-					Quaternion.identity,
-					transform
-				);
+			Rooms[x, y].view = view;
 
-				RoomView view = roomGO.GetComponent<RoomView>();
-				view.Initialize(rooms[x, y]);
-
-				Rooms[x, y].view = view;
-			}
+			x++;
+			if (x < width) continue;
+			y++;
+			x = 0;
 		}
+
+		// for (int x = 0; x < width; x++)
+		// {
+		// 	for (int y = 0; y < height; y++)
+		// 	{
+		// 		Vector2Int position = new Vector2Int(x, y);
+		// 		rooms[x, y] = new Room(position);
+		//
+		// 		// RoomView view = roomObjects[x][y].GetComponent<RoomView>();
+		// 		// view.Initialize(rooms[x, y]);
+		// 		//
+		// 		// Rooms[x, y].view = view;
+		// 	}
+		// }
 	}
 
 	public List<Room> GetAdjacentRooms(Room room)

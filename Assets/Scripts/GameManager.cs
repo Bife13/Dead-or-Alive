@@ -136,7 +136,6 @@ public class GameManager : MonoBehaviour
 
 		currentNightLog.afterKills = CaptureBoardSnapshot();
 
-		ApplyMultipliers(report);
 		int income = CalculateIncome(report, killIncome);
 		money += income;
 
@@ -338,8 +337,16 @@ public class GameManager : MonoBehaviour
 				if (adjRoom.Occupant != null)
 				{
 					adjRoom.Occupant.currentIncome += crew.Definition.effectValue;
+					// TODO REMOVE/CHANGE LATER
 					report.events.Add(
 						$"{crew.Definition.displayName} buffed {adjRoom.Occupant.Definition.displayName}.");
+
+					report.typedEvents.Add(new NightReportEvent
+					{
+						type = ReportEventType.Buff,
+						label = $"{crew.Definition.displayName} buffs {adjRoom.Occupant.Definition.displayName}",
+						value = crew.Definition.effectValue
+					});
 				}
 			}
 		}
@@ -372,9 +379,20 @@ public class GameManager : MonoBehaviour
 			}
 
 			if (summons.Count <= 0) continue;
+
 			report.summonBonus += summons.Count;
+			// TODO REMOVE/CHANGE LATER
 			report.events.Add(
 				$"{crew.Definition.displayName} summoned {summons.Count} {crew.Definition.creationDefinition.displayName}.");
+
+			report.typedEvents.Add(new NightReportEvent
+			{
+				type = ReportEventType.Creation,
+				label =
+					$"{crew.Definition.displayName} summons {summons.Count} {crew.Definition.creationDefinition.displayName}",
+				value = summons.Count * crew.Definition.effectValue
+			});
+
 			foreach (var summon in summons)
 			{
 				SpawnCrewInRoom(summon.room, summon.definition);
@@ -413,7 +431,21 @@ public class GameManager : MonoBehaviour
 			int tempKillIncome = kills * crew.Definition.effectValue;
 			totalKillIncome += tempKillIncome;
 			//crew.currentIncome += totalKillIncome;
+			//TODO REMOVE/REWORK LATER
 			report.events.Add($"{crew.Definition.displayName} killed {kills} crews (+{tempKillIncome}).");
+
+			report.typedEvents.Add(new NightReportEvent
+			{
+				type = ReportEventType.Kill,
+				label = $"{crew.Definition.displayName} eliminates {kills} crew",
+				value = 0
+			});
+			report.typedEvents.Add(new NightReportEvent
+			{
+				type = ReportEventType.KillBonus,
+				label = $"{crew.Definition.displayName}: kill bonus",
+				value = tempKillIncome
+			});
 		}
 
 		report.killBonus = totalKillIncome;
@@ -444,15 +476,31 @@ public class GameManager : MonoBehaviour
 						if (deathsThisNight == 0 && aliveCount >= crew.Definition.effectRequirement)
 						{
 							multiplier += crew.Definition.effectValue;
+							//TODO REMOVE/REWORK LATER
 							report.events.Add(
-								$"{crew.Definition.displayName} increased multiplier by {report.multiplier}");
+								$"{crew.Definition.displayName} increased multiplier by {crew.Definition.effectValue}");
+
+							report.typedEvents.Add(new NightReportEvent
+							{
+								type = ReportEventType.Multiplier,
+								label = $"{crew.Definition.displayName}: conditions met",
+								value = multiplier
+							});
 						}
 
 						break;
 					case EffectType.FlatMultAlways:
 						multiplier += crew.Definition.effectValue;
+						//TODO REMOVE/REWORK LATER
 						report.events.Add(
-							$"{crew.Definition.displayName} increased multiplier by {report.multiplier}");
+							$"{crew.Definition.displayName} increased multiplier by {crew.Definition.effectValue}");
+
+						report.typedEvents.Add(new NightReportEvent
+						{
+							type = ReportEventType.Multiplier,
+							label = $"{crew.Definition.displayName}: conditions met",
+							value = multiplier
+						});
 						break;
 				}
 
@@ -474,6 +522,17 @@ public class GameManager : MonoBehaviour
 			int finalIncome = room.Occupant.currentIncome;
 			baseIncome += room.Occupant.currentIncome;
 
+			int trueBase = room.Occupant.Definition.baseIncome;
+			if (trueBase > 0)
+			{
+				report.typedEvents.Add(new NightReportEvent
+				{
+					type = ReportEventType.BaseIncome,
+					label = $"{room.Occupant.Definition.displayName}: base income",
+					value = trueBase
+				});
+			}
+
 			switch (room.Occupant.Definition.effectType)
 			{
 				case EffectType.EmptyAdjacent:
@@ -486,12 +545,26 @@ public class GameManager : MonoBehaviour
 
 					report.events.Add(
 						$"{room.Occupant.Definition.displayName} has {CountEmptyAdjacent(room)} empty adjacent rooms");
+
+					report.typedEvents.Add(new NightReportEvent
+					{
+						type = ReportEventType.BuffedIncome,
+						label = $"{room.Occupant.Definition.displayName}: {CountEmptyAdjacent(room)} empty adj zones",
+						value = tempIncome
+					});
 					break;
 				case EffectType.ExactAdjacency:
 					if (CountFilledAdjacent(room) == room.Occupant.Definition.effectRequirement)
 						finalIncome += room.Occupant.Definition.effectValue;
 					report.events.Add(
 						$"{room.Occupant.Definition.displayName} has {CountFilledAdjacent(room)} adjacent crews");
+
+					report.typedEvents.Add(new NightReportEvent
+					{
+						type = ReportEventType.BuffedIncome,
+						label = $"{room.Occupant.Definition.displayName}: exact adjacency bonus",
+						value = room.Occupant.Definition.effectValue
+					});
 					break;
 			}
 
@@ -500,6 +573,7 @@ public class GameManager : MonoBehaviour
 
 		report.baseIncome = baseIncome;
 		report.bonusIncome = income - baseIncome - killIncome;
+		ApplyMultipliers(report);
 		income = Mathf.RoundToInt(income * multiplier);
 		report.finalIncome = income;
 		if (income > currentWeekLog.peak)
@@ -752,7 +826,7 @@ public class GameManager : MonoBehaviour
 				arrivalButtonContainer
 			);
 
-			var view = buttonGO.GetComponent<ArrivalButtonView>();
+			var view = buttonGO.GetComponent<CrewCard>();
 			view.Initialize(crew);
 		}
 	}

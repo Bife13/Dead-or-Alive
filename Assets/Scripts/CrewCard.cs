@@ -1,9 +1,15 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class CrewCard : MonoBehaviour
 {
+	public Button button;
+	private CrewDefinition crew;
+
+
 	[SerializeField]
 	private TMP_Text nameText;
 
@@ -13,89 +19,94 @@ public class CrewCard : MonoBehaviour
 	[SerializeField]
 	private TMP_Text codenameText;
 
+
+	[SerializeField]
+	private TMP_Text incomeText;
 	
 	[SerializeField]
-	private TMP_Text abilityText;
+	private TMP_Text descriptionText;
 
 	[SerializeField]
 	private GameObject stat1;
 
 	[SerializeField]
-	private TMP_Text stat1Label1;
+	private TMP_Text stat1Label;
 
 	[SerializeField]
-	private TMP_Text stat1Value1;
+	private TMP_Text stat1Value;
 
 	[SerializeField]
 	private GameObject stat2;
 
 	[SerializeField]
-	private TMP_Text stat1Label2;
+	private TMP_Text stat2Label;
 
 	[SerializeField]
-	private TMP_Text stat1Value2;
+	private TMP_Text stat2Value;
 
 	[SerializeField]
 	private GameObject stat3;
 
 	[SerializeField]
-	private TMP_Text stat1Label3;
+	private TMP_Text stat3Label;
 
 	[SerializeField]
-	private TMP_Text stat1Value3;
-
-	[SerializeField]
-	private GameObject stat4;
-
-	[SerializeField]
-	private TMP_Text stat1Label4;
-
-	[SerializeField]
-	private TMP_Text stat1Value4;
-
+	private TMP_Text stat3Value;
+	
 	[SerializeField]
 	private Image leftBorder;
+	
+	[SerializeField]
+	private List<GameObject> tapes;
 
 	public void Populate(CrewDefinition definition)
 	{
 		nameText.text = definition.displayName;
+		codenameText.text = definition.codename;
 		contractText.text = definition.contractType;
-		abilityText.text = definition.abilityText;
-		leftBorder.color = definition.crewColor;
-		if (definition.statLabel1 != "")
+		incomeText.text = definition.incomeText;
+		descriptionText.text = definition.descriptionText;
+		leftBorder.color = definition.crewColor; if (definition.statLabel1 != "")
 		{
 			stat1.SetActive(true);
-			stat1Label1.text = definition.statLabel1;
-			stat1Value1.text = definition.statValue1;
+			stat1Label.text = definition.statLabel1;
+			stat1Value.text = definition.statValue1;
 		}
 		else
 			stat1.SetActive(false);
 
 		if (definition.statLabel2 != "")
 		{
-			stat1.SetActive(true);
-			stat1Label2.text = definition.statLabel2;
-			stat1Value2.text = definition.statValue2;
+			stat2.SetActive(true);
+			stat2Label.text = definition.statLabel2;
+			stat2Value.text = definition.statValue2;
 		}
 		else
-			stat1.SetActive(false);
+			stat2.SetActive(false);
 
 		if (definition.statLabel3 != "")
 		{
-			stat1.SetActive(true);
-			stat1Label3.text = definition.statLabel3;
-			stat1Value3.text = definition.statValue3;
+			stat3.SetActive(true);
+			stat3Label.text = definition.statLabel3;
+			stat3Value.text = definition.statValue3;
 		}
 		else
-			stat1.SetActive(false);
+			stat3.SetActive(false);
+		
+		tapes[Random.Range(0,tapes.Count)].SetActive(true);
+		
+	}
 
-		if (definition.statLabel4 != "")
-		{
-			stat1.SetActive(true);
-			stat1Label4.text = definition.statLabel4;
-			stat1Value4.text = definition.statValue4;
-		}
-		else
-			stat1.SetActive(false);
+	public void Initialize(CrewDefinition definition)
+	{
+		crew = definition;
+		Populate(crew);
+		button.onClick.RemoveAllListeners();
+		button.onClick.AddListener(OnClicked);
+	}
+
+	private void OnClicked()
+	{
+		PlacementManager.Instance.SelectCrew(crew);
 	}
 }

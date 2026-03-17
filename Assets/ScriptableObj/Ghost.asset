@@ -18,22 +18,21 @@ MonoBehaviour:
   baseIncome: 0
   contractDuration: 2
   effectType: 7
-  effectValue: 2
-  effectRequirement: 6
+  effectValue: 2000
+  effectRequirement: 6000
   creationDefinition: {fileID: 0}
   isTemporary: 0
   canCopy: 0
   crewPrefab: {fileID: 2063488386293174163, guid: 56ef38d6db1c6b446a46d897faee105e, type: 3}
   contractType: Specialist Contract
-  codename: Surveillance
-  abilityText: "<color=#6A1520>+\xA52,000</color>per empty adjacent zone. <color=#6A1520>Max
-    +\xA56,000.</color>"
+  codename: Infiltrator
+  incomeText: "+\xA52,000 / empty adj"
+  descriptionText: "Earns per empty adjacent zone. Max +\xA56,000/night. Prefers
+    isolation."
   statLabel1: BASE
   statValue1: "\xA50"
-  statLabel2: ea empty ADJ
-  statValue2: "\xA52,000"
-  statLabel3: Max
-  statValue3: "\xA56,000"
-  statLabel4: 
-  statValue4: 
+  statLabel2: Max
+  statValue2: "\xA56K"
+  statLabel3: Range
+  statValue3: ADJ
   crewColor: {r: 0.3137255, g: 0.40784314, b: 0.47058824, a: 1}

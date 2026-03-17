@@ -24,16 +24,14 @@ MonoBehaviour:
   isTemporary: 0
   canCopy: 0
   crewPrefab: {fileID: 7485763324741299123, guid: 8b7aa794f840f0a48a7fdd333d7a5961, type: 3}
-  contractType: 
-  codename: 
-  abilityText: 'If 4+ crew deployed and no deaths tonight: <color=#6A1520>payout
-    multiplier +1</color> '
+  contractType: SPECIALIST CONTRACT
+  codename: Tactician
+  incomeText: +1 mult if no kills, 4+ crew
+  descriptionText: Applies income multiplier when conditions are met. Ruined by kills.
   statLabel1: BASE
   statValue1: "\xA50"
-  statLabel2: condition
-  statValue2: 4+ Crew / 0 Kills
-  statLabel3: Multiplier
-  statValue3: +1
-  statLabel4: 
-  statValue4: 
-  crewColor: {r: 0.4392157, g: 0.47058824, b: 0.2509804, a: 1}
+  statLabel2: Mult
+  statValue2: +1
+  statLabel3: Cond
+  statValue3: 4+
+  crewColor: {r: 0.41568628, g: 0.47843137, b: 0.2509804, a: 1}

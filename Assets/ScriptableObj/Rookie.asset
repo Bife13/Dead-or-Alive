@@ -15,7 +15,7 @@ MonoBehaviour:
   crewID: 
   displayName: Rookie
   weight: 10
-  baseIncome: 1
+  baseIncome: 1000
   contractDuration: 3
   effectType: 0
   effectValue: 0
@@ -25,14 +25,14 @@ MonoBehaviour:
   canCopy: 0
   crewPrefab: {fileID: 2063488386293174163, guid: 616ee2cb12fa6214b8db7ab837283b80, type: 3}
   contractType: Standard contract
-  codename: Basic Field Operative
-  abilityText: " <color=#6A1520>+\xA51,000/night.</color>"
+  codename: Basic Operative
+  incomeText: "+\xA51,000 / night"
+  descriptionText: Steady base income. No special ability. Reliable filler for empty
+    zones.
   statLabel1: Base
   statValue1: "\xA51,000"
-  statLabel2: 
-  statValue2: 
-  statLabel3: 
-  statValue3: 
-  statLabel4: 
-  statValue4: 
-  crewColor: {r: 0.47843137, g: 0.5647059, b: 0.3764706, a: 1}
+  statLabel2: Bonus
+  statValue2: "\u2014"
+  statLabel3: Range
+  statValue3: "\u2014"
+  crewColor: {r: 0.6039216, g: 0.47843137, b: 0.3137255, a: 1}

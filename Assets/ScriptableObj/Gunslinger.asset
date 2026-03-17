@@ -25,15 +25,13 @@ MonoBehaviour:
   canCopy: 0
   crewPrefab: {fileID: 7485763324741299123, guid: 6c1cebe6b41be2046a3b1c2f048d9c65, type: 3}
   contractType: VETERAN CONTRACT
-  codename: DIRECT ACTION
-  abilityText: " <color=#6A1520>+\xA52,000/night.</color> If 2 adjacent crew <color=#6A1520>+\xA53,000
-    bonus.</color>"
+  codename: Action
+  incomeText: "+\xA52,000 / night + \xA53,000  "
+  descriptionText: "Base income plus +\xA53,000 bonus if 2+ adjacent crew deployed."
   statLabel1: BASE
-  statValue1: "\xA52,000"
-  statLabel2: W/ 2 ADJ
-  statValue2: "\xA55,000"
-  statLabel3: 
-  statValue3: 
-  statLabel4: 
-  statValue4: 
-  crewColor: {r: 0.78431374, g: 0.5647059, b: 0.101960786, a: 1}
+  statValue1: "\xA52k"
+  statLabel2: Bonus
+  statValue2: "\xA53k"
+  statLabel3: Cond
+  statValue3: 2 ADJ
+  crewColor: {r: 0.5411765, g: 0.2901961, b: 0.1254902, a: 1}

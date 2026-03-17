@@ -10,5 +10,25 @@ public class NightReport
 	public int finalIncome;
 
 	public List<string> events = new();
+	public List<NightReportEvent> typedEvents = new();
 	public List<string> checkouts = new();
+}
+
+public enum ReportEventType
+{
+	Buff,
+	Creation,
+	Kill,
+	KillBonus,
+	Drain,
+	BaseIncome,
+	BuffedIncome,
+	Multiplier
+}
+
+public struct NightReportEvent
+{
+	public ReportEventType type;
+	public string label;
+	public int value;
 }

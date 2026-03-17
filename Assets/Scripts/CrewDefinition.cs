@@ -30,7 +30,9 @@ public class CrewDefinition : ScriptableObject
 
 	public string codename;
 	[TextArea(10,15)]
-	public string abilityText;
+	public string incomeText;
+	[TextArea(10,15)]
+	public string descriptionText;
 
 	public string statLabel1;
 	public string statValue1;
@@ -38,8 +40,6 @@ public class CrewDefinition : ScriptableObject
 	public string statValue2;
 	public string statLabel3;
 	public string statValue3;
-	public string statLabel4;
-	public string statValue4;
 	public Color crewColor;
 }
 

@@ -18,22 +18,20 @@ MonoBehaviour:
   baseIncome: 0
   contractDuration: 2
   effectType: 2
-  effectValue: 1
+  effectValue: 1000
   effectRequirement: 0
   creationDefinition: {fileID: 11400000, guid: 81bdd5bc6f0106344b37869f378aaa96, type: 2}
   isTemporary: 0
   canCopy: 0
   crewPrefab: {fileID: 5543612769066221451, guid: fcedf77299256bf469f0f563aefe8c0a, type: 3}
   contractType: Specialist contract
-  codename: Deception ops
-  abilityText: "Spawns a decoy in each empty adjacent zone. <color=#6A1520>+\xA51,000
-    per decoy.</color>"
+  codename: Deception
+  incomeText: "+\xA51,000 / decoy"
+  descriptionText: Places decoys in empty adjacent zones. Earns per decoy placed.
   statLabel1: base
   statValue1: "\xA50"
-  statLabel2: decoy source
-  statValue2: Empty Adj
-  statLabel3: Per Decoy
-  statValue3: "\xA51,000"
-  statLabel4: 
-  statValue4: 
-  crewColor: {r: 0.3137255, g: 0.47058824, b: 0.40784314, a: 1}
+  statLabel2: Max
+  statValue2: "\xA54K"
+  statLabel3: Range
+  statValue3: ADJ
+  crewColor: {r: 0.47843137, g: 0.3529412, b: 0.5411765, a: 1}
