@@ -16,6 +16,16 @@ MonoBehaviour:
   caseNumber: ISB-5530-B
   alias: Government fugitive. Former ISSP. Knows our methods.
   location: The Big Score
+  zoneNames:
+  - Fuel Line
+  - Cold Storage
+  - Reactor Core
+  - Comms Array
+  - Command Deck
+  - Vault
+  - Crew Berths
+  - Airlock
+  - Maintenance Shaft
   week: 3
   threatLevel: 3
   modifiers:

@@ -8,7 +8,9 @@ public class BountyData : ScriptableObject
 
 	public string caseNumber;
 	public string alias;
+	[Header("Zone Info")]
 	public string location;
+	public string[] zoneNames = new string[9];
 
 	public int week;
 

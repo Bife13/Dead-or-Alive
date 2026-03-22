@@ -16,6 +16,16 @@ MonoBehaviour:
   caseNumber: ISB-4412-A
   alias: Syndicate finance. Controls the credit network.
   location: Colony City
+  zoneNames:
+  - Back Alley
+  - Pawn Shop
+  - Fire Escape
+  - Storm Drain
+  - Main Concourse
+  - Loading Bay
+  - Rooftop
+  - Noodle Bar
+  - Side Street
   week: 1
   threatLevel: 1
   modifiers:

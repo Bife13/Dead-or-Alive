@@ -513,10 +513,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniGridCell (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-      propertyPath: m_Name
-      value: MiniCell3
-      objectReference: {fileID: 0}
     - target: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -607,6 +603,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
   m_PrefabInstance: {fileID: 50903829}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &50903831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+  m_PrefabInstance: {fileID: 50903829}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &127337114
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -618,10 +619,6 @@ PrefabInstance:
     - target: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Name
       value: MiniGridCell (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-      propertyPath: m_Name
-      value: MiniCell4
       objectReference: {fileID: 0}
     - target: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Pivot.x
@@ -713,6 +710,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
   m_PrefabInstance: {fileID: 127337114}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &127337116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+  m_PrefabInstance: {fileID: 127337114}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &132792832
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -724,10 +726,6 @@ PrefabInstance:
     - target: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Name
       value: MiniGridCell (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-      propertyPath: m_Name
-      value: MiniCell2
       objectReference: {fileID: 0}
     - target: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Pivot.x
@@ -817,6 +815,11 @@ PrefabInstance:
 --- !u!224 &132792833 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+  m_PrefabInstance: {fileID: 132792832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &132792834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
   m_PrefabInstance: {fileID: 132792832}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &143834109
@@ -2110,10 +2113,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniGridCell (4)
       objectReference: {fileID: 0}
-    - target: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-      propertyPath: m_Name
-      value: MiniCell5
-      objectReference: {fileID: 0}
     - target: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2202,6 +2201,11 @@ PrefabInstance:
 --- !u!224 &314526739 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+  m_PrefabInstance: {fileID: 314526738}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &314526740 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
   m_PrefabInstance: {fileID: 314526738}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &324113179
@@ -2627,10 +2631,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniGridCell (7)
       objectReference: {fileID: 0}
-    - target: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-      propertyPath: m_Name
-      value: MiniCell8
-      objectReference: {fileID: 0}
     - target: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2719,6 +2719,11 @@ PrefabInstance:
 --- !u!224 &355467695 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+  m_PrefabInstance: {fileID: 355467694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &355467696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
   m_PrefabInstance: {fileID: 355467694}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &361174277
@@ -3119,11 +3124,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374449169}
   m_CullTransparentMesh: 1
---- !u!1 &402195817 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-  m_PrefabInstance: {fileID: 314526738}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410933450
 GameObject:
   m_ObjectHideFlags: 0
@@ -3225,7 +3225,6 @@ GameObject:
   - component: {fileID: 424815198}
   - component: {fileID: 424815197}
   - component: {fileID: 424815199}
-  - component: {fileID: 424815200}
   m_Layer: 5
   m_Name: Pip3
   m_TagString: Untagged
@@ -3310,19 +3309,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &424815200
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 424815195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2bed24008cc74a4ab142d9ea2ebe5c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PaletteToken
-  token: 10
 --- !u!1 &427094831
 GameObject:
   m_ObjectHideFlags: 0
@@ -3389,11 +3375,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!1 &434046491 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-  m_PrefabInstance: {fileID: 132792832}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &451599714
 GameObject:
   m_ObjectHideFlags: 0
@@ -3431,11 +3412,6 @@ RectTransform:
   m_AnchoredPosition: {x: 182.5, y: -51}
   m_SizeDelta: {x: 335, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &457552152 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-  m_PrefabInstance: {fileID: 50903829}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &480900822
 GameObject:
   m_ObjectHideFlags: 0
@@ -3703,7 +3679,7 @@ GameObject:
   - component: {fileID: 569314284}
   - component: {fileID: 569314286}
   m_Layer: 5
-  m_Name: Night Badge Text
+  m_Name: Current Night (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3841,11 +3817,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaletteToken
   token: 9
---- !u!1 &593772121 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-  m_PrefabInstance: {fileID: 1784534907}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &607179921
 GameObject:
   m_ObjectHideFlags: 0
@@ -4000,7 +3971,6 @@ GameObject:
   - component: {fileID: 653451285}
   - component: {fileID: 653451284}
   - component: {fileID: 653451286}
-  - component: {fileID: 653451287}
   m_Layer: 5
   m_Name: Pip2
   m_TagString: Untagged
@@ -4085,24 +4055,6 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &653451287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 653451282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2bed24008cc74a4ab142d9ea2ebe5c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PaletteToken
-  token: 8
---- !u!1 &719141319 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-  m_PrefabInstance: {fileID: 355467694}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &771328691
 GameObject:
   m_ObjectHideFlags: 0
@@ -5910,15 +5862,15 @@ MonoBehaviour:
   modValue: {fileID: 283275277}
   miniGrid: {fileID: 324113179}
   miniGridCells:
-  - {fileID: 1599582750}
-  - {fileID: 434046491}
-  - {fileID: 457552152}
-  - {fileID: 1778924137}
-  - {fileID: 402195817}
-  - {fileID: 593772121}
-  - {fileID: 1477002849}
-  - {fileID: 719141319}
-  - {fileID: 1666098723}
+  - {fileID: 1876775221}
+  - {fileID: 132792834}
+  - {fileID: 50903831}
+  - {fileID: 127337116}
+  - {fileID: 314526740}
+  - {fileID: 1784534909}
+  - {fileID: 1858951905}
+  - {fileID: 355467696}
+  - {fileID: 1356926337}
   costValue: {fileID: 1840216072}
   threatPips:
   - {fileID: 1392405459}
@@ -6009,10 +5961,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniGridCell (8)
       objectReference: {fileID: 0}
-    - target: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-      propertyPath: m_Name
-      value: MiniCell9
-      objectReference: {fileID: 0}
     - target: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -6098,6 +6046,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+--- !u!1 &1356926337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+  m_PrefabInstance: {fileID: 1356926336}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1356926338 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
@@ -7051,11 +7004,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaletteToken
   token: 3
---- !u!1 &1477002849 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-  m_PrefabInstance: {fileID: 1858951903}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1484603620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7281,7 +7229,7 @@ GameObject:
   - component: {fileID: 1505583145}
   - component: {fileID: 1505583146}
   m_Layer: 5
-  m_Name: ReportTitle
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7781,9 +7729,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Begin Night
-
-'
+  m_text: Begin Night 03
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5328a0c598467fb47855932737b36c46, type: 2}
   m_sharedMaterial: {fileID: -6971243997317775725, guid: 5328a0c598467fb47855932737b36c46, type: 2}
@@ -7876,11 +7822,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaletteToken
   token: 8
---- !u!1 &1599582750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-  m_PrefabInstance: {fileID: 1876775219}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1613444972
 GameObject:
   m_ObjectHideFlags: 0
@@ -7939,8 +7880,7 @@ MonoBehaviour:
   nightTotalText: {fileID: 212537909}
   weekRunningText: {fileID: 1415138019}
   progressBar: {fileID: 219013538}
-  reportTitle: {fileID: 1505583143}
-  badgeText: {fileID: 569314284}
+  reportPanel: {fileID: 0}
 --- !u!114 &1613444975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8294,11 +8234,6 @@ RectTransform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1740828041178743898, guid: 933607653c375424794e32a16d4a7c20, type: 3}
   m_PrefabInstance: {fileID: 1654379757}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1666098723 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-  m_PrefabInstance: {fileID: 1356926336}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1685884670
 GameObject:
@@ -9163,11 +9098,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759363024}
   m_CullTransparentMesh: 1
---- !u!1 &1778924137 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-  m_PrefabInstance: {fileID: 127337114}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1784534907
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9179,10 +9109,6 @@ PrefabInstance:
     - target: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Name
       value: MiniGridCell (5)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-      propertyPath: m_Name
-      value: MiniCell6
       objectReference: {fileID: 0}
     - target: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Pivot.x
@@ -9272,6 +9198,11 @@ PrefabInstance:
 --- !u!224 &1784534908 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+  m_PrefabInstance: {fileID: 1784534907}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1784534909 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
   m_PrefabInstance: {fileID: 1784534907}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1813819444
@@ -9735,10 +9666,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MiniGridCell (6)
       objectReference: {fileID: 0}
-    - target: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-      propertyPath: m_Name
-      value: MiniCell7
-      objectReference: {fileID: 0}
     - target: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -9829,6 +9756,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
   m_PrefabInstance: {fileID: 1858951903}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1858951905 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+  m_PrefabInstance: {fileID: 1858951903}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1876775219
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9840,10 +9772,6 @@ PrefabInstance:
     - target: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Name
       value: MiniGridCell
-      objectReference: {fileID: 0}
-    - target: {fileID: 6889000754198435034, guid: d67a76772d68023479d00b6014efe90f, type: 3}
-      propertyPath: m_Name
-      value: MiniCell1
       objectReference: {fileID: 0}
     - target: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
       propertyPath: m_Pivot.x
@@ -9933,6 +9861,11 @@ PrefabInstance:
 --- !u!224 &1876775220 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6917247407707113925, guid: d67a76772d68023479d00b6014efe90f, type: 3}
+  m_PrefabInstance: {fileID: 1876775219}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1876775221 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4732529713313974795, guid: d67a76772d68023479d00b6014efe90f, type: 3}
   m_PrefabInstance: {fileID: 1876775219}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1909235875

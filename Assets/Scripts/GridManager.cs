@@ -28,6 +28,7 @@ public class GridManager : MonoBehaviour
 
 		int x = 0;
 		int y = 0;
+		int index = 0;
 
 		foreach (GameObject room in roomObjects)
 		{
@@ -36,9 +37,9 @@ public class GridManager : MonoBehaviour
 
 			RoomView view = room.GetComponent<RoomView>();
 			view.Initialize(rooms[x, y]);
-
 			Rooms[x, y].view = view;
 
+			index++;
 			x++;
 			if (x < width) continue;
 			y++;
@@ -58,6 +59,16 @@ public class GridManager : MonoBehaviour
 		// 		// Rooms[x, y].view = view;
 		// 	}
 		// }
+	}
+
+	public void InitializeLocationNames()
+	{
+		int index = 0;
+		foreach (Room room in GetAllRooms())
+		{
+			room.view.SetZoneName(GameManager.Instance.GetCurrentBounty().zoneNames[index]);
+			index++;
+		}
 	}
 
 	public List<Room> GetAdjacentRooms(Room room)

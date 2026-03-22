@@ -33,11 +33,11 @@ public class GameManager : MonoBehaviour
 	private GridManager gridManager;
 
 	[SerializeField]
-	private NightSummaryUI summaryUI;
+	private FieldReport summaryUI;
 
 	[SerializeField]
 	private GameObject startButton;
-	
+
 	[SerializeField]
 	private List<CrewDefinition> curatedPool;
 
@@ -91,7 +91,6 @@ public class GameManager : MonoBehaviour
 
 	public void Start()
 	{
-		gridManager.Initialize();
 		ResetRun();
 		currentNightLog.beforePlacement = CaptureBoardSnapshot();
 	}
@@ -325,7 +324,9 @@ public class GameManager : MonoBehaviour
 					report.typedEvents.Add(new NightReportEvent
 					{
 						type = ReportEventType.Buff,
-						label = $"{crew.Definition.displayName} buffs {adjRoom.Occupant.Definition.displayName}",
+						label = "{0} buffs {1}",
+						sourceCrew = crew.Definition.crewType,
+						targetCrew = adjRoom.Occupant.Definition.crewType,
 						value = crew.Definition.effectValue
 					});
 				}
@@ -366,9 +367,9 @@ public class GameManager : MonoBehaviour
 			report.typedEvents.Add(new NightReportEvent
 			{
 				type = ReportEventType.Creation,
-				label =
-					$"{crew.Definition.displayName} summons {summons.Count} {crew.Definition.creationDefinition.displayName}",
-				value = summons.Count * crew.Definition.effectValue
+				label = $"{{0}} summons {summons.Count} {crew.Definition.creationDefinition.displayName}",
+				value = summons.Count * crew.Definition.effectValue,
+				sourceCrew = crew.Definition.crewType
 			});
 
 			foreach (var summon in summons)
@@ -415,14 +416,16 @@ public class GameManager : MonoBehaviour
 				report.typedEvents.Add(new NightReportEvent
 				{
 					type = ReportEventType.Kill,
-					label = $"{crew.Definition.displayName} eliminates {kills} crew",
-					value = 0
+					label = $"{{0}} eliminates {kills} crew",
+					value = 0,
+					sourceCrew = crew.Definition.crewType
 				});
 				report.typedEvents.Add(new NightReportEvent
 				{
 					type = ReportEventType.KillBonus,
-					label = $"{crew.Definition.displayName}: kill bonus",
-					value = tempKillIncome
+					label = "{0}: kill bonus",
+					value = tempKillIncome,
+					sourceCrew = crew.Definition.crewType
 				});
 			}
 		}
@@ -459,8 +462,9 @@ public class GameManager : MonoBehaviour
 							report.typedEvents.Add(new NightReportEvent
 							{
 								type = ReportEventType.Multiplier,
-								label = $"{crew.Definition.displayName}: conditions met",
-								value = multiplier
+								label = "{0}: conditions met",
+								value = multiplier,
+								sourceCrew = crew.Definition.crewType
 							});
 						}
 
@@ -471,8 +475,9 @@ public class GameManager : MonoBehaviour
 						report.typedEvents.Add(new NightReportEvent
 						{
 							type = ReportEventType.Multiplier,
-							label = $"{crew.Definition.displayName}: conditions met",
-							value = multiplier
+							label = "{0}: conditions met",
+							value = multiplier,
+							sourceCrew = crew.Definition.crewType
 						});
 						break;
 				}
@@ -501,8 +506,9 @@ public class GameManager : MonoBehaviour
 				report.typedEvents.Add(new NightReportEvent
 				{
 					type = ReportEventType.BaseIncome,
-					label = $"{room.Occupant.Definition.displayName}: base income",
-					value = trueBase
+					label = "{0}: base income",
+					value = trueBase,
+					sourceCrew = room.Occupant.Definition.crewType
 				});
 			}
 
@@ -521,8 +527,9 @@ public class GameManager : MonoBehaviour
 						report.typedEvents.Add(new NightReportEvent
 						{
 							type = ReportEventType.BuffedIncome,
-							label = $"{room.Occupant.Definition.displayName}: {rooms} empty adj zones",
-							value = tempIncome
+							label = $"{{0}}: {rooms} empty adj zones",
+							value = tempIncome,
+							sourceCrew = room.Occupant.Definition.crewType
 						});
 					}
 
@@ -535,8 +542,9 @@ public class GameManager : MonoBehaviour
 						report.typedEvents.Add(new NightReportEvent
 						{
 							type = ReportEventType.BuffedIncome,
-							label = $"{room.Occupant.Definition.displayName}: adj bonus",
-							value = room.Occupant.Definition.effectValue
+							label = "{0}: adj bonus",
+							value = room.Occupant.Definition.effectValue,
+							sourceCrew = room.Occupant.Definition.crewType
 						});
 					}
 
@@ -626,6 +634,7 @@ public class GameManager : MonoBehaviour
 			{
 				bountyManager.LoadBountyForWeek(currentWeek);
 				bountyBar.Populate(bountyManager.CurrentBounty, weeklyTargets[currentWeek - 1]);
+				gridManager.InitializeLocationNames();
 				_lastPopulatedWeek = currentWeek;
 			}
 
@@ -740,6 +749,7 @@ public class GameManager : MonoBehaviour
 
 	public void ResetRun()
 	{
+		gridManager.Initialize();
 		weeklyTarget = weeklyTargets[0];
 		money = 0;
 		currentNight = 1;
@@ -764,6 +774,7 @@ public class GameManager : MonoBehaviour
 		{
 			bountyManager.LoadBountyForWeek(currentWeek);
 			bountyBar.Populate(bountyManager.CurrentBounty, weeklyTargets[currentWeek - 1]);
+			gridManager.InitializeLocationNames();
 			_lastPopulatedWeek = currentWeek;
 		}
 
@@ -775,6 +786,11 @@ public class GameManager : MonoBehaviour
 
 		GenerateWeeklyBag();
 		GenerateDailyArrivals();
+	}
+
+	public BountyData GetCurrentBounty()
+	{
+		return bountyManager.CurrentBounty;
 	}
 
 	private void ClearBoard()

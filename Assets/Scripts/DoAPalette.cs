@@ -43,12 +43,12 @@ public class DoAPalette : ScriptableObject
 	[Header("Crew Identity")]
 	public Color crewRookie = Hex("8A8060");
 
-	public Color crewGhost = Hex("506878");
-	public Color crewHandler = Hex("2A6858");
-	public Color crewStrategist = Hex("4A5878");
+	public Color crewGhost = Hex("8A9AAA");
+	public Color crewHandler = Hex("2A7A6A");
+	public Color crewStrategist = Hex("6A7840");
 	public Color crewEnforcer = Hex("6A3020");
 	public Color crewConArtist = Hex("4A3868");
-	public Color crewGunslinger = Hex("C87C18");
+	public Color crewGunslinger = Hex("C89A30");
 
 	public static Color Hex(string hex, float alpha = 1f)
 	{

@@ -31,4 +31,7 @@ public struct NightReportEvent
 	public ReportEventType type;
 	public string label;
 	public int value;
+
+	public CrewType? sourceCrew;
+	public CrewType? targetCrew;
 }

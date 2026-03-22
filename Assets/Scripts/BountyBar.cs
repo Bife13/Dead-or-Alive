@@ -129,7 +129,7 @@ public class BountyBar : MonoBehaviour
 				modValue.color = palette.textL2;
 
 				modIconText.text = "X";
-				modType.text = "ZoneLockout";
+				modType.text = "Zone Lockout";
 				modValue.text = $"{mod.lockedZones.Length} Zones";
 				miniGrid.SetActive(true);
 				RefreshMiniGrid(mod.lockedZones);
@@ -161,18 +161,6 @@ public class BountyBar : MonoBehaviour
 		for (int i = 0; i < threatPips.Length; i++)
 		{
 			threatPips[i].sprite = i < level ? filledPipImage : emptyPipImage;
-			switch (i)
-			{
-				case 1:
-					threatPips[i].color = palette.textL3;
-					break;
-				case 2:
-					threatPips[i].color = palette.ochre;
-					break;
-				case 3:
-					threatPips[i].color = palette.wine;
-					break;
-			}
 		}
 
 		switch (level)

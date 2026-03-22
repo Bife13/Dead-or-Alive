@@ -16,6 +16,16 @@ MonoBehaviour:
   caseNumber: ISB-6601-C
   alias: Syndicate enforcer. Last seen Callisto Station.
   location: Space Station
+  zoneNames:
+  - Cargo Hold
+  - Engine Room
+  - NavBay
+  - Cockpit
+  - Med Bay
+  - Armory
+  - Quarters
+  - Hangar
+  - Bridge
   week: 2
   threatLevel: 2
   modifiers:

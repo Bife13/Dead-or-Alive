@@ -15,46 +15,76 @@ public class ReportLineUI : MonoBehaviour
 
 	public void Initialize(NightReportEvent e)
 	{
-		var palette = DoAPalette.Instance;
-		
+		var p = DoAPalette.Instance;
+
 		switch (e.type)
 		{
 			case ReportEventType.Buff:
 			case ReportEventType.Creation:
-				SetLine("▲", e.label, FormatValue(e.value), palette.verdigris);
+				SetLine("▲", e.label, e.sourceCrew, e.targetCrew, FormatValue(e.value), p.verdigris, p);
 				break;
 			case ReportEventType.BuffedIncome:
 			case ReportEventType.KillBonus:
-				SetLine("¥", e.label, FormatValue(e.value), palette.verdigris);
+				SetLine("¥", e.label, e.sourceCrew, e.targetCrew, FormatValue(e.value), p.verdigris, p);
 				break;
 			case ReportEventType.BaseIncome:
-				SetLine("¥", e.label, FormatValue(e.value), palette.ochre);
+				SetLine("¥", e.label, e.sourceCrew, e.targetCrew, FormatValue(e.value), p.ochre, p);
 				break;
 			case ReportEventType.Kill:
-				SetLine("✕", e.label, "−CREW", palette.wine);
+				SetLine("✕", e.label, e.sourceCrew, e.targetCrew, "−CREW", p.wine, p);
 				break;
 			case ReportEventType.Drain:
-				SetLine("▼", e.label, FormatValue(e.value), palette.wine);
+				SetLine("▼", e.label, e.sourceCrew, e.targetCrew, FormatValue(e.value), p.wine, p);
 				break;
 			case ReportEventType.Multiplier:
-				SetLine("×", e.label, $"×{e.value}", palette.verdigris);
+				SetLine("×", e.label, e.sourceCrew, e.targetCrew, $"×{e.value}", p.verdigris, p);
 				break;
 		}
 	}
 
-	private void SetLine(string glyph, string label, string value, Color color)
+	private void SetLine(string glyph, string label, CrewType? source, CrewType? target,
+		string value, Color accentColor, DoAPalette p)
 	{
 		glyphText.text = glyph;
-		labelText.text = label;
+		glyphText.color = accentColor;
+
+		// Crew names injected as coloured spans, structural text stays TextL2
+		labelText.text = BuildLabel(label, source, target, p);
+		labelText.color = accentColor;
+
 		valueText.text = value;
-		glyphText.color = color;
-		labelText.color = color;
-		valueText.color = color;
+		valueText.color = accentColor;
 	}
+
+	private string BuildLabel(string template, CrewType? source, CrewType? target, DoAPalette p)
+	{
+		string result = template;
+
+		if (source.HasValue)
+		{
+			string hex = ColorUtility.ToHtmlStringRGB(p.GetCrewColor(source.Value));
+			string name = GetDisplayName(source.Value);
+			result = result.Replace("{0}", $"<color=#{hex}>{name}</color>");
+		}
+
+		if (target.HasValue)
+		{
+			string hex = ColorUtility.ToHtmlStringRGB(p.GetCrewColor(target.Value));
+			string name = GetDisplayName(target.Value);
+			result = result.Replace("{1}", $"<color=#{hex}>{name}</color>");
+		}
+
+		return result;
+	}
+
+	private string GetDisplayName(CrewType t) => t switch
+	{
+		CrewType.ConArtist => "Con Artist",
+		_ => t.ToString()
+	};
 
 	private string FormatValue(int value)
 	{
 		return value >= 0 ? $"+¥{value:N0}" : $"−¥{Mathf.Abs(value):N0}";
 	}
-	
 }

@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -11,6 +12,12 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 
 	[SerializeField]
 	private PlacedSlateUI crewPlacedSlate;
+
+	[SerializeField]
+	private TMP_Text zoneName;
+
+	[SerializeField]
+	private Image border;
 
 	public void Initialize(Room roomData)
 	{
@@ -51,20 +58,21 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 		// 	return;
 	}
 
-	public void UpdateSlate(CrewDefinition definition)
-	{
-		crewPlacedSlate.gameObject.SetActive(true);
-		crewPlacedSlate.InitializeSlate(definition);
-	}
-	
 	public void UpdateSlate(CrewInstance instance)
 	{
 		crewPlacedSlate.gameObject.SetActive(true);
 		crewPlacedSlate.InitializeSlate(instance);
+		border.color = DoAPalette.Instance.GetCrewColor(instance.Definition.crewType);
 	}
 
 	public void HideSlate()
 	{
 		crewPlacedSlate.gameObject.SetActive(false);
+		border.color = DoAPalette.Instance.border;
+	}
+
+	public void SetZoneName(string name)
+	{
+		zoneName.text = name;
 	}
 }

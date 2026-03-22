@@ -12,15 +12,7 @@ public class PlacedSlateUI : MonoBehaviour
 
 	[SerializeField]
 	private TMP_Text crewPlacedSlateAbility;
-
-	public void InitializeSlate(CrewDefinition definition)
-	{
-		crewPlacedSlateIdentifier.color = DoAPalette.Instance.GetCrewColor(definition.crewType);
-		;
-		crewPlacedSlateName.text = definition.displayName;
-		crewPlacedSlateAbility.text = definition.incomeText;
-	}
-
+	
 	public void InitializeSlate(CrewInstance instance)
 	{
 		crewPlacedSlateIdentifier.color = DoAPalette.Instance.GetCrewColor(instance.Definition.crewType);
