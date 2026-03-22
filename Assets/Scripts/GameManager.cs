@@ -37,25 +37,7 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField]
 	private GameObject startButton;
-
-	[SerializeField]
-	private TMP_Text weekText;
-
-	[SerializeField]
-	private TMP_Text nightText;
-
-	[SerializeField]
-	private TMP_Text moneyText;
-
-	[SerializeField]
-	private TMP_Text targetText;
-
-	[SerializeField]
-	private Transform arrivalButtonContainer;
-
-	[SerializeField]
-	private GameObject arrivalButtonPrefab;
-
+	
 	[SerializeField]
 	private List<CrewDefinition> curatedPool;
 
@@ -65,7 +47,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private int crewBagSize;
 
-	public int extendStayCost;
+	public int extendContractCost;
 
 	public int arrivalsPerDay = 2;
 
@@ -86,6 +68,18 @@ public class GameManager : MonoBehaviour
 
 	private GamePhase currentPhase;
 	public GamePhase CurrentPhase => currentPhase;
+
+	[Header("Bounty")]
+	[SerializeField]
+	private BountyBar bountyBar;
+
+	[SerializeField]
+	private BountyManager bountyManager;
+
+	private int _lastPopulatedWeek = -1;
+
+	[SerializeField]
+	private CandidatesUI candidatesUI;
 
 	private void Awake()
 	{
@@ -151,7 +145,7 @@ public class GameManager : MonoBehaviour
 		currentNightLog.currentMoney = money;
 
 		currentNightLog.checkouts.AddRange(report.checkouts);
-		currentNightLog.events.AddRange(report.events);
+		currentNightLog.typedEvents.AddRange(report.typedEvents);
 		currentNightLog.baseIncome = report.baseIncome;
 		currentNightLog.bonusIncome = report.bonusIncome;
 		currentNightLog.killBonus = report.killBonus;
@@ -167,7 +161,6 @@ public class GameManager : MonoBehaviour
 
 	public void NextDay()
 	{
-		UpdateText();
 		dailyArrivals.Clear();
 		currentNightLog.beforePlacement = CaptureBoardSnapshot();
 
@@ -200,7 +193,7 @@ public class GameManager : MonoBehaviour
 			}
 		}
 
-		UpdateArrivalUI();
+		candidatesUI.UpdateArrivalUI(dailyArrivals);
 	}
 
 	private void GenerateWeeklyBag()
@@ -275,9 +268,6 @@ public class GameManager : MonoBehaviour
 		{
 			if (room.Occupant != null && !room.Occupant.isAlive)
 			{
-				if (room.Occupant.view != null)
-					Destroy(room.Occupant.view.gameObject);
-
 				room.ClearOccupant();
 			}
 		}
@@ -289,9 +279,6 @@ public class GameManager : MonoBehaviour
 		{
 			if (room.Occupant != null && room.Occupant.isTemporary)
 			{
-				if (room.Occupant.view != null)
-					Destroy(room.Occupant.view.gameObject);
-
 				room.ClearOccupant();
 			}
 		}
@@ -309,9 +296,6 @@ public class GameManager : MonoBehaviour
 			if (room.Occupant.contractDurationRemaining <= 0)
 			{
 				report.checkouts.Add(room.Occupant.Definition.displayName);
-
-				if (room.Occupant.view != null)
-					Destroy(room.Occupant.view.gameObject);
 
 				room.ClearOccupant();
 			}
@@ -337,9 +321,6 @@ public class GameManager : MonoBehaviour
 				if (adjRoom.Occupant != null)
 				{
 					adjRoom.Occupant.currentIncome += crew.Definition.effectValue;
-					// TODO REMOVE/CHANGE LATER
-					report.events.Add(
-						$"{crew.Definition.displayName} buffed {adjRoom.Occupant.Definition.displayName}.");
 
 					report.typedEvents.Add(new NightReportEvent
 					{
@@ -381,9 +362,6 @@ public class GameManager : MonoBehaviour
 			if (summons.Count <= 0) continue;
 
 			report.summonBonus += summons.Count;
-			// TODO REMOVE/CHANGE LATER
-			report.events.Add(
-				$"{crew.Definition.displayName} summoned {summons.Count} {crew.Definition.creationDefinition.displayName}.");
 
 			report.typedEvents.Add(new NightReportEvent
 			{
@@ -431,21 +409,22 @@ public class GameManager : MonoBehaviour
 			int tempKillIncome = kills * crew.Definition.effectValue;
 			totalKillIncome += tempKillIncome;
 			//crew.currentIncome += totalKillIncome;
-			//TODO REMOVE/REWORK LATER
-			report.events.Add($"{crew.Definition.displayName} killed {kills} crews (+{tempKillIncome}).");
 
-			report.typedEvents.Add(new NightReportEvent
+			if (kills > 0)
 			{
-				type = ReportEventType.Kill,
-				label = $"{crew.Definition.displayName} eliminates {kills} crew",
-				value = 0
-			});
-			report.typedEvents.Add(new NightReportEvent
-			{
-				type = ReportEventType.KillBonus,
-				label = $"{crew.Definition.displayName}: kill bonus",
-				value = tempKillIncome
-			});
+				report.typedEvents.Add(new NightReportEvent
+				{
+					type = ReportEventType.Kill,
+					label = $"{crew.Definition.displayName} eliminates {kills} crew",
+					value = 0
+				});
+				report.typedEvents.Add(new NightReportEvent
+				{
+					type = ReportEventType.KillBonus,
+					label = $"{crew.Definition.displayName}: kill bonus",
+					value = tempKillIncome
+				});
+			}
 		}
 
 		report.killBonus = totalKillIncome;
@@ -476,9 +455,6 @@ public class GameManager : MonoBehaviour
 						if (deathsThisNight == 0 && aliveCount >= crew.Definition.effectRequirement)
 						{
 							multiplier += crew.Definition.effectValue;
-							//TODO REMOVE/REWORK LATER
-							report.events.Add(
-								$"{crew.Definition.displayName} increased multiplier by {crew.Definition.effectValue}");
 
 							report.typedEvents.Add(new NightReportEvent
 							{
@@ -491,9 +467,6 @@ public class GameManager : MonoBehaviour
 						break;
 					case EffectType.FlatMultAlways:
 						multiplier += crew.Definition.effectValue;
-						//TODO REMOVE/REWORK LATER
-						report.events.Add(
-							$"{crew.Definition.displayName} increased multiplier by {crew.Definition.effectValue}");
 
 						report.typedEvents.Add(new NightReportEvent
 						{
@@ -536,35 +509,37 @@ public class GameManager : MonoBehaviour
 			switch (room.Occupant.Definition.effectType)
 			{
 				case EffectType.EmptyAdjacent:
-					int tempIncome = CountEmptyAdjacent(room) * room.Occupant.Definition.effectValue;
+					int rooms = CountEmptyAdjacent(room);
+					int tempIncome = rooms * room.Occupant.Definition.effectValue;
 
 					if (tempIncome > room.Occupant.Definition.effectRequirement)
 						tempIncome = room.Occupant.Definition.effectRequirement;
 
 					finalIncome += tempIncome;
-
-					report.events.Add(
-						$"{room.Occupant.Definition.displayName} has {CountEmptyAdjacent(room)} empty adjacent rooms");
-
-					report.typedEvents.Add(new NightReportEvent
+					if (rooms > 0)
 					{
-						type = ReportEventType.BuffedIncome,
-						label = $"{room.Occupant.Definition.displayName}: {CountEmptyAdjacent(room)} empty adj zones",
-						value = tempIncome
-					});
+						report.typedEvents.Add(new NightReportEvent
+						{
+							type = ReportEventType.BuffedIncome,
+							label = $"{room.Occupant.Definition.displayName}: {rooms} empty adj zones",
+							value = tempIncome
+						});
+					}
+
 					break;
 				case EffectType.ExactAdjacency:
 					if (CountFilledAdjacent(room) == room.Occupant.Definition.effectRequirement)
-						finalIncome += room.Occupant.Definition.effectValue;
-					report.events.Add(
-						$"{room.Occupant.Definition.displayName} has {CountFilledAdjacent(room)} adjacent crews");
-
-					report.typedEvents.Add(new NightReportEvent
 					{
-						type = ReportEventType.BuffedIncome,
-						label = $"{room.Occupant.Definition.displayName}: exact adjacency bonus",
-						value = room.Occupant.Definition.effectValue
-					});
+						finalIncome += room.Occupant.Definition.effectValue;
+
+						report.typedEvents.Add(new NightReportEvent
+						{
+							type = ReportEventType.BuffedIncome,
+							label = $"{room.Occupant.Definition.displayName}: adj bonus",
+							value = room.Occupant.Definition.effectValue
+						});
+					}
+
 					break;
 			}
 
@@ -645,8 +620,14 @@ public class GameManager : MonoBehaviour
 				currentWeekLog.crewLogs.Add(new crewLog(crew));
 			}
 
-			UpdateText();
 			ClearBoard();
+
+			if (currentWeek != _lastPopulatedWeek)
+			{
+				bountyManager.LoadBountyForWeek(currentWeek);
+				bountyBar.Populate(bountyManager.CurrentBounty, weeklyTargets[currentWeek - 1]);
+				_lastPopulatedWeek = currentWeek;
+			}
 
 			currentNightLog = new NightLog();
 			currentNightLog.nightNumber = currentNight;
@@ -675,26 +656,24 @@ public class GameManager : MonoBehaviour
 		return dailyArrivals.Contains(PlacementManager.Instance.selectedCrew);
 	}
 
-	public void TryExtendStay()
+	public void TryExtendContract()
 	{
 		var crew = PlacementManager.Instance.selectedInstance;
 
 		if (currentPhase != GamePhase.PlanningPhase ||
 		    crew == null ||
 		    !crew.isResident ||
-		    money < extendStayCost)
+		    money < extendContractCost)
 		{
 			Debug.Log("Can't extend the stay of this crew");
 			return;
 		}
 
-		money -= extendStayCost;
-		crew.ExtendStay(1);
+		money -= extendContractCost;
+		crew.ExtendContract(1);
 
 		currentNightLog.extends.Add(crew.Definition.displayName + " extended to " + crew.contractDurationRemaining);
 		currentWeekLog.crewsExtended.Add(crew.Definition.displayName);
-
-		UpdateText();
 	}
 
 	public void PlaceSelectedCrew(Room room)
@@ -704,7 +683,9 @@ public class GameManager : MonoBehaviour
 		if (!dailyArrivals.Contains(selected))
 			return;
 
-		SpawnCrewInRoom(room, selected);
+		CrewInstance instance = new CrewInstance(selected);
+		room.SetOccupant(instance);
+
 		currentNightLog.placements.Add("Placed " + selected.displayName + " at " + room.Position);
 
 		foreach (crewLog log in currentWeekLog.crewLogs)
@@ -716,7 +697,7 @@ public class GameManager : MonoBehaviour
 		dailyArrivals.Remove(selected);
 
 		PlacementManager.Instance.ClearSelection();
-		UpdateArrivalUI();
+		candidatesUI.UpdateArrivalUI(dailyArrivals);
 	}
 
 	public void MoveSelectedCrewTo(Room targetRoom)
@@ -729,12 +710,10 @@ public class GameManager : MonoBehaviour
 		Room oldRoom = selected.currentRoom;
 
 		oldRoom.ClearOccupant();
-		targetRoom.SetOccupant(selected);
 
+		targetRoom.SetOccupant(selected);
 		selected.currentRoom = targetRoom;
 
-		selected.view.transform.position = targetRoom.view.transform.position;
-		selected.view.transform.parent = targetRoom.view.transform;
 		currentNightLog.placements.Add("Moved " + selected.Definition.displayName + " to " + targetRoom.Position);
 
 		// PlacementManager.Instance.selectedInstance = null;
@@ -779,8 +758,14 @@ public class GameManager : MonoBehaviour
 			currentWeekLog.crewLogs.Add(new crewLog(crew));
 		}
 
-		UpdateText();
 		ClearBoard();
+
+		if (currentWeek != _lastPopulatedWeek)
+		{
+			bountyManager.LoadBountyForWeek(currentWeek);
+			bountyBar.Populate(bountyManager.CurrentBounty, weeklyTargets[currentWeek - 1]);
+			_lastPopulatedWeek = currentWeek;
+		}
 
 		currentNightLog = new NightLog();
 		currentNightLog.nightNumber = currentNight;
@@ -798,36 +783,8 @@ public class GameManager : MonoBehaviour
 		{
 			if (room.Occupant != null)
 			{
-				Destroy(room.Occupant.view.gameObject);
 				room.ClearOccupant();
 			}
-		}
-	}
-
-	private void UpdateText()
-	{
-		weekText.text = "Week: " + currentWeek + " / " + totalWeeks;
-		nightText.text = "Night: " + currentNight + " / " + totalNights;
-		moneyText.text = "Money: " + money;
-		targetText.text = "Target: " + weeklyTarget;
-	}
-
-	private void UpdateArrivalUI()
-	{
-		foreach (Transform child in arrivalButtonContainer)
-		{
-			Destroy(child.gameObject);
-		}
-
-		foreach (var crew in dailyArrivals)
-		{
-			GameObject buttonGO = Instantiate(
-				arrivalButtonPrefab,
-				arrivalButtonContainer
-			);
-
-			var view = buttonGO.GetComponent<CrewCard>();
-			view.Initialize(crew);
 		}
 	}
 
@@ -903,9 +860,14 @@ public class GameManager : MonoBehaviour
 
 				output.AppendLine("Night " + night.nightNumber);
 
+				// output.AppendLine("-Events:");
+				// foreach (var ev in night.events)
+				// 	output.AppendLine("- " + ev);
+
 				output.AppendLine("-Events:");
-				foreach (var ev in night.events)
-					output.AppendLine("- " + ev);
+				foreach (var ev in night.typedEvents)
+					output.AppendLine($"- [{ev.type}] {ev.label} {ev.value}");
+
 				output.AppendLine("");
 
 				output.AppendLine("Engine Type: " + night.engineType);

@@ -29,7 +29,7 @@ public class CrewInstance
 			view.UpdateContractDuration();
 	}
 
-	public void ExtendStay(int amount)
+	public void ExtendContract(int amount)
 	{
 		contractDurationRemaining++;
 

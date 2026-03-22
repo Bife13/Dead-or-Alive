@@ -1,0 +1,76 @@
+=== RUN SUMMARY ===
+Seed: -1434765995
+
+Final Money: 6000
+
+Week: 1
+
+Weekly Money: 6000
+
+Peak: 6000
+
+Peak Night: 1
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Strategist
+- Ghost
+
+-Placements:
+- Placed Ghost at (1, 2)
+- Placed Strategist at (0, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- [BuffedIncome] Ghost: 3 empty adj zones 6000
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 6000
+
+Current Money: 6000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][][.] | [.][][.] | [.][][.] | [.][][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [][.][.] | [][.][.] | [][.][.] | [][.][.]
+
+Final Board:
+[.][][.]
+[.][.][.]
+[][.][.]
+
+Current Weights:
+- Con Artist: 8
+- Enforcer: 6
+- Ghost: 5
+- Gunslinger: 7
+- Handler: 10
+- Rookie: 10
+- Strategist: 6
+
+All Arrivals:
+- Strategist
+- Ghost
+
+All Extensions:
+

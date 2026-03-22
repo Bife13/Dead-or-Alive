@@ -13,6 +13,7 @@ public class PlacementManager : MonoBehaviour
 
 	// Placed Monster
 	public CrewInstance selectedInstance;
+	
 
 	[SerializeField]
 	private TMP_Text selectedCrewText;
@@ -29,7 +30,7 @@ public class PlacementManager : MonoBehaviour
 	{
 		ClearSelection();
 		selectedCrew = definition;
-		selectedCrewText.text = selectedCrew.displayName;
+		// selectedCrewText.text = selectedCrew.displayName;
 		Debug.Log("Selected: " + definition.displayName);
 	}
 
@@ -37,13 +38,13 @@ public class PlacementManager : MonoBehaviour
 	{
 		ClearSelection();
 		selectedInstance = instance;
-		selectedCrewText.text = selectedInstance.Definition.displayName;
+		// selectedCrewText.text = selectedInstance.Definition.displayName;
 	}
 
 	public void ClearSelection()
 	{
 		selectedCrew = null;
 		selectedInstance = null;
-		selectedCrewText.text = "";
+		// selectedCrewText.text = "";
 	}
 }

@@ -1,11 +1,10 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NightSummaryUI : MonoBehaviour
 {
-	[SerializeField]
-	private TMP_Text summaryText;
-
 	[SerializeField]
 	private GameObject panel;
 
@@ -16,13 +15,17 @@ public class NightSummaryUI : MonoBehaviour
 	private GameObject linePrefab;
 
 	[SerializeField]
-	private TMP_Text subtotalText;
-
-	[SerializeField]
 	private TMP_Text nightTotalText;
 
 	[SerializeField]
 	private TMP_Text weekRunningText;
+
+	[SerializeField]
+	private Image progressBar;
+
+	[SerializeField]
+	private GameObject reportPanel;
+
 
 	public void ShowSummary(NightReport report, int night)
 	{
@@ -40,7 +43,15 @@ public class NightSummaryUI : MonoBehaviour
 
 		// subtotalText.text = subtotalText.text = $"¥{report.finalIncome:N0}";
 		nightTotalText.text = $"¥{report.finalIncome:N0}";
-		weekRunningText.text = $"¥{GameManager.Instance.money:N0} / ¥{GameManager.Instance.weeklyTarget:N0}";
+		weekRunningText.text =
+			$"¥{FormatCurrency(GameManager.Instance.money)} / ¥{FormatCurrency(GameManager.Instance.weeklyTarget)}";
+		progressBar.fillAmount = (float)GameManager.Instance.money / GameManager.Instance.weeklyTarget;
+	}
+
+	private string FormatCurrency(int value)
+	{
+		if (value >= 1000) return $"{value / 1000}K";
+		return value.ToString();
 	}
 
 	// public void ShowSummary(NightReport report, int night)

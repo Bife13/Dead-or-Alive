@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 public class CrewDefinition : ScriptableObject
 {
 	public string crewID;
+	public CrewType crewType;
 	public string displayName;
 	public int weight;
 
@@ -29,9 +30,11 @@ public class CrewDefinition : ScriptableObject
 	public string contractType;
 
 	public string codename;
-	[TextArea(10,15)]
+
+	[TextArea(10, 15)]
 	public string incomeText;
-	[TextArea(10,15)]
+
+	[TextArea(10, 15)]
 	public string descriptionText;
 
 	public string statLabel1;
@@ -40,7 +43,6 @@ public class CrewDefinition : ScriptableObject
 	public string statValue2;
 	public string statLabel3;
 	public string statValue3;
-	public Color crewColor;
 }
 
 public enum EffectType
@@ -54,4 +56,16 @@ public enum EffectType
 	FlatMultAlways,
 	EmptyAdjacent,
 	ExactAdjacency
+}
+
+public enum CrewType
+{
+	Rookie,
+	Ghost,
+	Handler,
+	Strategist,
+	Enforcer,
+	ConArtist,
+	Gunslinger,
+	Drone
 }

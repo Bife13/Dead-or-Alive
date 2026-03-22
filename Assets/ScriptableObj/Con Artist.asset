@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Con Artist
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
   crewID: 
+  crewType: 5
   displayName: Con Artist
   weight: 8
   baseIncome: 0

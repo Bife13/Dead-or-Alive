@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Gunslinger
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
   crewID: 
+  crewType: 6
   displayName: Gunslinger
   weight: 7
   baseIncome: 2000

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Drone
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
   crewID: 
+  crewType: 7
   displayName: Drone
   weight: 0
   baseIncome: 0
@@ -24,15 +25,14 @@ MonoBehaviour:
   isTemporary: 1
   canCopy: 0
   crewPrefab: {fileID: 4931615534373023835, guid: ea13f3f742dce684d8735534a1ac1661, type: 3}
-  contractType: 
-  codename: 
-  abilityText: 
+  contractType: 'Drone '
+  codename: Decoy
+  incomeText: "+\xA50 / night"
+  descriptionText: 
   statLabel1: 
   statValue1: 
   statLabel2: 
   statValue2: 
   statLabel3: 
   statValue3: 
-  statLabel4: 
-  statValue4: 
-  crewColor: {r: 0, g: 0, b: 0, a: 0}
+  crewColor: {r: 0.47843137, g: 0.3529412, b: 0.5411765, a: 1}

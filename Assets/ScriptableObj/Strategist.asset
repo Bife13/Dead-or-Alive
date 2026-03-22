@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Strategist
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
   crewID: 
+  crewType: 3
   displayName: Strategist
   weight: 6
   baseIncome: 0
@@ -26,7 +27,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 7485763324741299123, guid: 8b7aa794f840f0a48a7fdd333d7a5961, type: 3}
   contractType: SPECIALIST CONTRACT
   codename: Tactician
-  incomeText: +1 mult if no kills, 4+ crew
+  incomeText: +1 MULT / 0 kills / 4+ crew
   descriptionText: Applies income multiplier when conditions are met. Ruined by kills.
   statLabel1: BASE
   statValue1: "\xA50"

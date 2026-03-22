@@ -28,6 +28,7 @@ public class NightLog
 	public List<string> extends = new();
 	public List<string> checkouts = new();
 	public List<string> events = new();
+	public List<NightReportEvent> typedEvents = new();
 	public int currentMoney;
 	public string engineType;
 

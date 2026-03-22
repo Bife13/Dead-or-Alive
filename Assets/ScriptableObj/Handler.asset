@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Handler
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
   crewID: 
+  crewType: 2
   displayName: Handler
   weight: 10
   baseIncome: 0
@@ -35,4 +36,4 @@ MonoBehaviour:
   statValue2: "\xA51k"
   statLabel3: range
   statValue3: ADJ
-  crewColor: {r: 0.28835887, g: 0.72143817, b: 0.754717, a: 1}
+  crewColor: {r: 0.78431374, g: 0.4862745, b: 0.09411765, a: 1}

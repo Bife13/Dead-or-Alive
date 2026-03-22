@@ -21,10 +21,12 @@ public class Room
 	{
 		occupant = newOccupant;
 		occupant.currentRoom = this;
+		view.UpdateSlate(newOccupant);
 	}
 
 	public void ClearOccupant()
 	{
 		occupant = null;
+		view.HideSlate();
 	}
 }

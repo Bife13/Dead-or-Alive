@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Enforcer
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
   crewID: 
+  crewType: 4
   displayName: Enforcer
   weight: 6
   baseIncome: 0

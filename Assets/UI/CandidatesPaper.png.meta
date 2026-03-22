@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9ba91020054248f4b9952cebec1d9ec5
+guid: 7ccf218b7693d1c4096c17936665eda8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1905572494922345057
-    second: Tex_Parch_2 1_0
+      213: -2469688309581418575
+    second: CandidatesPaper_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +40,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 1
-    wrapV: 1
-    wrapW: 1
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -51,8 +51,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 512
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 8, y: 16, z: 5, w: 62}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tex_Parch_2 1_0
+      name: CandidatesPaper_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 3
-        width: 2070
-        height: 2072
+        x: 0
+        y: 0
+        width: 365
+        height: 101
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 16ae9958614f17a10800000000000000
-      internalID: 1905572494922345057
+      spriteID: 1bfe6714197e9bdd0800000000000000
+      internalID: -2469688309581418575
       vertices: []
       indices: 
       edges: []
@@ -126,7 +126,7 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tex_Parch_2 1_0: 1905572494922345057
+      CandidatesPaper_0: -2469688309581418575
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -22,7 +22,7 @@ public class CrewCard : MonoBehaviour
 
 	[SerializeField]
 	private TMP_Text incomeText;
-	
+
 	[SerializeField]
 	private TMP_Text descriptionText;
 
@@ -52,10 +52,10 @@ public class CrewCard : MonoBehaviour
 
 	[SerializeField]
 	private TMP_Text stat3Value;
-	
+
 	[SerializeField]
 	private Image leftBorder;
-	
+
 	[SerializeField]
 	private List<GameObject> tapes;
 
@@ -66,7 +66,9 @@ public class CrewCard : MonoBehaviour
 		contractText.text = definition.contractType;
 		incomeText.text = definition.incomeText;
 		descriptionText.text = definition.descriptionText;
-		leftBorder.color = definition.crewColor; if (definition.statLabel1 != "")
+		leftBorder.color = DoAPalette.Instance.GetCrewColor(definition.crewType);
+
+		if (definition.statLabel1 != "")
 		{
 			stat1.SetActive(true);
 			stat1Label.text = definition.statLabel1;
@@ -92,9 +94,8 @@ public class CrewCard : MonoBehaviour
 		}
 		else
 			stat3.SetActive(false);
-		
-		tapes[Random.Range(0,tapes.Count)].SetActive(true);
-		
+
+		tapes[Random.Range(0, tapes.Count)].SetActive(true);
 	}
 
 	public void Initialize(CrewDefinition definition)

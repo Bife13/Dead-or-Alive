@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f186ef06b709a4391a36e9a71c5177, type: 3}
+  m_Name: CurrentPalette
+  m_EditorClassIdentifier: Assembly-CSharp::DoAPalette
+  bg: {r: 0.039215688, g: 0.047058824, b: 0.07058824, a: 1}
+  panel: {r: 0.07058824, g: 0.08235294, b: 0.11764706, a: 1}
+  surface: {r: 0.101960786, g: 0.11764706, b: 0.16470589, a: 1}
+  border: {r: 0.16470589, g: 0.20784314, b: 0.27058825, a: 1}
+  textL1: {r: 0.78431374, g: 0.7529412, b: 0.6901961, a: 1}
+  textL2: {r: 0.5411765, g: 0.5647059, b: 0.627451, a: 1}
+  textL3: {r: 0.41568628, g: 0.4392157, b: 0.5019608, a: 1}
+  textL4: {r: 0.22745098, g: 0.2509804, b: 0.3137255, a: 1}
+  ochre: {r: 0.78431374, g: 0.4862745, b: 0.09411765, a: 1}
+  verdigris: {r: 0.16470589, g: 0.40784314, b: 0.34509805, a: 1}
+  wine: {r: 0.3529412, g: 0.047058824, b: 0.07058824, a: 1}
+  black: {r: 0, g: 0, b: 0, a: 1}

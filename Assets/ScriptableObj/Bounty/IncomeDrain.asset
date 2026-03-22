@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e01bc37df1bfde944b402c02ed020b2a, type: 3}
+  m_Name: IncomeDrain
+  m_EditorClassIdentifier: Assembly-CSharp::BountyData
+  bountyName: Mao "The Accountant" Lin
+  caseNumber: ISB-4412-A
+  alias: Syndicate finance. Controls the credit network.
+  location: Colony City
+  week: 1
+  threatLevel: 1
+  modifiers:
+  - type: 0
+    value: 2000
+    displayName: Protection Racket
+    description: Takes a cut every night before payout resolves.
+    lockedZones: 
