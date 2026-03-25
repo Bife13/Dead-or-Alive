@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
+  m_Name: W2_Detonator
+  m_EditorClassIdentifier: Assembly-CSharp::CrewDefinition
+  crewID: D
+  crewType: 9
+  displayName: Detonator
+  weight: 6
+  baseIncome: 2000
+  contractDuration: 2
+  effectType: 12
+  effectValue: 4000
+  effectRequirement: 0
+  creationDefinition: {fileID: 0}
+  isTemporary: 0
+  canCopy: 0
+  crewPrefab: {fileID: 0}
+  contractType: DANGER CONTRACT
+  codename: Explosive
+  incomeText: "+\xA52000 base. Remove for adj burst"
+  descriptionText: Steady earner. Can be sacrificed to pay out adjacent crew. Timing
+    is everything.
+  statLabel1: BASE
+  statValue1: "\xA52k"
+  statLabel2: Burst
+  statValue2: "\xA54k"
+  statLabel3: Uses
+  statValue3: 1 / week

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
-  m_Name: Drone
+  m_Name: B_Drone
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
   crewID: 
   crewType: 7

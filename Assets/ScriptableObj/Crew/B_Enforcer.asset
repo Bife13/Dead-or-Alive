@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
-  m_Name: Enforcer
+  m_Name: B_Enforcer
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
-  crewID: 
+  crewID: E
   crewType: 4
   displayName: Enforcer
   weight: 6
@@ -27,12 +27,11 @@ MonoBehaviour:
   crewPrefab: {fileID: 8354186858573336133, guid: 0ba5033e0e1598b4c92ba44a3065a908, type: 3}
   contractType: High-Risk Contract
   codename: Combat
-  incomeText: "+\xA52,000 / kill"
-  descriptionText: Eliminates adjacent crew. Earns per kill. Immune to counter-intel.
+  incomeText: "+\xA52000 / kill"
+  descriptionText: Eliminates adjacent crew. Earns per kill. Incompatible with Strategist.
   statLabel1: BAse
   statValue1: "\xA50"
   statLabel2: Per Kill
   statValue2: "\xA52k"
   statLabel3: Range
   statValue3: ADJ
-  crewColor: {r: 0.5411765, g: 0.16470589, b: 0.16470589, a: 1}

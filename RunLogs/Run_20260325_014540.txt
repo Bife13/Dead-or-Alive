@@ -1,0 +1,266 @@
+=== RUN SUMMARY ===
+Seed: -1015462365
+
+Final Money: 2500
+
+Week: 1
+
+Weekly Money: 2500
+
+Peak: 3500
+
+Peak Night: 2
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Loner
+- Anchor
+
+-Placements:
+- Placed Loner at (0, 0)
+- Placed Anchor at (1, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- [BaseIncome] {0} base income 1500
+- [BaseIncome] {0} base income 1500
+- [Drain] Protection drain applies -2000
+
+Engine Type: Loner
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1000
+
+Current Money: 1000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [L][A][.] | [L][A][.] | [L][A][.] | [L][A][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Enforcer
+- Loner
+
+-Placements:
+- Placed Enforcer at (1, 1)
+- Placed Loner at (0, 1)
+
+-Extends:
+
+Night 2
+-Events:
+- [Kill] {0} eliminates 2 crew 0
+- [KillBonus] {0} kill bonus 4000
+- [BaseIncome] {0} base income 1500
+- [Drain] Protection drain applies -2000
+
+Engine Type: Loner
+
+----------------------------
+
+Base Income: 1500
+Bonus Income: -2000
+Kill Bonus: 4000
+Multiplier: x1
+Total Income: 3500
+
+Current Money: 4500
+
+----------------------------
+
+Checkouts:
+- Loner
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [L][E][.] | [L][E][.] | [.][E][.] | [.][E][.]
+[L][A][.] | [L][A][.] | [L][A][.] | [L][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Handler
+- Rookie
+
+-Placements:
+
+-Extends:
+
+Night 3
+-Events:
+- [Drain] Protection drain applies -2000
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 0
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: -2000
+
+Current Money: 2500
+
+----------------------------
+
+Checkouts:
+- Enforcer
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][E][.] | [.][E][.] | [.][E][.] | [.][E][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Strategist
+- Detonator
+
+-Placements:
+- Placed Detonator at (0, 0)
+- Moved Detonator to (1, 1)
+- Placed Strategist at (0, 0)
+- Moved Strategist to (0, 1)
+
+-Extends:
+
+Night 4
+-Events:
+- [BaseIncome] {0} base income 2000
+- [Drain] Protection drain applies -2000
+
+Engine Type: Detonator
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+Current Money: 2500
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [T][D][.] | [T][D][.] | [T][D][.] | [T][D][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Pawn
+- Strategist
+
+-Placements:
+- Placed Pawn at (1, 0)
+- Placed Strategist at (0, 0)
+
+-Extends:
+
+Night 5
+-Events:
+- [BaseIncome] {0} base income 2000
+- [Drain] Protection drain applies -2000
+- [Multiplier] {0} conditions met 2
+- [Multiplier] {0} conditions met 3
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 0
+
+Current Money: 2500
+
+----------------------------
+
+Checkouts:
+- Strategist
+- Detonator
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[T][D][.] | [T][D][.] | [T][D][.] | [T][D][.] | [.][.][.]
+[.][.][.] | [T][P][.] | [T][P][.] | [T][P][.] | [T][P][.]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[T][P][.]
+
+Current Weights:
+- Con Artist: 8
+- Enforcer: 6
+- Ghost: 5
+- Gunslinger: 7
+- Handler: 10
+- Rookie: 10
+- Strategist: 6
+- Pawn: 10
+- Anchor: 8
+- Detonator: 6
+- Scavenger: 7
+- Loner: 8
+
+All Arrivals:
+- Loner
+- Anchor
+- Enforcer
+- Loner
+- Handler
+- Rookie
+- Strategist
+- Detonator
+- Pawn
+- Strategist
+
+All Extensions:
+

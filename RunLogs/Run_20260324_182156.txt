@@ -1,0 +1,294 @@
+=== RUN SUMMARY ===
+Seed: 1266813076
+
+Final Money: 24000
+
+Week: 1
+
+Weekly Money: 24000
+
+Peak: 9000
+
+Peak Night: 3
+
+Solved Night: 4
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Rookie
+- Strategist
+
+-Placements:
+- Placed Rookie at (0, 0)
+- Placed Strategist at (1, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- [BaseIncome] {0} base income 1000
+- [Drain] Protection drain applies -2000
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 1000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: -1000
+
+Current Money: -1000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [][][.] | [][][.] | [][][.] | [][][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Handler
+- Rookie
+
+-Placements:
+- Placed Handler at (0, 1)
+- Placed Rookie at (1, 1)
+
+-Extends:
+
+Night 2
+-Events:
+- [Buff] {0} buffs {1} 1000
+- [Buff] {0} buffs {1} 1000
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 1000
+- [Drain] Protection drain applies -2000
+- [Multiplier] {0} conditions met 2
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 4000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 4000
+
+Current Money: 3000
+
+----------------------------
+
+Checkouts:
+- Strategist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [][][.] | [][][.] | [][][.] | [][][.]
+[][][.] | [][][.] | [][][.] | [][][.] | [][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Con Artist
+- Gunslinger
+
+-Placements:
+- Placed Con Artist at (2, 1)
+- Placed Gunslinger at (0, 2)
+- Moved Gunslinger to (1, 0)
+- Moved Gunslinger to (1, 2)
+- Moved Gunslinger to (0, 2)
+- Moved Gunslinger to (1, 2)
+
+-Extends:
+
+Night 3
+-Events:
+- [Buff] {0} buffs {1} 1000
+- [Buff] {0} buffs {1} 1000
+- [Creation] {0} creates 2 Drone 2000
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 2000
+- [BuffedIncome] {0} adj bonus 3000
+- [Drain] Protection drain applies -2000
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 8000
+Bonus Income: 1000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 9000
+
+Current Money: 12000
+
+----------------------------
+
+Checkouts:
+- Rookie
+- Handler
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][][.] | [.][][] | [.][][] | [.][][.]
+[][][.] | [][][] | [][][] | [][][] | [.][][]
+[][.][.] | [][.][.] | [][.][] | [][.][] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Handler
+- Handler
+
+-Placements:
+- Placed Handler at (2, 2)
+- Placed Handler at (1, 0)
+- Moved Handler to (0, 1)
+
+-Extends:
+
+Night 4
+-Events:
+- [Buff] {0} buffs {1} 1000
+- [Buff] {0} buffs {1} 1000
+- [Buff] {0} buffs {1} 1000
+- [Creation] {0} creates 1 Drone 1000
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 2000
+- [BuffedIncome] {0} adj bonus 3000
+- [Drain] Protection drain applies -2000
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 7000
+Bonus Income: 1000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 8000
+
+Current Money: 20000
+
+----------------------------
+
+Checkouts:
+- Rookie
+- Gunslinger
+- Con Artist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][][.] | [.][][] | [.][][] | [.][][] | [.][.][]
+[.][][] | [][][] | [][][] | [][][] | [][.][.]
+[.][.][.] | [.][.][.] | [.][.][] | [.][.][] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Gunslinger
+- Enforcer
+
+-Placements:
+- Placed Gunslinger at (2, 1)
+- Placed Enforcer at (0, 2)
+- Moved Gunslinger to (1, 1)
+- Moved Gunslinger to (1, 2)
+- Moved Gunslinger to (1, 1)
+- Moved Gunslinger to (2, 1)
+- Moved Gunslinger to (1, 0)
+- Moved Gunslinger to (0, 0)
+- Moved Gunslinger to (2, 1)
+- Moved Enforcer to (1, 1)
+- Moved Enforcer to (1, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- [Buff] {0} buffs {1} 1000
+- [Buff] {0} buffs {1} 1000
+- [Kill] {0} eliminates 1 crew 0
+- [KillBonus] {0} kill bonus 2000
+- [BaseIncome] {0} base income 2000
+- [Drain] Protection drain applies -2000
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 4000
+Bonus Income: -2000
+Kill Bonus: 2000
+Multiplier: x1
+Total Income: 4000
+
+Current Money: 24000
+
+----------------------------
+
+Checkouts:
+- Handler
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][] | [.][][] | [.][][] | [.][][.] | [.][][.]
+[][.][.] | [][.][] | [][.][] | [][.][] | [.][.][]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+Final Board:
+[.][][.]
+[.][.][]
+[.][.][.]
+
+Current Weights:
+- Con Artist: 8
+- Enforcer: 6
+- Ghost: 5
+- Gunslinger: 7
+- Handler: 10
+- Rookie: 10
+- Strategist: 6
+
+All Arrivals:
+- Rookie
+- Strategist
+- Handler
+- Rookie
+- Con Artist
+- Gunslinger
+- Handler
+- Handler
+- Gunslinger
+- Enforcer
+
+All Extensions:
+

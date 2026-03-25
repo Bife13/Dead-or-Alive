@@ -67,6 +67,7 @@ public class GridManager : MonoBehaviour
 		foreach (Room room in GetAllRooms())
 		{
 			room.view.SetZoneName(GameManager.Instance.GetCurrentBounty().zoneNames[index]);
+			room.view.SetLocked(GameManager.Instance.IsZoneLocked(index));
 			index++;
 		}
 	}

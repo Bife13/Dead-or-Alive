@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
+  m_Name: W2_Pawn
+  m_EditorClassIdentifier: Assembly-CSharp::CrewDefinition
+  crewID: P
+  crewType: 8
+  displayName: Pawn
+  weight: 10
+  baseIncome: 0
+  contractDuration: 3
+  effectType: 9
+  effectValue: 2000
+  effectRequirement: 0
+  creationDefinition: {fileID: 0}
+  isTemporary: 0
+  canCopy: 0
+  crewPrefab: {fileID: 0}
+  contractType: EXPENDABLE CONTRACT
+  codename: Chaos
+  incomeText: "+\xA52000 to all crew on elimination"
+  descriptionText: Earns nothing. Worth more dead. Place accordingly.
+  statLabel1: BASE
+  statValue1: "\xA50"
+  statLabel2: On death
+  statValue2: "+\xA52K all"
+  statLabel3: Trigger
+  statValue3: Elimination

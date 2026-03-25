@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[ExecuteAlways]
+// [ExecuteAlways]
 public class PaletteToken : MonoBehaviour
 {
 	private DoAPalette Palette;

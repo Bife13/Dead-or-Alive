@@ -50,7 +50,7 @@ public class ReportLineUI : MonoBehaviour
 
 		// Crew names injected as coloured spans, structural text stays TextL2
 		labelText.text = BuildLabel(label, source, target, p);
-		labelText.color = accentColor;
+		labelText.color = p.textL1;
 
 		valueText.text = value;
 		valueText.color = accentColor;

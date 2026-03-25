@@ -3,12 +3,11 @@ using UnityEngine;
 public class CrewInstance
 {
 	public CrewDefinition Definition { get; }
-	
+
 	public int currentIncome;
 	public int contractDurationRemaining;
 	public bool isAlive = true;
 	public bool isTemporary;
-	public CrewView view;
 	public bool isResident;
 	public Room currentRoom;
 
@@ -20,20 +19,20 @@ public class CrewInstance
 		contractDurationRemaining = _definition.contractDuration;
 		isResident = false;
 	}
-	
+
 	public void DecreaseStay()
 	{
 		contractDurationRemaining--;
 
-		if (view != null)
-			view.UpdateContractDuration();
+		if (currentRoom?.view != null)
+			currentRoom.view.GetSlate()?.UpdateContract();
 	}
 
 	public void ExtendContract(int amount)
 	{
 		contractDurationRemaining++;
 
-		if (view != null)
-			view.UpdateContractDuration();
+		if (currentRoom?.view != null)
+			currentRoom.view.GetSlate()?.UpdateContract();
 	}
 }

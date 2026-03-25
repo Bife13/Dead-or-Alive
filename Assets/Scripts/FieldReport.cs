@@ -93,6 +93,8 @@ public class FieldReport : MonoBehaviour
 
 		yield return StartCoroutine(TickWeekRunning(previousMoney));
 		yield return StartCoroutine(AnimateProgressBar(previousMoney));
+		
+		GameManager.Instance.NextDay();
 	}
 
 	private void SpawnLine(NightReportEvent e)
@@ -129,7 +131,7 @@ public class FieldReport : MonoBehaviour
 		float duration = 0.4f;
 
 		var p = DoAPalette.Instance;
-		progressBar.color = targetFill >= 0.85f ? p.wineBright : p.ochre;
+		progressBar.color = p.ochre;
 		progressBar.fillAmount = startFill;
 
 		while (elapsed < duration)
@@ -146,6 +148,14 @@ public class FieldReport : MonoBehaviour
 	{
 		if (value >= 1000) return $"{value / 1000}K";
 		return value.ToString();
+	}
+	
+	public void RefreshAfterSpend(int cost)
+	{
+		var gm = GameManager.Instance;
+		int previousMoney = gm.money + cost; // money already deducted at this point
+		weekRunningText.text = $"¥{FormatCurrency(gm.money)} / ¥{FormatCurrency(gm.weeklyTarget)}";
+		StartCoroutine(AnimateProgressBar(previousMoney));
 	}
 
 	// public void ShowSummary(NightReport report, int night)

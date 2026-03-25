@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-[CreateAssetMenu(menuName = "crew Hotel/Crew Definition")]
+[CreateAssetMenu(fileName = "New Crew", menuName = "Dead or Alive/Crew")]
 public class CrewDefinition : ScriptableObject
 {
 	public string crewID;
@@ -55,7 +55,12 @@ public enum EffectType
 	ConditionalMultNoDeaths,
 	FlatMultAlways,
 	EmptyAdjacent,
-	ExactAdjacency
+	ExactAdjacency,
+	OnDeathBuffAll,
+	OncePerWeekSaveAdjacent,
+	PerWeeklyDeath,
+	RemovalBurst,
+	PerEmptyGridZone
 }
 
 public enum CrewType
@@ -67,5 +72,10 @@ public enum CrewType
 	Enforcer,
 	ConArtist,
 	Gunslinger,
-	Drone
+	Drone,
+	Pawn,
+	Detonator,
+	Anchor,
+	Scavenger,
+	Loner
 }

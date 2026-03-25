@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
-  m_Name: Rookie
+  m_Name: B_Rookie
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
-  crewID: 
+  crewID: R
+  crewType: 0
   displayName: Rookie
   weight: 10
   baseIncome: 1000
@@ -22,17 +23,15 @@ MonoBehaviour:
   effectRequirement: 0
   creationDefinition: {fileID: 0}
   isTemporary: 0
-  canCopy: 0
+  canCopy: 1
   crewPrefab: {fileID: 2063488386293174163, guid: 616ee2cb12fa6214b8db7ab837283b80, type: 3}
   contractType: Standard contract
   codename: Basic Operative
-  incomeText: "+\xA51,000 / night"
-  descriptionText: Steady base income. No special ability. Reliable filler for empty
-    zones.
+  incomeText: "+\xA51000 base"
+  descriptionText: Shows up. Gets paid. Asks no questions.
   statLabel1: Base
   statValue1: "\xA51,000"
   statLabel2: Bonus
   statValue2: "\u2014"
   statLabel3: Range
   statValue3: "\u2014"
-  crewColor: {r: 0.6039216, g: 0.47843137, b: 0.3137255, a: 1}

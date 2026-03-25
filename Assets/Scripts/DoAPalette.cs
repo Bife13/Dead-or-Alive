@@ -50,11 +50,24 @@ public class DoAPalette : ScriptableObject
 	public Color crewConArtist = Hex("4A3868");
 	public Color crewGunslinger = Hex("C89A30");
 
+	public Color crewPawn = Hex("#5A5850");
+	public Color crewDetonator = Hex("#784828");
+	public Color crewLoner = Hex("#486068");
+	public Color crewAnchor = Hex("#7A6040");
+	public Color crewScavenger = Hex("#6A7035");
+
+
 	public static Color Hex(string hex, float alpha = 1f)
 	{
 		ColorUtility.TryParseHtmlString("#" + hex, out Color c);
 		c.a = alpha;
 		return c;
+	}
+
+	public static Color ColorHueShift(Color color, float alpha = 1f)
+	{
+		color.a = alpha;
+		return color;
 	}
 
 	public Color Resolve(PaletteToken.Token token)
@@ -89,6 +102,12 @@ public class DoAPalette : ScriptableObject
 			CrewType.Enforcer => crewEnforcer,
 			CrewType.ConArtist => crewConArtist,
 			CrewType.Gunslinger => crewGunslinger,
+			CrewType.Drone => crewConArtist,
+			CrewType.Pawn => crewPawn,
+			CrewType.Detonator => crewDetonator,
+			CrewType.Anchor => crewAnchor,
+			CrewType.Scavenger => crewScavenger,
+			CrewType.Loner => crewLoner,
 			_ => textL2
 		};
 	}
