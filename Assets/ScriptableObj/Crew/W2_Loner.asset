@@ -18,9 +18,8 @@ MonoBehaviour:
   weight: 8
   baseIncome: 1500
   contractDuration: 2
-  effectType: 13
   effectValue: 1500
-  effectRequirement: 0
+  effectRequirement: 4
   creationDefinition: {fileID: 0}
   isTemporary: 0
   canCopy: 0

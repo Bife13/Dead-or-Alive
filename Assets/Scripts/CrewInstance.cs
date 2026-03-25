@@ -11,6 +11,10 @@ public class CrewInstance
 	public bool isResident;
 	public Room currentRoom;
 
+	public bool anchorSaveUsed = false;
+	public bool detonatorUsed = false;
+	public bool eliminatedBySource = false;
+	
 	public CrewInstance(CrewDefinition _definition)
 	{
 		Definition = _definition;
@@ -34,5 +38,10 @@ public class CrewInstance
 
 		if (currentRoom?.view != null)
 			currentRoom.view.GetSlate()?.UpdateContract();
+	}
+
+	public void SetAnchorUse(bool value)
+	{
+		anchorSaveUsed = value;
 	}
 }

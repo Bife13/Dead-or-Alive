@@ -8,6 +8,9 @@ public class FieldReport : MonoBehaviour
 {
 	[SerializeField]
 	private GameObject panel;
+	
+	[SerializeField]
+	private CanvasGroup panelCanvasGroup;
 
 	[SerializeField]
 	private Transform lineContainer;
@@ -41,6 +44,7 @@ public class FieldReport : MonoBehaviour
 
 	public void ShowSummary(NightReport report, int night)
 	{
+		panelCanvasGroup.alpha = 0f;
 		panel.SetActive(true);
 
 		if (_activeScroll != null) StopCoroutine(_activeScroll);
@@ -80,6 +84,8 @@ public class FieldReport : MonoBehaviour
 		weekRunningText.text = $"¥{FormatCurrency(previousMoney)} / ¥{FormatCurrency(gm.weeklyTarget)}";
 		progressBar.fillAmount = Mathf.Clamp01((float)previousMoney / gm.weeklyTarget);
 
+		yield return StartCoroutine(FadePanel(0f, 1f, 0.3f));
+        
 		yield return new WaitForSeconds(initialDelay);
 
 		foreach (NightReportEvent e in report.typedEvents)
@@ -96,7 +102,22 @@ public class FieldReport : MonoBehaviour
 		
 		GameManager.Instance.NextDay();
 	}
+	
+	private IEnumerator FadePanel(float from, float to, float duration)
+	{
+		panelCanvasGroup.alpha = from;
+		float elapsed = 0f;
 
+		while (elapsed < duration)
+		{
+			elapsed += Time.deltaTime;
+			panelCanvasGroup.alpha = Mathf.Lerp(from, to, elapsed / duration);
+			yield return null;
+		}
+
+		panelCanvasGroup.alpha = to;
+	}
+	
 	private void SpawnLine(NightReportEvent e)
 	{
 		var go = Instantiate(linePrefab, lineContainer);

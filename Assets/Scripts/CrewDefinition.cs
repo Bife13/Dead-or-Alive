@@ -14,7 +14,6 @@ public class CrewDefinition : ScriptableObject
 	[FormerlySerializedAs("stayDuration")]
 	public int contractDuration;
 
-	public EffectType effectType;
 	public int effectValue;
 	public int effectRequirement;
 
@@ -31,10 +30,10 @@ public class CrewDefinition : ScriptableObject
 
 	public string codename;
 
-	[TextArea(10, 15)]
+	[TextArea(10, 5)]
 	public string incomeText;
 
-	[TextArea(10, 15)]
+	[TextArea(10, 5)]
 	public string descriptionText;
 
 	public string statLabel1;
@@ -43,24 +42,6 @@ public class CrewDefinition : ScriptableObject
 	public string statValue2;
 	public string statLabel3;
 	public string statValue3;
-}
-
-public enum EffectType
-{
-	None,
-	BuffAdjacentFlat,
-	CreateAdjacent,
-	KillAdjacent,
-	MoveTowards,
-	ConditionalMultNoDeaths,
-	FlatMultAlways,
-	EmptyAdjacent,
-	ExactAdjacency,
-	OnDeathBuffAll,
-	OncePerWeekSaveAdjacent,
-	PerWeeklyDeath,
-	RemovalBurst,
-	PerEmptyGridZone
 }
 
 public enum CrewType

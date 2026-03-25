@@ -73,7 +73,7 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 			int index = room.Position.y * GameManager.Instance.GridWidth + room.Position.x;
 			if (GameManager.Instance.IsZoneLocked(index))
 				return;
-			
+
 			GameManager.Instance.PlaceSelectedCrew(room);
 			return;
 		}
@@ -184,5 +184,23 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 		border.color = locked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.4f) : DoAPalette.Instance.border;
 		zoneName.color = locked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.6f) : DoAPalette.Instance.textL4;
 		// Optionally disable the BG slightly
+	}
+
+	public IEnumerator FadeOutSlate(float duration = 0.6f)
+	{
+		if (!crewPlacedSlate.gameObject.activeSelf) yield break;
+
+		CanvasGroup cg = crewPlacedSlate.CanvasGroup;
+
+		float elapsed = 0f;
+		while (elapsed < duration)
+		{
+			elapsed += Time.deltaTime;
+			cg.alpha = Mathf.Lerp(1f, 0f, elapsed / duration);
+			yield return null;
+		}
+
+		cg.alpha = 1f;
+		HideSlate();
 	}
 }

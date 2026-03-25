@@ -1,0 +1,285 @@
+=== RUN SUMMARY ===
+Seed: 277102275
+
+Final Money: 15000
+
+Week: 1
+
+Weekly Money: 15000
+
+Peak: 9000
+
+Peak Night: 5
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Anchor
+- Anchor
+
+-Placements:
+- Placed Anchor at (0, 0)
+- Placed Anchor at (0, 2)
+- Moved Anchor to (2, 2)
+
+-Extends:
+
+Night 1
+-Events:
+- [BaseIncome] {0} base income 1500
+- [BaseIncome] {0} base income 1500
+- [Drain] Protection drain applies -2000
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1000
+
+Current Money: 1000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][A] | [.][.][A] | [.][.][A] | [.][.][A]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Pawn
+- Detonator
+
+-Placements:
+- Placed Pawn at (1, 1)
+- Placed Detonator at (0, 2)
+- Moved Pawn to (2, 0)
+
+-Extends:
+
+Night 2
+-Events:
+- [BaseIncome] {0} base income 1500
+- [BaseIncome] {0} base income 2000
+- [BaseIncome] {0} base income 1500
+- [Drain] Protection drain applies -2000
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 5000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 3000
+
+Current Money: 4000
+
+----------------------------
+
+Checkouts:
+- Anchor
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][A] | [D][.][A] | [D][.][A] | [D][.][A] | [D][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[A][.][.] | [A][.][P] | [A][.][P] | [A][.][P] | [.][.][P]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Rookie
+- Strategist
+
+-Placements:
+- Placed Strategist at (2, 2)
+- Placed Rookie at (2, 1)
+
+-Extends:
+
+Night 3
+-Events:
+- [BaseIncome] {0} base income 2000
+- [BaseIncome] {0} base income 1000
+- [Drain] Protection drain applies -2000
+- [Multiplier] {0} conditions met 2
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 2000
+
+Current Money: 6000
+
+----------------------------
+
+Checkouts:
+- Detonator
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[D][.][.] | [D][.][T] | [D][.][T] | [D][.][T] | [.][.][T]
+[.][.][.] | [.][.][R] | [.][.][R] | [.][.][R] | [.][.][R]
+[.][.][P] | [.][.][P] | [.][.][P] | [.][.][P] | [.][.][P]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Rookie
+- Strategist
+
+-Placements:
+- Placed Strategist at (1, 2)
+- Placed Rookie at (1, 1)
+- Moved Rookie to (0, 2)
+- Moved Strategist to (0, 0)
+
+-Extends:
+
+Night 4
+-Events:
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 1000
+- [Drain] Protection drain applies -2000
+- [Multiplier] {0} conditions met 2
+- [Multiplier] {0} conditions met 3
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 0
+
+Current Money: 6000
+
+----------------------------
+
+Checkouts:
+- Pawn
+- Strategist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][T] | [R][.][T] | [R][.][T] | [R][.][T] | [R][.][.]
+[.][.][R] | [.][.][R] | [.][.][R] | [.][.][R] | [.][.][R]
+[.][.][P] | [T][.][P] | [T][.][P] | [T][.][P] | [T][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Con Artist
+- Anchor
+
+-Placements:
+- Placed Con Artist at (1, 1)
+- Placed Anchor at (1, 0)
+- Moved Anchor to (2, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- [Creation] {0} creates 3 Drone 3000
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 1500
+- [Drain] Protection drain applies -2000
+- [Multiplier] {0} conditions met 2
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 6500
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 9000
+
+Current Money: 15000
+
+----------------------------
+
+Checkouts:
+- Strategist
+- Drone
+- Drone
+- Drone
+- Rookie
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[R][.][.] | [R][.][A] | [R][][A] | [R][][A] | [R][.][A]
+[.][.][R] | [.][C][R] | [][C][R] | [][C][R] | [.][C][.]
+[T][.][.] | [T][.][.] | [T][][.] | [T][][.] | [.][.][.]
+
+Final Board:
+[R][.][A]
+[.][C][.]
+[.][.][.]
+
+Current Weights:
+- Con Artist: 8
+- Enforcer: 6
+- Ghost: 5
+- Gunslinger: 7
+- Handler: 10
+- Rookie: 10
+- Strategist: 6
+- Anchor: 8
+- Detonator: 6
+- Loner: 8
+- Pawn: 10
+- Scavenger: 7
+
+All Arrivals:
+- Anchor
+- Anchor
+- Pawn
+- Detonator
+- Rookie
+- Strategist
+- Rookie
+- Strategist
+- Con Artist
+- Anchor
+
+All Extensions:
+

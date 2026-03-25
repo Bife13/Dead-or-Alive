@@ -1,0 +1,269 @@
+=== RUN SUMMARY ===
+Seed: -1040049105
+
+Final Money: 2500
+
+Week: 1
+
+Weekly Money: 2500
+
+Peak: 2500
+
+Peak Night: 2
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Rookie
+- Anchor
+
+-Placements:
+- Placed Anchor at (0, 0)
+- Placed Rookie at (1, 0)
+
+-Extends:
+
+Night 1
+-Events:
+- [BaseIncome] {0} base income 1500
+- [BaseIncome] {0} base income 1000
+- [Drain] Protection drain applies -2000
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 2500
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 500
+
+Current Money: 500
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [A][R][.] | [A][R][.] | [A][R][.] | [A][R][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Rookie
+- Rookie
+
+-Placements:
+- Placed Rookie at (0, 1)
+- Placed Rookie at (1, 1)
+
+-Extends:
+
+Night 2
+-Events:
+- [BaseIncome] {0} base income 1500
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 1000
+- [Drain] Protection drain applies -2000
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 4500
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 2500
+
+Current Money: 3000
+
+----------------------------
+
+Checkouts:
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [R][R][.] | [R][R][.] | [R][R][.] | [R][R][.]
+[A][R][.] | [A][R][.] | [A][R][.] | [A][R][.] | [.][R][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Enforcer
+- Enforcer
+
+-Placements:
+- Placed Enforcer at (2, 1)
+- Placed Enforcer at (1, 2)
+
+-Extends:
+
+Night 3
+-Events:
+- [Kill] {0} eliminates 1 crew 0
+- [KillBonus] {0} kill bonus 2000
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 1000
+- [Drain] Protection drain applies -2000
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: -2000
+Kill Bonus: 2000
+Multiplier: x1
+Total Income: 2000
+
+Current Money: 5000
+
+----------------------------
+
+Checkouts:
+- Rookie
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][E][.] | [.][E][.] | [.][E][.] | [.][E][.]
+[R][R][.] | [R][R][E] | [R][R][E] | [R][.][E] | [R][.][E]
+[.][R][.] | [.][R][.] | [.][R][.] | [.][R][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Anchor
+- Enforcer
+
+-Placements:
+- Placed Enforcer at (1, 1)
+- Placed Anchor at (0, 0)
+
+-Extends:
+
+Night 4
+-Events:
+- [Buff] {0} shields {1} 0
+- [BaseIncome] {0} base income 1500
+- [BaseIncome] {0} base income 1000
+- [Drain] Protection drain applies -2000
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 2500
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 500
+
+Current Money: 500
+
+----------------------------
+
+Checkouts:
+- Rookie
+- Enforcer
+- Enforcer
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][E][.] | [.][E][.] | [.][E][.] | [.][E][.] | [.][.][.]
+[R][.][E] | [R][E][E] | [R][E][E] | [R][E][E] | [.][E][.]
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Rookie
+- Anchor
+
+-Placements:
+- Placed Rookie at (0, 1)
+- Placed Anchor at (0, 2)
+
+-Extends:
+
+Night 5
+-Events:
+- [Buff] {0} shields {1} 0
+- [BaseIncome] {0} base income 1500
+- [BaseIncome] {0} base income 1000
+- [BaseIncome] {0} base income 1500
+- [Drain] Protection drain applies -2000
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 4000
+Bonus Income: -2000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 2000
+
+Current Money: 2500
+
+----------------------------
+
+Checkouts:
+- Anchor
+- Rookie
+- Enforcer
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+[.][E][.] | [R][E][.] | [R][E][.] | [R][E][.] | [.][.][.]
+[A][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [.][.][.]
+
+Final Board:
+[A][.][.]
+[.][.][.]
+[.][.][.]
+
+Current Weights:
+- Anchor: 8
+- Enforcer: 6
+- Rookie: 10
+
+All Arrivals:
+- Rookie
+- Anchor
+- Rookie
+- Rookie
+- Enforcer
+- Enforcer
+- Anchor
+- Enforcer
+- Rookie
+- Anchor
+
+All Extensions:
+

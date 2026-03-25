@@ -2,19 +2,22 @@ using UnityEngine;
 
 public class Room
 {
-	private Vector2Int position;
+	private Vector2Int _position;
 	private bool IsPremium;
 
 	private CrewInstance occupant;
 
 	public bool IsEmpty => occupant == null;
-	public Vector2Int Position => position;
+	public Vector2Int Position => _position;
 	public CrewInstance Occupant => occupant;
 	public RoomView view;
+	private int _index;
+	public int Index => _index;
 
-	public Room(Vector2Int pos)
+	public Room(Vector2Int position, int index)
 	{
-		position = pos;
+		_position = position;
+		_index = index;
 	}
 
 	public void SetOccupant(CrewInstance newOccupant)
@@ -28,5 +31,10 @@ public class Room
 	{
 		occupant = null;
 		view.HideSlate();
+	}
+
+	public bool IsOccupied()
+	{
+		return occupant != null;
 	}
 }

@@ -33,7 +33,7 @@ public class GridManager : MonoBehaviour
 		foreach (GameObject room in roomObjects)
 		{
 			Vector2Int position = new Vector2Int(x, y);
-			rooms[x, y] = new Room(position);
+			rooms[x, y] = new Room(position, index);
 
 			RoomView view = room.GetComponent<RoomView>();
 			view.Initialize(rooms[x, y]);
@@ -45,20 +45,6 @@ public class GridManager : MonoBehaviour
 			y++;
 			x = 0;
 		}
-
-		// for (int x = 0; x < width; x++)
-		// {
-		// 	for (int y = 0; y < height; y++)
-		// 	{
-		// 		Vector2Int position = new Vector2Int(x, y);
-		// 		rooms[x, y] = new Room(position);
-		//
-		// 		// RoomView view = roomObjects[x][y].GetComponent<RoomView>();
-		// 		// view.Initialize(rooms[x, y]);
-		// 		//
-		// 		// Rooms[x, y].view = view;
-		// 	}
-		// }
 	}
 
 	public void InitializeLocationNames()
@@ -81,9 +67,9 @@ public class GridManager : MonoBehaviour
 		Vector2Int[] directions =
 		{
 			Vector2Int.up,
+			Vector2Int.right,
 			Vector2Int.down,
-			Vector2Int.left,
-			Vector2Int.right
+			Vector2Int.left
 		};
 
 		foreach (var direction in directions)
@@ -105,9 +91,9 @@ public class GridManager : MonoBehaviour
 
 	public IEnumerable<Room> GetAllRooms()
 	{
-		for (int x = 0; x < Width; x++)
+		for (int y = 0; y < Height; y++)
 		{
-			for (int y = 0; y < Height; y++)
+			for (int x = 0; x < Width; x++)
 			{
 				yield return Rooms[x, y];
 			}

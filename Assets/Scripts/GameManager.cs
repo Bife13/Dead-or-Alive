@@ -88,6 +88,10 @@ public class GameManager : MonoBehaviour
 
 	public int GridWidth => gridManager.Width;
 
+	private int weeklyDeathCount = 0;
+
+	private List<CrewInstance> deadCrew;
+
 
 	private enum ResolutionStep
 	{
@@ -96,12 +100,14 @@ public class GameManager : MonoBehaviour
 		Income = 2,
 		Multiplier = 3,
 		Creation = 4,
+		ContractExpiry = 5,
+		Bounty = 6,
 	}
 
 	[FormerlySerializedAs("flashTimes")]
 	[SerializeField]
-	[Tooltip("0 = Buffs / 1 = Kills / 2 = Income / 3 = Multiplier / 4 = Creation")]
-	private List<float> resolutionDelays = new() { 0.35f, 0.5f, 0.25f, 0.4f, 0.4f };
+	[Tooltip("0 = Buffs / 1 = Kills / 2 = Income / 3 = Multiplier / 4 = Creation / 5 = Contract Expiry / 6 = Bounty")]
+	private List<float> resolutionDelays = new() { 0.35f, 0.5f, 0.25f, 0.4f, 0.4f, 0.4f };
 
 	private void Awake()
 	{
@@ -126,7 +132,7 @@ public class GameManager : MonoBehaviour
 
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant != null)
+			if (room.IsOccupied())
 				room.Occupant.isResident = true;
 		}
 
@@ -139,6 +145,7 @@ public class GameManager : MonoBehaviour
 	{
 		deathsThisNight = 0;
 		multiplier = 1;
+		deadCrew = new List<CrewInstance>();
 
 		NightReport report = new NightReport();
 		currentNightLog.afterPlacement = CaptureBoardSnapshot();
@@ -154,11 +161,17 @@ public class GameManager : MonoBehaviour
 
 		currentNightLog.afterCreations = CaptureBoardSnapshot();
 
+		// Detonator
+		yield return StartCoroutine(ResolveDetonator(report));
+
 		// Kills
 		yield return StartCoroutine(ResolveKillEffects(report));
 
-		CleanupDead();
+		yield return StartCoroutine(CleanupDead());
 		currentNightLog.afterKills = CaptureBoardSnapshot();
+
+		// Pawns
+		yield return StartCoroutine(ResolvePawnDeaths(report));
 
 		// Income
 		yield return StartCoroutine(ResolveIncome(report));
@@ -172,9 +185,9 @@ public class GameManager : MonoBehaviour
 		    currentWeekLog.solvedNight == 0)
 			currentWeekLog.solvedNight = currentNight;
 
-		CleanupTemporary();
+		yield return StartCoroutine(CleanupTemporary());
 
-		DecreaseAndFinishContract(report);
+		yield return StartCoroutine(DecreaseAndFinishContract(report));
 
 		currentNightLog.endOfNight = CaptureBoardSnapshot();
 
@@ -243,10 +256,10 @@ public class GameManager : MonoBehaviour
 			crewBag.Add(crew);
 		}
 
-		ShufflecrewBag();
+		ShuffleCrewBag();
 	}
 
-	public void ShufflecrewBag()
+	public void ShuffleCrewBag()
 	{
 		System.Random rng = new System.Random(currentSeed);
 		Shuffle(crewBag, rng);
@@ -292,7 +305,7 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant != null)
+			if (room.IsOccupied())
 			{
 				room.Occupant.currentIncome =
 					room.Occupant.Definition.baseIncome;
@@ -300,43 +313,48 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-	public void CleanupDead()
+	private IEnumerator CleanupDead()
 	{
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant != null && !room.Occupant.isAlive)
-			{
-				room.ClearOccupant();
-			}
+			if (!room.IsOccupied() || room.Occupant.isAlive) continue;
+
+			yield return StartCoroutine(room.view.FadeOutSlate());
+			deadCrew.Add(room.Occupant);
+			room.ClearOccupant();
 		}
 	}
 
-	private void CleanupTemporary()
+	private IEnumerator CleanupTemporary()
 	{
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant != null && room.Occupant.isTemporary)
-			{
-				room.ClearOccupant();
-			}
+			if (!room.IsOccupied() || room.Occupant.isAlive) continue;
+
+			yield return StartCoroutine(room.view.FadeOutSlate(0.2f));
+			room.ClearOccupant();
 		}
 	}
 
-	private void DecreaseAndFinishContract(NightReport report)
+	private IEnumerator DecreaseAndFinishContract(NightReport report)
 	{
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant == null)
-				continue;
+			if (!room.IsOccupied()) continue;
 
 			room.Occupant.DecreaseStay();
 
-			if (room.Occupant.contractDurationRemaining <= 0)
-			{
-				report.checkouts.Add(room.Occupant.Definition.displayName);
+			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.ContractExpiry]);
 
-				room.ClearOccupant();
-			}
+			if (room.Occupant.contractDurationRemaining > 0) continue;
+
+			report.checkouts.Add(room.Occupant.Definition.displayName);
+
+			room.view.Flash(DoAPalette.Instance.wineBright, 0.5f);
+			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.ContractExpiry]);
+
+			yield return StartCoroutine(room.view.FadeOutSlate());
+			room.ClearOccupant();
 		}
 	}
 
@@ -344,32 +362,37 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant == null) continue;
-			var crew = room.Occupant;
-			if (crew.Definition.effectType != EffectType.BuffAdjacentFlat) continue;
+			if (!room.IsOccupied()) continue;
+			CrewInstance crew = room.Occupant;
 
-			var adjacentRooms = gridManager.GetAdjacentRooms(room);
-			foreach (var adjRoom in adjacentRooms)
+			switch (crew.Definition.crewType)
 			{
-				if (adjRoom.Occupant == null) continue;
+				case CrewType.Handler:
+					foreach (var adjRoom in gridManager.GetAdjacentRooms(room))
+					{
+						if (!adjRoom.IsOccupied()) continue;
 
-				adjRoom.Occupant.currentIncome += crew.Definition.effectValue;
+						adjRoom.Occupant.currentIncome += crew.Definition.effectValue;
 
-				report.typedEvents.Add(new NightReportEvent
-				{
-					type = ReportEventType.Buff,
-					label = "{0} buffs {1}",
-					sourceCrew = crew.Definition.crewType,
-					targetCrew = adjRoom.Occupant.Definition.crewType,
-					value = crew.Definition.effectValue,
-					sourcePosition = room.Position,
-					targetPosition = adjRoom.Position,
-				});
+						report.typedEvents.Add(new NightReportEvent
+						{
+							type = ReportEventType.Buff,
+							label = "{0} buffs {1}",
+							sourceCrew = CrewType.Handler,
+							targetCrew = adjRoom.Occupant.Definition.crewType,
+							value = crew.Definition.effectValue,
+							sourcePosition = room.Position,
+							targetPosition = adjRoom.Position,
+						});
 
-				// FLASH THE CELL
-				room.view.Flash(DoAPalette.Instance.verdigris);
-				adjRoom.view.Flash(DoAPalette.Instance.verdigris);
-				yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Buff]);
+						room.view.Flash(DoAPalette.Instance.verdigris);
+						adjRoom.view.Flash(DoAPalette.Instance.verdigris);
+						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Buff]);
+					}
+
+					break;
+
+				// FUTURE BUFF PHASE CREW ADDED HERE AS NEW CASES
 			}
 		}
 	}
@@ -378,164 +401,145 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant == null) continue;
-			var crew = room.Occupant;
-			if (crew.Definition.effectType != EffectType.CreateAdjacent) continue;
+			if (!room.IsOccupied()) continue;
+			CrewInstance crew = room.Occupant;
 
-			List<(Room room, CrewDefinition definition)> creations = new();
-			var adjacentRooms = gridManager.GetAdjacentRooms(room);
-
-			foreach (var adjRoom in adjacentRooms)
+			switch (crew.Definition.crewType)
 			{
-				if (adjRoom.Occupant == null &&
-				    !creations.Contains((adjRoom, crew.Definition.creationDefinition)))
-				{
-					creations.Add((adjRoom, crew.Definition.creationDefinition));
-					crew.currentIncome += crew.Definition.effectValue;
-				}
+				case CrewType.ConArtist:
+					List<(Room room, CrewDefinition definition)> creations = new();
+
+					foreach (var adjRoom in gridManager.GetAdjacentRooms(room))
+					{
+						if (adjRoom.IsOccupied()) continue;
+						if (creations.Any(c => c.room == adjRoom)) continue;
+
+						creations.Add((adjRoom, crew.Definition.creationDefinition));
+						crew.currentIncome += crew.Definition.effectValue;
+					}
+
+					if (creations.Count <= 0) continue;
+
+					report.creationBonus += creations.Count;
+					report.typedEvents.Add(new NightReportEvent
+					{
+						type = ReportEventType.Creation,
+						label = $"{{0}} creates {creations.Count} {crew.Definition.creationDefinition.displayName}",
+						value = creations.Count * crew.Definition.effectValue,
+						sourceCrew = CrewType.ConArtist,
+						sourcePosition = room.Position,
+					});
+
+					room.view.Flash(DoAPalette.Instance.verdigris);
+					yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Creation]);
+
+					foreach (var creation in creations)
+					{
+						SpawnCrewInRoom(creation.room, creation.definition);
+						room.view.Flash(DoAPalette.Instance.verdigris);
+						creation.room.view.Flash(DoAPalette.Instance.verdigris);
+					}
+
+					yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Creation]);
+					break;
+
+				// FUTURE CREATION PHASE CREW ADDED HERE AS NEW CASES
 			}
-
-			if (creations.Count <= 0) continue;
-
-			report.creationBonus += creations.Count;
-
-			report.typedEvents.Add(new NightReportEvent
-			{
-				type = ReportEventType.Creation,
-				label = $"{{0}} creates {creations.Count} {crew.Definition.creationDefinition.displayName}",
-				value = creations.Count * crew.Definition.effectValue,
-				sourceCrew = crew.Definition.crewType,
-				sourcePosition = room.Position,
-			});
-
-			room.view.Flash(DoAPalette.Instance.verdigris);
-
-			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Creation]);
-
-			foreach (var creation in creations)
-			{
-				SpawnCrewInRoom(creation.room, creation.definition);
-				room.view.Flash(DoAPalette.Instance.verdigris);
-				creation.room.view.Flash(DoAPalette.Instance.verdigris);
-			}
-
-			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Creation]);
 		}
 	}
 
 	private IEnumerator ResolveKillEffects(NightReport report)
 	{
-		int totalKillIncome = 0;
-
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant == null) continue;
-			var crew = room.Occupant;
-			if (crew.Definition.effectType != EffectType.KillAdjacent) continue;
+			if (!room.IsOccupied()) continue;
+			CrewInstance crew = room.Occupant;
 
-			var adjacentRooms = gridManager.GetAdjacentRooms(room);
-			int kills = 0;
-
-			foreach (var adjRoom in adjacentRooms)
+			switch (crew.Definition.crewType)
 			{
-				if (adjRoom.Occupant != null && adjRoom.Occupant.isAlive &&
-				    adjRoom.Occupant.Definition != crew.Definition)
-				{
-					adjRoom.Occupant.isAlive = false;
-					kills++;
-					deathsThisNight++;
+				case CrewType.Enforcer:
+					int kills = 0;
 
-					// FLASHED killed cell
-					adjRoom.view.Flash(DoAPalette.Instance.wine);
-				}
+					foreach (Room adjRoom in gridManager.GetAdjacentRooms(room))
+					{
+						if (!adjRoom.IsOccupied()) continue;
+						if (!adjRoom.Occupant.isAlive) continue;
+						if (adjRoom.Occupant.Definition == crew.Definition) continue;
+
+						adjRoom.Occupant.isAlive = false;
+
+						yield return StartCoroutine(TryAnchorSave(adjRoom.Occupant, report));
+						if (adjRoom.Occupant.isAlive) continue;
+
+						adjRoom.Occupant.eliminatedBySource = true;
+						kills++;
+						weeklyDeathCount++;
+						deathsThisNight++;
+
+						adjRoom.view.Flash(DoAPalette.Instance.wine);
+					}
+
+					if (kills <= 0) continue;
+
+					int killIncome = kills * crew.Definition.effectValue;
+					report.killBonus += killIncome;
+
+					report.typedEvents.Add(new NightReportEvent
+					{
+						type = ReportEventType.Kill,
+						label = $"{{0}} eliminates {kills} crew",
+						value = 0,
+						sourceCrew = CrewType.Enforcer,
+						sourcePosition = room.Position,
+					});
+					report.typedEvents.Add(new NightReportEvent
+					{
+						type = ReportEventType.KillBonus,
+						label = "{0} kill bonus",
+						value = killIncome,
+						sourceCrew = crew.Definition.crewType,
+						sourcePosition = room.Position,
+					});
+
+					yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Kill]);
+					break;
+
+				// FUTURE KILL PHASE CREW ADDED HERE AS NEW CASES
 			}
-
-			if (kills <= 0) continue;
-
-			int tempKillIncome = kills * crew.Definition.effectValue;
-			totalKillIncome += tempKillIncome;
-			//crew.currentIncome += totalKillIncome;
-
-
-			report.typedEvents.Add(new NightReportEvent
-			{
-				type = ReportEventType.Kill,
-				label = $"{{0}} eliminates {kills} crew",
-				value = 0,
-				sourceCrew = crew.Definition.crewType,
-				sourcePosition = room.Position,
-			});
-			report.typedEvents.Add(new NightReportEvent
-			{
-				type = ReportEventType.KillBonus,
-				label = "{0} kill bonus",
-				value = tempKillIncome,
-				sourceCrew = crew.Definition.crewType,
-				sourcePosition = room.Position,
-			});
-
-			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Kill]);
 		}
-
-		report.killBonus = totalKillIncome;
 	}
 
-	private IEnumerator ApplyMultipliers(NightReport report)
+	private IEnumerator ResolvePawnDeaths(NightReport report)
 	{
-		int aliveCount = 0;
-		foreach (Room room in gridManager.GetAllRooms())
-		{
-			if (room.Occupant != null && !room.Occupant.isTemporary)
-				aliveCount++;
-		}
+		if (deadCrew.Count <= 0) yield break;
 
-		foreach (Room room in gridManager.GetAllRooms())
-		{
-			if (room.Occupant == null) continue;
-			var crew = room.Occupant;
+		List<CrewInstance> deadPawns = deadCrew
+			.Where(c => c.Definition.crewType == CrewType.Pawn && c.eliminatedBySource)
+			.ToList();
 
-			if (crew.Definition.effectType is EffectType.ConditionalMultNoDeaths or EffectType.FlatMultAlways)
+		if (deadPawns.Count <= 0) yield break;
+
+		foreach (CrewInstance pawn in deadPawns)
+		{
+			int payout = pawn.Definition.effectValue;
+
+			foreach (Room room in gridManager.GetAllRooms())
 			{
-				switch (crew.Definition.effectType)
+				if (!room.IsOccupied()) continue;
+
+				room.Occupant.currentIncome += payout;
+
+				report.typedEvents.Add(new NightReportEvent
 				{
-					case EffectType.ConditionalMultNoDeaths:
-						if (deathsThisNight == 0 && aliveCount >= crew.Definition.effectRequirement)
-						{
-							multiplier += crew.Definition.effectValue;
+					type = ReportEventType.BuffedIncome,
+					label = "{0} death payout",
+					sourceCrew = CrewType.Pawn,
+					targetCrew = room.Occupant.Definition.crewType,
+					value = payout,
+				});
 
-							report.typedEvents.Add(new NightReportEvent
-							{
-								type = ReportEventType.Multiplier,
-								label = "{0} conditions met",
-								value = multiplier,
-								sourceCrew = crew.Definition.crewType,
-								sourcePosition = room.Position,
-							});
-
-							room.view.Flash(DoAPalette.Instance.verdigris);
-							yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Multiplier]);
-						}
-
-						break;
-
-					case EffectType.FlatMultAlways:
-						multiplier += crew.Definition.effectValue;
-
-						report.typedEvents.Add(new NightReportEvent
-						{
-							type = ReportEventType.Multiplier,
-							label = "{0} conditions met",
-							value = multiplier,
-							sourceCrew = crew.Definition.crewType,
-							sourcePosition = room.Position,
-						});
-
-						room.view.Flash(DoAPalette.Instance.verdigris);
-						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Multiplier]);
-						break;
-				}
-
-				report.multiplier = multiplier;
+				room.view.Flash(DoAPalette.Instance.ochre);
+				yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
 			}
 		}
 	}
@@ -547,19 +551,19 @@ public class GameManager : MonoBehaviour
 
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant == null) continue;
-			int finalIncome = room.Occupant.currentIncome;
-			baseIncome += room.Occupant.currentIncome;
+			if (!room.IsOccupied()) continue;
+			CrewInstance crew = room.Occupant;
+			int finalIncome = crew.currentIncome;
+			baseIncome += crew.currentIncome;
 
-			int trueBase = room.Occupant.Definition.baseIncome;
-			if (trueBase > 0)
+			if (crew.Definition.baseIncome > 0)
 			{
 				report.typedEvents.Add(new NightReportEvent
 				{
 					type = ReportEventType.BaseIncome,
 					label = "{0} base income",
-					value = trueBase,
-					sourceCrew = room.Occupant.Definition.crewType,
+					value = crew.Definition.baseIncome,
+					sourceCrew = crew.Definition.crewType,
 					sourcePosition = room.Position,
 				});
 
@@ -567,24 +571,23 @@ public class GameManager : MonoBehaviour
 				yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
 			}
 
-			switch (room.Occupant.Definition.effectType)
+			switch (crew.Definition.crewType)
 			{
-				case EffectType.EmptyAdjacent:
-					int rooms = CountEmptyAdjacent(room);
-					int tempIncome = rooms * room.Occupant.Definition.effectValue;
-					if (tempIncome > room.Occupant.Definition.effectRequirement)
-						tempIncome = room.Occupant.Definition.effectRequirement;
+				case CrewType.Ghost:
+					int emptyAdj = CountEmptyAdjacent(room);
+					int ghostBonus = Mathf.Min(
+						emptyAdj * crew.Definition.effectValue,
+						crew.Definition.effectRequirement);
 
-					finalIncome += tempIncome;
-
-					if (rooms > 0)
+					if (emptyAdj > 0)
 					{
+						finalIncome += ghostBonus;
 						report.typedEvents.Add(new NightReportEvent
 						{
 							type = ReportEventType.BuffedIncome,
-							label = $"{{0}} {rooms} empty adj zones",
-							value = tempIncome,
-							sourceCrew = room.Occupant.Definition.crewType,
+							label = $"{{0}} {emptyAdj} empty adj zones",
+							value = ghostBonus,
+							sourceCrew = CrewType.Ghost,
 							sourcePosition = room.Position,
 						});
 
@@ -593,17 +596,41 @@ public class GameManager : MonoBehaviour
 					}
 
 					break;
-				case EffectType.ExactAdjacency:
-					if (CountFilledAdjacent(room) == room.Occupant.Definition.effectRequirement)
+
+				case CrewType.Gunslinger:
+					if (CountFilledAdjacent(room) == crew.Definition.effectRequirement)
 					{
-						finalIncome += room.Occupant.Definition.effectValue;
+						finalIncome += crew.Definition.effectValue;
 
 						report.typedEvents.Add(new NightReportEvent
 						{
 							type = ReportEventType.BuffedIncome,
 							label = "{0} adj bonus",
-							value = room.Occupant.Definition.effectValue,
-							sourceCrew = room.Occupant.Definition.crewType,
+							value = crew.Definition.effectValue,
+							sourceCrew = CrewType.Gunslinger,
+							sourcePosition = room.Position,
+						});
+
+						room.view.Flash(DoAPalette.Instance.verdigris);
+						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
+					}
+
+
+					break;
+				case CrewType.Loner:
+					int emptyZones = CountEmpty();
+					if (emptyZones > 0)
+					{
+						int cappedZones = Mathf.Min(emptyZones, crew.Definition.effectRequirement);
+						int lonerBonus = crew.Definition.effectValue * cappedZones;
+						finalIncome += lonerBonus;
+
+						report.typedEvents.Add(new NightReportEvent
+						{
+							type = ReportEventType.BuffedIncome,
+							label = $"{{0}} {cappedZones} empty zones",
+							value = lonerBonus,
+							sourceCrew = CrewType.Loner,
 							sourcePosition = room.Position,
 						});
 
@@ -612,11 +639,38 @@ public class GameManager : MonoBehaviour
 					}
 
 					break;
+
+				case CrewType.Scavenger:
+					int scavBonus = crew.Definition.effectValue * weeklyDeathCount;
+
+					if (scavBonus > 0)
+					{
+						finalIncome += scavBonus;
+
+						report.typedEvents.Add(new NightReportEvent
+						{
+							type = ReportEventType.BuffedIncome,
+							label = "{{0}} scavenged (+{weeklyDeathCount} deaths)",
+							value = scavBonus,
+							sourceCrew = CrewType.Scavenger,
+							sourcePosition = room.Position,
+						});
+
+						room.view.Flash(DoAPalette.Instance.verdigris);
+						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
+					}
+
+					break;
+
+				// Future income-phase crew added here as new cases
+				// Rookie and other flat-income crew need no case —
+				// their baseIncome is already handled above.
 			}
 
 			income += finalIncome;
 		}
 
+		// BOUNTY DRAIN
 		int drain = bountyManager.ApplyIncomeDrain();
 		if (drain > 0)
 		{
@@ -627,31 +681,81 @@ public class GameManager : MonoBehaviour
 				label = "Protection drain applies",
 				value = -drain
 			});
-			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Kill]);
+			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Bounty]);
 		}
 
 		report.baseIncome = baseIncome;
 		report.bonusIncome = income - baseIncome - report.killBonus;
+
 		yield return StartCoroutine(ApplyMultipliers(report));
+
 		income = Mathf.RoundToInt(income * multiplier);
+
 		report.finalIncome = income;
 
-		if (income > currentWeekLog.peak)
+		if (income <= currentWeekLog.peak) yield break;
+
+		currentWeekLog.peak = income;
+		currentWeekLog.peakNight = currentNight;
+	}
+
+	private IEnumerator ApplyMultipliers(NightReport report)
+	{
+		int aliveCount = 0;
+		foreach (Room room in gridManager.GetAllRooms())
+			if (room.IsOccupied() && !room.Occupant.isTemporary)
+				aliveCount++;
+
+		foreach (Room room in gridManager.GetAllRooms())
 		{
-			currentWeekLog.peak = income;
-			currentWeekLog.peakNight = currentNight;
+			if (!room.IsOccupied()) continue;
+			CrewInstance crew = room.Occupant;
+
+
+			switch (crew.Definition.crewType)
+			{
+				case CrewType.Strategist:
+					if (deathsThisNight == 0
+					    && aliveCount >= crew.Definition.effectRequirement)
+					{
+						multiplier += crew.Definition.effectValue;
+
+						report.typedEvents.Add(new NightReportEvent
+						{
+							type = ReportEventType.Multiplier,
+							label = "{0} conditions met",
+							value = multiplier,
+							sourceCrew = CrewType.Strategist,
+							sourcePosition = room.Position,
+						});
+
+						room.view.Flash(DoAPalette.Instance.verdigris);
+						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Multiplier]);
+					}
+
+					break;
+
+				// Future multiplier-phase crew added here as new cases
+			}
+
+			report.multiplier = multiplier;
 		}
 	}
 
 	private IEnumerator ResolveKillBounty(NightReport report)
 	{
-		var allRooms = gridManager.GetAllRooms().Where(r => r.Occupant != null && !r.Occupant.isTemporary).ToList();
+		List<Room> allRooms = gridManager.GetAllRooms().Where(r => r.Occupant != null && !r.Occupant.isTemporary)
+			.ToList();
 		int threatIndex = bountyManager.ResolveCrewThreat(allRooms.Count);
 
 		if (threatIndex >= 0)
 		{
 			Room targetRoom = allRooms[threatIndex];
 			CrewInstance target = targetRoom.Occupant;
+			target.isAlive = false;
+
+			yield return StartCoroutine(TryAnchorSave(target, report));
+			if (target.isAlive) yield break;
 
 			report.typedEvents.Add(new NightReportEvent
 			{
@@ -665,12 +769,125 @@ public class GameManager : MonoBehaviour
 			targetRoom.view.Flash(DoAPalette.Instance.wine, 0.8f);
 			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Kill]);
 
-			target.isAlive = false;
+			weeklyDeathCount++;
+			target.eliminatedBySource = true;
 			CleanupDead();
 		}
 	}
 
-	public int CountEmptyAdjacent(Room room)
+	private IEnumerator TryAnchorSave(CrewInstance targetCrew, NightReport report)
+	{
+		List<Room> adjacentRooms = gridManager.GetAdjacentRooms(targetCrew.currentRoom);
+
+		foreach (Room adjRoom in adjacentRooms)
+		{
+			if (!adjRoom.IsOccupied()) continue;
+			var adjCrew = adjRoom.Occupant;
+
+			if (adjCrew.Definition.crewType != CrewType.Anchor) continue;
+			if (adjCrew.anchorSaveUsed) continue;
+
+			adjCrew.SetAnchorUse(true);
+			targetCrew.contractDurationRemaining = 2;
+			targetCrew.isAlive = true;
+
+			report.typedEvents.Add(new NightReportEvent
+			{
+				type = ReportEventType.Buff,
+				label = "{0} shields {1}",
+				value = 0,
+				sourceCrew = CrewType.Anchor,
+				targetCrew = targetCrew.Definition.crewType,
+			});
+
+			targetCrew.currentRoom.view.Flash(DoAPalette.Instance.verdigris);
+			adjCrew.currentRoom.view.Flash(DoAPalette.Instance.verdigris);
+			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Buff]);
+			yield break;
+		}
+	}
+
+	public void TriggerDetonator(Room room)
+	{
+		if (currentPhase != GamePhase.PlanningPhase) return;
+		if (!room.IsOccupied()) return;
+
+		CrewInstance crew = room.Occupant;
+		if (crew.Definition.crewType != CrewType.Detonator) return;
+		if (crew.detonatorUsed) return;
+
+		crew.detonatorUsed = true;
+		room.view.GetSlate().RefreshDetonatorButton(crew);
+	}
+
+	private IEnumerator ResolveDetonator(NightReport report)
+	{
+		foreach (Room room in gridManager.GetAllRooms())
+		{
+			if (!room.IsOccupied()) continue;
+			CrewInstance crew = room.Occupant;
+
+			if (crew.Definition.crewType != CrewType.Detonator) continue;
+			if (!crew.detonatorUsed) continue;
+
+			int burst = crew.Definition.effectValue;
+
+			foreach (var adjRoom in gridManager.GetAdjacentRooms(room))
+			{
+				if (!adjRoom.IsOccupied()) continue;
+
+				adjRoom.Occupant.currentIncome += burst;
+
+				report.typedEvents.Add(new NightReportEvent
+				{
+					type = ReportEventType.BuffedIncome,
+					label = "{0} detonates — {1} gets burst",
+					sourceCrew = CrewType.Detonator,
+					targetCrew = adjRoom.Occupant.Definition.crewType,
+					value = burst,
+					sourcePosition = room.Position,
+					targetPosition = adjRoom.Position,
+				});
+
+				adjRoom.view.Flash(DoAPalette.Instance.ochre);
+				yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Buff]);
+			}
+
+			// Flash the Detonator cell then remove — not a kill
+			room.view.Flash(DoAPalette.Instance.wineBright, 0.5f);
+			yield return new WaitForSeconds(0.5f);
+			yield return StartCoroutine(room.view.FadeOutSlate(0.3f));
+			room.ClearOccupant();
+		}
+	}
+
+	private int CountEmptyAdjacent(Room room)
+	{
+		int total = 0;
+
+		foreach (Room adjRoom in gridManager.GetAdjacentRooms(room))
+		{
+			if (!adjRoom.IsOccupied() && !IsZoneLocked(room.Index))
+				total++;
+		}
+
+		return total;
+	}
+
+	private int CountEmpty()
+	{
+		int total = 0;
+
+		foreach (Room room in gridManager.GetAllRooms())
+		{
+			if (!room.IsOccupied() && !IsZoneLocked(room.Index))
+				total++;
+		}
+
+		return total;
+	}
+
+	private int CountFilledAdjacent(Room room)
 	{
 		int total = 0;
 
@@ -678,34 +895,21 @@ public class GameManager : MonoBehaviour
 
 		foreach (Room adjRoom in adjacentRooms)
 		{
-			if (adjRoom.Occupant == null)
+			if (adjRoom.IsOccupied())
 				total++;
 		}
 
 		return total;
 	}
 
-	public int CountFilledAdjacent(Room room)
-	{
-		int total = 0;
-
-		List<Room> adjacentRooms = gridManager.GetAdjacentRooms(room);
-
-		foreach (Room adjRoom in adjacentRooms)
-		{
-			if (adjRoom.Occupant != null)
-				total++;
-		}
-
-		return total;
-	}
-
-	public void EndWeek()
+	private void EndWeek()
 	{
 		runActive = false;
 
 		currentWeekLog.finalMoney = money;
 		currentRunLog.weeks.Add(currentWeekLog);
+
+		weeklyDeathCount = 0;
 
 		if (money >= weeklyTarget)
 		{
@@ -755,7 +959,7 @@ public class GameManager : MonoBehaviour
 			EndRun();
 	}
 
-	public void EndRun()
+	private void EndRun()
 	{
 		currentRunLog.finalMoney = money;
 		ExportRunToFile();
@@ -900,7 +1104,7 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (room.Occupant != null)
+			if (room.IsOccupied())
 			{
 				room.ClearOccupant();
 			}
@@ -928,7 +1132,7 @@ public class GameManager : MonoBehaviour
 			for (int y = 0; y < h; y++)
 			{
 				var room = gridManager.Rooms[x, y];
-				snapshot[x, y] = room.Occupant != null
+				snapshot[x, y] = room.IsOccupied()
 					? room.Occupant.Definition.crewID
 					: ".";
 			}
