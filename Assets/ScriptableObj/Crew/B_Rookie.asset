@@ -15,19 +15,18 @@ MonoBehaviour:
   crewID: R
   crewType: 0
   displayName: Rookie
-  weight: 10
+  weight: 5
   baseIncome: 1000
-  contractDuration: 3
-  effectType: 0
+  contractDuration: 2
   effectValue: 0
   effectRequirement: 0
   creationDefinition: {fileID: 0}
   isTemporary: 0
-  canCopy: 1
+  canCopy: 0
   crewPrefab: {fileID: 2063488386293174163, guid: 616ee2cb12fa6214b8db7ab837283b80, type: 3}
   contractType: Standard contract
   codename: Basic Operative
-  incomeText: "+\xA51000 base"
+  incomeText: "+\xA51K base"
   descriptionText: Shows up. Gets paid. Asks no questions.
   statLabel1: Base
   statValue1: "\xA51,000"

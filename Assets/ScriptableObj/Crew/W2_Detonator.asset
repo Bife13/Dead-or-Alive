@@ -15,10 +15,9 @@ MonoBehaviour:
   crewID: D
   crewType: 9
   displayName: Detonator
-  weight: 6
+  weight: 5
   baseIncome: 2000
   contractDuration: 2
-  effectType: 12
   effectValue: 4000
   effectRequirement: 0
   creationDefinition: {fileID: 0}
@@ -27,7 +26,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 0}
   contractType: DANGER CONTRACT
   codename: Explosive
-  incomeText: "+\xA52000 base. Remove for adj burst"
+  incomeText: "+\xA52K base. Remove for adj burst"
   descriptionText: Steady earner. Can be sacrificed to pay out adjacent crew. Timing
     is everything.
   statLabel1: BASE

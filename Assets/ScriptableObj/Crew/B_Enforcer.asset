@@ -15,10 +15,9 @@ MonoBehaviour:
   crewID: E
   crewType: 4
   displayName: Enforcer
-  weight: 6
+  weight: 5
   baseIncome: 0
   contractDuration: 2
-  effectType: 3
   effectValue: 2000
   effectRequirement: 0
   creationDefinition: {fileID: 0}
@@ -27,7 +26,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 8354186858573336133, guid: 0ba5033e0e1598b4c92ba44a3065a908, type: 3}
   contractType: High-Risk Contract
   codename: Combat
-  incomeText: "+\xA52000 / kill"
+  incomeText: "+\xA52K / kill"
   descriptionText: Eliminates adjacent crew. Earns per kill. Incompatible with Strategist.
   statLabel1: BAse
   statValue1: "\xA50"

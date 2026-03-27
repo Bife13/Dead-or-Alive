@@ -1,0 +1,269 @@
+=== RUN SUMMARY ===
+Seed: 1753469000
+
+Final Money: 32000
+
+Week: 1
+
+Weekly Money: 32000
+
+Peak: 11000
+
+Peak Night: 5
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Ghost
+- Ghost
+
+-Placements:
+- Placed Ghost at (0, 1)
+- Placed Ghost at (1, 2)
+
+-Extends:
+
+Night 1
+-Events:
+Ghost 3 empty adj zones
+Ghost 3 empty adj zones
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 12000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 10000
+
+Current Money: 10000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][G][.] | [.][G][.] | [.][G][.] | [.][G][.]
+[.][.][.] | [G][.][.] | [G][.][.] | [G][.][.] | [G][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Anchor
+- Con Artist
+
+-Placements:
+- Placed Con Artist at (1, 1)
+
+-Extends:
+
+Night 2
+-Events:
+Con Artist creates 2 Drone
+Ghost 2 empty adj zones
+Ghost 2 empty adj zones
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: 8000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 8000
+
+Current Money: 18000
+
+----------------------------
+
+Checkouts:
+- Ghost
+- Ghost
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][G][.] | [.][G][.] | [.][G][.] | [.][G][.] | [.][.][.]
+[G][.][.] | [G][C][.] | [G][C][] | [G][C][] | [.][C][.]
+[.][.][.] | [.][.][.] | [.][][.] | [.][][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Scavenger
+- Gunslinger
+
+-Placements:
+
+-Extends:
+
+Night 3
+-Events:
+Con Artist creates 4 Drone
+Protection drain applies
+
+Engine Type: Con Artist
+
+----------------------------
+
+Base Income: 4000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 2000
+
+Current Money: 20000
+
+----------------------------
+
+Checkouts:
+- Con Artist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][][.] | [.][][.] | [.][.][.]
+[.][C][.] | [.][C][.] | [][C][] | [][C][] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][][.] | [.][][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Rookie
+- Gunslinger
+
+-Placements:
+- Placed Rookie at (0, 0)
+- Placed Gunslinger at (0, 1)
+
+-Extends:
+
+Night 4
+-Events:
+Rookie base income
+Gunslinger base income
+Protection drain applies
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1000
+
+Current Money: 21000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [U][.][.] | [U][.][.] | [U][.][.] | [U][.][.]
+[.][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [R][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Enforcer
+- Con Artist
+
+-Placements:
+- Placed Con Artist at (1, 1)
+- Placed Enforcer at (2, 0)
+
+-Extends:
+
+Night 5
+-Events:
+Con Artist creates 3 Drone
+Enforcer eliminates 2 crew
+Enforcer kill bonus
+Rookie base income
+Gunslinger base income
+Gunslinger adj bonus
+Protection drain applies
+
+Engine Type: Con Artist + Enforcer
+
+----------------------------
+
+Base Income: 6000
+Bonus Income: 3000
+Kill Bonus: 4000
+Multiplier: x1
+Total Income: 11000
+
+Current Money: 32000
+
+----------------------------
+
+Checkouts:
+- Rookie
+- Gunslinger
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][][.] | [.][][.] | [.][.][.]
+[U][.][.] | [U][C][.] | [U][C][] | [U][C][.] | [.][C][.]
+[R][.][.] | [R][.][E] | [R][][E] | [R][.][E] | [.][.][E]
+
+Final Board:
+[.][.][.]
+[.][C][.]
+[.][.][E]
+
+Current Weights:
+- Con Artist: 5
+- Enforcer: 5
+- Ghost: 5
+- Gunslinger: 5
+- Handler: 5
+- Rookie: 5
+- Strategist: 5
+- Anchor: 5
+- Detonator: 5
+- Loner: 5
+- Pawn: 5
+- Scavenger: 5
+
+All Arrivals:
+- Ghost
+- Ghost
+- Anchor
+- Con Artist
+- Scavenger
+- Gunslinger
+- Rookie
+- Gunslinger
+- Enforcer
+- Con Artist
+
+All Extensions:
+

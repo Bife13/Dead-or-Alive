@@ -18,7 +18,6 @@ MonoBehaviour:
   weight: 5
   baseIncome: 0
   contractDuration: 2
-  effectType: 7
   effectValue: 2000
   effectRequirement: 6000
   creationDefinition: {fileID: 0}
@@ -27,7 +26,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 2063488386293174163, guid: 56ef38d6db1c6b446a46d897faee105e, type: 3}
   contractType: Specialist Contract
   codename: Infiltrator
-  incomeText: "+\xA52000 / empty adj"
+  incomeText: "+\xA52K / empty adj. +\xA56K Max "
   descriptionText: Earns from silence. Needs room to breathe.
   statLabel1: BASE
   statValue1: "\xA50"

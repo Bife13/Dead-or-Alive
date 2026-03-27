@@ -15,7 +15,7 @@ MonoBehaviour:
   crewID: L
   crewType: 12
   displayName: Loner
-  weight: 8
+  weight: 5
   baseIncome: 1500
   contractDuration: 2
   effectValue: 1500
@@ -24,9 +24,9 @@ MonoBehaviour:
   isTemporary: 0
   canCopy: 0
   crewPrefab: {fileID: 0}
-  contractType: 
-  codename: 
-  incomeText: "+\xA51500 base. +\xA51500 / empty zone"
+  contractType: Specialist Contract
+  codename: Infiltrator
+  incomeText: "+\xA51.5K base. +\xA51.5K / empty zone"
   descriptionText: Earns from emptiness. Every crew placed elsewhere is money left
     on the table.
   statLabel1: BASE

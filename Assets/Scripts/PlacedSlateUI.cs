@@ -44,10 +44,12 @@ public class PlacedSlateUI : MonoBehaviour
 		UpdateContract();
 
 		bool isDetonator = instance.Definition.crewType == CrewType.Detonator;
-		abilityButton.SetActive(isDetonator);
+		bool hasAbility = isDetonator;
+		abilityButton.SetActive(hasAbility);
 
-		if (isDetonator)
-			RefreshDetonatorButton(instance);
+		abilityTrigger.onClick.RemoveAllListeners();
+		abilityTrigger.onClick.AddListener(OnAbilityPressed);
+		RefreshDetonatorButton(instance);
 	}
 
 	public void RefreshDetonatorButton(CrewInstance instance)
@@ -62,9 +64,16 @@ public class PlacedSlateUI : MonoBehaviour
 		abilityLabel.text = instance.detonatorUsed ? "SPENT" : "DETONATE";
 	}
 
-	public void OnDetonatorPressed()
+	private void OnAbilityPressed()
 	{
-		GameManager.Instance.TriggerDetonator(_instance.currentRoom); // pass room reference
+		switch (_instance.Definition.crewType)
+		{
+			case CrewType.Detonator:
+				GameManager.Instance.TriggerDetonator(_instance.currentRoom); // pass room reference
+				break;
+		}
+
+		RefreshDetonatorButton(_instance);
 	}
 
 	public void UpdateContract()

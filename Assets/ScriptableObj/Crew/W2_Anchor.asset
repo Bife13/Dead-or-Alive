@@ -15,10 +15,9 @@ MonoBehaviour:
   crewID: A
   crewType: 10
   displayName: Anchor
-  weight: 8
+  weight: 5
   baseIncome: 1500
   contractDuration: 2
-  effectType: 10
   effectValue: 1
   effectRequirement: 0
   creationDefinition: {fileID: 0}
@@ -27,7 +26,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 0}
   contractType: SUPPORT CONTRACT
   codename: Savior
-  incomeText: "+\xA51500 base. Save 1 adj crew / week"
+  incomeText: "+\xA51.5K base. Save 1 adj crew / week"
   descriptionText: Once a week, keeps an adjacent crew member alive. Cannot save
     itself.
   statLabel1: BASE

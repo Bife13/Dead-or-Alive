@@ -1,0 +1,277 @@
+=== RUN SUMMARY ===
+Seed: -49238719
+
+Final Money: 24000
+
+Week: 1
+
+Weekly Money: 24000
+
+Peak: 11000
+
+Peak Night: 2
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Detonator
+- Strategist
+
+-Placements:
+- Placed Strategist at (0, 0)
+- Placed Detonator at (0, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Detonator base income
+Protection drain applies
+
+Engine Type: Detonator
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+Current Money: 0
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [D][.][.] | [D][.][.] | [D][.][.] | [D][.][.]
+[.][.][.] | [T][.][.] | [T][.][.] | [T][.][.] | [T][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Handler
+- Rookie
+
+-Placements:
+- Placed Handler at (0, 2)
+- Placed Rookie at (1, 1)
+
+-Extends:
+
+Night 2
+-Events:
+Handler buffs Detonator
+Detonator buffs Handler 
+Detonator buffs Rookie 
+Detonator buffs Strategist 
+Rookie base income
+Protection drain applies
+
+Engine Type: Handler + Strategist
+
+----------------------------
+
+Base Income: 13000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 11000
+
+Current Money: 11000
+
+----------------------------
+
+Checkouts:
+- Strategist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [H][.][.] | [H][.][.] | [H][.][.] | [H][.][.]
+[D][.][.] | [D][R][.] | [D][R][.] | [.][R][.] | [.][R][.]
+[T][.][.] | [T][.][.] | [T][.][.] | [T][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Handler
+- Anchor
+
+-Placements:
+- Placed Handler at (0, 0)
+- Placed Anchor at (0, 1)
+
+-Extends:
+
+Night 3
+-Events:
+Handler buffs Handler
+Handler buffs Rookie
+Handler buffs Anchor
+Handler buffs Handler
+Anchor base income
+Rookie base income
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 6500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 4500
+
+Current Money: 15500
+
+----------------------------
+
+Checkouts:
+- Rookie
+- Handler
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[H][.][.] | [H][.][.] | [H][.][.] | [H][.][.] | [.][.][.]
+[.][R][.] | [H][R][.] | [H][R][.] | [H][R][.] | [H][.][.]
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Strategist
+- Detonator
+
+-Placements:
+- Placed Detonator at (1, 1)
+- Placed Strategist at (1, 0)
+
+-Extends:
+
+Night 4
+-Events:
+Handler buffs Detonator
+Handler buffs Anchor
+Detonator buffs Strategist 
+Detonator buffs Handler 
+Anchor base income
+Protection drain applies
+
+Engine Type: Handler + Strategist
+
+----------------------------
+
+Base Income: 10500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 8500
+
+Current Money: 24000
+
+----------------------------
+
+Checkouts:
+- Anchor
+- Handler
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[H][.][.] | [H][D][.] | [H][D][.] | [H][.][.] | [.][.][.]
+[A][.][.] | [A][T][.] | [A][T][.] | [A][T][.] | [.][T][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Enforcer
+- Gunslinger
+
+-Placements:
+- Placed Enforcer at (0, 2)
+- Placed Gunslinger at (2, 0)
+
+-Extends:
+
+Night 5
+-Events:
+Gunslinger base income
+Protection drain applies
+
+Engine Type: Gunslinger + Strategist
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+Current Money: 24000
+
+----------------------------
+
+Checkouts:
+- Strategist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [E][.][.] | [E][.][.] | [E][.][.] | [E][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][T][.] | [.][T][U] | [.][T][U] | [.][T][U] | [.][.][U]
+
+Final Board:
+[E][.][.]
+[.][.][.]
+[.][.][U]
+
+Current Weights:
+- Con Artist: 5
+- Enforcer: 5
+- Ghost: 5
+- Gunslinger: 5
+- Handler: 5
+- Rookie: 5
+- Strategist: 5
+- Anchor: 5
+- Detonator: 5
+- Loner: 5
+- Pawn: 5
+- Scavenger: 5
+
+All Arrivals:
+- Detonator
+- Strategist
+- Handler
+- Rookie
+- Handler
+- Anchor
+- Strategist
+- Detonator
+- Enforcer
+- Gunslinger
+
+All Extensions:
+

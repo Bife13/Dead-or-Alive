@@ -30,7 +30,7 @@ MonoBehaviour:
   threatLevel: 3
   modifiers:
   - type: 2
-    value: 30
+    value: 100
     displayName: Sends a Message
     description: One crew member targeted each night. You won't know who until morning.
     lockedZones: 

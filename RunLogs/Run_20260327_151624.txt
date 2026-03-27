@@ -1,0 +1,278 @@
+=== RUN SUMMARY ===
+Seed: 2126803480
+
+Final Money: 44000
+
+Week: 1
+
+Weekly Money: 44000
+
+Peak: 18000
+
+Peak Night: 3
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Detonator
+- Handler
+
+-Placements:
+- Placed Handler at (0, 1)
+- Placed Detonator at (1, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Handler buffs Detonator
+Detonator base income
+Protection drain applies
+
+Engine Type: Detonator
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1000
+
+Current Money: 1000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [H][D][.] | [H][D][.] | [H][D][.] | [H][D][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Detonator
+- Gunslinger
+
+-Placements:
+- Placed Gunslinger at (1, 2)
+- Placed Detonator at (0, 2)
+
+-Extends:
+
+Night 2
+-Events:
+Handler buffs Detonator
+Handler buffs Detonator
+Detonator buffs Gunslinger 
+Detonator buffs Handler 
+Detonator base income
+Gunslinger base income
+Protection drain applies
+
+Engine Type: Detonator
+
+----------------------------
+
+Base Income: 13000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 11000
+
+Current Money: 12000
+
+----------------------------
+
+Checkouts:
+- Handler
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [D][U][.] | [D][U][.] | [D][U][.] | [D][U][.]
+[H][D][.] | [H][D][.] | [H][D][.] | [H][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Ghost
+- Detonator
+
+-Placements:
+- Placed Ghost at (0, 1)
+- Placed Detonator at (0, 1)
+
+-Extends:
+
+Night 3
+-Events:
+Detonator buffs Gunslinger 
+Detonator buffs Ghost 
+Detonator buffs Gunslinger 
+Ghost 3 empty adj zones
+Gunslinger base income
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 14000
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 18000
+
+Current Money: 30000
+
+----------------------------
+
+Checkouts:
+- Gunslinger
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[D][U][.] | [D][U][D] | [D][U][D] | [.][U][.] | [.][.][.]
+[.][.][.] | [.][.][G] | [.][.][G] | [.][.][G] | [.][.][G]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Scavenger
+- Anchor
+
+-Placements:
+- Placed Anchor at (0, 0)
+- Placed Scavenger at (0, 1)
+
+-Extends:
+
+Night 4
+-Events:
+Anchor base income
+Scavenger base income
+Ghost 3 empty adj zones
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 2500
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 6500
+
+Current Money: 36500
+
+----------------------------
+
+Checkouts:
+- Ghost
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][G] | [S][.][G] | [S][.][G] | [S][.][G] | [S][.][.]
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Handler
+- Ghost
+
+-Placements:
+- Placed Ghost at (2, 1)
+- Placed Handler at (0, 2)
+
+-Extends:
+
+Night 5
+-Events:
+Handler buffs Scavenger
+Anchor base income
+Scavenger base income
+Ghost 3 empty adj zones
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 3500
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7500
+
+Current Money: 44000
+
+----------------------------
+
+Checkouts:
+- Anchor
+- Scavenger
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [H][.][.] | [H][.][.] | [H][.][.] | [H][.][.]
+[S][.][.] | [S][.][G] | [S][.][G] | [S][.][G] | [.][.][G]
+[A][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [.][.][.]
+
+Final Board:
+[H][.][.]
+[.][.][G]
+[.][.][.]
+
+Current Weights:
+- Con Artist: 5
+- Enforcer: 5
+- Ghost: 5
+- Gunslinger: 5
+- Handler: 5
+- Rookie: 5
+- Strategist: 5
+- Anchor: 5
+- Detonator: 5
+- Loner: 5
+- Pawn: 5
+- Scavenger: 5
+
+All Arrivals:
+- Detonator
+- Handler
+- Detonator
+- Gunslinger
+- Ghost
+- Detonator
+- Scavenger
+- Anchor
+- Handler
+- Ghost
+
+All Extensions:
+

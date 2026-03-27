@@ -92,22 +92,8 @@ public class GameManager : MonoBehaviour
 
 	private List<CrewInstance> deadCrew;
 
-
-	private enum ResolutionStep
-	{
-		Buff = 0,
-		Kill = 1,
-		Income = 2,
-		Multiplier = 3,
-		Creation = 4,
-		ContractExpiry = 5,
-		Bounty = 6,
-	}
-
-	[FormerlySerializedAs("flashTimes")]
 	[SerializeField]
-	[Tooltip("0 = Buffs / 1 = Kills / 2 = Income / 3 = Multiplier / 4 = Creation / 5 = Contract Expiry / 6 = Bounty")]
-	private List<float> resolutionDelays = new() { 0.35f, 0.5f, 0.25f, 0.4f, 0.4f, 0.4f };
+	private ResolutionDelays resolutionDelays;
 
 	private void Awake()
 	{
@@ -319,7 +305,7 @@ public class GameManager : MonoBehaviour
 		{
 			if (!room.IsOccupied() || room.Occupant.isAlive) continue;
 
-			yield return StartCoroutine(room.view.FadeOutSlate());
+			yield return StartCoroutine(room.view.FadeOutSlate(resolutionDelays.fade));
 			deadCrew.Add(room.Occupant);
 			room.ClearOccupant();
 		}
@@ -329,11 +315,14 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (Room room in gridManager.GetAllRooms())
 		{
-			if (!room.IsOccupied() || room.Occupant.isAlive) continue;
+			if (!room.IsOccupied() || !room.Occupant.isTemporary) continue;
 
-			yield return StartCoroutine(room.view.FadeOutSlate(0.2f));
+			// yield return
+			StartCoroutine(room.view.FadeOutSlate(resolutionDelays.fade));
 			room.ClearOccupant();
 		}
+
+		yield return new WaitForSeconds(resolutionDelays.fade);
 	}
 
 	private IEnumerator DecreaseAndFinishContract(NightReport report)
@@ -344,16 +333,16 @@ public class GameManager : MonoBehaviour
 
 			room.Occupant.DecreaseStay();
 
-			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.ContractExpiry]);
+			yield return new WaitForSeconds(resolutionDelays.expiryDelay);
 
 			if (room.Occupant.contractDurationRemaining > 0) continue;
 
 			report.checkouts.Add(room.Occupant.Definition.displayName);
 
-			room.view.Flash(DoAPalette.Instance.wineBright, 0.5f);
-			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.ContractExpiry]);
+			room.view.Flash(DoAPalette.Instance.wineBright, resolutionDelays.expiryDelay);
+			yield return new WaitForSeconds(resolutionDelays.expiryDelay);
 
-			yield return StartCoroutine(room.view.FadeOutSlate());
+			yield return StartCoroutine(room.view.FadeOutSlate(resolutionDelays.fade));
 			room.ClearOccupant();
 		}
 	}
@@ -385,9 +374,9 @@ public class GameManager : MonoBehaviour
 							targetPosition = adjRoom.Position,
 						});
 
-						room.view.Flash(DoAPalette.Instance.verdigris);
-						adjRoom.view.Flash(DoAPalette.Instance.verdigris);
-						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Buff]);
+						room.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
+						adjRoom.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
+						yield return new WaitForSeconds(resolutionDelays.buffDelay);
 					}
 
 					break;
@@ -430,17 +419,17 @@ public class GameManager : MonoBehaviour
 						sourcePosition = room.Position,
 					});
 
-					room.view.Flash(DoAPalette.Instance.verdigris);
-					yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Creation]);
+					room.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.creationDelay);
+					yield return new WaitForSeconds(resolutionDelays.creationDelay);
 
 					foreach (var creation in creations)
 					{
 						SpawnCrewInRoom(creation.room, creation.definition);
-						room.view.Flash(DoAPalette.Instance.verdigris);
-						creation.room.view.Flash(DoAPalette.Instance.verdigris);
+						room.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.creationDelay);
+						creation.room.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.creationDelay);
 					}
 
-					yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Creation]);
+					yield return new WaitForSeconds(resolutionDelays.creationDelay);
 					break;
 
 				// FUTURE CREATION PHASE CREW ADDED HERE AS NEW CASES
@@ -476,7 +465,7 @@ public class GameManager : MonoBehaviour
 						weeklyDeathCount++;
 						deathsThisNight++;
 
-						adjRoom.view.Flash(DoAPalette.Instance.wine);
+						adjRoom.view.Flash(DoAPalette.Instance.wine, resolutionDelays.killDelay);
 					}
 
 					if (kills <= 0) continue;
@@ -501,7 +490,7 @@ public class GameManager : MonoBehaviour
 						sourcePosition = room.Position,
 					});
 
-					yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Kill]);
+					yield return new WaitForSeconds(resolutionDelays.killDelay);
 					break;
 
 				// FUTURE KILL PHASE CREW ADDED HERE AS NEW CASES
@@ -538,8 +527,8 @@ public class GameManager : MonoBehaviour
 					value = payout,
 				});
 
-				room.view.Flash(DoAPalette.Instance.ochre);
-				yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
+				room.view.Flash(DoAPalette.Instance.ochre, resolutionDelays.incomeDelay);
+				yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 			}
 		}
 	}
@@ -567,8 +556,8 @@ public class GameManager : MonoBehaviour
 					sourcePosition = room.Position,
 				});
 
-				room.view.Flash(DoAPalette.Instance.ochre);
-				yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
+				room.view.Flash(DoAPalette.Instance.ochre, resolutionDelays.incomeDelay);
+				yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 			}
 
 			switch (crew.Definition.crewType)
@@ -591,8 +580,8 @@ public class GameManager : MonoBehaviour
 							sourcePosition = room.Position,
 						});
 
-						room.view.Flash(DoAPalette.Instance.verdigris);
-						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
+						room.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
+						yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 					}
 
 					break;
@@ -611,8 +600,8 @@ public class GameManager : MonoBehaviour
 							sourcePosition = room.Position,
 						});
 
-						room.view.Flash(DoAPalette.Instance.verdigris);
-						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
+						room.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
+						yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 					}
 
 
@@ -634,8 +623,8 @@ public class GameManager : MonoBehaviour
 							sourcePosition = room.Position,
 						});
 
-						room.view.Flash(DoAPalette.Instance.verdigris);
-						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
+						room.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
+						yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 					}
 
 					break;
@@ -650,14 +639,14 @@ public class GameManager : MonoBehaviour
 						report.typedEvents.Add(new NightReportEvent
 						{
 							type = ReportEventType.BuffedIncome,
-							label = "{{0}} scavenged (+{weeklyDeathCount} deaths)",
+							label = $"{{0}} scavenged {weeklyDeathCount} deaths",
 							value = scavBonus,
 							sourceCrew = CrewType.Scavenger,
 							sourcePosition = room.Position,
 						});
 
-						room.view.Flash(DoAPalette.Instance.verdigris);
-						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Income]);
+						room.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
+						yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 					}
 
 					break;
@@ -670,6 +659,14 @@ public class GameManager : MonoBehaviour
 			income += finalIncome;
 		}
 
+
+		report.baseIncome = baseIncome;
+		report.bonusIncome = income - baseIncome - report.killBonus;
+
+		yield return StartCoroutine(ApplyMultipliers(report));
+
+		income = Mathf.RoundToInt(income * multiplier);
+
 		// BOUNTY DRAIN
 		int drain = bountyManager.ApplyIncomeDrain();
 		if (drain > 0)
@@ -681,15 +678,8 @@ public class GameManager : MonoBehaviour
 				label = "Protection drain applies",
 				value = -drain
 			});
-			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Bounty]);
+			yield return new WaitForSeconds(resolutionDelays.bountyDelay);
 		}
-
-		report.baseIncome = baseIncome;
-		report.bonusIncome = income - baseIncome - report.killBonus;
-
-		yield return StartCoroutine(ApplyMultipliers(report));
-
-		income = Mathf.RoundToInt(income * multiplier);
 
 		report.finalIncome = income;
 
@@ -729,8 +719,8 @@ public class GameManager : MonoBehaviour
 							sourcePosition = room.Position,
 						});
 
-						room.view.Flash(DoAPalette.Instance.verdigris);
-						yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Multiplier]);
+						room.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.multiplierDelay);
+						yield return new WaitForSeconds(resolutionDelays.multiplierDelay);
 					}
 
 					break;
@@ -766,12 +756,12 @@ public class GameManager : MonoBehaviour
 				sourcePosition = targetRoom.Position
 			});
 
-			targetRoom.view.Flash(DoAPalette.Instance.wine, 0.8f);
-			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Kill]);
+			targetRoom.view.Flash(DoAPalette.Instance.wine, resolutionDelays.killDelay);
+			yield return new WaitForSeconds(resolutionDelays.killDelay);
 
 			weeklyDeathCount++;
 			target.eliminatedBySource = true;
-			CleanupDead();
+			yield return StartCoroutine(CleanupDead());
 		}
 	}
 
@@ -800,9 +790,9 @@ public class GameManager : MonoBehaviour
 				targetCrew = targetCrew.Definition.crewType,
 			});
 
-			targetCrew.currentRoom.view.Flash(DoAPalette.Instance.verdigris);
-			adjCrew.currentRoom.view.Flash(DoAPalette.Instance.verdigris);
-			yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Buff]);
+			targetCrew.currentRoom.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
+			adjCrew.currentRoom.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
+			yield return new WaitForSeconds(resolutionDelays.buffDelay);
 			yield break;
 		}
 	}
@@ -841,7 +831,7 @@ public class GameManager : MonoBehaviour
 				report.typedEvents.Add(new NightReportEvent
 				{
 					type = ReportEventType.BuffedIncome,
-					label = "{0} detonates — {1} gets burst",
+					label = "{0} buffs {1} ",
 					sourceCrew = CrewType.Detonator,
 					targetCrew = adjRoom.Occupant.Definition.crewType,
 					value = burst,
@@ -849,14 +839,14 @@ public class GameManager : MonoBehaviour
 					targetPosition = adjRoom.Position,
 				});
 
-				adjRoom.view.Flash(DoAPalette.Instance.ochre);
-				yield return new WaitForSeconds(resolutionDelays[(int)ResolutionStep.Buff]);
+				adjRoom.view.Flash(DoAPalette.Instance.ochre, resolutionDelays.buffDelay);
+				yield return new WaitForSeconds(resolutionDelays.buffDelay);
 			}
 
 			// Flash the Detonator cell then remove — not a kill
-			room.view.Flash(DoAPalette.Instance.wineBright, 0.5f);
-			yield return new WaitForSeconds(0.5f);
-			yield return StartCoroutine(room.view.FadeOutSlate(0.3f));
+			room.view.Flash(DoAPalette.Instance.wineBright, resolutionDelays.killDelay);
+			yield return new WaitForSeconds(resolutionDelays.killDelay);
+			yield return StartCoroutine(room.view.FadeOutSlate(resolutionDelays.fade));
 			room.ClearOccupant();
 		}
 	}
@@ -1024,11 +1014,11 @@ public class GameManager : MonoBehaviour
 
 		Room oldRoom = selected.currentRoom;
 
-		oldRoom.ClearOccupant();
+		oldRoom.ClearHideOccupant();
 
 		targetRoom.SetOccupant(selected);
 
-		currentNightLog.placements.Add("Moved " + selected.Definition.displayName + " to " + targetRoom.Position);
+		// currentNightLog.placements.Add("Moved " + selected.Definition.displayName + " to " + targetRoom.Position);
 
 		// PlacementManager.Instance.selectedInstance = null;
 	}
@@ -1106,7 +1096,7 @@ public class GameManager : MonoBehaviour
 		{
 			if (room.IsOccupied())
 			{
-				room.ClearOccupant();
+				room.ClearHideOccupant();
 			}
 		}
 	}
@@ -1192,13 +1182,10 @@ public class GameManager : MonoBehaviour
 
 				output.AppendLine("Night " + night.nightNumber);
 
-				// output.AppendLine("-Events:");
-				// foreach (var ev in night.events)
-				// 	output.AppendLine("- " + ev);
 
 				output.AppendLine("-Events:");
 				foreach (var ev in night.typedEvents)
-					output.AppendLine($"- [{ev.type}] {ev.label} {ev.value}");
+					output.AppendLine(BuildLabel(ev.label, ev.sourceCrew, ev.targetCrew));
 
 				output.AppendLine("");
 
@@ -1297,6 +1284,31 @@ public class GameManager : MonoBehaviour
 		Debug.Log("Run exported to: " + fullPath);
 #endif
 	}
+
+	private string BuildLabel(string template, CrewType? source, CrewType? target)
+	{
+		string result = template;
+
+		if (source.HasValue)
+		{
+			string name = GetDisplayName(source.Value);
+			result = result.Replace("{0}", $"{name}");
+		}
+
+		if (target.HasValue)
+		{
+			string name = GetDisplayName(target.Value);
+			result = result.Replace("{1}", $"{name}");
+		}
+
+		return result;
+	}
+
+	private string GetDisplayName(CrewType t) => t switch
+	{
+		CrewType.ConArtist => "Con Artist",
+		_ => t.ToString()
+	};
 
 	private string FormatRow(string[,] board, int y, int width)
 	{

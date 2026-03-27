@@ -15,10 +15,9 @@ MonoBehaviour:
   crewID: H
   crewType: 2
   displayName: Handler
-  weight: 10
+  weight: 5
   baseIncome: 0
   contractDuration: 2
-  effectType: 1
   effectValue: 1000
   effectRequirement: 0
   creationDefinition: {fileID: 0}
@@ -27,7 +26,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 3101073410001559852, guid: 15004bdc32028844688f6edf3cf9f33b, type: 3}
   contractType: Support Contract
   codename: Support
-  incomeText: "+\xA51000 to adj crew"
+  incomeText: "+\xA51K to adj crew"
   descriptionText: Worth nothing alone. Multiplies everyone around them.
   statLabel1: base
   statValue1: "\xA50"

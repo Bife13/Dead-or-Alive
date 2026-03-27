@@ -33,4 +33,4 @@ MonoBehaviour:
     value: 0
     displayName: Holds the High Ground
     description: Controls zones. Crew cannot be placed there.
-    lockedZones: 020000000600000008000000
+    lockedZones: 0100000006000000

@@ -31,6 +31,8 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 
 	public PlacedSlateUI GetSlate() => crewPlacedSlate;
 
+	private bool isLocked = false;
+
 	public void Initialize(Room roomData)
 	{
 		room = roomData;
@@ -95,7 +97,7 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 	public void HideSlate()
 	{
 		crewPlacedSlate.gameObject.SetActive(false);
-		border.color = DoAPalette.Instance.border;
+		border.color = isLocked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.4f) : DoAPalette.Instance.border;
 	}
 
 	public void SetZoneName(string name)
@@ -180,13 +182,14 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 
 	public void SetLocked(bool locked)
 	{
+		isLocked = locked;
 		// Grey out the cell, show a visual indicator
 		border.color = locked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.4f) : DoAPalette.Instance.border;
 		zoneName.color = locked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.6f) : DoAPalette.Instance.textL4;
 		// Optionally disable the BG slightly
 	}
 
-	public IEnumerator FadeOutSlate(float duration = 0.6f)
+	public IEnumerator FadeOutSlate(float duration = 0.3f)
 	{
 		if (!crewPlacedSlate.gameObject.activeSelf) yield break;
 

@@ -1,0 +1,277 @@
+=== RUN SUMMARY ===
+Seed: 2053402618
+
+Final Money: 48500
+
+Week: 1
+
+Weekly Money: 48500
+
+Peak: 18000
+
+Peak Night: 5
+
+Solved Night: 5
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Strategist
+- Enforcer
+
+-Placements:
+- Placed Strategist at (2, 0)
+- Placed Enforcer at (0, 0)
+
+-Extends:
+
+Night 1
+-Events:
+Protection drain applies
+
+Engine Type: Strategist
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: -2000
+
+Current Money: -2000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [E][.][T] | [E][.][T] | [E][.][T] | [E][.][T]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Anchor
+- Ghost
+
+-Placements:
+- Placed Ghost at (1, 2)
+- Placed Anchor at (2, 1)
+
+-Extends:
+
+Night 2
+-Events:
+Anchor base income
+Ghost 3 empty adj zones
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Ghost + Strategist
+
+----------------------------
+
+Base Income: 1500
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 13000
+
+Current Money: 11000
+
+----------------------------
+
+Checkouts:
+- Enforcer
+- Strategist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][G][.] | [.][G][.] | [.][G][.] | [.][G][.]
+[.][.][.] | [.][.][A] | [.][.][A] | [.][.][A] | [.][.][A]
+[E][.][T] | [E][.][T] | [E][.][T] | [E][.][T] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Detonator
+- Enforcer
+
+-Placements:
+- Placed Detonator at (1, 1)
+- Placed Enforcer at (0, 0)
+
+-Extends:
+
+Night 3
+-Events:
+Detonator buffs Ghost 
+Detonator buffs Anchor 
+Detonator buffs Enforcer 
+Anchor base income
+Ghost 3 empty adj zones
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 13500
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 17500
+
+Current Money: 23500
+
+----------------------------
+
+Checkouts:
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][G][.] | [.][G][.] | [.][G][.] | [.][G][.] | [.][G][.]
+[.][.][A] | [E][D][A] | [E][D][A] | [E][.][A] | [E][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Strategist
+- Handler
+
+-Placements:
+- Placed Handler at (1, 0)
+- Placed Strategist at (2, 0)
+
+-Extends:
+
+Night 4
+-Events:
+Handler buffs Strategist
+Ghost 3 empty adj zones
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Ghost + Strategist
+
+----------------------------
+
+Base Income: 1000
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 12000
+
+Current Money: 30500
+
+----------------------------
+
+Checkouts:
+- Enforcer
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][G][.] | [.][G][.] | [.][G][.] | [.][G][.] | [.][G][.]
+[E][.][.] | [E][.][.] | [E][.][.] | [E][.][.] | [.][.][.]
+[.][.][.] | [.][H][T] | [.][H][T] | [.][H][T] | [.][H][T]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Rookie
+- Rookie
+
+-Placements:
+- Placed Rookie at (0, 0)
+- Placed Rookie at (2, 1)
+
+-Extends:
+
+Night 5
+-Events:
+Handler buffs Strategist
+Handler buffs Rookie
+Rookie base income
+Rookie base income
+Ghost 3 empty adj zones
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Ghost + Strategist
+
+----------------------------
+
+Base Income: 4000
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 18000
+
+Current Money: 48500
+
+----------------------------
+
+Checkouts:
+- Handler
+- Strategist
+- Ghost
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][G][.] | [.][G][.] | [.][G][.] | [.][G][.] | [.][.][.]
+[.][.][.] | [.][.][R] | [.][.][R] | [.][.][R] | [.][.][R]
+[.][H][T] | [R][H][T] | [R][H][T] | [R][H][T] | [R][.][.]
+
+Final Board:
+[.][.][.]
+[.][.][R]
+[R][.][.]
+
+Current Weights:
+- Con Artist: 5
+- Enforcer: 5
+- Ghost: 5
+- Gunslinger: 5
+- Handler: 5
+- Rookie: 5
+- Strategist: 5
+- Anchor: 5
+- Detonator: 5
+- Loner: 5
+- Pawn: 5
+- Scavenger: 5
+
+All Arrivals:
+- Strategist
+- Enforcer
+- Anchor
+- Ghost
+- Detonator
+- Enforcer
+- Strategist
+- Handler
+- Rookie
+- Rookie
+
+All Extensions:
+

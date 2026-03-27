@@ -15,10 +15,9 @@ MonoBehaviour:
   crewID: U
   crewType: 6
   displayName: Gunslinger
-  weight: 7
+  weight: 5
   baseIncome: 2000
   contractDuration: 2
-  effectType: 8
   effectValue: 3000
   effectRequirement: 2
   creationDefinition: {fileID: 0}
@@ -27,7 +26,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 7485763324741299123, guid: 6c1cebe6b41be2046a3b1c2f048d9c65, type: 3}
   contractType: VETERAN CONTRACT
   codename: Action
-  incomeText: "+\xA52000 base + \xA53000 if 2 adj "
+  incomeText: "+\xA52K base + \xA53K if 2 adj "
   descriptionText: Reliable earner. Bonus requires exactly two neighbours. Not one
     more.
   statLabel1: BASE

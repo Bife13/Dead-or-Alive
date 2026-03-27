@@ -1,0 +1,821 @@
+=== RUN SUMMARY ===
+Seed: 1190159490
+
+Final Money: 143000
+
+Week: 1
+
+Weekly Money: 56500
+
+Peak: 29500
+
+Peak Night: 4
+
+Solved Night: 5
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Anchor
+- Scavenger
+
+-Placements:
+- Placed Scavenger at (0, 0)
+- Placed Anchor at (0, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Scavenger base income
+Anchor base income
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 2500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 500
+
+Current Money: 500
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+[.][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Strategist
+- Strategist
+
+-Placements:
+- Placed Strategist at (1, 0)
+- Placed Strategist at (1, 1)
+
+-Extends:
+
+Night 2
+-Events:
+Scavenger base income
+Anchor base income
+Strategist conditions met
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 2500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 5500
+
+Current Money: 6000
+
+----------------------------
+
+Checkouts:
+- Scavenger
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[A][.][.] | [A][T][.] | [A][T][.] | [A][T][.] | [.][T][.]
+[S][.][.] | [S][T][.] | [S][T][.] | [S][T][.] | [.][T][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Handler
+- Rookie
+
+-Placements:
+- Placed Handler at (0, 0)
+- Placed Rookie at (0, 1)
+
+-Extends:
+
+Night 3
+-Events:
+Handler buffs Rookie
+Handler buffs Strategist
+Rookie base income
+Strategist conditions met
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Handler + Strategist
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 7000
+
+Current Money: 8000
+
+----------------------------
+
+Checkouts:
+- Strategist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][T][.] | [R][T][.] | [R][T][.] | [R][T][.] | [R][.][.]
+[.][T][.] | [H][T][.] | [H][T][.] | [H][T][.] | [H][T][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Loner
+- Strategist
+
+-Placements:
+- Placed Strategist at (1, 1)
+- Placed Loner at (2, 2)
+
+-Extends:
+
+Night 4
+-Events:
+Handler buffs Rookie
+Handler buffs Strategist
+Rookie base income
+Loner base income
+Loner 4 empty zones
+Strategist conditions met
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Handler + Strategist
+
+----------------------------
+
+Base Income: 4500
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 29500
+
+Current Money: 37500
+
+----------------------------
+
+Checkouts:
+- Handler
+- Strategist
+- Rookie
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][L] | [.][.][L] | [.][.][L] | [.][.][L]
+[R][.][.] | [R][T][.] | [R][T][.] | [R][T][.] | [.][T][.]
+[H][T][.] | [H][T][.] | [H][T][.] | [H][T][.] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Con Artist
+- Handler
+
+-Placements:
+- Placed Handler at (2, 1)
+- Placed Con Artist at (0, 0)
+
+-Extends:
+
+Night 5
+-Events:
+Handler buffs Loner
+Handler buffs Strategist
+Con Artist creates 1 Drone
+Loner base income
+Loner 4 empty zones
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Handler + Strategist
+
+----------------------------
+
+Base Income: 4500
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 19000
+
+Current Money: 56500
+
+----------------------------
+
+Checkouts:
+- Strategist
+- Drone
+- Loner
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][L] | [.][C][L] | [][C][L] | [][C][L] | [.][C][.]
+[.][T][.] | [.][T][H] | [.][T][H] | [.][T][H] | [.][.][H]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+Final Board:
+[.][.][.]
+[T][.][.]
+[S][.][.]
+
+Current Weights:
+- Con Artist: 5
+- Enforcer: 5
+- Ghost: 5
+- Gunslinger: 5
+- Handler: 5
+- Rookie: 5
+- Strategist: 5
+- Anchor: 5
+- Detonator: 5
+- Loner: 5
+- Pawn: 5
+- Scavenger: 5
+
+All Arrivals:
+- Ghost
+- Pawn
+- Detonator
+- Scavenger
+- Handler
+- Pawn
+- Strategist
+- Rookie
+- Scavenger
+- Ghost
+
+All Extensions:
+
+Week: 2
+
+Weekly Money: 100000
+
+Peak: 12000
+
+Peak Night: 5
+
+Solved Night: 5
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Loner
+- Scavenger
+
+-Placements:
+- Placed Loner at (0, 0)
+- Placed Scavenger at (2, 2)
+
+-Extends:
+
+Night 1
+-Events:
+Loner base income
+Loner 4 empty zones
+Scavenger base income
+
+Engine Type: Loner
+
+----------------------------
+
+Base Income: 2500
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 8500
+
+Current Money: 65000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+[.][.][.] | [L][.][.] | [L][.][.] | [L][.][.] | [L][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Rookie
+- Scavenger
+
+-Placements:
+- Placed Rookie at (1, 1)
+- Placed Scavenger at (1, 2)
+
+-Extends:
+
+Night 2
+-Events:
+Loner base income
+Loner 3 empty zones
+Scavenger base income
+Rookie base income
+Scavenger base income
+
+Engine Type: Loner
+
+----------------------------
+
+Base Income: 4500
+Bonus Income: 4500
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 9000
+
+Current Money: 74000
+
+----------------------------
+
+Checkouts:
+- Loner
+- Scavenger
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][S] | [.][.][S] | [.][.][S] | [.][.][S]
+[S][.][.] | [S][R][.] | [S][R][.] | [S][R][.] | [.][R][.]
+[L][.][.] | [L][.][.] | [L][.][.] | [L][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Anchor
+- Enforcer
+
+-Placements:
+- Placed Enforcer at (0, 1)
+- Placed Anchor at (2, 1)
+
+-Extends:
+
+Night 3
+-Events:
+Enforcer eliminates 1 crew
+Enforcer kill bonus
+Anchor base income
+Scavenger base income
+Scavenger scavenged 1 deaths
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 2500
+Bonus Income: 2000
+Kill Bonus: 2000
+Multiplier: x1
+Total Income: 6500
+
+Current Money: 80500
+
+----------------------------
+
+Checkouts:
+- Scavenger
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][S] | [.][.][S] | [.][.][S] | [.][.][S] | [.][.][.]
+[.][R][.] | [E][R][.] | [E][R][.] | [E][.][.] | [E][.][.]
+[.][.][.] | [.][.][A] | [.][.][A] | [.][.][A] | [.][.][A]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Ghost
+- Anchor
+
+-Placements:
+- Placed Ghost at (2, 2)
+- Placed Anchor at (0, 0)
+
+-Extends:
+
+Night 4
+-Events:
+Enforcer eliminates 1 crew
+Enforcer kill bonus
+Anchor base income
+Ghost 2 empty adj zones
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 1500
+Bonus Income: 4000
+Kill Bonus: 2000
+Multiplier: x1
+Total Income: 7500
+
+Current Money: 88000
+
+----------------------------
+
+Checkouts:
+- Anchor
+- Enforcer
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][G] | [.][.][G] | [.][.][G] | [.][.][G]
+[E][.][.] | [E][.][.] | [E][.][.] | [E][.][.] | [.][.][.]
+[.][.][A] | [A][.][A] | [A][.][A] | [.][.][A] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Ghost
+- Gunslinger
+
+-Placements:
+- Placed Ghost at (1, 1)
+- Placed Gunslinger at (2, 0)
+
+-Extends:
+
+Night 5
+-Events:
+Gunslinger base income
+Ghost 4 empty adj zones
+Ghost 2 empty adj zones
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: 10000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 12000
+
+Current Money: 100000
+
+----------------------------
+
+Checkouts:
+- Ghost
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][G] | [.][.][G] | [.][.][G] | [.][.][G] | [.][.][.]
+[.][.][.] | [.][G][.] | [.][G][.] | [.][G][.] | [.][G][.]
+[.][.][.] | [.][.][U] | [.][.][U] | [.][.][U] | [.][.][U]
+
+Final Board:
+[.][.][.]
+[T][.][.]
+[S][.][.]
+
+Current Weights:
+- Con Artist: 5
+- Enforcer: 5
+- Ghost: 5
+- Gunslinger: 5
+- Handler: 5
+- Rookie: 5
+- Strategist: 5
+- Anchor: 5
+- Detonator: 5
+- Loner: 5
+- Pawn: 5
+- Scavenger: 5
+
+All Arrivals:
+- Ghost
+- Pawn
+- Detonator
+- Scavenger
+- Handler
+- Pawn
+- Strategist
+- Rookie
+- Scavenger
+- Ghost
+
+All Extensions:
+
+Week: 3
+
+Weekly Money: 143000
+
+Peak: 17000
+
+Peak Night: 2
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Ghost
+- Pawn
+
+-Placements:
+- Placed Ghost at (0, 1)
+- Placed Pawn at (2, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Ghost 3 empty adj zones
+Bounty targets Pawn
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 6000
+
+Current Money: 106000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [G][.][P] | [G][.][P] | [G][.][P] | [G][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Detonator
+- Scavenger
+
+-Placements:
+- Placed Detonator at (1, 1)
+- Placed Scavenger at (2, 1)
+
+-Extends:
+
+Night 2
+-Events:
+Detonator buffs Scavenger 
+Detonator buffs Ghost 
+Ghost 3 empty adj zones
+Scavenger base income
+Scavenger scavenged 1 deaths
+Bounty targets Ghost
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 9000
+Bonus Income: 8000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 17000
+
+Current Money: 123000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[G][.][.] | [G][D][S] | [G][D][S] | [G][.][S] | [.][.][S]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Handler
+- Pawn
+
+-Placements:
+- Placed Handler at (1, 1)
+- Placed Pawn at (0, 1)
+
+-Extends:
+
+Night 3
+-Events:
+Handler buffs Scavenger
+Handler buffs Pawn
+Scavenger base income
+Scavenger scavenged 2 deaths
+Bounty targets Pawn
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: 4000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7000
+
+Current Money: 130000
+
+----------------------------
+
+Checkouts:
+- Scavenger
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][S] | [P][H][S] | [P][H][S] | [P][H][S] | [.][H][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Strategist
+- Rookie
+
+-Placements:
+- Placed Strategist at (0, 1)
+- Placed Rookie at (2, 1)
+
+-Extends:
+
+Night 4
+-Events:
+Handler buffs Rookie
+Handler buffs Strategist
+Rookie base income
+Bounty targets Rookie
+
+Engine Type: Handler + Strategist
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 3000
+
+Current Money: 133000
+
+----------------------------
+
+Checkouts:
+- Handler
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][H][.] | [T][H][R] | [T][H][R] | [T][H][R] | [T][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Scavenger
+- Ghost
+
+-Placements:
+- Placed Ghost at (2, 1)
+- Placed Scavenger at (0, 0)
+
+-Extends:
+
+Night 5
+-Events:
+Scavenger base income
+Scavenger scavenged 4 deaths
+Ghost 3 empty adj zones
+Bounty targets Ghost
+
+Engine Type: Ghost + Strategist
+
+----------------------------
+
+Base Income: 1000
+Bonus Income: 14000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 15000
+
+Current Money: 143000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[T][.][.] | [T][.][G] | [T][.][G] | [T][.][G] | [T][.][.]
+[.][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+
+Final Board:
+[.][.][.]
+[T][.][.]
+[S][.][.]
+
+Current Weights:
+- Con Artist: 5
+- Enforcer: 5
+- Ghost: 5
+- Gunslinger: 5
+- Handler: 5
+- Rookie: 5
+- Strategist: 5
+- Anchor: 5
+- Detonator: 5
+- Loner: 5
+- Pawn: 5
+- Scavenger: 5
+
+All Arrivals:
+- Ghost
+- Pawn
+- Detonator
+- Scavenger
+- Handler
+- Pawn
+- Strategist
+- Rookie
+- Scavenger
+- Ghost
+
+All Extensions:
+

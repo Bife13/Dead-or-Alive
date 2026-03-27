@@ -15,11 +15,10 @@ MonoBehaviour:
   crewID: S
   crewType: 11
   displayName: Scavenger
-  weight: 7
+  weight: 5
   baseIncome: 1000
   contractDuration: 2
-  effectType: 11
-  effectValue: 0
+  effectValue: 2000
   effectRequirement: 0
   creationDefinition: {fileID: 0}
   isTemporary: 0
@@ -27,7 +26,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 0}
   contractType: DANGER CONTRACT
   codename: growth
-  incomeText: "+\xA51000 base. +\xA52000 base / death"
+  incomeText: "+\xA51K base. +\xA52K base / death"
   descriptionText: Earns more the worse things go. Thrives in chaos.
   statLabel1: BASE
   statValue1: "\xA51k"

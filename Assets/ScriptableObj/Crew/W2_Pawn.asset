@@ -15,10 +15,9 @@ MonoBehaviour:
   crewID: P
   crewType: 8
   displayName: Pawn
-  weight: 10
+  weight: 5
   baseIncome: 0
-  contractDuration: 3
-  effectType: 9
+  contractDuration: 2
   effectValue: 2000
   effectRequirement: 0
   creationDefinition: {fileID: 0}
@@ -27,7 +26,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 0}
   contractType: EXPENDABLE CONTRACT
   codename: Chaos
-  incomeText: "+\xA52000 to all crew on elimination"
+  incomeText: "+\xA52K to all crew on elimination"
   descriptionText: Earns nothing. Worth more dead. Place accordingly.
   statLabel1: BASE
   statValue1: "\xA50"

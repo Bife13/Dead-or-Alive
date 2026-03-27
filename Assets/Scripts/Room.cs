@@ -27,11 +27,17 @@ public class Room
 		view.UpdateSlate(newOccupant);
 	}
 
-	public void ClearOccupant()
+	public void ClearHideOccupant()
 	{
 		occupant = null;
 		view.HideSlate();
 	}
+
+	public void ClearOccupant()
+	{
+		occupant = null;
+	}
+	
 
 	public bool IsOccupied()
 	{

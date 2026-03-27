@@ -15,10 +15,9 @@ MonoBehaviour:
   crewID: T
   crewType: 3
   displayName: Strategist
-  weight: 6
+  weight: 5
   baseIncome: 0
   contractDuration: 2
-  effectType: 5
   effectValue: 1
   effectRequirement: 4
   creationDefinition: {fileID: 0}

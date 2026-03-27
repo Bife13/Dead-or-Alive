@@ -15,10 +15,9 @@ MonoBehaviour:
   crewID: C
   crewType: 5
   displayName: Con Artist
-  weight: 8
+  weight: 5
   baseIncome: 0
   contractDuration: 2
-  effectType: 2
   effectValue: 1000
   effectRequirement: 0
   creationDefinition: {fileID: 11400000, guid: 81bdd5bc6f0106344b37869f378aaa96, type: 2}
@@ -27,7 +26,7 @@ MonoBehaviour:
   crewPrefab: {fileID: 5543612769066221451, guid: fcedf77299256bf469f0f563aefe8c0a, type: 3}
   contractType: Specialist contract
   codename: Deception
-  incomeText: "+\xA51000 / decoy"
+  incomeText: "+\xA51K / decoy"
   descriptionText: Fills empty adjacent zones with decoys. Numbers that aren't there.
   statLabel1: base
   statValue1: "\xA50"
