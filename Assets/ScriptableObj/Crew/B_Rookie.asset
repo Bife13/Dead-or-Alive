@@ -15,7 +15,7 @@ MonoBehaviour:
   crewID: R
   crewType: 0
   displayName: Rookie
-  weight: 5
+  weight: 10
   baseIncome: 1000
   contractDuration: 2
   effectValue: 0

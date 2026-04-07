@@ -15,7 +15,7 @@ MonoBehaviour:
   crewID: C
   crewType: 5
   displayName: Con Artist
-  weight: 5
+  weight: 6
   baseIncome: 0
   contractDuration: 2
   effectValue: 1000

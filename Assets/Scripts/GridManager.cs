@@ -16,28 +16,28 @@ public class GridManager : MonoBehaviour
 	public int Width => width;
 
 	[SerializeField]
-	private List<GameObject> roomObjects;
+	private List<GameObject> zoneObjects;
 
-	private Room[,] rooms;
-	public Room[,] Rooms => rooms;
+	private Zone[,] zones;
+	public Zone[,] Zones => zones;
 
 
 	public void Initialize()
 	{
-		rooms = new Room[width, height];
+		zones = new Zone[width, height];
 
 		int x = 0;
 		int y = 0;
 		int index = 0;
 
-		foreach (GameObject room in roomObjects)
+		foreach (GameObject zone in zoneObjects)
 		{
 			Vector2Int position = new Vector2Int(x, y);
-			rooms[x, y] = new Room(position, index);
+			zones[x, y] = new Zone(position, index);
 
-			RoomView view = room.GetComponent<RoomView>();
-			view.Initialize(rooms[x, y]);
-			Rooms[x, y].view = view;
+			ZoneView view = zone.GetComponent<ZoneView>();
+			view.Initialize(zones[x, y]);
+			Zones[x, y].view = view;
 
 			index++;
 			x++;
@@ -50,19 +50,19 @@ public class GridManager : MonoBehaviour
 	public void InitializeLocationNames()
 	{
 		int index = 0;
-		foreach (Room room in GetAllRooms())
+		foreach (Zone zone in GetAllZones())
 		{
-			room.view.SetZoneName(GameManager.Instance.GetCurrentBounty().zoneNames[index]);
-			room.view.SetLocked(GameManager.Instance.IsZoneLocked(index));
+			zone.view.SetZoneName(GameManager.Instance.GetCurrentBounty().zoneNames[index]);
+			zone.view.SetLocked(GameManager.Instance.IsZoneLocked(index));
 			index++;
 		}
 	}
 
-	public List<Room> GetAdjacentRooms(Room room)
+	public List<Zone> GetAdjacentZones(Zone zone)
 	{
-		List<Room> result = new();
+		List<Zone> result = new();
 
-		Vector2Int position = room.Position;
+		Vector2Int position = zone.Position;
 
 		Vector2Int[] directions =
 		{
@@ -77,7 +77,7 @@ public class GridManager : MonoBehaviour
 			Vector2Int newPosition = position + direction;
 
 			if (IsInside(newPosition))
-				result.Add(rooms[newPosition.x, newPosition.y]);
+				result.Add(zones[newPosition.x, newPosition.y]);
 		}
 
 		return result;
@@ -89,13 +89,13 @@ public class GridManager : MonoBehaviour
 		       position.y >= 0 && position.y < height;
 	}
 
-	public IEnumerable<Room> GetAllRooms()
+	public IEnumerable<Zone> GetAllZones()
 	{
 		for (int y = 0; y < Height; y++)
 		{
 			for (int x = 0; x < Width; x++)
 			{
-				yield return Rooms[x, y];
+				yield return Zones[x, y];
 			}
 		}
 	}

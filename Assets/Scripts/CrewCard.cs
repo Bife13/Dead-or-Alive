@@ -104,6 +104,8 @@ public class CrewCard : MonoBehaviour
 		Populate(crew);
 		button.onClick.RemoveAllListeners();
 		button.onClick.AddListener(OnClicked);
+		if (crew.crewType == CrewType.Scavenger)
+			incomeText.text = definition.incomeText + $" ({GameManager.Instance.WeeklyDeathCount})";
 	}
 
 	private void OnClicked()

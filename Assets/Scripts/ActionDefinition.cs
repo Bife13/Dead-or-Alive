@@ -10,10 +10,18 @@ public class ActionDefinition : ScriptableObject
 
 	[Header("Behavior")]
 	public ActionTargetType targetType;
+
+	public ActionType actionType;
 }
 
 public enum ActionTargetType
 {
 	TargetCrew, // player clicks a crew cell after selecting — Retain, Safehouse etc
 	Instant // applies immediately on click — Intel etc
+}
+
+public enum ActionType
+{
+	Reposition,
+	Extend
 }

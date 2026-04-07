@@ -40,6 +40,9 @@ public class PlacedSlateUI : MonoBehaviour
 		crewPlacedSlateIdentifier.color = DoAPalette.Instance.GetCrewColor(instance.Definition.crewType);
 		crewPlacedSlateName.text = instance.Definition.displayName;
 		crewPlacedSlateAbility.text = instance.Definition.incomeText;
+		if (_instance.Definition.crewType == CrewType.Scavenger)
+			ScavengerCounterUpdate();
+
 
 		UpdateContract();
 
@@ -49,30 +52,57 @@ public class PlacedSlateUI : MonoBehaviour
 
 		abilityTrigger.onClick.RemoveAllListeners();
 		abilityTrigger.onClick.AddListener(OnAbilityPressed);
-		RefreshDetonatorButton(instance);
+		if (isDetonator)
+			RefreshDetonatorButton(instance);
+	}
+
+	public void ScavengerCounterUpdate()
+	{
+		crewPlacedSlateAbility.text =
+			_instance.Definition.incomeText + $" ({GameManager.Instance.WeeklyDeathCount})";
 	}
 
 	public void RefreshDetonatorButton(CrewInstance instance)
 	{
-		bool canUse = !instance.detonatorUsed
-		              && GameManager.Instance.CurrentPhase == GamePhase.PlanningPhase;
+		bool isPlanning = GameManager.Instance.CurrentPhase == GamePhase.PlanningPhase;
+		bool canInteract = isPlanning && !instance.detonatorUsed;
 
-		abilityTrigger.interactable = canUse;
-		abilityLabel.color = canUse
-			? DoAPalette.Instance.wineBright
-			: DoAPalette.Instance.textL4;
-		abilityLabel.text = instance.detonatorUsed ? "SPENT" : "DETONATE";
+		abilityTrigger.interactable = canInteract;
+
+		var p = DoAPalette.Instance;
+
+		if (instance.detonatorUsed)
+		{
+			abilityLabel.text = "SPENT";
+			abilityLabel.color = p.textL4;
+		}
+		else if (instance.isArmedForDetonation)
+		{
+			abilityLabel.text = "ARMED";
+			abilityLabel.color = p.wineBright;
+		}
+		else
+		{
+			abilityLabel.text = "DETONATE";
+			abilityLabel.color = p.ochre;
+		}
 	}
 
 	private void OnAbilityPressed()
 	{
-		switch (_instance.Definition.crewType)
-		{
-			case CrewType.Detonator:
-				GameManager.Instance.TriggerDetonator(_instance.currentRoom); // pass room reference
-				break;
-		}
+		// switch (_instance.Definition.crewType)
+		// {
+		// 	case CrewType.Detonator:
+		// 		GameManager.Instance.TriggerDetonator(_instance.currentRoom); // pass room reference
+		// 		break;
+		// }
+		//
+		// RefreshDetonatorButton(_instance);
 
+		if (_instance.Definition.crewType != CrewType.Detonator) return;
+		if (_instance.detonatorUsed) return;
+
+		_instance.isArmedForDetonation = !_instance.isArmedForDetonation;
 		RefreshDetonatorButton(_instance);
 	}
 

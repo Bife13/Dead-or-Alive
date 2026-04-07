@@ -1,0 +1,283 @@
+=== RUN SUMMARY ===
+Seed: 382404918
+
+Final Money: 30000
+
+Week: 1
+
+Weekly Money: 30000
+
+Peak: 14500
+
+Peak Night: 5
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Rookie
+- Handler
+
+-Placements:
+- Placed Handler at (0, 0)
+- Placed Rookie at (0, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Handler buffs Rookie
+Rookie base income
+Protection drain applies
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1000
+
+Current Money: 1000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [R][.][.]
+[.][.][.] | [H][.][.] | [H][.][.] | [H][.][.] | [H][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Anchor
+- Pawn
+
+-Placements:
+- Placed Pawn at (1, 0)
+- Placed Anchor at (0, 2)
+
+-Extends:
+
+Night 2
+-Events:
+Handler buffs Rookie
+Handler buffs Pawn
+Rookie base income
+Anchor base income
+Protection drain applies
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 4500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 3500
+
+Current Money: 4500
+
+----------------------------
+
+Checkouts:
+- Handler
+- Rookie
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+[R][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [.][.][.]
+[H][.][.] | [H][P][.] | [H][P][.] | [H][P][.] | [.][P][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Con Artist
+- Rookie
+
+-Placements:
+- Placed Con Artist at (1, 1)
+- Placed Rookie at (0, 0)
+
+-Extends:
+
+Night 3
+-Events:
+Con Artist creates 3 Drone
+Rookie base income
+Anchor base income
+Protection drain applies
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 5500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 4500
+
+Current Money: 9000
+
+----------------------------
+
+Checkouts:
+- Pawn
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[A][.][.] | [A][.][.] | [A][][.] | [A][][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [][C][] | [][C][] | [.][C][.]
+[.][P][.] | [R][P][.] | [R][P][.] | [R][P][.] | [R][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Loner
+- Gunslinger
+
+-Placements:
+- Placed Loner at (2, 0)
+- Placed Gunslinger at (0, 2)
+
+-Extends:
+- Rookie extended to 2
+
+Night 4
+-Events:
+Con Artist creates 3 Drone
+Rookie base income
+Gunslinger base income
+Loner base income
+Loner 2 empty zones
+Protection drain applies
+
+Engine Type: Loner
+
+----------------------------
+
+Base Income: 7500
+Bonus Income: 3000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 9500
+
+Current Money: 15500
+
+----------------------------
+
+Checkouts:
+- Con Artist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][][.] | [.][][.] | [.][.][.]
+[.][C][.] | [.][C][.] | [][C][] | [][C][] | [.][.][.]
+[R][.][.] | [R][U][L] | [R][U][L] | [R][U][L] | [R][U][L]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Enforcer
+- Handler
+
+-Placements:
+- Placed Enforcer at (0, 1)
+- Placed Handler at (1, 1)
+
+-Extends:
+
+Night 5
+-Events:
+Handler buffs Gunslinger
+Handler buffs Enforcer
+Enforcer eliminates 2 crew
+Enforcer kill bonus
+Gunslinger base income
+Loner base income
+Loner 4 empty zones
+Protection drain applies
+
+Engine Type: Loner
+
+----------------------------
+
+Base Income: 5500
+Bonus Income: 6000
+Kill Bonus: 4000
+Multiplier: x1
+Total Income: 14500
+
+Current Money: 30000
+
+----------------------------
+
+Checkouts:
+- Gunslinger
+- Loner
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [E][H][.] | [E][H][.] | [E][.][.] | [E][.][.]
+[R][U][L] | [R][U][L] | [R][U][L] | [.][U][L] | [.][.][.]
+
+Final Board:
+[.][.][.]
+[E][.][.]
+[.][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Rookie
+- Handler
+- Anchor
+- Pawn
+- Con Artist
+- Rookie
+- Loner
+- Gunslinger
+- Enforcer
+- Handler
+
+All Extensions:
+- Rookie
+

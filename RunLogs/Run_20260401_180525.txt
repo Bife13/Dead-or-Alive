@@ -1,0 +1,280 @@
+=== RUN SUMMARY ===
+Seed: -847259156
+
+Final Money: 49000
+
+Week: 1
+
+Weekly Money: 49000
+
+Peak: 16000
+
+Peak Night: 2
+
+Solved Night: 5
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Scavenger
+- Enforcer
+
+-Placements:
+- Placed Scavenger at (0, 0)
+- Placed Enforcer at (2, 2)
+
+-Extends:
+
+Night 1
+-Events:
+Scavenger base income
+Protection drain applies
+
+Engine Type: Scavenger
+
+----------------------------
+
+Base Income: 1000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+Current Money: 0
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][E] | [.][.][E] | [.][.][E] | [.][.][E]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Pawn
+- Pawn
+
+-Placements:
+- Placed Pawn at (2, 1)
+- Placed Pawn at (1, 2)
+
+-Extends:
+
+Night 2
+-Events:
+Enforcer eliminates 2 crew
+Enforcer kill bonus
+Pawn death payout
+Pawn death payout
+Pawn death payout
+Pawn death payout
+Scavenger base income
+Scavenger scavenged 2 deaths
+Protection drain applies
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 9000
+Bonus Income: 4000
+Kill Bonus: 4000
+Multiplier: x1
+Total Income: 16000
+
+Current Money: 16000
+
+----------------------------
+
+Checkouts:
+- Scavenger
+- Enforcer
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][E] | [.][P][E] | [.][P][E] | [.][.][E] | [.][.][.]
+[.][.][.] | [.][.][P] | [.][.][P] | [.][.][.] | [.][.][.]
+[S][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Con Artist
+- Detonator
+
+-Placements:
+- Placed Con Artist at (1, 1)
+- Placed Detonator at (1, 1)
+
+-Extends:
+
+Night 3
+-Events:
+Con Artist creates 2 Drone
+Detonator base income
+Protection drain applies
+
+Engine Type: Detonator
+
+----------------------------
+
+Base Income: 4000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 3000
+
+Current Money: 19000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][C][.] | [][C][] | [][C][] | [.][C][.]
+[.][.][.] | [.][D][.] | [.][D][.] | [.][D][.] | [.][D][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Detonator
+- Rookie
+
+-Placements:
+- Placed Rookie at (0, 1)
+- Placed Detonator at (1, 0)
+
+-Extends:
+
+Night 4
+-Events:
+Con Artist creates 2 Drone
+Detonator buffs Con Artist 
+Detonator buffs Detonator 
+Detonator buffs Rookie 
+Detonator base income
+Rookie base income
+Protection drain applies
+
+Engine Type: Detonator
+
+----------------------------
+
+Base Income: 17000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 16000
+
+Current Money: 35000
+
+----------------------------
+
+Checkouts:
+- Con Artist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][C][.] | [.][C][.] | [][C][] | [][C][] | [.][.][.]
+[.][D][.] | [R][D][.] | [R][D][.] | [R][.][.] | [R][.][.]
+[.][.][.] | [.][D][.] | [.][D][.] | [.][D][.] | [.][D][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Handler
+- Scavenger
+
+-Placements:
+- Placed Scavenger at (0, 0)
+- Placed Handler at (1, 1)
+
+-Extends:
+
+Night 5
+-Events:
+Handler buffs Rookie
+Detonator buffs Handler 
+Detonator buffs Scavenger 
+Scavenger base income
+Scavenger scavenged 2 deaths
+Rookie base income
+Protection drain applies
+
+Engine Type: Scavenger
+
+----------------------------
+
+Base Income: 11000
+Bonus Income: 4000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 14000
+
+Current Money: 49000
+
+----------------------------
+
+Checkouts:
+- Rookie
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[R][.][.] | [R][H][.] | [R][H][.] | [R][H][.] | [.][H][.]
+[.][D][.] | [S][D][.] | [S][D][.] | [S][.][.] | [S][.][.]
+
+Final Board:
+[.][.][.]
+[.][H][.]
+[S][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Scavenger
+- Enforcer
+- Pawn
+- Pawn
+- Con Artist
+- Detonator
+- Detonator
+- Rookie
+- Handler
+- Scavenger
+
+All Extensions:
+

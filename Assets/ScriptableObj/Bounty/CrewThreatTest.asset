@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e01bc37df1bfde944b402c02ed020b2a, type: 3}
-  m_Name: CrewThreat
+  m_Name: CrewThreatTest
   m_EditorClassIdentifier: Assembly-CSharp::BountyData
   bountyName: Renko "The Ghost" Vasile
   caseNumber: ISB-5530-B
@@ -26,11 +26,11 @@ MonoBehaviour:
   - Crew Berths
   - Airlock
   - Maintenance Shaft
-  week: 3
-  threatLevel: 3
+  week: 1
+  threatLevel: 1
   modifiers:
   - type: 2
-    value: 45
+    value: 100
     displayName: Sends a Message
     description: One crew member targeted each night. You won't know who until morning.
     lockedZones: 

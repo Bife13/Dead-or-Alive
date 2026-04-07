@@ -1,0 +1,284 @@
+=== RUN SUMMARY ===
+Seed: 1104774056
+
+Final Money: 37000
+
+Week: 1
+
+Weekly Money: 37000
+
+Peak: 14000
+
+Peak Night: 3
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Pawn
+- Con Artist
+
+-Placements:
+- Placed Con Artist at (1, 1)
+- Placed Pawn at (0, 0)
+
+-Extends:
+
+Night 1
+-Events:
+Con Artist creates 4 Drone
+Protection drain applies
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 4000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 2000
+
+Current Money: 2000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][][.] | [.][][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [][C][] | [][C][] | [.][C][.]
+[.][.][.] | [P][.][.] | [P][][.] | [P][][.] | [P][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Ghost
+- Strategist
+
+-Placements:
+- Placed Ghost at (2, 1)
+- Placed Strategist at (0, 2)
+
+-Extends:
+
+Night 2
+-Events:
+Con Artist creates 3 Drone
+Ghost 2 empty adj zones
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Ghost + Strategist
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: 4000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 12000
+
+Current Money: 14000
+
+----------------------------
+
+Checkouts:
+- Pawn
+- Con Artist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [T][.][.] | [T][][.] | [T][][.] | [T][.][.]
+[.][C][.] | [.][C][G] | [][C][G] | [][C][G] | [.][.][G]
+[P][.][.] | [P][.][.] | [P][][.] | [P][][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Pawn
+- Handler
+
+-Placements:
+- Placed Handler at (0, 1)
+- Placed Pawn at (0, 0)
+
+-Extends:
+- Strategist extended to 2
+
+Night 3
+-Events:
+Handler buffs Strategist
+Handler buffs Pawn
+Ghost 3 empty adj zones
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Ghost + Strategist
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 14000
+
+Current Money: 25000
+
+----------------------------
+
+Checkouts:
+- Ghost
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[T][.][.] | [T][.][.] | [T][.][.] | [T][.][.] | [T][.][.]
+[.][.][G] | [H][.][G] | [H][.][G] | [H][.][G] | [H][.][.]
+[.][.][.] | [P][.][.] | [P][.][.] | [P][.][.] | [P][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Rookie
+- Rookie
+
+-Placements:
+- Placed Rookie at (1, 1)
+- Placed Rookie at (2, 0)
+
+-Extends:
+- Strategist extended to 2
+
+Night 4
+-Events:
+Handler buffs Strategist
+Handler buffs Rookie
+Handler buffs Pawn
+Rookie base income
+Rookie base income
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Handler + Strategist
+
+----------------------------
+
+Base Income: 5000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 8000
+
+Current Money: 30000
+
+----------------------------
+
+Checkouts:
+- Pawn
+- Handler
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[T][.][.] | [T][.][.] | [T][.][.] | [T][.][.] | [T][.][.]
+[H][.][.] | [H][R][.] | [H][R][.] | [H][R][.] | [.][R][.]
+[P][.][.] | [P][.][R] | [P][.][R] | [P][.][R] | [.][.][R]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Strategist
+- Rookie
+
+-Placements:
+- Placed Strategist at (0, 1)
+- Placed Rookie at (0, 0)
+
+-Extends:
+
+Night 5
+-Events:
+Rookie base income
+Rookie base income
+Rookie base income
+Strategist conditions met
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Strategist
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x3
+Total Income: 7000
+
+Current Money: 37000
+
+----------------------------
+
+Checkouts:
+- Rookie
+- Rookie
+- Strategist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[T][.][.] | [T][.][.] | [T][.][.] | [T][.][.] | [.][.][.]
+[.][R][.] | [T][R][.] | [T][R][.] | [T][R][.] | [T][.][.]
+[.][.][R] | [R][.][R] | [R][.][R] | [R][.][R] | [R][.][.]
+
+Final Board:
+[.][.][.]
+[T][.][.]
+[R][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Pawn
+- Con Artist
+- Ghost
+- Strategist
+- Pawn
+- Handler
+- Rookie
+- Rookie
+- Strategist
+- Rookie
+
+All Extensions:
+- Strategist
+- Strategist
+

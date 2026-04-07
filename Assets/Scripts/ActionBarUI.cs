@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -59,37 +60,49 @@ public class ActionBarUI : MonoBehaviour
 		card.SetSelected(true);
 	}
 
-	public bool TryApplyToRoom(Room room)
+	public bool TryApplyToZone(Zone zone)
 	{
-		if (_selectedInstance == null) return false;
-		if (_selectedInstance.Definition.targetType != ActionTargetType.TargetCrew) return false;
-		if (room.Occupant == null) return false;
-
-		if (GameManager.Instance.TrySpendMoney(_selectedInstance.Definition.cost))
+		if (_selectedInstance == null || _selectedInstance.Definition.targetType != ActionTargetType.TargetCrew ||
+		    zone.Occupant == null)
 		{
-			ApplyAction(_selectedInstance, room);
-			_selectedCard.SetUsed();
-			DeselectCurrent();
-
-			return true;
+			return !DeselectCurrent();
 		}
 
-		DeselectCurrent();
-		return false;
+		switch (_selectedInstance.Definition.actionType)
+		{
+			case ActionType.Reposition:
+				if (zone.Occupant.canReposition ||
+				    !GameManager.Instance.TrySpendMoney(_selectedInstance.Definition.cost))
+				{
+					return !DeselectCurrent();
+				}
+
+				GameManager.Instance.MakeCrewRepositionable(zone);
+				_selectedCard.SetUsed();
+				return DeselectCurrent();
+
+			case ActionType.Extend:
+				if (!GameManager.Instance.TrySpendMoney(_selectedInstance.Definition.cost))
+				{
+					return !DeselectCurrent();
+				}
+
+				GameManager.Instance.TryExtendContract(zone);
+				_selectedCard.SetUsed();
+				return DeselectCurrent();
+
+			default:
+				return !DeselectCurrent();
+		}
 	}
 
-	private void ApplyAction(ActionInstance instance, Room room)
-	{
-		// For now just Retain — extend contract by 1
-		room.Occupant.ExtendContract(1);
-	}
-
-	private void DeselectCurrent()
+	private bool DeselectCurrent()
 	{
 		if (_selectedCard != null)
 			_selectedCard.SetSelected(false);
 
 		_selectedCard = null;
 		_selectedInstance = null;
+		return true;
 	}
 }

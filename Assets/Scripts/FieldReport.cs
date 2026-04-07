@@ -69,6 +69,11 @@ public class FieldReport : MonoBehaviour
 		// progressBar.fillAmount = (float)GameManager.Instance.money / GameManager.Instance.weeklyTarget;
 	}
 
+	public void UpdateTarget(int current, int target)
+	{
+		weekRunningText.text = $"¥{FormatCurrency(current)} / ¥{FormatCurrency(target)}";
+	}
+
 	private IEnumerator ScrollLog(NightReport report, int night)
 	{
 		foreach (Transform child in lineContainer)

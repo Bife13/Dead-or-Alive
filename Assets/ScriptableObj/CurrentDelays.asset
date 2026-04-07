@@ -19,4 +19,4 @@ MonoBehaviour:
   creationDelay: 0.4
   expiryDelay: 0.45
   bountyDelay: 0.5
-  fade: 0.2
+  fade: 0.35

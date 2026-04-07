@@ -30,7 +30,7 @@ MonoBehaviour:
   threatLevel: 1
   modifiers:
   - type: 0
-    value: 2000
+    value: 1000
     displayName: Protection Racket
-    description: Takes a cut every night before payout resolves.
+    description: Takes a cut every night after payout.
     lockedZones: 

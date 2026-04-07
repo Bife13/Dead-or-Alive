@@ -1,0 +1,285 @@
+=== RUN SUMMARY ===
+Seed: -437371399
+
+Final Money: 45000
+
+Week: 1
+
+Weekly Money: 45000
+
+Peak: 19000
+
+Peak Night: 4
+
+Solved Night: 5
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Rookie
+- Rookie
+
+-Placements:
+- Placed Rookie at (0, 0)
+- Placed Rookie at (1, 0)
+
+-Extends:
+
+Night 1
+-Events:
+Rookie base income
+Rookie base income
+Protection drain applies
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+Current Money: 0
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [R][.][.]
+[.][.][.] | [.][R][.] | [.][R][.] | [.][R][.] | [.][R][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Con Artist
+- Con Artist
+
+-Placements:
+- Placed Con Artist at (1, 1)
+- Placed Con Artist at (1, 2)
+
+-Extends:
+
+Night 2
+-Events:
+Con Artist creates 1 Drone
+Con Artist creates 2 Drone
+Rookie base income
+Rookie base income
+Protection drain applies
+
+Engine Type: Con Artist
+
+----------------------------
+
+Base Income: 5000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 3000
+
+Current Money: 3000
+
+----------------------------
+
+Checkouts:
+- Rookie
+- Rookie
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][C][.] | [][C][] | [][C][] | [.][C][.]
+[R][.][.] | [R][C][.] | [R][C][] | [R][C][] | [.][C][.]
+[.][R][.] | [.][R][.] | [.][R][.] | [.][R][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Detonator
+- Loner
+
+-Placements:
+- Placed Detonator at (1, 0)
+- Placed Loner at (0, 0)
+
+-Extends:
+
+Night 3
+-Events:
+Con Artist creates 2 Drone
+Con Artist creates 2 Drone
+Loner base income
+Loner 1 empty zones
+Detonator base income
+Protection drain applies
+
+Engine Type: Loner
+
+----------------------------
+
+Base Income: 7500
+Bonus Income: 1500
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7000
+
+Current Money: 10000
+
+----------------------------
+
+Checkouts:
+- Con Artist
+- Con Artist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][C][.] | [.][C][.] | [][C][] | [][C][] | [.][.][.]
+[.][C][.] | [.][C][.] | [][C][] | [][C][] | [.][.][.]
+[.][.][.] | [L][D][.] | [L][D][.] | [L][D][.] | [L][D][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Con Artist
+- Con Artist
+
+-Placements:
+- Placed Con Artist at (1, 1)
+- Placed Con Artist at (2, 0)
+
+-Extends:
+- Loner extended to 2
+
+Night 4
+-Events:
+Con Artist creates 1 Drone
+Con Artist creates 2 Drone
+Detonator buffs Con Artist 
+Detonator buffs Con Artist 
+Detonator buffs Loner 
+Loner base income
+Loner 3 empty zones
+Protection drain applies
+
+Engine Type: Loner
+
+----------------------------
+
+Base Income: 16500
+Bonus Income: 4500
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 19000
+
+Current Money: 26000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][][.] | [.][][.] | [.][.][.]
+[.][.][.] | [.][C][.] | [][C][] | [][C][] | [.][C][.]
+[L][D][.] | [L][D][C] | [L][D][C] | [L][.][C] | [L][.][C]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Ghost
+- Strategist
+
+-Placements:
+- Placed Ghost at (1, 2)
+- Placed Strategist at (0, 1)
+
+-Extends:
+
+Night 5
+-Events:
+Con Artist creates 2 Drone
+Loner base income
+Loner 2 empty zones
+Ghost 2 empty adj zones
+Strategist conditions met
+Protection drain applies
+
+Engine Type: Ghost + Strategist
+
+----------------------------
+
+Base Income: 3500
+Bonus Income: 7000
+Kill Bonus: 0
+Multiplier: x2
+Total Income: 19000
+
+Current Money: 45000
+
+----------------------------
+
+Checkouts:
+- Loner
+- Con Artist
+- Con Artist
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][G][.] | [.][G][.] | [.][G][.] | [.][G][.]
+[.][C][.] | [T][C][.] | [T][C][] | [T][C][] | [T][.][.]
+[L][.][C] | [L][.][C] | [L][][C] | [L][][C] | [.][.][.]
+
+Final Board:
+[.][G][.]
+[T][.][.]
+[.][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Rookie
+- Rookie
+- Con Artist
+- Con Artist
+- Detonator
+- Loner
+- Con Artist
+- Con Artist
+- Ghost
+- Strategist
+
+All Extensions:
+- Loner
+

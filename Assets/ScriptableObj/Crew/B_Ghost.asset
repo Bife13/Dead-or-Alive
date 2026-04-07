@@ -15,7 +15,7 @@ MonoBehaviour:
   crewID: G
   crewType: 1
   displayName: Ghost
-  weight: 5
+  weight: 6
   baseIncome: 0
   contractDuration: 2
   effectValue: 2000

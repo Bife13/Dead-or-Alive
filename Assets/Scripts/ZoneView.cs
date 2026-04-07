@@ -7,9 +7,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class RoomView : MonoBehaviour, IPointerClickHandler
+public class ZoneView : MonoBehaviour, IPointerClickHandler
 {
-	private Room room;
+	private Zone _zone;
 
 	[SerializeField]
 	private PlacedSlateUI crewPlacedSlate;
@@ -33,9 +33,9 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 
 	private bool isLocked = false;
 
-	public void Initialize(Room roomData)
+	public void Initialize(Zone zoneData)
 	{
-		room = roomData;
+		_zone = zoneData;
 		HideSlate();
 	}
 
@@ -47,44 +47,53 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 
 		if (ActionBarUI.Instance.HasSelection)
 		{
-			ActionBarUI.Instance.TryApplyToRoom(room);
+			ActionBarUI.Instance.TryApplyToZone(_zone);
 			return;
 		}
 
-		// If clicking a room with an arrival crew
-		if (room.Occupant != null)
+		if (eventData.button == PointerEventData.InputButton.Left)
 		{
-			PlacementManager.Instance.SelectInstance(room.Occupant);
-			return;
-		}
-
-		// If clicking empty room and we have a selected instance ALREADY IN HOTEL
-		if (room.Occupant == null && PlacementManager.Instance.selectedInstance != null)
-		{
-			int index = room.Position.y * GameManager.Instance.GridWidth + room.Position.x;
-			if (GameManager.Instance.IsZoneLocked(index))
+			// If clicking a zone with an arrival crew
+			if (_zone.Occupant != null)
+			{
+				PlacementManager.Instance.SelectInstance(_zone.Occupant);
 				return;
+			}
 
-			GameManager.Instance.MoveSelectedCrewTo(room);
-			return;
-		}
+			// If clicking empty zone and we have a selected instance ALREADY IN HOTEL
+			if (_zone.Occupant == null && PlacementManager.Instance.selectedInstance != null)
+			{
+				int index = _zone.Position.y * GameManager.Instance.GridWidth + _zone.Position.x;
+				if (GameManager.Instance.IsZoneLocked(index))
+					return;
 
-		// If clicking empty room and we have selected definition FROM ARRIVAL
-		if (room.Occupant == null && PlacementManager.Instance.selectedCrew != null)
-		{
-			int index = room.Position.y * GameManager.Instance.GridWidth + room.Position.x;
-			if (GameManager.Instance.IsZoneLocked(index))
+				GameManager.Instance.MoveSelectedCrewTo(_zone);
 				return;
+			}
 
-			GameManager.Instance.PlaceSelectedCrew(room);
-			return;
+			// If clicking empty zone and we have selected definition FROM ARRIVAL
+			if (_zone.Occupant == null && PlacementManager.Instance.selectedCrew != null)
+			{
+				int index = _zone.Position.y * GameManager.Instance.GridWidth + _zone.Position.x;
+				if (GameManager.Instance.IsZoneLocked(index))
+					return;
+
+				GameManager.Instance.PlaceSelectedCrew(_zone);
+				return;
+			}
 		}
-
-		// if (PlacementManager.Instance.selectedcrew == null)
-		// 	return;
-		//
-		// if (!GameManager.Instance.CanPlaceSelected())
-		// 	return;
+		else if (eventData.button == PointerEventData.InputButton.Right)
+		{
+			Debug.Log("RIGHT CLICK");
+		}
+		else
+		{
+			Debug.Log("Middle CLICK");
+			if (_zone.IsOccupied())
+			{
+				GameManager.Instance.ReturnSelectedCrew(_zone);
+			}
+		}
 	}
 
 	public void UpdateSlate(CrewInstance instance)
@@ -97,7 +106,9 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 	public void HideSlate()
 	{
 		crewPlacedSlate.gameObject.SetActive(false);
-		border.color = isLocked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.4f) : DoAPalette.Instance.border;
+		border.color = isLocked
+			? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.4f)
+			: DoAPalette.Instance.border;
 	}
 
 	public void SetZoneName(string name)
@@ -184,8 +195,10 @@ public class RoomView : MonoBehaviour, IPointerClickHandler
 	{
 		isLocked = locked;
 		// Grey out the cell, show a visual indicator
-		border.color = locked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.4f) : DoAPalette.Instance.border;
-		zoneName.color = locked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.6f) : DoAPalette.Instance.textL4;
+		border.color =
+			locked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.4f) : DoAPalette.Instance.border;
+		zoneName.color =
+			locked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.6f) : DoAPalette.Instance.textL4;
 		// Optionally disable the BG slightly
 	}
 

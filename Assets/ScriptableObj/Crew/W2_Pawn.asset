@@ -15,7 +15,7 @@ MonoBehaviour:
   crewID: P
   crewType: 8
   displayName: Pawn
-  weight: 5
+  weight: 7
   baseIncome: 0
   contractDuration: 2
   effectValue: 2000

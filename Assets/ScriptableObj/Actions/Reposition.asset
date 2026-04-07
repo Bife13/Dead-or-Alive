@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee752be0c95e9b94d9a99e3f28b7b4f2, type: 3}
-  m_Name: Extend
+  m_Name: Reposition
   m_EditorClassIdentifier: Assembly-CSharp::ActionDefinition
-  displayName: Extend
-  description: Extend a crew member's contract by one night.
-  cost: 3000
-  accentColor: {r: 0.024262428, g: 1, b: 0, a: 1}
+  displayName: Reposition
+  description: Reposition an already placed crew.
+  cost: 2500
+  accentColor: {r: 1, g: 0.9810066, b: 0.2028302, a: 1}
   targetType: 0
-  actionType: 1
+  actionType: 0

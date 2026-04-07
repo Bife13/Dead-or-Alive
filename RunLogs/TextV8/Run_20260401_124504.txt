@@ -1,0 +1,291 @@
+=== RUN SUMMARY ===
+Seed: -1572508278
+
+Final Money: 47000
+
+Week: 1
+
+Weekly Money: 47000
+
+Peak: 20500
+
+Peak Night: 5
+
+Solved Night: 5
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Ghost
+- Handler
+
+-Placements:
+- Placed Ghost at (0, 1)
+- Placed Handler at (2, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Ghost 3 empty adj zones
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 4000
+
+Current Money: 4000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [G][.][.] | [G][.][.] | [G][.][.] | [G][.][.]
+[.][.][.] | [.][.][H] | [.][.][H] | [.][.][H] | [.][.][H]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Anchor
+- Enforcer
+
+-Placements:
+- Placed Enforcer at (1, 0)
+- Placed Anchor at (2, 1)
+
+-Extends:
+- Ghost extended to 2
+
+Night 2
+-Events:
+Handler buffs Enforcer
+Enforcer eliminates 1 crew
+Enforcer kill bonus
+Ghost 3 empty adj zones
+Anchor base income
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 2500
+Bonus Income: 6000
+Kill Bonus: 2000
+Multiplier: x1
+Total Income: 8500
+
+Current Money: 9500
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][A][.] | [.][A][.] | [.][A][.] | [.][A][.]
+[G][.][.] | [G][.][.] | [G][.][.] | [G][.][.] | [G][.][.]
+[.][.][H] | [.][E][H] | [.][E][H] | [.][E][.] | [.][E][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Enforcer
+- Con Artist
+
+-Placements:
+- Placed Con Artist at (2, 1)
+
+-Extends:
+- Enforcer extended to 2
+
+Night 3
+-Events:
+Con Artist creates 3 Drone
+Anchor shields Drone
+Enforcer eliminates 1 crew
+Enforcer kill bonus
+Ghost 2 empty adj zones
+Anchor base income
+Protection drain applies
+
+Engine Type: Con Artist + Enforcer
+
+----------------------------
+
+Base Income: 4500
+Bonus Income: 4000
+Kill Bonus: 2000
+Multiplier: x1
+Total Income: 8500
+
+Current Money: 15000
+
+----------------------------
+
+Checkouts:
+- Ghost
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][A][.] | [.][A][.] | [.][A][] | [.][A][] | [.][.][.]
+[G][.][.] | [G][.][C] | [G][][C] | [G][][C] | [.][.][C]
+[.][E][.] | [.][E][.] | [.][E][] | [.][E][.] | [.][E][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Enforcer
+- Loner
+
+-Placements:
+- Placed Loner at (1, 2)
+- Placed Enforcer at (1, 2)
+
+-Extends:
+- Con Artist extended to 2
+
+Night 4
+-Events:
+Con Artist creates 3 Drone
+Enforcer eliminates 2 crew
+Enforcer kill bonus
+Enforcer eliminates 1 crew
+Enforcer kill bonus
+Loner base income
+Loner 4 empty zones
+Protection drain applies
+
+Engine Type: Con Artist + Enforcer
+
+----------------------------
+
+Base Income: 4500
+Bonus Income: 6000
+Kill Bonus: 6000
+Multiplier: x1
+Total Income: 14500
+
+Current Money: 26500
+
+----------------------------
+
+Checkouts:
+- Enforcer
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][E][.] | [.][E][] | [.][E][.] | [.][E][.]
+[.][.][C] | [L][.][C] | [L][][C] | [L][.][C] | [L][.][C]
+[.][E][.] | [.][E][.] | [.][E][] | [.][E][.] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Gunslinger
+- Ghost
+
+-Placements:
+- Placed Ghost at (1, 0)
+- Placed Gunslinger at (0, 0)
+
+-Extends:
+
+Night 5
+-Events:
+Con Artist creates 2 Drone
+Enforcer eliminates 2 crew
+Enforcer kill bonus
+Ghost 2 empty adj zones
+Gunslinger base income
+Gunslinger adj bonus
+Loner base income
+Loner 4 empty zones
+Protection drain applies
+
+Engine Type: Con Artist + Enforcer
+
+----------------------------
+
+Base Income: 5500
+Bonus Income: 13000
+Kill Bonus: 4000
+Multiplier: x1
+Total Income: 20500
+
+Current Money: 47000
+
+----------------------------
+
+Checkouts:
+- Loner
+- Con Artist
+- Enforcer
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][E][.] | [.][E][.] | [.][E][] | [.][E][.] | [.][.][.]
+[L][.][C] | [L][.][C] | [L][][C] | [L][.][C] | [.][.][.]
+[.][.][.] | [.][G][U] | [.][G][U] | [.][G][U] | [.][G][U]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[.][G][U]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Ghost
+- Handler
+- Anchor
+- Enforcer
+- Enforcer
+- Con Artist
+- Enforcer
+- Loner
+- Gunslinger
+- Ghost
+
+All Extensions:
+- Ghost
+- Enforcer
+- Con Artist
+

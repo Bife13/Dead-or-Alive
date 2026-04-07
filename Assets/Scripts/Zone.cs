@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Room
+public class Zone
 {
 	private Vector2Int _position;
 	private bool IsPremium;
@@ -10,11 +10,11 @@ public class Room
 	public bool IsEmpty => occupant == null;
 	public Vector2Int Position => _position;
 	public CrewInstance Occupant => occupant;
-	public RoomView view;
+	public ZoneView view;
 	private int _index;
 	public int Index => _index;
 
-	public Room(Vector2Int position, int index)
+	public Zone(Vector2Int position, int index)
 	{
 		_position = position;
 		_index = index;
@@ -23,7 +23,7 @@ public class Room
 	public void SetOccupant(CrewInstance newOccupant)
 	{
 		occupant = newOccupant;
-		occupant.currentRoom = this;
+		occupant.CurrentZone = this;
 		view.UpdateSlate(newOccupant);
 	}
 

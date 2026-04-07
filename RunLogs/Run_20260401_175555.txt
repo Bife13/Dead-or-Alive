@@ -1,0 +1,280 @@
+=== RUN SUMMARY ===
+Seed: -411319162
+
+Final Money: 44000
+
+Week: 1
+
+Weekly Money: 44000
+
+Peak: 11000
+
+Peak Night: 2
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Gunslinger
+- Ghost
+
+-Placements:
+- Placed Ghost at (0, 1)
+- Placed Gunslinger at (2, 0)
+
+-Extends:
+
+Night 1
+-Events:
+Gunslinger base income
+Ghost 3 empty adj zones
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7000
+
+Current Money: 7000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [G][.][.] | [G][.][.] | [G][.][.] | [G][.][.]
+[.][.][.] | [.][.][U] | [.][.][U] | [.][.][U] | [.][.][U]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Pawn
+- Con Artist
+
+-Placements:
+- Placed Con Artist at (1, 1)
+- Placed Pawn at (2, 2)
+
+-Extends:
+
+Night 2
+-Events:
+Con Artist creates 3 Drone
+Gunslinger base income
+Gunslinger adj bonus
+Ghost 2 empty adj zones
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 5000
+Bonus Income: 7000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 11000
+
+Current Money: 18000
+
+----------------------------
+
+Checkouts:
+- Gunslinger
+- Ghost
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][P] | [.][][P] | [.][][P] | [.][.][P]
+[G][.][.] | [G][C][.] | [G][C][] | [G][C][] | [.][C][.]
+[.][.][U] | [.][.][U] | [.][][U] | [.][][U] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Gunslinger
+- Anchor
+
+-Placements:
+- Placed Gunslinger at (0, 2)
+- Placed Anchor at (2, 0)
+
+-Extends:
+
+Night 3
+-Events:
+Con Artist creates 4 Drone
+Anchor base income
+Gunslinger base income
+Gunslinger adj bonus
+Protection drain applies
+
+Engine Type: Pawn
+
+----------------------------
+
+Base Income: 7500
+Bonus Income: 3000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 9500
+
+Current Money: 27500
+
+----------------------------
+
+Checkouts:
+- Con Artist
+- Pawn
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][P] | [U][.][P] | [U][][P] | [U][][P] | [U][.][.]
+[.][C][.] | [.][C][.] | [][C][] | [][C][] | [.][.][.]
+[.][.][.] | [A][.][.] | [A][][.] | [A][][.] | [A][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Pawn
+- Ghost
+
+-Placements:
+- Placed Ghost at (2, 1)
+- Placed Pawn at (1, 2)
+
+-Extends:
+- Gunslinger extended to 2
+
+Night 4
+-Events:
+Anchor base income
+Ghost 3 empty adj zones
+Gunslinger base income
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 3500
+Bonus Income: 6000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 8500
+
+Current Money: 33000
+
+----------------------------
+
+Checkouts:
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[U][.][.] | [U][P][.] | [U][P][.] | [U][P][.] | [U][P][.]
+[.][.][.] | [.][.][G] | [.][.][G] | [.][.][G] | [.][.][G]
+[A][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Enforcer
+- Enforcer
+
+-Placements:
+- Placed Enforcer at (2, 2)
+- Placed Enforcer at (0, 0)
+
+-Extends:
+
+Night 5
+-Events:
+Enforcer eliminates 2 crew
+Enforcer kill bonus
+Pawn death payout
+Pawn death payout
+Pawn death payout
+Gunslinger base income
+Protection drain applies
+
+Engine Type: Ghost
+
+----------------------------
+
+Base Income: 8000
+Bonus Income: 0
+Kill Bonus: 4000
+Multiplier: x1
+Total Income: 11000
+
+Current Money: 44000
+
+----------------------------
+
+Checkouts:
+- Gunslinger
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[U][P][.] | [U][P][.] | [U][P][.] | [U][.][.] | [.][.][.]
+[.][.][G] | [.][E][G] | [.][E][G] | [.][E][.] | [.][E][.]
+[.][.][.] | [E][.][.] | [E][.][.] | [E][.][.] | [E][.][.]
+
+Final Board:
+[.][.][.]
+[.][E][.]
+[E][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Gunslinger
+- Ghost
+- Pawn
+- Con Artist
+- Gunslinger
+- Anchor
+- Pawn
+- Ghost
+- Enforcer
+- Enforcer
+
+All Extensions:
+- Gunslinger
+

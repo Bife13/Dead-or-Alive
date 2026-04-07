@@ -15,7 +15,7 @@ MonoBehaviour:
   crewID: D
   crewType: 9
   displayName: Detonator
-  weight: 5
+  weight: 4
   baseIncome: 2000
   contractDuration: 2
   effectValue: 4000

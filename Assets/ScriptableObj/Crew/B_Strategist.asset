@@ -15,7 +15,7 @@ MonoBehaviour:
   crewID: T
   crewType: 3
   displayName: Strategist
-  weight: 5
+  weight: 4
   baseIncome: 0
   contractDuration: 2
   effectValue: 1

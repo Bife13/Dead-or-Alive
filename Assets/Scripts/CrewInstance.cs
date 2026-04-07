@@ -9,11 +9,15 @@ public class CrewInstance
 	public bool isAlive = true;
 	public bool isTemporary;
 	public bool isResident;
-	public Room currentRoom;
+	public Zone CurrentZone;
 
 	public bool anchorSaveUsed = false;
 	public bool detonatorUsed = false;
+	public bool isArmedForDetonation = false;
+
 	public bool eliminatedBySource = false;
+
+	public bool canReposition = false;
 	
 	public CrewInstance(CrewDefinition _definition)
 	{
@@ -28,16 +32,16 @@ public class CrewInstance
 	{
 		contractDurationRemaining--;
 
-		if (currentRoom?.view != null)
-			currentRoom.view.GetSlate()?.UpdateContract();
+		if (CurrentZone?.view != null)
+			CurrentZone.view.GetSlate()?.UpdateContract();
 	}
 
 	public void ExtendContract(int amount)
 	{
 		contractDurationRemaining++;
 
-		if (currentRoom?.view != null)
-			currentRoom.view.GetSlate()?.UpdateContract();
+		if (CurrentZone?.view != null)
+			CurrentZone.view.GetSlate()?.UpdateContract();
 	}
 
 	public void SetAnchorUse(bool value)
