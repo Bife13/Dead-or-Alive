@@ -3,14 +3,14 @@ using UnityEngine;
 public class Zone
 {
 	private Vector2Int _position;
-	private bool IsPremium;
+	private bool _isPremium;
 
-	private CrewInstance occupant;
+	private CrewInstance _occupant;
 
-	public bool IsEmpty => occupant == null;
+	public bool IsEmpty => _occupant == null;
 	public Vector2Int Position => _position;
-	public CrewInstance Occupant => occupant;
-	public ZoneView view;
+	public CrewInstance Occupant => _occupant;
+	public ZoneView View;
 	private int _index;
 	public int Index => _index;
 
@@ -22,25 +22,25 @@ public class Zone
 
 	public void SetOccupant(CrewInstance newOccupant)
 	{
-		occupant = newOccupant;
-		occupant.CurrentZone = this;
-		view.UpdateSlate(newOccupant);
+		_occupant = newOccupant;
+		_occupant.CurrentZone = this;
+		View.UpdateSlate(newOccupant);
 	}
 
 	public void ClearHideOccupant()
 	{
-		occupant = null;
-		view.HideSlate();
+		_occupant = null;
+		View.HideSlate();
 	}
 
 	public void ClearOccupant()
 	{
-		occupant = null;
+		_occupant = null;
 	}
 	
 
 	public bool IsOccupied()
 	{
-		return occupant != null;
+		return _occupant != null;
 	}
 }

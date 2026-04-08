@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
 
 	public static GameManager Instance => _instance;
 
-	private RunLog currentRunLog = new();
-	private WeekLog currentWeekLog = new();
-	private NightLog currentNightLog = new();
-	private int currentSeed;
-	private int seedValue = 0;
+	private RunLog _currentRunLog = new();
+	private WeekLog _currentWeekLog = new();
+	private NightLog _currentNightLog = new();
+	private int _currentSeed;
+	private int _seedValue = 0;
 
 	[SerializeField]
 	private GridManager gridManager;
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
 	private CrewPool crewPool;
 
 	public List<CrewDefinition> crewBag;
-	private int bagIndex;
+	private int _bagIndex;
 
 	[SerializeField]
 	private int crewBagSize;
@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
 	public int arrivalsPerDay = 2;
 
 
-	public int money = 0;
+	public int money;
 	public int currentNight = 1;
 	public int totalNights = 1;
 
@@ -59,18 +59,18 @@ public class GameManager : MonoBehaviour
 	public List<int> weeklyTargets;
 	public bool runActive = true;
 
-	private int deathsThisNight;
-	private int multiplier;
-	private List<CrewDefinition> dailyArrivals = new();
+	private int _deathsThisNight;
+	private int _multiplier;
+	private readonly List<CrewDefinition> _dailyArrivals = new();
 
-	private GamePhase currentPhase;
-	public GamePhase CurrentPhase => currentPhase;
+	private GamePhase _currentPhase;
+	public GamePhase CurrentPhase => _currentPhase;
 
 	[Header("Actions")]
 	[SerializeField]
 	private List<ActionDefinition> availableActions;
 
-	private List<ActionInstance> _currentPowerUps = new();
+	private readonly List<ActionInstance> _currentActions = new();
 
 	[Header("Bounty")]
 	[SerializeField]
@@ -87,15 +87,30 @@ public class GameManager : MonoBehaviour
 
 	public int GridWidth => gridManager.Width;
 
-	private int weeklyDeathCount = 0;
+	private int _weeklyDeathCount;
 
-	public int WeeklyDeathCount => weeklyDeathCount;
+	public int WeeklyDeathCount => _weeklyDeathCount;
 
 
-	private List<CrewInstance> deadCrew;
+	private List<CrewInstance> _deadCrew;
 
 	[SerializeField]
 	private ResolutionDelays resolutionDelays;
+
+	[Header("Weekly UI")]
+	[SerializeField]
+	private WeekCompleteUI weekCompleteUI;
+
+	[SerializeField]
+	private WeekDossierUI weekDossierUI;
+
+	[SerializeField]
+	private TitleCardUI titleCardUI;
+
+	[SerializeField]
+	private RunEndUI runEndUI;
+
+	private List<int> _weeklyEarnings = new();
 
 	private void Awake()
 	{
@@ -107,8 +122,7 @@ public class GameManager : MonoBehaviour
 
 	public void Start()
 	{
-		ResetRun();
-		currentNightLog.beforePlacement = CaptureBoardSnapshot();
+		titleCardUI.Show();
 	}
 
 	public void StartNight()
@@ -116,14 +130,14 @@ public class GameManager : MonoBehaviour
 		if (!runActive) return;
 
 		startButton.SetActive(false);
-		currentPhase = GamePhase.ResolutionPhase;
+		_currentPhase = GamePhase.ResolutionPhase;
 
 		foreach (Zone zone in gridManager.GetAllZones())
 		{
 			if (zone.IsOccupied())
 			{
-				zone.Occupant.isResident = true;
-				zone.Occupant.canReposition = false;
+				zone.Occupant.IsResident = true;
+				zone.Occupant.CanReposition = false;
 			}
 		}
 
@@ -134,13 +148,13 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator ResolveNight()
 	{
-		deathsThisNight = 0;
-		multiplier = 1;
-		deadCrew = new List<CrewInstance>();
+		_deathsThisNight = 0;
+		_multiplier = 1;
+		_deadCrew = new List<CrewInstance>();
 
 		NightReport report = new NightReport();
-		currentNightLog.afterPlacement = CaptureBoardSnapshot();
-		currentNightLog.engineType = DetectEngine(currentNightLog);
+		_currentNightLog.AfterPlacement = CaptureBoardSnapshot();
+		_currentNightLog.EngineType = DetectEngine(_currentNightLog);
 
 		ResetIncome();
 
@@ -150,10 +164,10 @@ public class GameManager : MonoBehaviour
 			CrewInstance crew = zone.Occupant;
 
 			if (crew.Definition.crewType == CrewType.Detonator
-			    && crew.isArmedForDetonation)
+			    && crew.IsArmedForDetonation)
 			{
-				crew.detonatorUsed = true;
-				crew.isArmedForDetonation = false;
+				crew.DetonatorUsed = true;
+				crew.IsArmedForDetonation = false;
 				TriggerDetonator(crew.CurrentZone);
 			}
 		}
@@ -164,7 +178,7 @@ public class GameManager : MonoBehaviour
 		// Creations
 		yield return StartCoroutine(ResolveCreations(report));
 
-		currentNightLog.afterCreations = CaptureBoardSnapshot();
+		_currentNightLog.AfterCreations = CaptureBoardSnapshot();
 
 		// Detonator
 		yield return StartCoroutine(ResolveDetonator(report));
@@ -173,7 +187,7 @@ public class GameManager : MonoBehaviour
 		yield return StartCoroutine(ResolveKillEffects(report));
 
 		yield return StartCoroutine(CleanupDead());
-		currentNightLog.afterKills = CaptureBoardSnapshot();
+		_currentNightLog.AfterKills = CaptureBoardSnapshot();
 
 		// Pawns
 		yield return StartCoroutine(ResolvePawnDeaths(report));
@@ -182,74 +196,74 @@ public class GameManager : MonoBehaviour
 		yield return StartCoroutine(ResolveIncome(report));
 
 		// Finalize
-		money += report.finalIncome;
+		money += report.FinalIncome;
 
 		yield return StartCoroutine(ResolveKillBounty(report));
 
-		if ((money >= weeklyTarget - 5000 || report.finalIncome >= weeklyTarget - 5000) &&
-		    currentWeekLog.solvedNight == 0)
-			currentWeekLog.solvedNight = currentNight;
+		if ((money >= weeklyTarget - 5000 || report.FinalIncome >= weeklyTarget - 5000) &&
+		    _currentWeekLog.SolvedNight == 0)
+			_currentWeekLog.SolvedNight = currentNight;
 
 		yield return StartCoroutine(CleanupTemporary());
 
 		yield return StartCoroutine(DecreaseAndFinishContract(report));
 
-		currentNightLog.endOfNight = CaptureBoardSnapshot();
+		_currentNightLog.EndOfNight = CaptureBoardSnapshot();
 
 		fieldReport.ShowSummary(report, currentNight);
 
-		currentNightLog.currentMoney = money;
-		currentNightLog.checkouts.AddRange(report.checkouts);
-		currentNightLog.typedEvents.AddRange(report.typedEvents);
-		currentNightLog.baseIncome = report.baseIncome;
-		currentNightLog.bonusIncome = report.bonusIncome;
-		currentNightLog.killBonus = report.killBonus;
-		currentNightLog.multiplier = report.multiplier;
-		currentNightLog.totalIncome = report.finalIncome;
-		currentWeekLog.nights.Add(currentNightLog);
+		_currentNightLog.CurrentMoney = money;
+		_currentNightLog.Checkouts.AddRange(report.Checkouts);
+		_currentNightLog.TypedEvents.AddRange(report.TypedEvents);
+		_currentNightLog.BaseIncome = report.BaseIncome;
+		_currentNightLog.BonusIncome = report.BonusIncome;
+		_currentNightLog.KillBonus = report.KillBonus;
+		_currentNightLog.Multiplier = report.Multiplier;
+		_currentNightLog.TotalIncome = report.FinalIncome;
+		_currentWeekLog.Nights.Add(_currentNightLog);
 
 		currentNight++;
-		currentPhase = GamePhase.ScorePhase;
-		currentNightLog = new NightLog();
-		currentNightLog.nightNumber = currentNight;
+		_currentPhase = GamePhase.ScorePhase;
+		_currentNightLog = new NightLog();
+		_currentNightLog.NightNumber = currentNight;
 	}
 
 	public void NextDay()
 	{
 		InitializePowerUps();
-		dailyArrivals.Clear();
-		currentNightLog.beforePlacement = CaptureBoardSnapshot();
+		_dailyArrivals.Clear();
+		_currentNightLog.BeforePlacement = CaptureBoardSnapshot();
 
 		if (currentNight > totalNights)
 			EndWeek();
 		else
 		{
 			GenerateDailyArrivals();
-			currentPhase = GamePhase.PlanningPhase;
+			_currentPhase = GamePhase.PlanningPhase;
 			startButton.SetActive(true);
 		}
 	}
 
 	private void GenerateDailyArrivals()
 	{
-		dailyArrivals.Clear();
+		_dailyArrivals.Clear();
 
 		for (int i = 0; i < arrivalsPerDay; i++)
 		{
-			CrewDefinition crew = crewBag[bagIndex];
+			CrewDefinition crew = crewBag[_bagIndex];
 
-			dailyArrivals.Add(crew);
-			currentNightLog.arrivals.Add(crew.displayName);
-			bagIndex++;
+			_dailyArrivals.Add(crew);
+			_currentNightLog.Arrivals.Add(crew.displayName);
+			_bagIndex++;
 
-			foreach (crewLog log in currentWeekLog.crewLogs)
+			foreach (CrewLog log in _currentWeekLog.CrewLogs)
 			{
-				if (log.definition == crew)
-					log.timesOffered++;
+				if (log.Definition == crew)
+					log.TimesOffered++;
 			}
 		}
 
-		candidatesUI.UpdateArrivalUI(dailyArrivals);
+		candidatesUI.UpdateArrivalUI(_dailyArrivals);
 	}
 
 	private void GenerateWeeklyBag()
@@ -266,10 +280,10 @@ public class GameManager : MonoBehaviour
 
 	public void ShuffleCrewBag()
 	{
-		System.Random rng = new System.Random(currentSeed);
+		System.Random rng = new System.Random(_currentSeed);
 		Shuffle(crewBag, rng);
-		bagIndex = 0;
-		currentWeekLog.crewBag = crewBag;
+		_bagIndex = 0;
+		_currentWeekLog.CrewBag = crewBag;
 	}
 
 	void Shuffle<T>(List<T> list, System.Random rng)
@@ -312,7 +326,7 @@ public class GameManager : MonoBehaviour
 		{
 			if (zone.IsOccupied())
 			{
-				zone.Occupant.currentIncome =
+				zone.Occupant.CurrentIncome =
 					zone.Occupant.Definition.baseIncome;
 			}
 		}
@@ -322,10 +336,10 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (Zone zone in gridManager.GetAllZones())
 		{
-			if (!zone.IsOccupied() || zone.Occupant.isAlive) continue;
+			if (!zone.IsOccupied() || zone.Occupant.IsAlive) continue;
 
-			yield return StartCoroutine(zone.view.FadeOutSlate(resolutionDelays.fade));
-			deadCrew.Add(zone.Occupant);
+			yield return StartCoroutine(zone.View.FadeOutSlate(resolutionDelays.fade));
+			_deadCrew.Add(zone.Occupant);
 			zone.ClearOccupant();
 		}
 	}
@@ -334,10 +348,10 @@ public class GameManager : MonoBehaviour
 	{
 		foreach (Zone zone in gridManager.GetAllZones())
 		{
-			if (!zone.IsOccupied() || !zone.Occupant.isTemporary) continue;
+			if (!zone.IsOccupied() || !zone.Occupant.IsTemporary) continue;
 
 			// yield return
-			StartCoroutine(zone.view.FadeOutSlate(resolutionDelays.fade));
+			StartCoroutine(zone.View.FadeOutSlate(resolutionDelays.fade));
 			zone.ClearOccupant();
 		}
 
@@ -354,13 +368,13 @@ public class GameManager : MonoBehaviour
 
 			yield return new WaitForSeconds(resolutionDelays.expiryDelay);
 
-			if (zone.Occupant.contractDurationRemaining > 0) continue;
+			if (zone.Occupant.ContractDurationRemaining > 0) continue;
 
-			report.checkouts.Add(zone.Occupant.Definition.displayName);
+			report.Checkouts.Add(zone.Occupant.Definition.displayName);
 
-			zone.view.Flash(DoAPalette.Instance.wineBright, resolutionDelays.expiryDelay);
+			zone.View.Flash(DoAPalette.Instance.wineBright, resolutionDelays.expiryDelay);
 			yield return new WaitForSeconds(resolutionDelays.expiryDelay);
-			yield return StartCoroutine(zone.view.FadeOutSlate(resolutionDelays.fade));
+			yield return StartCoroutine(zone.View.FadeOutSlate(resolutionDelays.fade));
 			zone.ClearOccupant();
 		}
 	}
@@ -378,23 +392,23 @@ public class GameManager : MonoBehaviour
 					foreach (var adjZone in gridManager.GetAdjacentZones(zone))
 					{
 						if (!adjZone.IsOccupied()) continue;
-						if (adjZone.Occupant.detonatorUsed) continue;
+						if (adjZone.Occupant.DetonatorUsed) continue;
 
-						adjZone.Occupant.currentIncome += crew.Definition.effectValue;
+						adjZone.Occupant.CurrentIncome += crew.Definition.effectValue;
 
-						report.typedEvents.Add(new NightReportEvent
+						report.TypedEvents.Add(new NightReportEvent
 						{
-							type = ReportEventType.Buff,
-							label = "{0} buffs {1}",
-							sourceCrew = CrewType.Handler,
-							targetCrew = adjZone.Occupant.Definition.crewType,
-							value = crew.Definition.effectValue,
-							sourcePosition = zone.Position,
-							targetPosition = adjZone.Position,
+							Type = ReportEventType.Buff,
+							Label = "{0} buffs {1}",
+							SourceCrew = CrewType.Handler,
+							TargetCrew = adjZone.Occupant.Definition.crewType,
+							Value = crew.Definition.effectValue,
+							SourcePosition = zone.Position,
+							TargetPosition = adjZone.Position,
 						});
 
-						zone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
-						adjZone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
+						zone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
+						adjZone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
 						yield return new WaitForSeconds(resolutionDelays.buffDelay);
 					}
 
@@ -423,29 +437,29 @@ public class GameManager : MonoBehaviour
 						if (creations.Any(c => c.zone == adjZone)) continue;
 
 						creations.Add((adjZone, crew.Definition.creationDefinition));
-						crew.currentIncome += crew.Definition.effectValue;
+						crew.CurrentIncome += crew.Definition.effectValue;
 					}
 
 					if (creations.Count <= 0) continue;
 
-					report.creationBonus += creations.Count;
-					report.typedEvents.Add(new NightReportEvent
+					report.CreationBonus += creations.Count;
+					report.TypedEvents.Add(new NightReportEvent
 					{
-						type = ReportEventType.Creation,
-						label = $"{{0}} creates {creations.Count} {crew.Definition.creationDefinition.displayName}",
-						value = creations.Count * crew.Definition.effectValue,
-						sourceCrew = CrewType.ConArtist,
-						sourcePosition = zone.Position,
+						Type = ReportEventType.Creation,
+						Label = $"{{0}} creates {creations.Count} {crew.Definition.creationDefinition.displayName}",
+						Value = creations.Count * crew.Definition.effectValue,
+						SourceCrew = CrewType.ConArtist,
+						SourcePosition = zone.Position,
 					});
 
-					zone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.creationDelay);
+					zone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.creationDelay);
 					yield return new WaitForSeconds(resolutionDelays.creationDelay);
 
 					foreach (var creation in creations)
 					{
 						SpawnCrewInZone(creation.zone, creation.definition);
-						zone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.creationDelay);
-						creation.zone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.creationDelay);
+						zone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.creationDelay);
+						creation.zone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.creationDelay);
 					}
 
 					yield return new WaitForSeconds(resolutionDelays.creationDelay);
@@ -471,43 +485,43 @@ public class GameManager : MonoBehaviour
 					foreach (Zone adjZone in gridManager.GetAdjacentZones(zone))
 					{
 						if (!adjZone.IsOccupied()) continue;
-						if (!adjZone.Occupant.isAlive) continue;
+						if (!adjZone.Occupant.IsAlive) continue;
 						if (adjZone.Occupant.Definition == crew.Definition) continue;
 
-						adjZone.Occupant.isAlive = false;
+						adjZone.Occupant.IsAlive = false;
 
 						yield return StartCoroutine(TryAnchorSave(adjZone.Occupant, report));
-						if (adjZone.Occupant.isAlive) continue;
+						if (adjZone.Occupant.IsAlive) continue;
 
 						kills++;
-						adjZone.Occupant.eliminatedBySource = true;
-						weeklyDeathCount++;
-						deathsThisNight++;
+						adjZone.Occupant.EliminatedBySource = true;
+						_weeklyDeathCount++;
+						_deathsThisNight++;
 						UpdateScavengers();
 
-						adjZone.view.Flash(DoAPalette.Instance.wine, resolutionDelays.killDelay);
+						adjZone.View.Flash(DoAPalette.Instance.wine, resolutionDelays.killDelay);
 					}
 
 					if (kills <= 0) continue;
 
 					int killIncome = kills * crew.Definition.effectValue;
-					report.killBonus += killIncome;
+					report.KillBonus += killIncome;
 
-					report.typedEvents.Add(new NightReportEvent
+					report.TypedEvents.Add(new NightReportEvent
 					{
-						type = ReportEventType.Kill,
-						label = $"{{0}} eliminates {kills} crew",
-						value = 0,
-						sourceCrew = CrewType.Enforcer,
-						sourcePosition = zone.Position,
+						Type = ReportEventType.Kill,
+						Label = $"{{0}} eliminates {kills} crew",
+						Value = 0,
+						SourceCrew = CrewType.Enforcer,
+						SourcePosition = zone.Position,
 					});
-					report.typedEvents.Add(new NightReportEvent
+					report.TypedEvents.Add(new NightReportEvent
 					{
-						type = ReportEventType.KillBonus,
-						label = "{0} kill bonus",
-						value = killIncome,
-						sourceCrew = crew.Definition.crewType,
-						sourcePosition = zone.Position,
+						Type = ReportEventType.KillBonus,
+						Label = "{0} kill bonus",
+						Value = killIncome,
+						SourceCrew = crew.Definition.crewType,
+						SourcePosition = zone.Position,
 					});
 
 					yield return new WaitForSeconds(resolutionDelays.killDelay);
@@ -520,10 +534,10 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator ResolvePawnDeaths(NightReport report)
 	{
-		if (deadCrew.Count <= 0) yield break;
+		if (_deadCrew.Count <= 0) yield break;
 
-		List<CrewInstance> deadPawns = deadCrew
-			.Where(c => c.Definition.crewType == CrewType.Pawn && c.eliminatedBySource)
+		List<CrewInstance> deadPawns = _deadCrew
+			.Where(c => c.Definition.crewType == CrewType.Pawn && c.EliminatedBySource)
 			.ToList();
 
 		if (deadPawns.Count <= 0) yield break;
@@ -541,48 +555,48 @@ public class GameManager : MonoBehaviour
 		foreach (Zone zone in gridManager.GetAllZones())
 		{
 			if (!zone.IsOccupied()) continue;
-			if (zone.Occupant.isTemporary) continue;
+			if (zone.Occupant.IsTemporary) continue;
 
-			zone.Occupant.currentIncome += payout;
+			zone.Occupant.CurrentIncome += payout;
 
-			report.typedEvents.Add(new NightReportEvent
+			report.TypedEvents.Add(new NightReportEvent
 			{
-				type = ReportEventType.BuffedIncome,
-				label = "{0} death payout",
-				sourceCrew = CrewType.Pawn,
-				targetCrew = zone.Occupant.Definition.crewType,
-				value = payout,
+				Type = ReportEventType.BuffedIncome,
+				Label = "{0} death payout",
+				SourceCrew = CrewType.Pawn,
+				TargetCrew = zone.Occupant.Definition.crewType,
+				Value = payout,
 			});
 
-			zone.view.Flash(DoAPalette.Instance.ochre, resolutionDelays.incomeDelay);
+			zone.View.Flash(DoAPalette.Instance.ochre, resolutionDelays.incomeDelay);
 			yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 		}
 	}
 
 	private IEnumerator ResolveIncome(NightReport report)
 	{
-		int income = report.killBonus;
+		int income = report.KillBonus;
 		int baseIncome = 0;
 
 		foreach (Zone zone in gridManager.GetAllZones())
 		{
 			if (!zone.IsOccupied()) continue;
 			CrewInstance crew = zone.Occupant;
-			int finalIncome = crew.currentIncome;
-			baseIncome += crew.currentIncome;
+			int finalIncome = crew.CurrentIncome;
+			baseIncome += crew.CurrentIncome;
 
 			if (crew.Definition.baseIncome > 0)
 			{
-				report.typedEvents.Add(new NightReportEvent
+				report.TypedEvents.Add(new NightReportEvent
 				{
-					type = ReportEventType.BaseIncome,
-					label = "{0} base income",
-					value = crew.Definition.baseIncome,
-					sourceCrew = crew.Definition.crewType,
-					sourcePosition = zone.Position,
+					Type = ReportEventType.BaseIncome,
+					Label = "{0} base income",
+					Value = crew.Definition.baseIncome,
+					SourceCrew = crew.Definition.crewType,
+					SourcePosition = zone.Position,
 				});
 
-				zone.view.Flash(DoAPalette.Instance.ochre, resolutionDelays.incomeDelay);
+				zone.View.Flash(DoAPalette.Instance.ochre, resolutionDelays.incomeDelay);
 				yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 			}
 
@@ -597,16 +611,16 @@ public class GameManager : MonoBehaviour
 					if (emptyAdj > 0)
 					{
 						finalIncome += ghostBonus;
-						report.typedEvents.Add(new NightReportEvent
+						report.TypedEvents.Add(new NightReportEvent
 						{
-							type = ReportEventType.BuffedIncome,
-							label = $"{{0}} {emptyAdj} empty adj zones",
-							value = ghostBonus,
-							sourceCrew = CrewType.Ghost,
-							sourcePosition = zone.Position,
+							Type = ReportEventType.BuffedIncome,
+							Label = $"{{0}} {emptyAdj} empty adj zones",
+							Value = ghostBonus,
+							SourceCrew = CrewType.Ghost,
+							SourcePosition = zone.Position,
 						});
 
-						zone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
+						zone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
 						yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 					}
 
@@ -617,16 +631,16 @@ public class GameManager : MonoBehaviour
 					{
 						finalIncome += crew.Definition.effectValue;
 
-						report.typedEvents.Add(new NightReportEvent
+						report.TypedEvents.Add(new NightReportEvent
 						{
-							type = ReportEventType.BuffedIncome,
-							label = "{0} adj bonus",
-							value = crew.Definition.effectValue,
-							sourceCrew = CrewType.Gunslinger,
-							sourcePosition = zone.Position,
+							Type = ReportEventType.BuffedIncome,
+							Label = "{0} adj bonus",
+							Value = crew.Definition.effectValue,
+							SourceCrew = CrewType.Gunslinger,
+							SourcePosition = zone.Position,
 						});
 
-						zone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
+						zone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
 						yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 					}
 
@@ -640,38 +654,38 @@ public class GameManager : MonoBehaviour
 						int lonerBonus = crew.Definition.effectValue * cappedZones;
 						finalIncome += lonerBonus;
 
-						report.typedEvents.Add(new NightReportEvent
+						report.TypedEvents.Add(new NightReportEvent
 						{
-							type = ReportEventType.BuffedIncome,
-							label = $"{{0}} {cappedZones} empty zones",
-							value = lonerBonus,
-							sourceCrew = CrewType.Loner,
-							sourcePosition = zone.Position,
+							Type = ReportEventType.BuffedIncome,
+							Label = $"{{0}} {cappedZones} empty zones",
+							Value = lonerBonus,
+							SourceCrew = CrewType.Loner,
+							SourcePosition = zone.Position,
 						});
 
-						zone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
+						zone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
 						yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 					}
 
 					break;
 
 				case CrewType.Scavenger:
-					int scavBonus = crew.Definition.effectValue * weeklyDeathCount;
+					int scavBonus = crew.Definition.effectValue * _weeklyDeathCount;
 
 					if (scavBonus > 0)
 					{
 						finalIncome += scavBonus;
 
-						report.typedEvents.Add(new NightReportEvent
+						report.TypedEvents.Add(new NightReportEvent
 						{
-							type = ReportEventType.BuffedIncome,
-							label = $"{{0}} scavenged {weeklyDeathCount} deaths",
-							value = scavBonus,
-							sourceCrew = CrewType.Scavenger,
-							sourcePosition = zone.Position,
+							Type = ReportEventType.BuffedIncome,
+							Label = $"{{0}} scavenged {_weeklyDeathCount} deaths",
+							Value = scavBonus,
+							SourceCrew = CrewType.Scavenger,
+							SourcePosition = zone.Position,
 						});
 
-						zone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
+						zone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.incomeDelay);
 						yield return new WaitForSeconds(resolutionDelays.incomeDelay);
 					}
 
@@ -686,40 +700,40 @@ public class GameManager : MonoBehaviour
 		}
 
 
-		report.baseIncome = baseIncome;
-		report.bonusIncome = income - baseIncome - report.killBonus;
+		report.BaseIncome = baseIncome;
+		report.BonusIncome = income - baseIncome - report.KillBonus;
 
 		yield return StartCoroutine(ApplyMultipliers(report));
 
-		income = Mathf.RoundToInt(income * multiplier);
+		income = Mathf.RoundToInt(income * _multiplier);
 
 		// BOUNTY DRAIN
 		int drain = bountyManager.ApplyIncomeDrain();
 		if (drain > 0)
 		{
 			income -= drain;
-			report.typedEvents.Add(new NightReportEvent
+			report.TypedEvents.Add(new NightReportEvent
 			{
-				type = ReportEventType.Drain,
-				label = "Protection drain applies",
-				value = -drain
+				Type = ReportEventType.Drain,
+				Label = "Protection drain applies",
+				Value = -drain
 			});
 			yield return new WaitForSeconds(resolutionDelays.bountyDelay);
 		}
 
-		report.finalIncome = income;
+		report.FinalIncome = income;
 
-		if (income <= currentWeekLog.peak) yield break;
+		if (income <= _currentWeekLog.Peak) yield break;
 
-		currentWeekLog.peak = income;
-		currentWeekLog.peakNight = currentNight;
+		_currentWeekLog.Peak = income;
+		_currentWeekLog.PeakNight = currentNight;
 	}
 
 	private IEnumerator ApplyMultipliers(NightReport report)
 	{
 		int aliveCount = 0;
 		foreach (Zone zone in gridManager.GetAllZones())
-			if (zone.IsOccupied() && !zone.Occupant.isTemporary)
+			if (zone.IsOccupied() && !zone.Occupant.IsTemporary)
 				aliveCount++;
 
 		foreach (Zone zone in gridManager.GetAllZones())
@@ -731,21 +745,21 @@ public class GameManager : MonoBehaviour
 			switch (crew.Definition.crewType)
 			{
 				case CrewType.Strategist:
-					if (deathsThisNight == 0
+					if (_deathsThisNight == 0
 					    && aliveCount >= crew.Definition.effectRequirement)
 					{
-						multiplier += crew.Definition.effectValue;
+						_multiplier += crew.Definition.effectValue;
 
-						report.typedEvents.Add(new NightReportEvent
+						report.TypedEvents.Add(new NightReportEvent
 						{
-							type = ReportEventType.Multiplier,
-							label = "{0} conditions met",
-							value = multiplier,
-							sourceCrew = CrewType.Strategist,
-							sourcePosition = zone.Position,
+							Type = ReportEventType.Multiplier,
+							Label = "{0} conditions met",
+							Value = _multiplier,
+							SourceCrew = CrewType.Strategist,
+							SourcePosition = zone.Position,
 						});
 
-						zone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.multiplierDelay);
+						zone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.multiplierDelay);
 						yield return new WaitForSeconds(resolutionDelays.multiplierDelay);
 					}
 
@@ -754,13 +768,13 @@ public class GameManager : MonoBehaviour
 				// Future multiplier-phase crew added here as new cases
 			}
 
-			report.multiplier = multiplier;
+			report.Multiplier = _multiplier;
 		}
 	}
 
 	private IEnumerator ResolveKillBounty(NightReport report)
 	{
-		List<Zone> allZones = gridManager.GetAllZones().Where(r => r.Occupant != null && !r.Occupant.isTemporary)
+		List<Zone> allZones = gridManager.GetAllZones().Where(r => r.Occupant != null && !r.Occupant.IsTemporary)
 			.ToList();
 		int threatIndex = bountyManager.ResolveCrewThreat(allZones.Count);
 
@@ -768,26 +782,26 @@ public class GameManager : MonoBehaviour
 		{
 			Zone targetZone = allZones[threatIndex];
 			CrewInstance target = targetZone.Occupant;
-			target.isAlive = false;
+			target.IsAlive = false;
 
 			yield return StartCoroutine(TryAnchorSave(target, report));
-			if (target.isAlive) yield break;
+			if (target.IsAlive) yield break;
 
-			report.typedEvents.Add(new NightReportEvent
+			report.TypedEvents.Add(new NightReportEvent
 			{
-				type = ReportEventType.Kill,
-				label = "Bounty targets {0}",
-				value = 0,
-				sourceCrew = target.Definition.crewType,
-				sourcePosition = targetZone.Position
+				Type = ReportEventType.Kill,
+				Label = "Bounty targets {0}",
+				Value = 0,
+				SourceCrew = target.Definition.crewType,
+				SourcePosition = targetZone.Position
 			});
 
-			targetZone.view.Flash(DoAPalette.Instance.wine, resolutionDelays.killDelay);
+			targetZone.View.Flash(DoAPalette.Instance.wine, resolutionDelays.killDelay);
 			yield return new WaitForSeconds(resolutionDelays.killDelay);
 
-			weeklyDeathCount++;
-			deathsThisNight++;
-			target.eliminatedBySource = true;
+			_weeklyDeathCount++;
+			_deathsThisNight++;
+			target.EliminatedBySource = true;
 			UpdateScavengers();
 			if (target.Definition.crewType == CrewType.Pawn)
 				yield return StartCoroutine(SinglePawnDeath(target, report));
@@ -798,7 +812,7 @@ public class GameManager : MonoBehaviour
 
 	private IEnumerator TryAnchorSave(CrewInstance targetCrew, NightReport report)
 	{
-		if (targetCrew.isTemporary) yield break;
+		if (targetCrew.IsTemporary) yield break;
 
 		List<Zone> adjacentZones = gridManager.GetAdjacentZones(targetCrew.CurrentZone);
 
@@ -808,23 +822,23 @@ public class GameManager : MonoBehaviour
 			var adjCrew = adjZone.Occupant;
 
 			if (adjCrew.Definition.crewType != CrewType.Anchor) continue;
-			if (adjCrew.anchorSaveUsed) continue;
+			if (adjCrew.AnchorSaveUsed) continue;
 
 			adjCrew.SetAnchorUse(true);
-			targetCrew.contractDurationRemaining = 2;
-			targetCrew.isAlive = true;
+			targetCrew.ContractDurationRemaining = 2;
+			targetCrew.IsAlive = true;
 
-			report.typedEvents.Add(new NightReportEvent
+			report.TypedEvents.Add(new NightReportEvent
 			{
-				type = ReportEventType.Buff,
-				label = "{0} shields {1}",
-				value = 0,
-				sourceCrew = CrewType.Anchor,
-				targetCrew = targetCrew.Definition.crewType,
+				Type = ReportEventType.Buff,
+				Label = "{0} shields {1}",
+				Value = 0,
+				SourceCrew = CrewType.Anchor,
+				TargetCrew = targetCrew.Definition.crewType,
 			});
 
-			targetCrew.CurrentZone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
-			adjCrew.CurrentZone.view.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
+			targetCrew.CurrentZone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
+			adjCrew.CurrentZone.View.Flash(DoAPalette.Instance.verdigris, resolutionDelays.buffDelay);
 			yield return new WaitForSeconds(resolutionDelays.buffDelay);
 			yield break;
 		}
@@ -833,7 +847,7 @@ public class GameManager : MonoBehaviour
 	public void TriggerDetonator(Zone zone)
 	{
 		CrewInstance crew = zone.Occupant;
-		zone.view.GetSlate().RefreshDetonatorButton(crew);
+		zone.View.GetSlate().RefreshDetonatorButton(crew);
 	}
 
 	private IEnumerator ResolveDetonator(NightReport report)
@@ -844,36 +858,36 @@ public class GameManager : MonoBehaviour
 			CrewInstance crew = zone.Occupant;
 
 			if (crew.Definition.crewType != CrewType.Detonator) continue;
-			if (!crew.detonatorUsed) continue;
+			if (!crew.DetonatorUsed) continue;
 
 			int burst = crew.Definition.effectValue;
 
 			foreach (var adjZone in gridManager.GetAdjacentZones(zone))
 			{
 				if (!adjZone.IsOccupied()) continue;
-				if (adjZone.Occupant.isTemporary) continue;
+				if (adjZone.Occupant.IsTemporary) continue;
 
-				adjZone.Occupant.currentIncome += burst;
+				adjZone.Occupant.CurrentIncome += burst;
 
-				report.typedEvents.Add(new NightReportEvent
+				report.TypedEvents.Add(new NightReportEvent
 				{
-					type = ReportEventType.BuffedIncome,
-					label = "{0} buffs {1} ",
-					sourceCrew = CrewType.Detonator,
-					targetCrew = adjZone.Occupant.Definition.crewType,
-					value = burst,
-					sourcePosition = zone.Position,
-					targetPosition = adjZone.Position,
+					Type = ReportEventType.BuffedIncome,
+					Label = "{0} buffs {1} ",
+					SourceCrew = CrewType.Detonator,
+					TargetCrew = adjZone.Occupant.Definition.crewType,
+					Value = burst,
+					SourcePosition = zone.Position,
+					TargetPosition = adjZone.Position,
 				});
 
-				adjZone.view.Flash(DoAPalette.Instance.ochre, resolutionDelays.buffDelay);
+				adjZone.View.Flash(DoAPalette.Instance.ochre, resolutionDelays.buffDelay);
 				yield return new WaitForSeconds(resolutionDelays.buffDelay);
 			}
 
 			// Flash the Detonator cell then remove — not a kill
-			zone.view.Flash(DoAPalette.Instance.wineBright, resolutionDelays.killDelay);
+			zone.View.Flash(DoAPalette.Instance.wineBright, resolutionDelays.killDelay);
 			yield return new WaitForSeconds(resolutionDelays.killDelay);
-			yield return StartCoroutine(zone.view.FadeOutSlate(resolutionDelays.fade));
+			yield return StartCoroutine(zone.View.FadeOutSlate(resolutionDelays.fade));
 			zone.ClearOccupant();
 		}
 	}
@@ -924,7 +938,7 @@ public class GameManager : MonoBehaviour
 		foreach (Zone zone in gridManager.GetAllZones())
 		{
 			if (zone.IsOccupied() && zone.Occupant.Definition.crewType == CrewType.Scavenger)
-				zone.view.GetSlate().ScavengerCounterUpdate();
+				zone.View.GetSlate().ScavengerCounterUpdate();
 		}
 	}
 
@@ -932,32 +946,36 @@ public class GameManager : MonoBehaviour
 	{
 		runActive = false;
 
-		currentWeekLog.finalMoney = money;
-		currentRunLog.weeks.Add(currentWeekLog);
+		_weeklyEarnings.Add(money);
+		_currentWeekLog.FinalMoney = money;
+		_currentRunLog.Weeks.Add(_currentWeekLog);
 
-		weeklyDeathCount = 0;
+		_weeklyDeathCount = 0;
 
 		if (money >= weeklyTarget)
 		{
 			Debug.Log($"YOU COMPLETED WEEK {currentWeek} Money:" + money);
 			if (currentWeek < totalWeeks)
+			{
+				weekCompleteUI.Show(currentWeek, bountyManager.CurrentBounty, money, true);
+				fieldReport.Hide();
 				weeklyTarget = weeklyTargets[currentWeek];
+			}
 			else
 			{
-				EndRun();
+				EndRun(true);
 				return;
 			}
-
 
 			currentWeek++;
 			currentNight = 1;
 			runActive = true;
 
-			currentWeekLog = new WeekLog();
+			_currentWeekLog = new WeekLog();
 
 			foreach (var crew in crewPool.pool)
 			{
-				currentWeekLog.crewLogs.Add(new crewLog(crew));
+				_currentWeekLog.CrewLogs.Add(new CrewLog(crew));
 			}
 
 			ClearBoard();
@@ -970,32 +988,47 @@ public class GameManager : MonoBehaviour
 				_lastPopulatedWeek = currentWeek;
 			}
 
-			currentNightLog = new NightLog();
-			currentNightLog.nightNumber = currentNight;
-			currentPhase = GamePhase.PlanningPhase;
-			startButton.SetActive(true);
-			currentNightLog.beforePlacement = CaptureBoardSnapshot();
+			_currentNightLog = new NightLog();
+			_currentNightLog.NightNumber = currentNight;
+			_currentNightLog.BeforePlacement = CaptureBoardSnapshot();
 
 			GenerateWeeklyBag();
 			GenerateDailyArrivals();
 			fieldReport.UpdateTarget(money, weeklyTarget);
-
-			runActive = true;
 		}
 		else
-			EndRun();
+			EndRun(false);
 	}
 
-	private void EndRun()
+	private void EndRun(bool winState)
 	{
-		currentRunLog.finalMoney = money;
+		runActive = false;
+		_currentRunLog.FinalMoney = money;
+
+		if (winState)
+			runEndUI.ShowWin(_weeklyEarnings, bountyManager);
+		else
+			runEndUI.ShowLoss(_weeklyEarnings, currentWeek, weeklyTarget, bountyManager);
 		ExportRunToFile();
-		ResetRun();
+	}
+
+	public void AdvanceWeekCompleteScreen()
+	{
+		weekCompleteUI.Hide();
+		weekDossierUI.Show(currentWeek, bountyManager.CurrentBounty, weeklyTarget);
+	}
+
+	public void AdvanceWeekDossierScreen()
+	{
+		weekDossierUI.Hide();
+		_currentPhase = GamePhase.PlanningPhase;
+		startButton.SetActive(true);
+		runActive = true;
 	}
 
 	public bool CanPlaceSelected()
 	{
-		return dailyArrivals.Contains(PlacementManager.Instance.selectedCrew);
+		return _dailyArrivals.Contains(PlacementManager.Instance.selectedCrew);
 	}
 
 	public void TryExtendContract(Zone zone)
@@ -1003,67 +1036,67 @@ public class GameManager : MonoBehaviour
 		if (!zone.IsOccupied()) return;
 		CrewInstance crew = zone.Occupant;
 		crew.ExtendContract(1);
-		currentNightLog.extends.Add(crew.Definition.displayName + " extended to " + crew.contractDurationRemaining);
-		currentWeekLog.crewsExtended.Add(crew.Definition.displayName);
+		_currentNightLog.Extends.Add(crew.Definition.displayName + " extended to " + crew.ContractDurationRemaining);
+		_currentWeekLog.CrewsExtended.Add(crew.Definition.displayName);
 	}
 
 	public void MakeCrewRepositionable(Zone zone)
 	{
 		if (!zone.IsOccupied()) return;
 		CrewInstance crew = zone.Occupant;
-		crew.canReposition = true;
+		crew.CanReposition = true;
 	}
 
 	public void PlaceSelectedCrew(Zone zone)
 	{
 		var selected = PlacementManager.Instance.selectedCrew;
 
-		if (!dailyArrivals.Contains(selected))
+		if (!_dailyArrivals.Contains(selected))
 			return;
 
 		CrewInstance instance = new CrewInstance(selected);
 		zone.SetOccupant(instance);
 
-		currentNightLog.placements.Add("Placed " + selected.displayName + " at " + zone.Position);
+		_currentNightLog.Placements.Add("Placed " + selected.displayName + " at " + zone.Position);
 
-		foreach (crewLog log in currentWeekLog.crewLogs)
+		foreach (CrewLog log in _currentWeekLog.CrewLogs)
 		{
-			if (log.definition == selected)
-				log.timesPlaced++;
+			if (log.Definition == selected)
+				log.TimesPlaced++;
 		}
 
-		dailyArrivals.Remove(selected);
+		_dailyArrivals.Remove(selected);
 
 		PlacementManager.Instance.ClearSelection();
-		candidatesUI.UpdateArrivalUI(dailyArrivals);
+		candidatesUI.UpdateArrivalUI(_dailyArrivals);
 	}
 
 	public void ReturnSelectedCrew(Zone zone)
 	{
 		CrewInstance instance = zone.Occupant;
-		if (instance.isResident) return;
+		if (instance.IsResident) return;
 		CrewDefinition selected = zone.Occupant.Definition;
 
 		zone.ClearHideOccupant();
-		currentNightLog.placements.Remove("Placed " + selected.displayName + " at " + zone.Position);
+		_currentNightLog.Placements.Remove("Placed " + selected.displayName + " at " + zone.Position);
 
-		foreach (crewLog log in currentWeekLog.crewLogs)
+		foreach (CrewLog log in _currentWeekLog.CrewLogs)
 		{
-			if (log.definition == selected)
-				log.timesPlaced--;
+			if (log.Definition == selected)
+				log.TimesPlaced--;
 		}
 
-		dailyArrivals.Add(selected);
+		_dailyArrivals.Add(selected);
 
 		PlacementManager.Instance.ClearSelection();
-		candidatesUI.UpdateArrivalUI(dailyArrivals);
+		candidatesUI.UpdateArrivalUI(_dailyArrivals);
 	}
 
 	public void MoveSelectedCrewTo(Zone targetZone)
 	{
-		var selected = PlacementManager.Instance.selectedInstance;
+		var selected = PlacementManager.Instance.SelectedInstance;
 
-		if (selected == null || (selected.isResident && !selected.canReposition))
+		if (selected == null || (selected.IsResident && !selected.CanReposition))
 			return;
 
 		Zone oldZone = selected.CurrentZone;
@@ -1085,24 +1118,26 @@ public class GameManager : MonoBehaviour
 
 	public void ResetRun()
 	{
+		titleCardUI.Hide();
 		InitializePowerUps();
 		gridManager.Initialize();
 		weeklyTarget = weeklyTargets[0];
 		money = 0;
 		currentNight = 1;
 		currentWeek = 1;
+		_weeklyEarnings = new List<int>();
 		runActive = true;
 
-		currentRunLog = new RunLog();
-		currentSeed = Random.Range(int.MinValue, int.MaxValue);
-		int finalSeed = seedValue != 0 ? seedValue : currentSeed;
-		currentRunLog.seed = finalSeed;
+		_currentRunLog = new RunLog();
+		_currentSeed = Random.Range(int.MinValue, int.MaxValue);
+		int finalSeed = _seedValue != 0 ? _seedValue : _currentSeed;
+		_currentRunLog.Seed = finalSeed;
 		Random.InitState(finalSeed);
 
-		currentWeekLog = new WeekLog();
+		_currentWeekLog = new WeekLog();
 		foreach (var crew in crewPool.pool)
 		{
-			currentWeekLog.crewLogs.Add(new crewLog(crew));
+			_currentWeekLog.CrewLogs.Add(new CrewLog(crew));
 		}
 
 		ClearBoard();
@@ -1115,14 +1150,17 @@ public class GameManager : MonoBehaviour
 			_lastPopulatedWeek = currentWeek;
 		}
 
-		currentNightLog = new NightLog();
-		currentNightLog.nightNumber = currentNight;
-		currentPhase = GamePhase.PlanningPhase;
+		_currentNightLog = new NightLog();
+		_currentNightLog.NightNumber = currentNight;
+		_currentPhase = GamePhase.PlanningPhase;
 		startButton.SetActive(true);
-		currentNightLog.beforePlacement = CaptureBoardSnapshot();
+		_currentNightLog.BeforePlacement = CaptureBoardSnapshot();
 
 		GenerateWeeklyBag();
 		GenerateDailyArrivals();
+		_currentNightLog.BeforePlacement = CaptureBoardSnapshot();
+
+		weekDossierUI.Show(currentWeek, bountyManager.CurrentBounty, weeklyTarget);
 	}
 
 	public BountyData GetCurrentBounty()
@@ -1137,11 +1175,11 @@ public class GameManager : MonoBehaviour
 
 	private void InitializePowerUps()
 	{
-		_currentPowerUps.Clear();
+		_currentActions.Clear();
 		foreach (var def in availableActions)
-			_currentPowerUps.Add(new ActionInstance(def));
+			_currentActions.Add(new ActionInstance(def));
 
-		ActionBarUI.Instance.PopulateHand(_currentPowerUps);
+		ActionBarUI.Instance.PopulateHand(_currentActions);
 	}
 
 	private void ClearBoard()
@@ -1191,79 +1229,79 @@ public class GameManager : MonoBehaviour
 		StringBuilder output = new StringBuilder();
 
 		output.AppendLine("=== RUN SUMMARY ===");
-		output.AppendLine("Seed: " + currentRunLog.seed);
+		output.AppendLine("Seed: " + _currentRunLog.Seed);
 		output.AppendLine("");
-		output.AppendLine("Final Money: " + currentRunLog.finalMoney);
+		output.AppendLine("Final Money: " + _currentRunLog.FinalMoney);
 		output.AppendLine("");
 
 		int weekCount = 1;
-		foreach (var week in currentRunLog.weeks)
+		foreach (var week in _currentRunLog.Weeks)
 		{
 			output.AppendLine("Week: " + weekCount);
 			output.AppendLine("");
 			weekCount++;
-			output.AppendLine("Weekly Money: " + week.finalMoney);
+			output.AppendLine("Weekly Money: " + week.FinalMoney);
 			output.AppendLine("");
-			output.AppendLine("Peak: " + week.peak);
+			output.AppendLine("Peak: " + week.Peak);
 			output.AppendLine("");
-			output.AppendLine("Peak Night: " + week.peakNight);
+			output.AppendLine("Peak Night: " + week.PeakNight);
 			output.AppendLine("");
-			output.AppendLine("Solved Night: " + week.solvedNight);
+			output.AppendLine("Solved Night: " + week.SolvedNight);
 			output.AppendLine("");
 
-			foreach (var night in week.nights)
+			foreach (var night in week.Nights)
 			{
 				output.AppendLine("");
 				output.AppendLine("----------------------------");
 				output.AppendLine("");
 
-				output.AppendLine("Day  " + night.nightNumber);
+				output.AppendLine("Day  " + night.NightNumber);
 
 				output.AppendLine("-Arrivals:");
-				foreach (var a in night.arrivals)
+				foreach (var a in night.Arrivals)
 					output.AppendLine("- " + a);
 				output.AppendLine();
 
 				output.AppendLine("-Placements:");
-				foreach (var p in night.placements)
+				foreach (var p in night.Placements)
 					output.AppendLine("- " + p);
 				output.AppendLine();
 
 				output.AppendLine("-Extends:");
-				foreach (var e in night.extends)
+				foreach (var e in night.Extends)
 					output.AppendLine("- " + e);
 				output.AppendLine();
 
-				output.AppendLine("Night " + night.nightNumber);
+				output.AppendLine("Night " + night.NightNumber);
 
 
 				output.AppendLine("-Events:");
-				foreach (var ev in night.typedEvents)
-					output.AppendLine(BuildLabel(ev.label, ev.sourceCrew, ev.targetCrew));
+				foreach (var ev in night.TypedEvents)
+					output.AppendLine(BuildLabel(ev.Label, ev.SourceCrew, ev.TargetCrew));
 
 				output.AppendLine("");
 
-				output.AppendLine("Engine Type: " + night.engineType);
+				output.AppendLine("Engine Type: " + night.EngineType);
 
 				output.AppendLine("");
 				output.AppendLine("----------------------------");
 				output.AppendLine("");
 
-				output.AppendLine("Base Income: " + night.baseIncome);
-				output.AppendLine("Bonus Income: " + night.bonusIncome);
-				output.AppendLine("Kill Bonus: " + night.killBonus);
-				output.AppendLine("Multiplier: x" + night.multiplier);
-				output.AppendLine("Total Income: " + night.totalIncome);
+				output.AppendLine("Base Income: " + night.BaseIncome);
+				output.AppendLine("Bonus Income: " + night.BonusIncome);
+				output.AppendLine("Kill Bonus: " + night.KillBonus);
+				output.AppendLine("Multiplier: x" + night.Multiplier);
+				output.AppendLine("Total Income: " + night.TotalIncome);
 
 				output.AppendLine("");
-				output.AppendLine("Current Money: " + night.currentMoney);
+				output.AppendLine("Current Money: " + night.CurrentMoney);
 
 				output.AppendLine("");
 				output.AppendLine("----------------------------");
 				output.AppendLine("");
 
 				output.AppendLine("Checkouts:");
-				foreach (var ev in night.checkouts)
+				foreach (var ev in night.Checkouts)
 					output.AppendLine("- " + ev);
 				output.AppendLine();
 
@@ -1278,11 +1316,11 @@ public class GameManager : MonoBehaviour
 				{
 					string row = "";
 
-					row += FormatRow(night.beforePlacement, y, width) + " | ";
-					row += FormatRow(night.afterPlacement, y, width) + " | ";
-					row += FormatRow(night.afterCreations, y, width) + " | ";
-					row += FormatRow(night.afterKills, y, width) + " | ";
-					row += FormatRow(night.endOfNight, y, width);
+					row += FormatRow(night.BeforePlacement, y, width) + " | ";
+					row += FormatRow(night.AfterPlacement, y, width) + " | ";
+					row += FormatRow(night.AfterCreations, y, width) + " | ";
+					row += FormatRow(night.AfterKills, y, width) + " | ";
+					row += FormatRow(night.EndOfNight, y, width);
 
 					output.AppendLine(row);
 				}
@@ -1306,14 +1344,14 @@ public class GameManager : MonoBehaviour
 			output.AppendLine("");
 
 			output.AppendLine("All Arrivals:");
-			for (int i = 0; i < bagIndex; i++)
-				output.AppendLine("- " + week.crewBag[i].displayName);
+			for (int i = 0; i < _bagIndex; i++)
+				output.AppendLine("- " + week.CrewBag[i].displayName);
 			// foreach (var a in currentRunLog.crewBag)
 			// 	output.AppendLine("- " + a.displayName);
 			output.AppendLine("");
 
 			output.AppendLine("All Extensions:");
-			foreach (var a in week.crewsExtended)
+			foreach (var a in week.CrewsExtended)
 				output.AppendLine("- " + a);
 			output.AppendLine("");
 		}
@@ -1327,7 +1365,7 @@ public class GameManager : MonoBehaviour
 		}
 
 		// Create filename with timestamp
-		string fileName = "Run_" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
+		string fileName = "Run_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
 		string fullPath = Path.Combine(folderPath, fileName);
 
 		File.WriteAllText(fullPath, output.ToString());
@@ -1345,14 +1383,14 @@ public class GameManager : MonoBehaviour
 
 		if (source.HasValue)
 		{
-			string name = GetDisplayName(source.Value);
-			result = result.Replace("{0}", $"{name}");
+			string displayName = GetDisplayName(source.Value);
+			result = result.Replace("{0}", $"{displayName}");
 		}
 
 		if (target.HasValue)
 		{
-			string name = GetDisplayName(target.Value);
-			result = result.Replace("{1}", $"{name}");
+			string displayName = GetDisplayName(target.Value);
+			result = result.Replace("{1}", $"{displayName}");
 		}
 
 		return result;
@@ -1378,9 +1416,9 @@ public class GameManager : MonoBehaviour
 		return row.ToString();
 	}
 
-	string DetectEngine(NightLog currentNight)
+	string DetectEngine(NightLog night)
 	{
-		var board = currentNight.afterPlacement;
+		var board = night.AfterPlacement;
 
 		Dictionary<string, int> counts = new();
 
@@ -1391,23 +1429,22 @@ public class GameManager : MonoBehaviour
 
 			if (m == "." || m == "M") continue;
 
-			if (!counts.ContainsKey(m))
-				counts[m] = 0;
+			counts.TryAdd(m, 0);
 
 			counts[m]++;
 		}
 
-		bool hasStrategist = counts.ContainsKey(crewIds.Strategist);
-		bool hasGhost = counts.ContainsKey(crewIds.Ghost);
-		bool hasConArtist = counts.ContainsKey(crewIds.ConArtist);
-		bool hasEnforcer = counts.ContainsKey(crewIds.Enforcer);
-		bool hasGunslinger = counts.ContainsKey(crewIds.Gunslinger);
-		bool hasHandler = counts.ContainsKey(crewIds.Handler);
-		bool hasPawn = counts.ContainsKey(crewIds.Pawn);
-		bool hasAnchor = counts.ContainsKey(crewIds.Anchor);
-		bool hasScavenger = counts.ContainsKey(crewIds.Scavenger);
-		bool hasDetonator = counts.ContainsKey(crewIds.Detonator);
-		bool hasLoner = counts.ContainsKey(crewIds.Loner);
+		bool hasStrategist = counts.ContainsKey(CrewIds.Strategist);
+		bool hasGhost = counts.ContainsKey(CrewIds.Ghost);
+		bool hasConArtist = counts.ContainsKey(CrewIds.ConArtist);
+		bool hasEnforcer = counts.ContainsKey(CrewIds.Enforcer);
+		bool hasGunslinger = counts.ContainsKey(CrewIds.Gunslinger);
+		bool hasHandler = counts.ContainsKey(CrewIds.Handler);
+		bool hasPawn = counts.ContainsKey(CrewIds.Pawn);
+		bool hasAnchor = counts.ContainsKey(CrewIds.Anchor);
+		bool hasScavenger = counts.ContainsKey(CrewIds.Scavenger);
+		bool hasDetonator = counts.ContainsKey(CrewIds.Detonator);
+		bool hasLoner = counts.ContainsKey(CrewIds.Loner);
 
 		if (hasGhost && hasStrategist)
 			return "Ghost + Strategist";
@@ -1449,7 +1486,7 @@ public class GameManager : MonoBehaviour
 	}
 }
 
-public static class crewIds
+public static class CrewIds
 {
 	public const string Rookie = "R";
 	public const string Ghost = "G";

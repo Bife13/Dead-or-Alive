@@ -65,18 +65,18 @@ public class PlacedSlateUI : MonoBehaviour
 	public void RefreshDetonatorButton(CrewInstance instance)
 	{
 		bool isPlanning = GameManager.Instance.CurrentPhase == GamePhase.PlanningPhase;
-		bool canInteract = isPlanning && !instance.detonatorUsed;
+		bool canInteract = isPlanning && !instance.DetonatorUsed;
 
 		abilityTrigger.interactable = canInteract;
 
 		var p = DoAPalette.Instance;
 
-		if (instance.detonatorUsed)
+		if (instance.DetonatorUsed)
 		{
 			abilityLabel.text = "SPENT";
 			abilityLabel.color = p.textL4;
 		}
-		else if (instance.isArmedForDetonation)
+		else if (instance.IsArmedForDetonation)
 		{
 			abilityLabel.text = "ARMED";
 			abilityLabel.color = p.wineBright;
@@ -100,16 +100,16 @@ public class PlacedSlateUI : MonoBehaviour
 		// RefreshDetonatorButton(_instance);
 
 		if (_instance.Definition.crewType != CrewType.Detonator) return;
-		if (_instance.detonatorUsed) return;
+		if (_instance.DetonatorUsed) return;
 
-		_instance.isArmedForDetonation = !_instance.isArmedForDetonation;
+		_instance.IsArmedForDetonation = !_instance.IsArmedForDetonation;
 		RefreshDetonatorButton(_instance);
 	}
 
 	public void UpdateContract()
 	{
 		if (_instance == null) return;
-		int nights = _instance.contractDurationRemaining;
+		int nights = _instance.ContractDurationRemaining;
 		var p = DoAPalette.Instance;
 
 		crewPlacedSlateContract.text = nights == 1

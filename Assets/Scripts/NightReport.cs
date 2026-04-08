@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class NightReport
 {
-	public int baseIncome;
-	public int bonusIncome;
-	public int killBonus;
-	public int creationBonus;
-	public int multiplier = 1;
-	public int finalIncome;
+	public int BaseIncome;
+	public int BonusIncome;
+	public int KillBonus;
+	public int CreationBonus;
+	public int Multiplier = 1;
+	public int FinalIncome;
 
-	public List<string> events = new();
-	public List<NightReportEvent> typedEvents = new();
-	public List<string> checkouts = new();
+	public List<string> Events = new();
+	public List<NightReportEvent> TypedEvents = new();
+	public List<string> Checkouts = new();
 }
 
 public enum ReportEventType
@@ -29,13 +29,13 @@ public enum ReportEventType
 
 public struct NightReportEvent
 {
-	public ReportEventType type;
-	public string label;
-	public int value;
+	public ReportEventType Type;
+	public string Label;
+	public int Value;
 
-	public CrewType? sourceCrew;
-	public CrewType? targetCrew;
+	public CrewType? SourceCrew;
+	public CrewType? TargetCrew;
 	
-	public Vector2Int? sourcePosition;  // cell to flash for source crew
-	public Vector2Int? targetPosition;  // cell to flash for target crew (kills, buffs)
+	public Vector2Int? SourcePosition;  // cell to flash for source crew
+	public Vector2Int? TargetPosition;  // cell to flash for target crew (kills, buffs)
 }

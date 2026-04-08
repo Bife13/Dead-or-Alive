@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 public class CrewView : MonoBehaviour
 {
-	private CrewInstance instance;
+	private CrewInstance _instance;
 
 	[FormerlySerializedAs("contractRemText")]
 	[FormerlySerializedAs("nightsRemText")]

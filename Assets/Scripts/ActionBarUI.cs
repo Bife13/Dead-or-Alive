@@ -71,7 +71,7 @@ public class ActionBarUI : MonoBehaviour
 		switch (_selectedInstance.Definition.actionType)
 		{
 			case ActionType.Reposition:
-				if (zone.Occupant.canReposition ||
+				if (zone.Occupant.CanReposition ||
 				    !GameManager.Instance.TrySpendMoney(_selectedInstance.Definition.cost))
 				{
 					return !DeselectCurrent();

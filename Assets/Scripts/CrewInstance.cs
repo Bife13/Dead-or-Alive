@@ -4,48 +4,48 @@ public class CrewInstance
 {
 	public CrewDefinition Definition { get; }
 
-	public int currentIncome;
-	public int contractDurationRemaining;
-	public bool isAlive = true;
-	public bool isTemporary;
-	public bool isResident;
+	public int CurrentIncome;
+	public int ContractDurationRemaining;
+	public bool IsAlive = true;
+	public bool IsTemporary;
+	public bool IsResident;
 	public Zone CurrentZone;
 
-	public bool anchorSaveUsed = false;
-	public bool detonatorUsed = false;
-	public bool isArmedForDetonation = false;
+	public bool AnchorSaveUsed = false;
+	public bool DetonatorUsed = false;
+	public bool IsArmedForDetonation = false;
 
-	public bool eliminatedBySource = false;
+	public bool EliminatedBySource = false;
 
-	public bool canReposition = false;
+	public bool CanReposition = false;
 	
-	public CrewInstance(CrewDefinition _definition)
+	public CrewInstance(CrewDefinition definition)
 	{
-		Definition = _definition;
-		currentIncome = _definition.baseIncome;
-		isTemporary = _definition.isTemporary;
-		contractDurationRemaining = _definition.contractDuration;
-		isResident = false;
+		Definition = definition;
+		CurrentIncome = definition.baseIncome;
+		IsTemporary = definition.isTemporary;
+		ContractDurationRemaining = definition.contractDuration;
+		IsResident = false;
 	}
 
 	public void DecreaseStay()
 	{
-		contractDurationRemaining--;
+		ContractDurationRemaining--;
 
-		if (CurrentZone?.view != null)
-			CurrentZone.view.GetSlate()?.UpdateContract();
+		if (CurrentZone?.View != null)
+			CurrentZone.View.GetSlate()?.UpdateContract();
 	}
 
 	public void ExtendContract(int amount)
 	{
-		contractDurationRemaining++;
+		ContractDurationRemaining++;
 
-		if (CurrentZone?.view != null)
-			CurrentZone.view.GetSlate()?.UpdateContract();
+		if (CurrentZone?.View != null)
+			CurrentZone.View.GetSlate()?.UpdateContract();
 	}
 
 	public void SetAnchorUse(bool value)
 	{
-		anchorSaveUsed = value;
+		AnchorSaveUsed = value;
 	}
 }

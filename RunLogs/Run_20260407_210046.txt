@@ -1,0 +1,82 @@
+=== RUN SUMMARY ===
+Seed: -1220913288
+
+Final Money: 0
+
+Week: 1
+
+Weekly Money: 0
+
+Peak: 0
+
+Peak Night: 0
+
+Solved Night: 1
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Strategist
+- Rookie
+
+-Placements:
+- Placed Strategist at (0, 0)
+- Placed Rookie at (0, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Rookie base income
+Protection drain applies
+
+Engine Type: Strategist
+
+----------------------------
+
+Base Income: 1000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 0
+
+Current Money: 0
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [R][.][.]
+[.][.][.] | [T][.][.] | [T][.][.] | [T][.][.] | [T][.][.]
+
+Final Board:
+[.][.][.]
+[R][.][.]
+[T][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Strategist
+- Rookie
+
+All Extensions:
+

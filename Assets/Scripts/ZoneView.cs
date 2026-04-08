@@ -31,7 +31,7 @@ public class ZoneView : MonoBehaviour, IPointerClickHandler
 
 	public PlacedSlateUI GetSlate() => crewPlacedSlate;
 
-	private bool isLocked = false;
+	private bool _isLocked = false;
 
 	public void Initialize(Zone zoneData)
 	{
@@ -61,7 +61,7 @@ public class ZoneView : MonoBehaviour, IPointerClickHandler
 			}
 
 			// If clicking empty zone and we have a selected instance ALREADY IN HOTEL
-			if (_zone.Occupant == null && PlacementManager.Instance.selectedInstance != null)
+			if (_zone.Occupant == null && PlacementManager.Instance.SelectedInstance != null)
 			{
 				int index = _zone.Position.y * GameManager.Instance.GridWidth + _zone.Position.x;
 				if (GameManager.Instance.IsZoneLocked(index))
@@ -106,7 +106,7 @@ public class ZoneView : MonoBehaviour, IPointerClickHandler
 	public void HideSlate()
 	{
 		crewPlacedSlate.gameObject.SetActive(false);
-		border.color = isLocked
+		border.color = _isLocked
 			? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.4f)
 			: DoAPalette.Instance.border;
 	}
@@ -193,7 +193,7 @@ public class ZoneView : MonoBehaviour, IPointerClickHandler
 
 	public void SetLocked(bool locked)
 	{
-		isLocked = locked;
+		_isLocked = locked;
 		// Grey out the cell, show a visual indicator
 		border.color =
 			locked ? DoAPalette.ColorHueShift(DoAPalette.Instance.wine, 0.4f) : DoAPalette.Instance.border;

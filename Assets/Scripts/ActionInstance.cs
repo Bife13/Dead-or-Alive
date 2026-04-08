@@ -3,11 +3,11 @@ using UnityEngine;
 public class ActionInstance
 {
 	public ActionDefinition Definition { get; }
-	public bool isUsed;
+	public bool IsUsed;
 
 	public ActionInstance(ActionDefinition definition)
 	{
 		Definition = definition;
-		isUsed = false;
+		IsUsed = false;
 	}
 }

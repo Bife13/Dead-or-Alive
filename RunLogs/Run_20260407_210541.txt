@@ -1,0 +1,159 @@
+=== RUN SUMMARY ===
+Seed: 1408904191
+
+Final Money: 2500
+
+Week: 1
+
+Weekly Money: 1000
+
+Peak: 1000
+
+Peak Night: 1
+
+Solved Night: 1
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Rookie
+- Enforcer
+
+-Placements:
+- Placed Rookie at (0, 0)
+- Placed Enforcer at (0, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Enforcer eliminates 1 crew
+Enforcer kill bonus
+Protection drain applies
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 2000
+Multiplier: x1
+Total Income: 1000
+
+Current Money: 1000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [E][.][.] | [E][.][.] | [E][.][.] | [E][.][.]
+[.][.][.] | [R][.][.] | [R][.][.] | [.][.][.] | [.][.][.]
+
+Final Board:
+[.][.][T]
+[.][.][.]
+[A][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Strategist
+- Anchor
+
+All Extensions:
+
+Week: 2
+
+Weekly Money: 2500
+
+Peak: 1500
+
+Peak Night: 1
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Strategist
+- Anchor
+
+-Placements:
+- Placed Anchor at (0, 0)
+- Placed Strategist at (1, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Anchor base income
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 1500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1500
+
+Current Money: 2500
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][T] | [.][.][T] | [.][.][T] | [.][.][T]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+
+Final Board:
+[.][.][T]
+[.][.][.]
+[A][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Strategist
+- Anchor
+
+All Extensions:
+

@@ -2,58 +2,58 @@ using System.Collections.Generic;
 
 public class RunLog
 {
-	public int seed;
-	public List<WeekLog> weeks = new();
-	public int finalMoney;
+	public int Seed;
+	public List<WeekLog> Weeks = new();
+	public int FinalMoney;
 }
 
 public class WeekLog
 {
-	public List<NightLog> nights = new();
-	public List<crewLog> crewLogs = new();
-	public int finalMoney;
-	public int peak;
-	public int peakNight;
-	public int solvedNight;
+	public List<NightLog> Nights = new();
+	public List<CrewLog> CrewLogs = new();
+	public int FinalMoney;
+	public int Peak;
+	public int PeakNight;
+	public int SolvedNight;
 
-	public List<CrewDefinition> crewBag = new();
-	public List<string> crewsExtended = new();
+	public List<CrewDefinition> CrewBag = new();
+	public List<string> CrewsExtended = new();
 }
 
 public class NightLog
 {
-	public int nightNumber;
-	public List<string> arrivals = new();
-	public List<string> placements = new();
-	public List<string> extends = new();
-	public List<string> checkouts = new();
-	public List<string> events = new();
-	public List<NightReportEvent> typedEvents = new();
-	public int currentMoney;
-	public string engineType;
+	public int NightNumber;
+	public List<string> Arrivals = new();
+	public List<string> Placements = new();
+	public List<string> Extends = new();
+	public List<string> Checkouts = new();
+	public List<string> Events = new();
+	public List<NightReportEvent> TypedEvents = new();
+	public int CurrentMoney;
+	public string EngineType;
 
-	public int baseIncome;
-	public int bonusIncome;
-	public int killBonus;
-	public int multiplier;
-	public int totalIncome;
+	public int BaseIncome;
+	public int BonusIncome;
+	public int KillBonus;
+	public int Multiplier;
+	public int TotalIncome;
 
-	public string[,] beforePlacement;
-	public string[,] afterPlacement;
-	public string[,] afterCreations;
-	public string[,] afterKills;
-	public string[,] endOfNight;
+	public string[,] BeforePlacement;
+	public string[,] AfterPlacement;
+	public string[,] AfterCreations;
+	public string[,] AfterKills;
+	public string[,] EndOfNight;
 }
 
-public class crewLog
+public class CrewLog
 {
-	public CrewDefinition definition;
-	public int timesOffered;
-	public int timesPlaced;
-	public int averageIncomeGenerated;
+	public CrewDefinition Definition;
+	public int TimesOffered;
+	public int TimesPlaced;
+	public int AverageIncomeGenerated;
 
-	public crewLog(CrewDefinition _definition)
+	public CrewLog(CrewDefinition definition)
 	{
-		definition = _definition;
+		Definition = definition;
 	}
 }

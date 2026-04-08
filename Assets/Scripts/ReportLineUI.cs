@@ -17,27 +17,27 @@ public class ReportLineUI : MonoBehaviour
 	{
 		var p = DoAPalette.Instance;
 
-		switch (e.type)
+		switch (e.Type)
 		{
 			case ReportEventType.Buff:
 			case ReportEventType.Creation:
-				SetLine("▲", e.label, e.sourceCrew, e.targetCrew, FormatValue(e.value), p.verdigris, p);
+				SetLine("▲", e.Label, e.SourceCrew, e.TargetCrew, FormatValue(e.Value), p.verdigris, p);
 				break;
 			case ReportEventType.BuffedIncome:
 			case ReportEventType.KillBonus:
-				SetLine("¥", e.label, e.sourceCrew, e.targetCrew, FormatValue(e.value), p.verdigris, p);
+				SetLine("¥", e.Label, e.SourceCrew, e.TargetCrew, FormatValue(e.Value), p.verdigris, p);
 				break;
 			case ReportEventType.BaseIncome:
-				SetLine("¥", e.label, e.sourceCrew, e.targetCrew, FormatValue(e.value), p.ochre, p);
+				SetLine("¥", e.Label, e.SourceCrew, e.TargetCrew, FormatValue(e.Value), p.ochre, p);
 				break;
 			case ReportEventType.Kill:
-				SetLine("✕", e.label, e.sourceCrew, e.targetCrew, "−CREW", p.wine, p);
+				SetLine("✕", e.Label, e.SourceCrew, e.TargetCrew, "−CREW", p.wine, p);
 				break;
 			case ReportEventType.Drain:
-				SetLine("▼", e.label, e.sourceCrew, e.targetCrew, FormatValue(e.value), p.wine, p);
+				SetLine("▼", e.Label, e.SourceCrew, e.TargetCrew, FormatValue(e.Value), p.wine, p);
 				break;
 			case ReportEventType.Multiplier:
-				SetLine("×", e.label, e.sourceCrew, e.targetCrew, $"×{e.value}", p.verdigris, p);
+				SetLine("×", e.Label, e.SourceCrew, e.TargetCrew, $"×{e.Value}", p.verdigris, p);
 				break;
 		}
 	}

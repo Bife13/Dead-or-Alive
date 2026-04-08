@@ -12,7 +12,7 @@ public class PlacementManager : MonoBehaviour
 	public CrewDefinition selectedCrew;
 
 	// Placed Monster
-	public CrewInstance selectedInstance;
+	public CrewInstance SelectedInstance;
 	
 	
 	private void Awake()
@@ -33,12 +33,12 @@ public class PlacementManager : MonoBehaviour
 	public void SelectInstance(CrewInstance instance)
 	{
 		ClearSelection();
-		selectedInstance = instance;
+		SelectedInstance = instance;
 	}
 
 	public void ClearSelection()
 	{
 		selectedCrew = null;
-		selectedInstance = null;
+		SelectedInstance = null;
 	}
 }

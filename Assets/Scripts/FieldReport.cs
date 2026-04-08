@@ -8,7 +8,7 @@ public class FieldReport : MonoBehaviour
 {
 	[SerializeField]
 	private GameObject panel;
-	
+
 	[SerializeField]
 	private CanvasGroup panelCanvasGroup;
 
@@ -39,6 +39,9 @@ public class FieldReport : MonoBehaviour
 
 	[SerializeField]
 	private float initialDelay = 0.3f;
+
+	[SerializeField]
+	private float finalDelay = 0.3f;
 
 	private Coroutine _activeScroll;
 
@@ -84,30 +87,32 @@ public class FieldReport : MonoBehaviour
 		nightTotalText.text = "";
 
 		var gm = GameManager.Instance;
-		int previousMoney = gm.money - report.finalIncome;
+		int previousMoney = gm.money - report.FinalIncome;
 
 		weekRunningText.text = $"¥{FormatCurrency(previousMoney)} / ¥{FormatCurrency(gm.weeklyTarget)}";
 		progressBar.fillAmount = Mathf.Clamp01((float)previousMoney / gm.weeklyTarget);
 
 		yield return StartCoroutine(FadePanel(0f, 1f, 0.3f));
-        
+
 		yield return new WaitForSeconds(initialDelay);
 
-		foreach (NightReportEvent e in report.typedEvents)
+		foreach (NightReportEvent e in report.TypedEvents)
 		{
 			SpawnLine(e);
 			yield return new WaitForSeconds(delayBetweenLines);
 		}
 
 		yield return new WaitForSeconds(0.1f);
-		nightTotalText.text = $"¥{report.finalIncome:N0}";
+		nightTotalText.text = $"¥{report.FinalIncome:N0}";
 
 		yield return StartCoroutine(TickWeekRunning(previousMoney));
 		yield return StartCoroutine(AnimateProgressBar(previousMoney));
-		
+
+		yield return new WaitForSeconds(finalDelay);
+
 		GameManager.Instance.NextDay();
 	}
-	
+
 	private IEnumerator FadePanel(float from, float to, float duration)
 	{
 		panelCanvasGroup.alpha = from;
@@ -122,7 +127,7 @@ public class FieldReport : MonoBehaviour
 
 		panelCanvasGroup.alpha = to;
 	}
-	
+
 	private void SpawnLine(NightReportEvent e)
 	{
 		var go = Instantiate(linePrefab, lineContainer);
@@ -175,7 +180,7 @@ public class FieldReport : MonoBehaviour
 		if (value >= 1000) return $"{value / 1000}K";
 		return value.ToString();
 	}
-	
+
 	public void RefreshAfterSpend(int cost)
 	{
 		var gm = GameManager.Instance;

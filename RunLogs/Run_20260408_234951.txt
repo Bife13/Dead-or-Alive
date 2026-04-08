@@ -1,0 +1,287 @@
+=== RUN SUMMARY ===
+Seed: 2105579096
+
+Final Money: 43000
+
+Week: 1
+
+Weekly Money: 43000
+
+Peak: 23500
+
+Peak Night: 5
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Rookie
+- Rookie
+
+-Placements:
+- Placed Rookie at (0, 0)
+- Placed Rookie at (0, 1)
+
+-Extends:
+
+Night 1
+-Events:
+Rookie base income
+Rookie base income
+Protection drain applies
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 2000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 1000
+
+Current Money: 1000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [R][.][.]
+[.][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [R][.][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Scavenger
+- Gunslinger
+
+-Placements:
+- Placed Gunslinger at (0, 2)
+- Placed Scavenger at (1, 2)
+
+-Extends:
+
+Night 2
+-Events:
+Rookie base income
+Rookie base income
+Gunslinger base income
+Gunslinger adj bonus
+Scavenger base income
+Protection drain applies
+
+Engine Type: Scavenger
+
+----------------------------
+
+Base Income: 5000
+Bonus Income: 3000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7000
+
+Current Money: 8000
+
+----------------------------
+
+Checkouts:
+- Rookie
+- Rookie
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [U][S][.] | [U][S][.] | [U][S][.] | [U][S][.]
+[R][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [.][.][.]
+[R][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [.][.][.]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Scavenger
+- Anchor
+
+-Placements:
+- Placed Anchor at (0, 1)
+- Placed Scavenger at (0, 0)
+
+-Extends:
+- Gunslinger extended to 2
+
+Night 3
+-Events:
+Scavenger base income
+Anchor base income
+Gunslinger base income
+Gunslinger adj bonus
+Scavenger base income
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 5500
+Bonus Income: 3000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 7500
+
+Current Money: 12500
+
+----------------------------
+
+Checkouts:
+- Scavenger
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[U][S][.] | [U][S][.] | [U][S][.] | [U][S][.] | [U][.][.]
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+[.][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Enforcer
+- Anchor
+
+-Placements:
+- Placed Anchor at (2, 1)
+- Placed Enforcer at (1, 1)
+
+-Extends:
+- Scavenger extended to 2
+
+Night 4
+-Events:
+Enforcer eliminates 2 crew
+Enforcer kill bonus
+Scavenger base income
+Scavenger scavenged 2 deaths
+Gunslinger base income
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 3000
+Bonus Income: 4000
+Kill Bonus: 4000
+Multiplier: x1
+Total Income: 10000
+
+Current Money: 19500
+
+----------------------------
+
+Checkouts:
+- Gunslinger
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[U][.][.] | [U][A][.] | [U][A][.] | [U][.][.] | [.][.][.]
+[A][.][.] | [A][E][.] | [A][E][.] | [.][E][.] | [.][E][.]
+[S][.][.] | [S][.][.] | [S][.][.] | [S][.][.] | [S][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Detonator
+- Loner
+
+-Placements:
+- Placed Loner at (2, 0)
+- Placed Detonator at (1, 0)
+
+-Extends:
+
+Night 5
+-Events:
+Detonator buffs Enforcer 
+Detonator buffs Loner 
+Detonator buffs Scavenger 
+Scavenger base income
+Scavenger scavenged 2 deaths
+Loner base income
+Loner 4 empty zones
+Protection drain applies
+
+Engine Type: Loner
+
+----------------------------
+
+Base Income: 14500
+Bonus Income: 10000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 23500
+
+Current Money: 43000
+
+----------------------------
+
+Checkouts:
+- Scavenger
+- Enforcer
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][E][.] | [.][E][.] | [.][E][.] | [.][E][.] | [.][.][.]
+[S][.][.] | [S][D][L] | [S][D][L] | [S][.][L] | [.][.][L]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[.][.][L]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Rookie
+- Rookie
+- Scavenger
+- Gunslinger
+- Scavenger
+- Anchor
+- Enforcer
+- Anchor
+- Detonator
+- Loner
+
+All Extensions:
+- Gunslinger
+- Scavenger
+

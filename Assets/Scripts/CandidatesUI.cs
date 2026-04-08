@@ -28,12 +28,12 @@ public class CandidatesUI : MonoBehaviour
 
 		foreach (var crew in dailyArrivals)
 		{
-			GameObject buttonGO = Instantiate(
+			GameObject buttonGo = Instantiate(
 				arrivalButtonPrefab,
 				arrivalButtonContainer
 			);
 
-			var view = buttonGO.GetComponent<CrewCard>();
+			var view = buttonGo.GetComponent<CrewCard>();
 			view.Initialize(crew);
 		}
 

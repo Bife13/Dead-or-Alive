@@ -18,13 +18,13 @@ public class GridManager : MonoBehaviour
 	[SerializeField]
 	private List<GameObject> zoneObjects;
 
-	private Zone[,] zones;
-	public Zone[,] Zones => zones;
+	private Zone[,] _zones;
+	public Zone[,] Zones => _zones;
 
 
 	public void Initialize()
 	{
-		zones = new Zone[width, height];
+		_zones = new Zone[width, height];
 
 		int x = 0;
 		int y = 0;
@@ -33,11 +33,11 @@ public class GridManager : MonoBehaviour
 		foreach (GameObject zone in zoneObjects)
 		{
 			Vector2Int position = new Vector2Int(x, y);
-			zones[x, y] = new Zone(position, index);
+			_zones[x, y] = new Zone(position, index);
 
 			ZoneView view = zone.GetComponent<ZoneView>();
-			view.Initialize(zones[x, y]);
-			Zones[x, y].view = view;
+			view.Initialize(_zones[x, y]);
+			Zones[x, y].View = view;
 
 			index++;
 			x++;
@@ -52,8 +52,8 @@ public class GridManager : MonoBehaviour
 		int index = 0;
 		foreach (Zone zone in GetAllZones())
 		{
-			zone.view.SetZoneName(GameManager.Instance.GetCurrentBounty().zoneNames[index]);
-			zone.view.SetLocked(GameManager.Instance.IsZoneLocked(index));
+			zone.View.SetZoneName(GameManager.Instance.GetCurrentBounty().zoneNames[index]);
+			zone.View.SetLocked(GameManager.Instance.IsZoneLocked(index));
 			index++;
 		}
 	}
@@ -77,7 +77,7 @@ public class GridManager : MonoBehaviour
 			Vector2Int newPosition = position + direction;
 
 			if (IsInside(newPosition))
-				result.Add(zones[newPosition.x, newPosition.y]);
+				result.Add(_zones[newPosition.x, newPosition.y]);
 		}
 
 		return result;

@@ -1,0 +1,79 @@
+=== RUN SUMMARY ===
+Seed: 1923883563
+
+Final Money: -1000
+
+Week: 1
+
+Weekly Money: -1000
+
+Peak: 0
+
+Peak Night: 0
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Loner
+- Pawn
+
+-Placements:
+
+-Extends:
+
+Night 1
+-Events:
+Protection drain applies
+
+Engine Type: Mixed
+
+----------------------------
+
+Base Income: 0
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: -1000
+
+Current Money: -1000
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+Final Board:
+[.][.][.]
+[.][.][.]
+[.][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Loner
+- Pawn
+
+All Extensions:
+

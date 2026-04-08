@@ -73,4 +73,9 @@ public class BountyManager : MonoBehaviour
 
 		return -1;
 	}
+	
+	public BountyData GetBountyData(int week)
+	{
+		return weeklyBounties[week - 1]; // week is 1-indexed, list is 0-indexed
+	}
 }

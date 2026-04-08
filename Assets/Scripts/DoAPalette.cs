@@ -74,7 +74,7 @@ public class DoAPalette : ScriptableObject
 	{
 		return token switch
 		{
-			PaletteToken.Token.BG => bg,
+			PaletteToken.Token.Bg => bg,
 			PaletteToken.Token.Panel => panel,
 			PaletteToken.Token.Surface => surface,
 			PaletteToken.Token.Border => border,

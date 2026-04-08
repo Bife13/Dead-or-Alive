@@ -6,12 +6,12 @@ using UnityEngine.UI;
 // [ExecuteAlways]
 public class PaletteToken : MonoBehaviour
 {
-	private DoAPalette Palette;
+	private DoAPalette _palette;
 
 	public enum Token
 	{
 		// Backgrounds
-		BG,
+		Bg,
 		Panel,
 		Surface,
 		Border,

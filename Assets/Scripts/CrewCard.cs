@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class CrewCard : MonoBehaviour
 {
 	public Button button;
-	private CrewDefinition crew;
+	private CrewDefinition _crew;
 
 
 	[SerializeField]
@@ -100,16 +100,16 @@ public class CrewCard : MonoBehaviour
 
 	public void Initialize(CrewDefinition definition)
 	{
-		crew = definition;
-		Populate(crew);
+		_crew = definition;
+		Populate(_crew);
 		button.onClick.RemoveAllListeners();
 		button.onClick.AddListener(OnClicked);
-		if (crew.crewType == CrewType.Scavenger)
+		if (_crew.crewType == CrewType.Scavenger)
 			incomeText.text = definition.incomeText + $" ({GameManager.Instance.WeeklyDeathCount})";
 	}
 
 	private void OnClicked()
 	{
-		PlacementManager.Instance.SelectCrew(crew);
+		PlacementManager.Instance.SelectCrew(_crew);
 	}
 }

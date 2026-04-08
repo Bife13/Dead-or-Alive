@@ -45,7 +45,7 @@ public class ActionCardUI : MonoBehaviour, IPointerClickHandler
 
 	public void SetSelected(bool selected)
 	{
-		if (_instance.isUsed) return;
+		if (_instance.IsUsed) return;
 
 		var palette = DoAPalette.Instance;
 		outline.color = selected ? palette.ochre : palette.border;
@@ -60,7 +60,7 @@ public class ActionCardUI : MonoBehaviour, IPointerClickHandler
 	{
 		var palette = DoAPalette.Instance;
 
-		_instance.isUsed = true;
+		_instance.IsUsed = true;
 		canvasGroup.alpha = 0.3f;
 		outline.color = palette.border;
 		background.color = palette.panel;
@@ -70,7 +70,7 @@ public class ActionCardUI : MonoBehaviour, IPointerClickHandler
 	private void UpdateVisuals()
 	{
 		var palette = DoAPalette.Instance;
-		canvasGroup.alpha = _instance.isUsed ? 0.3f : 1f;
+		canvasGroup.alpha = _instance.IsUsed ? 0.3f : 1f;
 		outline.color = palette.border;
 		background.color = palette.panel;
 		nameText.color = palette.textL1;
@@ -80,7 +80,7 @@ public class ActionCardUI : MonoBehaviour, IPointerClickHandler
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-		if (_instance.isUsed) return;
+		if (_instance.IsUsed) return;
 		if (GameManager.Instance.CurrentPhase != GamePhase.PlanningPhase) return;
 
 		ActionBarUI.Instance.SelectCard(this, _instance);
