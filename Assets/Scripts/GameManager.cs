@@ -434,6 +434,8 @@ public class GameManager : MonoBehaviour
 					foreach (var adjZone in gridManager.GetAdjacentZones(zone))
 					{
 						if (adjZone.IsOccupied()) continue;
+						if (IsZoneLocked(adjZone.Index)) continue;
+
 						if (creations.Any(c => c.zone == adjZone)) continue;
 
 						creations.Add((adjZone, crew.Definition.creationDefinition));
@@ -898,7 +900,7 @@ public class GameManager : MonoBehaviour
 
 		foreach (Zone adjZone in gridManager.GetAdjacentZones(zone))
 		{
-			if (!adjZone.IsOccupied() && !IsZoneLocked(zone.Index))
+			if (!adjZone.IsOccupied() && !IsZoneLocked(adjZone.Index))
 				total++;
 		}
 
@@ -1104,6 +1106,13 @@ public class GameManager : MonoBehaviour
 		oldZone.ClearHideOccupant();
 
 		targetZone.SetOccupant(selected);
+
+		string oldLine = "Placed " + selected.Definition.displayName + " at " + oldZone.Position;
+		int i = _currentNightLog.Placements.IndexOf(oldLine);
+		if (i >= 0)
+			_currentNightLog.Placements[i] = "Placed " + selected.Definition.displayName + " at " + targetZone.Position;
+		else
+			_currentNightLog.Placements.Add("Moved " + selected.Definition.displayName + " to " + targetZone.Position);
 
 		// currentNightLog.placements.Add("Moved " + selected.Definition.displayName + " to " + targetZone.Position);
 

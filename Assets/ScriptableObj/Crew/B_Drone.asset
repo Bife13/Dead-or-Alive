@@ -12,13 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e3e3b9108043274fa81e42862d5fc1c, type: 3}
   m_Name: B_Drone
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDefinition
-  crewID: 
+  crewID: M
   crewType: 7
   displayName: Drone
   weight: 0
   baseIncome: 0
   contractDuration: 1
-  effectType: 0
   effectValue: 0
   effectRequirement: 0
   creationDefinition: {fileID: 0}
@@ -35,4 +34,3 @@ MonoBehaviour:
   statValue2: 
   statLabel3: 
   statValue3: 
-  crewColor: {r: 0.47843137, g: 0.3529412, b: 0.5411765, a: 1}

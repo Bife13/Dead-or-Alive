@@ -1,0 +1,282 @@
+=== RUN SUMMARY ===
+Seed: -1024494874
+
+Final Money: 36500
+
+Week: 1
+
+Weekly Money: 36500
+
+Peak: 14500
+
+Peak Night: 2
+
+Solved Night: 0
+
+
+----------------------------
+
+Day  1
+-Arrivals:
+- Detonator
+- Anchor
+
+-Placements:
+- Placed Anchor at (0, 0)
+- Placed Detonator at (1, 0)
+
+-Extends:
+
+Night 1
+-Events:
+Anchor base income
+Detonator base income
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 3500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 2500
+
+Current Money: 2500
+
+----------------------------
+
+Checkouts:
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [A][D][.] | [A][D][.] | [A][D][.] | [A][D][.]
+
+
+----------------------------
+
+Day  2
+-Arrivals:
+- Rookie
+- Scavenger
+
+-Placements:
+- Placed Scavenger at (2, 2)
+- Placed Rookie at (1, 2)
+
+-Extends:
+
+Night 2
+-Events:
+Detonator buffs Rookie 
+Detonator buffs Scavenger 
+Detonator buffs Anchor 
+Anchor base income
+Scavenger base income
+Rookie base income
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 15500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 14500
+
+Current Money: 17000
+
+----------------------------
+
+Checkouts:
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][.][.] | [.][R][.] | [.][R][.] | [.][R][.] | [.][R][.]
+[A][D][.] | [A][D][S] | [A][D][S] | [A][.][S] | [.][.][S]
+
+
+----------------------------
+
+Day  3
+-Arrivals:
+- Scavenger
+- Anchor
+
+-Placements:
+- Placed Anchor at (1, 0)
+- Placed Scavenger at (0, 0)
+
+-Extends:
+
+Night 3
+-Events:
+Scavenger base income
+Anchor base income
+Scavenger base income
+Rookie base income
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 4500
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 3500
+
+Current Money: 20500
+
+----------------------------
+
+Checkouts:
+- Scavenger
+- Rookie
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+[.][R][.] | [.][R][.] | [.][R][.] | [.][R][.] | [.][.][.]
+[.][.][S] | [S][A][S] | [S][A][S] | [S][A][S] | [S][A][.]
+
+
+----------------------------
+
+Day  4
+-Arrivals:
+- Anchor
+- Rookie
+
+-Placements:
+- Placed Rookie at (0, 1)
+- Placed Anchor at (1, 1)
+
+-Extends:
+
+Night 4
+-Events:
+Scavenger base income
+Anchor base income
+Rookie base income
+Anchor base income
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 5000
+Bonus Income: 0
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 4000
+
+Current Money: 24500
+
+----------------------------
+
+Checkouts:
+- Scavenger
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[.][.][.] | [A][.][.] | [A][.][.] | [A][.][.] | [A][.][.]
+[.][.][.] | [R][.][.] | [R][.][.] | [R][.][.] | [R][.][.]
+[S][A][.] | [S][A][.] | [S][A][.] | [S][A][.] | [.][.][.]
+
+
+----------------------------
+
+Day  5
+-Arrivals:
+- Gunslinger
+- Detonator
+
+-Placements:
+- Placed Gunslinger at (0, 0)
+- Placed Detonator at (0, 1)
+
+-Extends:
+
+Night 5
+-Events:
+Detonator buffs Anchor 
+Detonator buffs Rookie 
+Rookie base income
+Anchor base income
+Gunslinger base income
+Gunslinger adj bonus
+Protection drain applies
+
+Engine Type: Anchor
+
+----------------------------
+
+Base Income: 12500
+Bonus Income: 3000
+Kill Bonus: 0
+Multiplier: x1
+Total Income: 14500
+
+Current Money: 36500
+
+----------------------------
+
+Checkouts:
+- Rookie
+- Anchor
+
+Board States:
+Before     | AfterPlace | AfterSumm  | AfterKills | End
+----------------------------------------------------------------
+[A][.][.] | [A][U][.] | [A][U][.] | [A][U][.] | [.][U][.]
+[R][.][.] | [D][R][.] | [D][R][.] | [.][R][.] | [.][.][.]
+[.][.][.] | [.][.][.] | [.][.][.] | [.][.][.] | [.][.][.]
+
+Final Board:
+[.][U][.]
+[.][.][.]
+[.][.][.]
+
+Current Weights:
+- Con Artist: 6
+- Enforcer: 5
+- Ghost: 6
+- Gunslinger: 5
+- Handler: 6
+- Rookie: 10
+- Strategist: 4
+- Anchor: 5
+- Detonator: 4
+- Loner: 5
+- Pawn: 7
+- Scavenger: 5
+
+All Arrivals:
+- Detonator
+- Anchor
+- Rookie
+- Scavenger
+- Scavenger
+- Anchor
+- Anchor
+- Rookie
+- Gunslinger
+- Detonator
+
+All Extensions:
+
