@@ -85,14 +85,14 @@ public class ZoneView : MonoBehaviour, IPointerClickHandler
 		else if (eventData.button == PointerEventData.InputButton.Right)
 		{
 			Debug.Log("RIGHT CLICK");
-		}
-		else
-		{
-			Debug.Log("Middle CLICK");
 			if (_zone.IsOccupied())
 			{
 				GameManager.Instance.ReturnSelectedCrew(_zone);
 			}
+		}
+		else
+		{
+			Debug.Log("Middle CLICK");
 		}
 	}
 

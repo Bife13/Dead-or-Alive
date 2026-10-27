@@ -31,7 +31,7 @@ public class ReportLineUI : MonoBehaviour
 				SetLine("¥", e.Label, e.SourceCrew, e.TargetCrew, FormatValue(e.Value), p.ochre, p);
 				break;
 			case ReportEventType.Kill:
-				SetLine("✕", e.Label, e.SourceCrew, e.TargetCrew, "−CREW", p.wine, p);
+				SetLine("×", e.Label, e.SourceCrew, e.TargetCrew, "−CREW", p.wine, p);
 				break;
 			case ReportEventType.Drain:
 				SetLine("▼", e.Label, e.SourceCrew, e.TargetCrew, FormatValue(e.Value), p.wine, p);

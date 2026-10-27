@@ -109,7 +109,10 @@ public class GameManager : MonoBehaviour
 
 	[SerializeField]
 	private RunEndUI runEndUI;
-
+	
+	[SerializeField]
+	private HowToPlayUI howToPlayUI;
+	
 	private List<int> _weeklyEarnings = new();
 
 	private void Awake()
@@ -1128,6 +1131,8 @@ public class GameManager : MonoBehaviour
 	public void ResetRun()
 	{
 		titleCardUI.Hide();
+		runEndUI.Hide();
+		howToPlayUI.Hide();
 		InitializePowerUps();
 		gridManager.Initialize();
 		weeklyTarget = weeklyTargets[0];
@@ -1170,6 +1175,11 @@ public class GameManager : MonoBehaviour
 		_currentNightLog.BeforePlacement = CaptureBoardSnapshot();
 
 		weekDossierUI.Show(currentWeek, bountyManager.CurrentBounty, weeklyTarget);
+	}
+
+	public void ShowTutorial()
+	{
+		howToPlayUI.Show();
 	}
 
 	public BountyData GetCurrentBounty()
